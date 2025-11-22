@@ -297,7 +297,7 @@ Choose from these 6 moat types:
 - What metrics indicate moat is working?
 - What signals indicate moat is weak?
 
-### 2. Retention Thesis (Habit/Frequency Driver)
+### 4. Retention Thesis (Habit/Frequency Driver)
 
 #### Why Do Users Come Back Weekly/Monthly?
 - What recurring job drives return visits?
@@ -318,7 +318,7 @@ Choose from these 6 moat types:
 - What habit formation is built in?
 - What collaborative dependencies exist?
 
-### 3. Expansion Model (Seat/Usage/Tier)
+### 5. Expansion Model (Seat/Usage/Tier)
 
 #### Expansion Revenue Path
 
@@ -350,7 +350,7 @@ Choose from these 6 moat types:
 - **Month 4-6**: [Expected expansion revenue]
 - **Month 7-12**: [Expected expansion revenue]
 
-### 4. Churn Risks & Counter-Features
+### 6. Churn Risks & Counter-Features
 
 #### Churn Risk Assessment
 
@@ -381,7 +381,7 @@ Choose from these 6 moat types:
 - **Retention features**: [What features prevent churn?]
 - **Win-back strategy**: [How to win back churned users?]
 
-### 5. Lifecycle State Machine
+### 7. Lifecycle State Machine
 
 #### User Lifecycle States
 
@@ -430,7 +430,7 @@ Choose from these 6 moat types:
 - **Expanded → Advocate**: [What triggers this?]
 - **Any State → Churned**: [What triggers churn?]
 
-### 6. Activation → Habit → Expansion Plan
+### 8. Activation → Habit → Expansion Plan
 
 #### Activation Plan
 - **Activation goal**: [What defines "activated"?]
@@ -454,7 +454,7 @@ Choose from these 6 moat types:
 - **Expansion timeline**: [How long to expand?]
 - **Expansion metrics**: [How to measure expansion?]
 
-### 7. Churn-Prevention Triggers
+### 9. Churn-Prevention Triggers
 
 #### Early Warning Signals
 - **Signal 1**: [What indicates churn risk?]
