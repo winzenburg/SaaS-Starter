@@ -25,24 +25,36 @@
 ## Step Sequence
 
 ```
-Insight → Narrative → Validation (must complete first):
-1. Insight-Strategist → Unfair Insight
-2. Product-Strategist → Narrative + Desirability PRD
-3. Market-Scanner → Community Heat + Moat
-4. Run Validation Tests (emails, DMs, landing page, "would you be upset?", manual concierge)
-5. Green-light decision
+Updated Flow: Insight → Validation → Moat → Retention → Monetization → Build
 
-If green-light → Architecture Phase:
-6. IA Designer → flows/edge cases (parallel OK)
-7. Engineering Architect → ADR + schema + router plan
-8. Test Engineer → test plan + stubs
-9. Implementer → build (small diffs, MVP-first)
-10. Accessibility Agent → a11y audit + fix loop
-11. Test Engineer → test verify
-12. Product Strategist → PRD acceptance check
+Phase 1: Insight & Validation (must complete first):
+1. Portfolio-Prioritizer → Score idea (portfolio scoring)
+2. Insight-Strategist → Unfair Insight
+3. Product-Strategist → Narrative + Desirability PRD
+4. Market-Scanner → Community Heat + Moat
+5. Run Validation Tests (emails, DMs, landing page, "would you be upset?", manual concierge)
+6. Green-light decision (validation)
+
+Phase 2: Moat & Retention (must complete second):
+7. Moat & MRR Strategist → Moat map + Data Moat Thesis + Expansion Revenue Strategy
+8. Retention Architect → Activation path + Habit loops + Notification strategy + Collaboration loops + Renewal triggers
+9. Green-light decision (moat + retention)
+
+Phase 3: Monetization (must complete third):
+10. Product Strategist → Monetization Wedge + Expansion Revenue Strategy (finalize)
+11. Green-light decision (monetization)
+
+Phase 4: Build (if all green-lights):
+12. IA Designer → flows/edge cases (parallel OK)
+13. Engineering Architect → ADR + schema + router plan
+14. Test Engineer → test plan + stubs
+15. Implementer → build (small diffs, MVP-first)
+16. Accessibility Agent → a11y audit + fix loop
+17. Test Engineer → test verify
+18. Product Strategist → PRD acceptance check
 ```
 
-**Note**: Steps 1-5 should follow `.cursor/rules/200-playbook-insight-validation.mdc` if not already completed.
+**Note**: Steps 1-6 should follow `.cursor/rules/200-playbook-insight-validation.mdc` if not already completed. Steps 7-9 should follow `.cursor/rules/205-playbook-moat-mrr-validation.mdc` if not already completed.
 
 ## Steps
 

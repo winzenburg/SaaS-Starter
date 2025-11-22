@@ -1,0 +1,60 @@
+# Core Rule: Compounding Niche Score (NCS)
+
+**Goal**: Identify compounding niches that create durable MRR, not decaying niches that fade.
+
+## Rule
+
+Every product idea must be scored on the Niche Compounding Score (NCS) before proceeding to validation.
+
+## Scoring Criteria (Score 1-5 for each)
+
+### 1. Market Velocity
+- **5**: Market growing fast (20%+ YoY growth)
+- **4**: Market growing (10-20% YoY growth)
+- **3**: Market stable (0-10% YoY growth)
+- **2**: Market declining (-10% to 0% YoY growth)
+- **1**: Market shrinking fast (< -10% YoY growth)
+
+### 2. Forced Adoption
+- **5**: Regulation/compliance mandates adoption (required by law/regulation)
+- **4**: Industry standards require adoption (required by industry)
+- **3**: Best practices recommend adoption (recommended by industry)
+- **2**: Optional but beneficial (optional, but helpful)
+- **1**: Purely optional (completely optional)
+
+### 3. Increasing Complexity
+- **5**: Complexity growing fast (problems getting harder, more complex)
+- **4**: Complexity growing (problems getting harder)
+- **3**: Complexity stable (problems staying same)
+- **2**: Complexity decreasing (problems getting easier)
+- **1**: Complexity shrinking fast (problems getting much easier)
+
+### 4. Community Growth
+- **5**: Community growing fast (20%+ YoY growth)
+- **4**: Community growing (10-20% YoY growth)
+- **3**: Community stable (0-10% YoY growth)
+- **2**: Community declining (-10% to 0% YoY growth)
+- **1**: Community shrinking fast (< -10% YoY growth)
+
+### 5. Willingness-to-Pay Trajectory
+- **5**: Willingness-to-pay increasing fast (budgets growing, value increasing)
+- **4**: Willingness-to-pay increasing (budgets growing, value stable)
+- **3**: Willingness-to-pay stable (budgets stable, value stable)
+- **2**: Willingness-to-pay decreasing (budgets shrinking, value decreasing)
+- **1**: Willingness-to-pay shrinking fast (budgets shrinking fast, value decreasing)
+
+## Assessment
+
+**Total Score (out of 25)**:
+- **Compounding Niche (20-25)**: Build for long-term compounding
+- **Stable Niche (15-19)**: Build for stable MRR
+- **Decaying Niche (10-14)**: Build for short-term, expect decline
+- **Declining Niche (5-9)**: Avoid or pivot
+
+## Quality Gate
+
+- NCS must be scored before validation
+- Score must be ≥ 15 (Stable Niche or Compounding Niche) to proceed
+- If score < 15, consider pivot or kill
+
+**Critical Rule**: Only build for Compounding Niche (20-25) or Stable Niche (15-19). Avoid Decaying Niche (10-14) and Declining Niche (5-9).

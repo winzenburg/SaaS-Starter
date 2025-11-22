@@ -27,13 +27,15 @@ See `docs/agents/*.md` for full prompts.
 1. **Insight & Narrative Strategist** ← NEW (Isenberg-critical) — insights + narratives in `/docs/product`
 2. **Product Strategist** (now narrative + desirability-first) — PRDs in `/docs/product`
 3. **Moat & MRR Strategist** ← NEW (lightweight, fast) — Moat & MRR strategy in `/docs/product`
-4. **Market Scanner** (now community-first) — market scans in `/docs/research`
-5. **UX Researcher** (identity + narrative-aligned) — scripts/synthesis in `/docs/research`
-6. **IA Designer** (emotion → interaction) — IA/flows in `/docs/ux`
-7. **Accessibility Agent** — audits in `/docs/ux`
-8. **Engineering Architect** — ADRs + schemas in `/docs/engineering`
-9. **Test Engineer** — test plans + suites in `/tests` and `/e2e`
-10. **Implementer** — code in `/src/features` + `/app` routes
+4. **Retention Architect** ← NEW — retention architecture in `/docs/product`
+5. **Portfolio Prioritizer** ← NEW — portfolio scoring and prioritization in `/docs/portfolio`
+6. **Market Scanner** (now community-first) — market scans in `/docs/research`
+7. **UX Researcher** (identity + narrative-aligned) — scripts/synthesis in `/docs/research`
+8. **IA Designer** (emotion → interaction) — IA/flows in `/docs/ux`
+9. **Accessibility Agent** — audits in `/docs/ux`
+10. **Engineering Architect** — ADRs + schemas in `/docs/engineering`
+11. **Test Engineer** — test plans + suites in `/tests` and `/e2e`
+12. **Implementer** — code in `/src/features` + `/app` routes
 
 ## Default Workflows
 
@@ -54,7 +56,12 @@ See `docs/agents/*.md` for full prompts.
 Always active. Short, enforceable constraints.
 - `000-core-idea-criteria.mdc` - Isenberg's filters (identity-level pain, recurring need, distribution wedge, insight+community match)
 - `001-core-architecture.mdc` - Architecture principles, feature modules
+- `002-core-compounding-niche-score.mdc` - Compounding niche evaluation (NCS scoring)
+- `003-core-data-moat-planning.mdc` - Data moat planning (required before engineering)
+- `004-core-expansion-revenue.mdc` - Expansion revenue architecture (required before engineering)
 - `005-core-testing.mdc` - Test requirements
+- `006-core-frequency-modeling.mdc` - JTBD frequency modeling (required before engineering)
+- `007-core-portfolio-kill-greenlight.mdc` - Portfolio kill/greenlight criteria (required before validation/engineering)
 - `010-core-ux-a11y.mdc` - UX and accessibility baseline
 - `015-core-security.mdc` - Security fundamentals
 - `020-core-observability.mdc` - Observability requirements

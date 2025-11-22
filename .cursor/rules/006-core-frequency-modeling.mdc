@@ -1,0 +1,50 @@
+# Core Rule: JTBD Frequency Modeling
+
+**Goal**: Ensure every product has a frequency strategy that drives retention.
+
+## Rule
+
+Every product must have a JTBD Frequency Map before proceeding to engineering.
+
+## Required Components
+
+### 1. How Often Does the Job Occur?
+- **Daily jobs**: Job occurs daily (highest retention potential)
+- **Weekly jobs**: Job occurs weekly (strong retention potential)
+- **Monthly jobs**: Job occurs monthly (moderate retention potential)
+- **Quarterly jobs**: Job occurs quarterly (low retention potential)
+- **Event-driven jobs**: Job occurs when specific events happen (variable retention)
+- **Rare jobs**: Job occurs rarely (low retention potential, needs frequency boosters)
+
+### 2. What Triggers the Job?
+- **Time-based triggers**: Scheduled time (daily at 9am, weekly on Monday)
+- **Event-based triggers**: Specific events (new user signs up, error occurs)
+- **Action-based triggers**: User actions (completes task, reaches limit)
+- **External triggers**: External factors (market changes, compliance requirements)
+- **Internal triggers**: Internal factors (deadline approaching, goal achieved)
+
+### 3. What Increases the Frequency?
+- **Success factors**: What makes the job happen more often?
+- **Growth factors**: What causes the job to scale?
+- **Value factors**: What makes the job more valuable when done frequently?
+- **Dependency factors**: What creates dependencies that increase frequency?
+
+### 4. If Job Is Rare: Frequency Boosters (REQUIRED)
+If the core job is rare (quarterly, event-driven, or one-time), you need frequency boosters:
+
+- **Alerts**: Product sends alerts/notifications to bring users back
+- **Monitoring**: Product monitors conditions and surfaces insights regularly
+- **Workflows**: Product automates workflows that require regular attention
+- **Repeated Jobs**: Product creates repeated instances of the job
+- **Recurring Tasks**: Product creates recurring tasks that need regular completion
+
+**Choose at least one** if job is rare.
+
+## Quality Gate
+
+- JTBD frequency must be clearly defined
+- Job triggers must be identified
+- Frequency increase factors must be defined
+- If job is rare, frequency boosters must be selected (at least one)
+
+**Critical Rule**: If the core job isn't frequent, MRR collapses after the initial honeymoon. Every feature/product must include a "JTBD Frequency Map." If the job is rare, you need frequency boosters (alerts, monitoring, workflows, repeated jobs, recurring tasks) to keep the product alive.

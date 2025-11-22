@@ -1,0 +1,47 @@
+# Core Rule: Expansion Revenue Architecture
+
+**Goal**: Ensure every product has expansion revenue levers that grow MRR without acquisition cost.
+
+## Rule
+
+Every product must have at least one expansion revenue lever before proceeding to engineering.
+
+## Required: At Least One Expansion Revenue Lever
+
+Choose at least one (or combine multiple):
+
+1. **Usage-Based Pricing**: Revenue grows with usage volume
+2. **Additional Seats**: Revenue grows with team size
+3. **Add-Ons**: Revenue grows with optional add-on products/services
+4. **Premium Automations**: Revenue grows with advanced automation features
+5. **AI Enhanced Insights**: Revenue grows with AI-powered insights and recommendations
+6. **Compliance/Integrations**: Revenue grows with compliance features and integrations
+7. **Advanced Analytics**: Revenue grows with advanced analytics and reporting
+8. **Custom Workflows**: Revenue grows with custom workflow capabilities
+
+## Required Components
+
+### Expansion Path
+- **Initial revenue**: [What's the starting MRR?]
+- **Expansion path**: [How does revenue grow?]
+- **Target expansion**: [What's the target MRR per customer?]
+- **Expansion timeline**: [How long to reach target expansion?]
+
+### Expansion Triggers
+- **What triggers expansion?**: [What actions/needs trigger expansion?]
+- **When does expansion happen?**: [When does expansion occur naturally?]
+- **What prevents expansion?**: [What barriers exist?]
+
+### Expansion Metrics
+- **Expansion rate**: [What % of customers expand?]
+- **Average expansion**: [What's the average expansion multiple?]
+- **Time to expansion**: [How long until first expansion?]
+
+## Quality Gate
+
+- At least one expansion revenue lever must be selected
+- Expansion path must be clear (how to get from initial to 10x)
+- Expansion triggers must be natural (aligned with customer success)
+- Expansion metrics must be measurable
+
+**Critical Rule**: MRR is fragile unless pricing grows with value. Every product must include at least one expansion revenue lever. This is how you turn a $29/mo tool into a $290/mo business without acquisition cost.

@@ -1,0 +1,41 @@
+# Core Rule: Data Moat Planning
+
+**Goal**: Ensure every product has a data moat strategy before building.
+
+## Rule
+
+Every product must have a Data Moat Thesis before proceeding to engineering.
+
+## Required Components
+
+### 1. What Proprietary Data Will We Capture?
+- **Data types**: [What specific data will be captured?]
+- **Data sources**: [Where does this data come from?]
+- **Data uniqueness**: [Why is this data proprietary? Why can't competitors get it?]
+- **Data collection mechanism**: [How is data collected?]
+- **Data volume**: [How much data will be collected over time?]
+
+### 2. How Does It Get Better as Users Grow?
+- **Network effects**: [How does more data from more users make the product better?]
+- **Learning effects**: [How does the product learn from usage patterns?]
+- **Compounding value**: [How does value increase exponentially with data?]
+- **Data accumulation**: [How does data accumulate over time?]
+
+### 3. How Does That Unlock 10× Better Value?
+- **UX improvements**: [How does data enable 10× better user experience?]
+- **Insights**: [What insights can only your product provide?]
+- **Automation**: [What automation is enabled by proprietary data?]
+- **Recommendations**: [What recommendations are uniquely valuable?]
+
+### 4. What Feedback Loop Improves Retention?
+- **Retention mechanism**: [How does data improve retention?]
+- **Feedback loop**: [What's the data → value → retention → more data loop?]
+- **Switching costs**: [How does accumulated data create switching costs?]
+
+## Quality Gate
+
+- Data Moat Thesis must be complete before engineering
+- All 4 components must be answered
+- Implementation plan must be created
+
+**Critical Rule**: In 2025, data moats are the only durable moats for small SaaS. Every niche product should have a Data Moat Thesis. This turns every product into a compounding dataset → defensible advantage.

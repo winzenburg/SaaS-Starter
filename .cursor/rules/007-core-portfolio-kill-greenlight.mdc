@@ -1,0 +1,94 @@
+# Core Rule: Portfolio Kill/Greenlight Criteria
+
+**Goal**: Establish clear kill/greenlight criteria to avoid wasting resources on bad bets.
+
+## Rule
+
+Every product idea must pass kill/greenlight criteria before entering validation or engineering.
+
+## Greenlight Criteria (All Must Be True)
+
+### Portfolio Score
+- ✅ Portfolio Score ≥ 20 (High Priority or Portfolio Priority)
+
+### Signal Strength
+- ✅ Signal Strength ≥ 4 (Strong or Very Strong signals)
+
+### TAM-for-Niche
+- ✅ TAM-for-Niche ≥ 4 (Large or Very Large TAM)
+
+### Moat Potential
+- ✅ Moat Potential ≥ 4 (High or Very High moat potential)
+
+### Implementation Cost
+- ✅ Implementation Cost ≤ 3 (Very Low, Low, or Moderate cost)
+
+### Long-Term Retention Risk
+- ✅ Long-Term Retention Risk ≤ 3 (Very Low, Low, or Moderate risk)
+
+### Monetization Depth
+- ✅ Monetization Depth ≥ 4 (Deep or Very Deep monetization)
+
+### Expected Value
+- ✅ Expected Value ≥ $10k
+
+### Risk Score
+- ✅ Risk Score ≤ 15 (Low Risk or Very Low Risk)
+
+### Capacity
+- ✅ Engineering capacity available
+
+## Kill Criteria (Kill if Any Are True)
+
+### Portfolio Score
+- ❌ Portfolio Score < 10
+
+### Signal Strength
+- ❌ Signal Strength = 1 (No signals)
+
+### TAM-for-Niche
+- ❌ TAM-for-Niche = 1 (Very small TAM)
+
+### Moat Potential
+- ❌ Moat Potential = 1 (Very low moat potential)
+
+### Implementation Cost
+- ❌ Implementation Cost = 1 (Very high cost)
+
+### Long-Term Retention Risk
+- ❌ Long-Term Retention Risk = 1 (Very high risk)
+
+### Monetization Depth
+- ❌ Monetization Depth = 1 (Very shallow)
+
+### Expected Value
+- ❌ Expected Value < $5k
+
+### Risk Score
+- ❌ Risk Score > 20 (Very High Risk)
+
+### Opportunity Cost
+- ❌ Opportunity Cost > Current Product EV × 2
+
+## Kill Process
+
+1. **Identify kill signal**: [What kill signal was triggered?]
+2. **Assess kill decision**: [Is kill decision clear?]
+3. **Document learnings**: [What did we learn?]
+4. **Reallocate resources**: [Where do resources go next?]
+5. **Update portfolio**: [Update portfolio prioritization]
+
+## Kill Timeline
+
+**Kill fast**: If kill signal triggered, kill within 2 weeks.
+
+**Rationale**: Wasting resources on bad bets prevents investing in good bets. Kill fast to free resources for higher-value opportunities.
+
+## Quality Gate
+
+- Kill/greenlight criteria must be checked before validation
+- Kill/greenlight criteria must be checked before engineering
+- Kill decisions must be made within 2 weeks of kill signal
+- Greenlight decisions must be documented
+
+**Critical Rule**: No product enters validation or engineering without passing kill/greenlight criteria. Kill fast to avoid wasting resources on bad bets.
