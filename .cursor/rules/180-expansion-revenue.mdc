@@ -1,0 +1,127 @@
+# Stack Rule: Expansion Revenue
+
+**Goal**: Ensure every feature defines its expansion revenue mechanism. Pricing is part of product design; not an afterthought.
+
+## Rule
+
+**Each feature must define its expansion revenue mechanism before engineering.**
+
+## Required: Expansion Revenue Mechanism
+
+Every feature must select at least one expansion revenue mechanism:
+
+### 1. Usage-Based
+- **How it works**: Revenue grows with usage volume
+- **Value metric**: [What usage metric drives revenue?]
+- **Pricing tiers**: [What are the usage tiers?]
+- **Expansion path**: [How does usage grow over time?]
+- **Examples**: API calls, storage, compute, transactions, events
+
+### 2. Seat-Based
+- **How it works**: Revenue grows with team size
+- **Value metric**: [What seat metric drives revenue?]
+- **Pricing tiers**: [What are the seat tiers?]
+- **Expansion path**: [How do seats grow over time?]
+- **Examples**: User seats, team members, collaborators
+
+### 3. Premium Automation or Analytics
+- **How it works**: Revenue grows with advanced features
+- **Value metric**: [What premium feature metric drives revenue?]
+- **Pricing tiers**: [What are the premium tiers?]
+- **Expansion path**: [How do premium features grow over time?]
+- **Examples**: Advanced automations, AI insights, predictive analytics, custom workflows
+
+### 4. Add-Ons
+- **How it works**: Revenue grows with optional add-on products/services
+- **Value metric**: [What add-on metric drives revenue?]
+- **Pricing tiers**: [What are the add-on tiers?]
+- **Expansion path**: [How do add-ons grow over time?]
+- **Examples**: Integrations, compliance features, white-label, custom development
+
+### 5. Organizational Tier Upgrades
+- **How it works**: Revenue grows with organizational tier upgrades
+- **Value metric**: [What organizational metric drives revenue?]
+- **Pricing tiers**: [What are the organizational tiers?]
+- **Expansion path**: [How do organizational tiers grow over time?]
+- **Examples**: Starter → Pro → Enterprise, Basic → Advanced → Premium
+
+## Expansion Revenue Design
+
+### Expansion Path
+- **Initial revenue**: [What's the starting MRR per customer?]
+- **Expansion path**: [How does revenue grow?]
+- **Target expansion**: [What's the target MRR per customer?]
+- **Expansion timeline**: [How long to reach target expansion?]
+
+### Expansion Triggers
+- **What triggers expansion?**: [What actions/needs trigger expansion?]
+- **When does expansion happen?**: [When does expansion occur naturally?]
+- **What prevents expansion?**: [What barriers exist?]
+
+### Expansion Metrics
+- **Expansion rate**: [What % of customers expand?]
+- **Average expansion**: [What's the average expansion multiple?]
+- **Time to expansion**: [How long until first expansion?]
+
+## Pricing Design Principles
+
+**Pricing is part of product design; not an afterthought.**
+
+### Pricing Design Requirements
+
+1. **Pricing must be designed before engineering**
+   - Pricing tiers must be defined
+   - Value metrics must be identified
+   - Expansion path must be clear
+
+2. **Pricing must align with value delivery**
+   - Pricing must scale with customer success
+   - Value metric must be measurable
+   - Expansion must be natural (not forced)
+
+3. **Pricing must enable expansion**
+   - Clear expansion triggers
+   - Natural expansion path
+   - Multiple expansion levers (if possible)
+
+## Quality Gate
+
+**Expansion revenue mechanism must be defined before engineering.**
+
+### Expansion Revenue Checklist
+
+Before any feature enters engineering, verify:
+
+- [ ] At least one expansion revenue mechanism is selected
+- [ ] Expansion path is defined (initial → target expansion)
+- [ ] Expansion triggers are identified
+- [ ] Expansion metrics are defined
+- [ ] Pricing tiers are designed
+- [ ] Value metric is identified
+- [ ] Pricing aligns with value delivery
+
+If expansion revenue mechanism is undefined → do not proceed to engineering. Define expansion revenue mechanism first.
+
+## Rules
+
+- **Expansion revenue is mandatory**: Each feature must define its expansion revenue mechanism
+- **At least one mechanism required**: Select at least one expansion revenue type
+- **Pricing is product design**: Pricing must be designed before engineering (not an afterthought)
+- **Expansion path required**: Clear expansion path from initial to target revenue
+
+## Integration
+
+This rule integrates with:
+- `.cursor/rules/004-core-expansion-revenue.mdc` - Core expansion revenue architecture (Layer A)
+- `.cursor/rules/027-core-desirability-first.mdc` - Desirability first (Expansion revenue is part of Moat-MRR Strategist gate)
+- `.cursor/rules/205-playbook-moat-mrr-validation.mdc` - Moat & MRR validation (includes expansion revenue strategy)
+- `docs/agents/moat-mrr-strategist.md` - Moat & MRR Strategist (creates expansion revenue model)
+- `docs/agents/product-strategist.md` - Product Strategist (includes monetization wedge)
+
+## Mental Model
+
+**MRR is fragile unless pricing grows with value.**
+
+Every product must include at least one expansion revenue lever. This is how you turn a $29/mo tool into a $290/mo business without acquisition cost. Pricing is not an afterthought—it's a core part of product design that must be considered before engineering begins.
+
+Expansion revenue ensures that as customers succeed, their value (and revenue) grows naturally, creating durable MRR and reducing churn risk.

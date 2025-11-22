@@ -80,6 +80,7 @@ Always active. Precise conventions for Next.js, tRPC, Drizzle, Stripe, Vercel.
 - `150-vercel-platform.mdc` - Vercel runtime and services
 - `160-feature-flags.mdc` - Feature flag usage
 - `170-data-moat.mdc` - Data moat thesis and data capture instrumentation
+- `180-expansion-revenue.mdc` - Expansion revenue mechanism design
 
 ### Layer C: Playbooks (200-299)
 Invoked when needed. Detailed "how to do X" guides.
