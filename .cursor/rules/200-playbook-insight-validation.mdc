@@ -1,60 +1,41 @@
-# Playbook: Insight Validation (Isenberg Edition)
+# Playbook: Insight Validation (Pre-Build Validation)
 
-## Goal
-Greg's pre-build validation process encoded step-by-step. Validate demand before building.
+**Goal**: Validate desirability, durability, and defensibility before build. Isenberg-style demand validation + moat extensions.
 
-## Mental Model: Heat Filter
+## Why This Playbook Exists
 
-**"Do a tribe of real humans urgently want this?"**
-
-**Proof**: waitlists, DMs, preorders, repeat usage.
-
-This playbook validates the **Heat Filter** (Isenberg). The **Durability Filter** is validated in `.cursor/rules/205-playbook-moat-mrr-validation.mdc`.
-
-**Heat gets you in. Durability makes it a real SaaS business.**
-
-## Rule
-**No feature enters engineering without passing at least 3 demand-validation tests.**
+Greg Isenberg's approach validates demand before building. This playbook extends that with durability and defensibility validation to ensure you're building a real SaaS business, not just a feature that people want.
 
 ## Prerequisites
+
 - Raw product/feature idea
-- Initial market context
-- Willingness to validate before building
-
-**CRITICAL**: Before starting validation:
-1. **Portfolio scoring required**: Score product on portfolio criteria (`.cursor/rules/207-playbook-portfolio-management.mdc`)
-   - Expected value modeling
-   - Risk scoring
-   - Strategic fit assessment
-   - Resource requirements
-   - Time to value
-2. **Core criteria check**: Verify idea meets core criteria (`.cursor/rules/000-core-idea-criteria.mdc`):
-   - Identity-level pain
-   - Ongoing, recurring need
-   - Distribution wedge baked in
-   - Match between insight + community
-
-If portfolio score < 5 or core criteria not met → pivot or kill. Do not proceed to validation.
+- Core idea criteria check (`.cursor/rules/000-core-idea-criteria.mdc`)
+- Portfolio scoring (`.cursor/rules/207-playbook-portfolio-management.mdc`)
 
 ## Step Sequence
 
 ```
-Portfolio Scoring → Unfair Insight Brief → Narrative 1-pager → Community Heat Map → 10 Lo-Fi Tests → "Would you be upset?" test → Landing page + waitlist → Manual concierge/MVP → Decision point (Proceed/Pivot/Kill)
+1. @Insight-Strategist → Unfair Insight Brief
+2. @Market-Scanner → Community Heat & Niche Durability
+3. @Product-Strategist → Narrative PRD + Desirability Tests
+4. @Retention-Architect → Weekly/Monthly Value Design
+5. @Moat-MRR-Strategist → Moat Map + Expansion Plan
+6. @Portfolio-Prioritizer → Kill/Pivot/Proceed
+7. Only if Proceed → handoff to 210-playbook-new-feature
 ```
-
-**Updated Flow**: Insight → Validation → Moat → Retention → Monetization → Build
 
 ## Steps
 
-### 1. Unfair Insight Brief
-**Input**: Raw product/feature idea  
-**Output**: Unfair Insight document
+### 1. @Insight-Strategist → Unfair Insight Brief
 
+**Input**: Raw product/feature idea  
+**Output**: Unfair Insight document  
 **Agent**: Insight & Narrative Strategist
 
 **Required Artifacts**:
 - Insight document in `docs/product/INSIGHT-<product>.md`
 - Unfair insight (what do we know that others don't?)
+- Clear POV ("What problem do we exist to punch in the face?")
 - Target community identification
 - Early signals definition
 - 5 demand-validation tests (no-code/human first)
@@ -63,470 +44,228 @@ Portfolio Scoring → Unfair Insight Brief → Narrative 1-pager → Community H
 
 **Deliverables**:
 - Unfair insight documented
-- Clear POV ("What problem do we exist to punch in the face?")
+- Clear POV articulated
 - Target community identified
 - Early signals defined
 
 **Quality Gate**: Unfair insight must be unique and defensible
 
-### 2. Narrative 1-pager
+### 2. @Market-Scanner → Community Heat & Niche Durability
+
 **Input**: Unfair Insight Brief  
-**Output**: Narrative 1-pager
-
-**Agent**: Insight & Narrative Strategist
-
-**Required Artifacts**:
-- Narrative document (can be part of Insight Brief)
-- Emotional hook
-- Transformation story
-- Value proposition
-
-**Deliverables**:
-- Clear narrative with emotional resonance
-- Transformation story (before → after)
-- Value proposition articulated
-
-**Quality Gate**: Narrative must have clear emotional hook and transformation story
-
-### 3. Monetization Wedge
-**Input**: Unfair Insight Brief, Narrative  
-**Output**: Monetization Wedge document
-
-**Agent**: Product Strategist / Insight Strategist
-
-**Required Artifacts**:
-- Monetization Wedge in PRD or Insight Brief
-- **What is the first paid moment?** (answered)
-- **What is the natural expansion revenue?** (seats, usage, tiers) (answered)
-- **What value metric scales with customer success?** (answered)
-- Pricing strategy defined (not just "free to grow")
-- Value metric identified (what customers pay for)
-- Expansion path defined (how revenue grows)
-
-**Deliverables**:
-- Clear first paid moment identified
-- Natural expansion revenue path defined
-- Value metric that scales with customer success
-- Pricing strategy prevents "free audience, no business"
-- Monetization wedge designed (not just community growth)
-
-**Quality Gate**: 
-- First paid moment must be clear and early
-- Natural expansion revenue must be defined
-- Value metric must scale with customer success
-- **Pricing as product** (not just free to grow)
-- **Prevents "free audience, no business"**
-
-**Critical Rule**: Community products often start free/cheap to grow. That's fine for validation, but to get strong MRR you need pricing as product earlier.
-
-### 4. Retention Thesis
-**Input**: Unfair Insight Brief, Narrative  
-**Output**: Retention Thesis document
-
-**Agent**: Product Strategist
-
-**Required Artifacts**:
-- Retention Thesis in PRD or separate document
-- **Why do users come back weekly/monthly?** (answered)
-- **What's the recurring job or frequency driver?** (answered)
-- **What habit loop / alert / collaborative ritual keeps usage alive?** (answered)
-- Retention mechanics defined (not just acquisition)
-- Habit formation strategy
-- Recurring value delivery mechanism
-
-**Deliverables**:
-- Clear retention thesis documented
-- Recurring job identified (why they come back)
-- Frequency driver identified (weekly/monthly trigger)
-- Habit loop or ritual defined (what keeps usage alive)
-- Retention mechanics designed (not just acquisition)
-
-**Quality Gate**: 
-- Retention thesis must be clear and specific
-- Recurring job must be identified
-- Frequency driver must be defined
-- Habit loop/ritual must be designed
-- **MRR durability = retention architecture** (not just launch)
-
-**Critical Rule**: Many niche products die from "strong launch, weak week-8 retention." Retention must be designed in, not patched later.
-
-### 5. Niche Compounding Score (NCS)
-**Input**: Unfair Insight Brief, Narrative, Community Heat Map  
-**Output**: Niche Compounding Assessment
-
+**Output**: Community Heat Map + Niche Durability Assessment  
 **Agent**: Market Scanner
 
 **Required Artifacts**:
-- Niche Compounding Score in market scan
-- **Market velocity** (scored 1-5)
-- **Forced adoption** (regulation, compliance, trend permanence) (scored 1-5)
-- **Increasing complexity** (scored 1-5)
-- **Growth of the community itself** (scored 1-5)
-- **Willingness-to-pay trajectory** (scored 1-5)
-- Total NCS score (out of 25)
-- Niche Compounding assessment: **Compounding Niche** | **Stable Niche** | **Decaying Niche** | **Declining Niche**
-
-**Scoring Criteria**:
-- Market velocity (1-5): Rapidly expanding (5) to declining rapidly (1)
-- Forced adoption (1-5): Mandated adoption (5) to no forced adoption (1)
-- Increasing complexity (1-5): Complexity increasing rapidly (5) to decreasing rapidly (1)
-- Growth of the community itself (1-5): Community growing rapidly (5) to declining rapidly (1)
-- Willingness-to-pay trajectory (1-5): Increasing rapidly (5) to declining rapidly (1)
-
-**Niche Compounding Assessment**:
-- **Compounding Niche (20-25)**: High-priority target, build for long-term compounding growth
-- **Stable Niche (15-19)**: Good target, build for steady growth
-- **Decaying Niche (10-14)**: Proceed with caution, plan exit strategy
-- **Declining Niche (5-9)**: Avoid or pivot to adjacent compounding niche
+- Market scan in `docs/research/MARKET-<product>.md`
+- Community Heat Analysis (which community has the most pain + activation energy?)
+- Niche Durability Score (growth, budgeted buyer, recurring job)
+- Social Moat assessment
+- Natural distribution patterns
+- Competitor analysis (retention patterns, not just features/pricing)
+- Wave/timing analysis
 
 **Deliverables**:
-- NCS scores for all 5 criteria
-- Total NCS score
-- Niche Compounding assessment (Compounding Niche | Stable Niche | Decaying Niche | Declining Niche)
-- Strategic recommendation based on NCS
+- Community Heat Map
+- Niche Durability Score
+- Social Moat potential
+- Distribution strategy
 
-**Quality Gate**: 
-- NCS must be scored (all 5 criteria scored 1-5)
-- Assessment must be clear (Compounding Niche | Stable Niche | Decaying Niche | Declining Niche)
-- Strategic recommendation must align with NCS score
+**Quality Gate**: Community heat must be high, niche durability must be strong
 
-**Critical Rule**: Not all niches are equal. Some niches behave like compounding markets — they naturally grow over time. Others decay or stagnate. Don't accidentally select "hot but shrinking" markets.
+### 3. @Product-Strategist → Narrative PRD + Desirability Tests
 
-### 6. Durability Filter
-**Input**: Unfair Insight Brief, Narrative, Community Heat Map, NCS Assessment  
-**Output**: Durability Assessment
-
-**Agent**: Market Scanner / Product Strategist
-
-**Required Artifacts**:
-- Durability Filter scoring in market scan or PRD
-- **Frequency of the job** (scored 1-5)
-- **Economic buyer has budget** (scored 1-5)
-- **Problem exists independent of hype** (scored 1-5)
-- **Users would be upset if it disappeared** (scored 1-5)
-- **Clear path to switching costs / workflow embed** (scored 1-5)
-- Total durability score (out of 25)
-- Durability assessment: **Durable Market** | **Cash-Flow Micro-Bet**
-
-**Scoring Criteria**:
-
-#### 1. Frequency of the Job (1-5)
-- **5**: Daily/weekly recurring job
-- **4**: Monthly recurring job
-- **3**: Quarterly recurring job
-- **2**: Occasional/seasonal job
-- **1**: One-time or rare job
-
-#### 2. Economic Buyer Has Budget (1-5)
-- **5**: Budgeted spend, enterprise buyer
-- **4**: Budgeted spend, SMB buyer
-- **3**: Discretionary spend, but regular
-- **2**: Hobby spend, occasional
-- **1**: No budget, free only
-
-#### 3. Problem Exists Independent of Hype (1-5)
-- **5**: Structural pain, exists regardless of trends
-- **4**: Long-term pain, not trend-dependent
-- **3**: Pain exists but may be amplified by trends
-- **2**: Trend-dependent pain, may fade
-- **1**: Purely trend-driven, likely temporary
-
-#### 4. Users Would Be Upset If It Disappeared (1-5)
-- **5**: Critical to operations, high emotional attachment
-- **4**: Important to workflow, would be missed
-- **3**: Useful but replaceable
-- **2**: Nice to have, low attachment
-- **1**: No attachment, easily forgotten
-
-#### 5. Clear Path to Switching Costs / Workflow Embed (1-5)
-- **5**: Deep workflow integration, high switching costs
-- **4**: Moderate integration, some switching costs
-- **3**: Light integration, minimal switching costs
-- **2**: No integration, easy to switch
-- **1**: No switching costs, purely transactional
-
-**Durability Assessment**:
-
-#### Durable Market (Score 18-25)
-- **Treatment**: Compounding SaaS asset
-- **Strategy**: Build for long-term MRR
-- **Investment**: Full product development
-- **Moat focus**: Structural moats (data, workflow, network effects)
-
-#### Cash-Flow Micro-Bet (Score 10-17)
-- **Treatment**: Cash-flow micro-bet, not compounding asset
-- **Strategy**: Build for short-term revenue, expect trend fade
-- **Investment**: Minimal viable product, fast iteration
-- **Moat focus**: Community moat only, expect competition
-
-#### Low Durability (Score 5-9)
-- **Treatment**: Consider pivot or kill
-- **Strategy**: Not recommended unless strong distribution wedge
-- **Investment**: Minimal, validate quickly
-- **Moat focus**: None, likely temporary
-
-**Deliverables**:
-- Durability scores for all 5 criteria
-- Total durability score
-- Durability assessment (Durable Market | Cash-Flow Micro-Bet | Low Durability)
-- Strategic recommendation based on durability
-
-**Quality Gate**: 
-- Durability Filter must be scored
-- Assessment must be clear (Durable Market | Cash-Flow Micro-Bet | Low Durability)
-- Strategic recommendation must align with durability score
-
-**Critical Rule**: Some niches are trend-spikes, not durable markets. Isenberg is great at catching waves, but defensive moat + enduring MRR requires filtering for structural vs. cyclical pain, recurring workflow vs. novelty, budgeted spend vs. hobby spend.
-
-### 7. Community Heat Map + Moat Design
-**Input**: Unfair Insight Brief, Narrative, Durability Assessment  
-**Output**: Community Heat Analysis + Moat Design
-
-**Agent**: Market Scanner
-
-**Required Artifacts**:
-- Community Heat Analysis in `docs/research/market-scan-<feature>.md`
-- Identification of niche internet tribes
-- Micro-communities to win first
-- Pain + activation energy assessment
-- Community Heat Map (high/medium/low heat)
-- **Moat Design** (at least 2 moat types selected):
-  - Data moat (proprietary usage data → better outcomes)
-  - Workflow lock-in (deep integration into daily ops)
-  - Network effects (value increases with more users)
-  - Ecosystem moat (plugins, integrations, templates)
-  - Switching costs (migration pain, saved state, team habits)
-  - Brand/identity moat (community + narrative)
-- Moat implementation plan (how to build each selected moat)
-
-**Deliverables**:
-- Communities identified and ranked by heat
-- "Which community has the most pain + activation energy?" answered
-- "What niche internet tribe desperately wants this?" answered
-- "What micro-community can we win first?" answered
-- **At least 2 moat types selected and justified**
-- **Moat implementation plan for each selected moat**
-- **How moats will be built over time (not just community)**
-
-**Quality Gate**: 
-- At least one high-heat community identified
-- At least 2 moat types selected
-- Moat implementation plan created
-
-### 8. 10 Lo-Fi Tests
-**Input**: Insight Brief, Narrative, Retention Thesis, Community Heat Map  
-**Output**: 10 High-Velocity Tests
-
+**Input**: Unfair Insight Brief, Community Heat Map  
+**Output**: Narrative PRD + Desirability Validation  
 **Agent**: Product Strategist
 
 **Required Artifacts**:
-- 10 High-Velocity Tests in PRD
-- Each test with: name, method, success criteria, timeline
-- Tests must be fast and low-cost
-- No-code/human first approach
+- PRD in `docs/product/PRD-<product>.md`
+- Value Story
+- Why Now
+- Lo-Fi Validation Plan
+- 10 High-Velocity Tests
+- "If users love this, what will they tell friends?"
+- Early adopter profile (community, identity, motivation)
+- Distribution from Day 1
+- Retention Thesis
+- Monetization Wedge
+- First Paid Moment
+- JTBD Frequency Modeling
 
 **Deliverables**:
-- 10 actionable tests designed
-- Success criteria defined for each
-- Timeline for running tests
-- Tests are runnable without engineering
+- Narrative PRD
+- Desirability validation plan
+- At least 3 demand-validation tests passed
 
-**Quality Gate**: All 10 tests must be actionable and low-cost
+**Quality Gate**: At least 3 demand-validation tests must pass
 
-### 9. "Would You Be Upset If This Disappeared?" Test
-**Input**: Insight Brief, Narrative, Community Heat Map  
-**Output**: Emotional attachment validation
+### 4. @Retention-Architect → Weekly/Monthly Value Design
 
-**Agent**: Product Strategist / UX Researcher
+**Input**: PRD, Moat & MRR Strategy  
+**Output**: Retention Architecture  
+**Agent**: Retention Architect
 
 **Required Artifacts**:
-- Test plan for "Would you be upset?" question
-- Method for asking (interviews, surveys, conversations)
-- Success criteria (what indicates emotional attachment?)
-- Results documented
+- Retention Architecture in `docs/product/RETENTION-<product>.md`
+- Activation path (first use → first value)
+- Lifecycle model (activation → habit → retention → expansion)
+- Weekly value driver + monthly value driver
+- Notification / re-engagement triggers
+- Collaboration opportunities that increase stickiness
+- Churn-prevention design
 
 **Deliverables**:
-- Test executed
-- Results documented
-- Emotional attachment level assessed
-- Clear signal: would users be upset if this disappeared?
+- Weekly/monthly value drivers mapped
+- Retention architecture designed
+- Churn-prevention mechanisms defined
 
-**Quality Gate**: At least 30% of test participants should indicate they would be upset
+**Quality Gate**: Weekly/monthly value drivers must be clear and actionable
 
-### 10. Landing Page + Waitlist Test
-**Input**: Insight Brief, Narrative, Community Heat Map  
-**Output**: Landing page validation results
+### 5. @Moat-MRR-Strategist → Moat Map + Expansion Plan
 
-**Agent**: Product Strategist / Implementer (minimal implementation)
+**Input**: PRD, Retention Architecture  
+**Output**: Moat & MRR Strategy  
+**Agent**: Moat & MRR Strategist
 
 **Required Artifacts**:
-- Landing page created (can be simple)
-- Waitlist signup mechanism
-- Analytics tracking
-- Conversion metrics
+- Moat & MRR Strategy in `docs/product/MOAT-MRR-<product>.md`
+- Moat map (2-3 types: data, workflow, switching cost, community, network, ecosystem)
+- Data Moat Thesis (proprietary data, compounding mechanism, 10× value, feedback loop)
+- Retention thesis (frequency, core recurring jobs, habit loops)
+- Expansion revenue model (usage, seats, add-ons, premium features)
+- Churn risks + mitigation
+- Motivation loops (community sharing, collaborative value, benchmarking)
 
 **Deliverables**:
-- Landing page live
-- Waitlist signups tracked
-- Conversion rate measured
-- Traffic sources identified
-- Clear signal: do people sign up?
+- Moat map (2-3 types selected)
+- Data Moat Thesis complete
+- Expansion revenue model defined
+- Retention thesis clear
 
-**Quality Gate**: 
-- Minimum 50 waitlist signups (or 5% conversion rate, whichever is higher)
-- Traffic from target community
-- Signups indicate genuine interest
+**Quality Gate**: Moat map must include 2-3 types, Data Moat Thesis must be complete
 
-### 11. Manual Concierge/MVP Test
-**Input**: All previous validation  
-**Output**: Manual service validation
+### 6. @Portfolio-Prioritizer → Kill/Pivot/Proceed
 
-**Agent**: Product Strategist / Implementer (manual process)
+**Input**: All previous artifacts  
+**Output**: Portfolio Scoring + Verdict  
+**Agent**: Portfolio Prioritizer
 
 **Required Artifacts**:
-- Manual process for delivering value
-- Service delivery mechanism (email, spreadsheet, manual work)
-- Customer feedback collection
-- Results documented
+- Portfolio Scoring in `docs/product/PORTFOLIO-SCORE-<idea>.md`
+- Desirability signal strength (validation tests)
+- Niche Durability Score (growth, budgeted buyer, recurring job)
+- Moat potential (data moat, workflow lock-in, switching costs)
+- Expansion revenue depth
+- JTBD frequency map
+- Wave/timing analysis
+- Implementation cost + risk
+- Expected value (EV) model
+- Clear recommendation: kill, pivot, or proceed
 
 **Deliverables**:
-- Manual service delivered to 5-10 customers
-- Value delivered without building product
-- Customer feedback collected
-- Willingness to pay validated
-- Clear signal: do customers value this enough to pay?
+- Portfolio score
+- Expected value model
+- Clear verdict: Kill, Pivot, or Proceed
 
-**Quality Gate**:
-- At least 3 customers willing to pay for manual service
-- Positive feedback on value delivered
-- Customers would use automated version
+**Quality Gate**: Verdict must be clear and justified
 
-### 12. Decision Point: Proceed → Pivot → Kill
-**Input**: All validation results  
-**Output**: Go/No-Go decision
+### 7. Only if Proceed → Handoff to 210-playbook-new-feature
 
-**Agent**: Product Strategist / Team
+**Input**: All validation artifacts  
+**Output**: Handoff to engineering  
+**Next Playbook**: `.cursor/rules/210-playbook-new-feature.mdc`
 
 **Required Artifacts**:
-- Validation results summary
-- Decision document
-- Rationale for decision
-- Next steps (if proceed)
+- All validation artifacts complete
+- Verdict: Proceed
+- Green-light decision documented
 
 **Deliverables**:
-- Clear decision: PROCEED | PIVOT | KILL
-- Rationale documented
-- Validation test results summarized
-- At least 3 tests passed (if PROCEED)
+- Validation complete
+- Ready for engineering
+- Handoff to new feature playbook
 
-**Decision Criteria**:
-
-#### PROCEED (if all true):
-- ✅ At least 3 demand-validation tests passed
-- ✅ "Would you be upset?" test shows emotional attachment
-- ✅ Landing page shows signup interest
-- ✅ Manual concierge shows willingness to pay
-- ✅ Community Heat Map shows high-heat community
-- ✅ **Monetization Wedge defined** (first paid moment, expansion revenue, value metric)
-- ✅ **Niche Compounding Score (NCS) scored** (market velocity, forced adoption, increasing complexity, community growth, willingness-to-pay trajectory)
-- ✅ **Niche Compounding assessment clear** (Compounding Niche | Stable Niche | Decaying Niche | Declining Niche)
-- ✅ **Durability Filter scored** (frequency, budget, independent of hype, upset if disappeared, switching costs)
-- ✅ **Durability assessment clear** (Durable Market | Cash-Flow Micro-Bet | Low Durability)
-- ✅ **At least 2 moat types selected and planned**
-- ✅ **Retention Thesis defined** (recurring job, frequency driver, habit loop)
-- ✅ Unfair insight is validated
-- ✅ Narrative resonates
-
-#### PIVOT (if some true):
-- ⚠️ Some validation signals but not all
-- ⚠️ Need to adjust: insight, narrative, community, or approach
-- ⚠️ New tests needed after pivot
-
-#### KILL (if most false):
-- ❌ Less than 3 tests passed
-- ❌ No emotional attachment
-- ❌ No signup interest
-- ❌ No willingness to pay
-- ❌ No high-heat community
-- ❌ Insight not validated
-
-## Definition of Done Checklist
-
-Insight validation is considered done when:
-
-- ✅ Unfair Insight Brief created and validated
-- ✅ Narrative 1-pager created with emotional hook
-- ✅ **Monetization Wedge defined** (first paid moment, expansion revenue, value metric)
-- ✅ **Niche Compounding Score (NCS) scored** (all 5 criteria scored, total score calculated)
-- ✅ **Niche Compounding assessment clear** (Compounding Niche | Stable Niche | Decaying Niche | Declining Niche)
-- ✅ **Durability Filter scored** (all 5 criteria scored, total score calculated)
-- ✅ **Durability assessment clear** (Durable Market | Cash-Flow Micro-Bet | Low Durability)
-- ✅ **Retention Thesis defined** (recurring job, frequency driver, habit loop)
-- ✅ Community Heat Map identifies high-heat communities
-- ✅ **Moat Design completed (at least 2 moat types selected)**
-- ✅ 10 Lo-Fi Tests designed and documented
-- ✅ "Would you be upset?" test executed (30%+ would be upset)
-- ✅ Landing page + waitlist test executed (50+ signups or 5%+ conversion)
-- ✅ Manual concierge/MVP test executed (3+ paying customers)
-- ✅ At least 3 demand-validation tests passed
-- ✅ Decision made: PROCEED | PIVOT | KILL
-- ✅ Rationale documented
-- ✅ If PROCEED: Ready to enter new feature playbook
-- ✅ If PIVOT: New validation plan created
-- ✅ If KILL: Learnings documented
+**Quality Gate**: All validation steps must be complete, verdict must be "Proceed"
 
 ## Quality Gates
 
-Each step must pass quality gates before proceeding:
-- **Unfair Insight**: Unique and defensible
-- **Narrative**: Clear emotional hook and transformation
-- **Monetization Wedge**: First paid moment, expansion revenue, and value metric defined
-- **Niche Compounding Score (NCS)**: All 5 criteria scored, assessment clear (Compounding Niche | Stable Niche | Decaying Niche | Declining Niche)
-- **Durability Filter**: All 5 criteria scored, assessment clear (Durable Market | Cash-Flow Micro-Bet | Low Durability)
-- **Retention Thesis**: Recurring job, frequency driver, and habit loop defined
-- **Community Heat Map**: High-heat community identified
-- **Moat Design**: At least 2 moat types selected with implementation plan
-- **10 Lo-Fi Tests**: All actionable and low-cost
-- **"Would you be upset?"**: 30%+ would be upset
-- **Landing page**: 50+ signups or 5%+ conversion
-- **Manual concierge**: 3+ paying customers
-- **Decision**: Clear and justified
+### Gate 1: Insight Validation
+- [ ] Unfair insight is unique and defensible
+- [ ] Target community is identified
+- [ ] Early signals are defined
 
-## Rule Enforcement
+### Gate 2: Market Validation
+- [ ] Community heat is high
+- [ ] Niche durability is strong
+- [ ] Social moat potential exists
 
-**CRITICAL RULE**: No feature enters engineering without passing at least 3 demand-validation tests.
+### Gate 3: Desirability Validation
+- [ ] At least 3 demand-validation tests passed
+- [ ] Value Story is clear
+- [ ] Early adopter profile is defined
 
-This means:
-- If less than 3 tests pass → KILL or PIVOT (do not proceed to engineering)
-- If 3+ tests pass → Can proceed to new feature playbook
-- Engineering Architect should check validation results before creating ADR
-- Implementer should not start building without validation proof
+### Gate 4: Retention Validation
+- [ ] Weekly/monthly value drivers are mapped
+- [ ] Retention architecture is designed
+- [ ] Churn-prevention mechanisms are defined
 
-## Anti-Patterns to Avoid
+### Gate 5: Moat & MRR Validation
+- [ ] Moat map includes 2-3 types
+- [ ] Data Moat Thesis is complete
+- [ ] Expansion revenue model is defined
 
-- ❌ Building before validating demand
-- ❌ Proceeding with less than 3 passed tests
-- ❌ Skipping manual concierge test
-- ❌ Ignoring "would you be upset?" results
-- ❌ Building landing page without measuring results
-- ❌ Not identifying high-heat community
-- ❌ Proceeding without clear unfair insight
+### Gate 6: Portfolio Validation
+- [ ] Portfolio score is calculated
+- [ ] Expected value is modeled
+- [ ] Verdict is clear: Kill, Pivot, or Proceed
 
-## Next Steps
+## Decision Points
 
-### If PROCEED
-- Move to `.cursor/rules/210-playbook-new-feature.mdc`
-- Use validated insight, narrative, and community in PRD
-- Reference validation results in PRD
+### Proceed
+- All quality gates passed
+- Verdict: Proceed
+- Handoff to `.cursor/rules/210-playbook-new-feature.mdc`
 
-### If PIVOT
-- Identify what to pivot (insight, narrative, community, approach)
-- Create new validation plan
-- Re-run validation tests
-- Return to decision point
+### Pivot
+- Some quality gates failed
+- Verdict: Pivot
+- Re-evaluate idea, narrative, or community
+- Re-run validation after pivot
 
-### If KILL
+### Kill
+- Multiple quality gates failed
+- Verdict: Kill
 - Document learnings
-- Identify what didn't work
-- Consider alternative directions
-- Archive validation results for future reference
+- Reallocate resources
+
+## Rules
+
+- **No build until validated**: Building before validation is forbidden (`.cursor/rules/027-core-desirability-first.mdc`)
+- **All steps required**: All 6 steps must be completed before handoff to engineering
+- **Quality gates enforced**: Each step has quality gates that must be passed
+- **Verdict required**: Clear Kill/Pivot/Proceed verdict must be made
+
+## Integration
+
+This playbook integrates with:
+- `.cursor/rules/000-core-idea-criteria.mdc` - Core idea criteria (prerequisite)
+- `.cursor/rules/027-core-desirability-first.mdc` - Desirability first (enforces this playbook)
+- `.cursor/rules/207-playbook-portfolio-management.mdc` - Portfolio management (prerequisite)
+- `.cursor/rules/210-playbook-new-feature.mdc` - New feature (handoff target)
+- `docs/agents/insight-strategist.md` - Insight & Narrative Strategist
+- `docs/agents/market-scanner.md` - Market Scanner
+- `docs/agents/product-strategist.md` - Product Strategist
+- `docs/agents/retention-architect.md` - Retention Architect
+- `docs/agents/moat-mrr-strategist.md` - Moat & MRR Strategist
+- `docs/agents/portfolio-prioritizer.md` - Portfolio Prioritizer
+
+## Mental Model
+
+**Heat gets you in. Durability makes it a real SaaS business.**
+
+This playbook validates both:
+- **Heat Filter (Isenberg)**: "Do a tribe of real humans urgently want this?" (Steps 1-3)
+- **Durability Filter**: "Will this still matter and keep paying 12–36 months from now?" (Steps 4-6)
+
+Only ideas that pass both filters proceed to engineering.
