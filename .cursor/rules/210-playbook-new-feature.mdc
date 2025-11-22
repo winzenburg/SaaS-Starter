@@ -14,19 +14,31 @@
 ## Step Sequence
 
 ```
-Insight + Narrative → PRD → flows/edge cases (parallel OK) → ADR + schema + router plan → test plan + stubs → build (small diffs) → a11y audit + fix loop → test verify → PRD acceptance check
+Validation Phase (demand before code):
+Insight-Strategist → Unfair Insight
+Product-Strategist → Narrative + Desirability PRD
+Market-Scanner → Community Heat + Moat
+Run Validation Tests (emails, DMs, landing page)
+Green-light decision
+
+If green-light → Architecture Phase:
+flows/edge cases (parallel OK) → ADR + schema + router plan → test plan + stubs → build (small diffs) → a11y audit + fix loop → test verify → PRD acceptance check
 ```
 
 ## Steps
 
-### 1. Insight & Narrative Strategist
+## Validation Phase: Demand Before Code
+
+### 1. Insight-Strategist → Unfair Insight
 **Input**: Raw product/feature idea  
-**Output**: Unfair Insight + Narrative document
+**Output**: Unfair Insight document
+
+**Agent**: Insight & Narrative Strategist
 
 **Required Artifacts**:
 - Insight document in `docs/product/INSIGHT-<product>.md`
 - Unfair insight (what do we know that others don't?)
-- Narrative (emotional hook + transformation story)
+- Clear POV ("What problem do we exist to punch in the face?")
 - Target community identification
 - Early signals definition
 - 5 demand-validation tests (no-code/human first)
@@ -35,16 +47,128 @@ Insight + Narrative → PRD → flows/edge cases (parallel OK) → ADR + schema 
 
 **Deliverables**:
 - Unfair insight documented
-- Narrative crafted with emotional hook
+- Clear POV articulated
 - Target community identified
 - Early signals defined
 - Demand-validation tests designed
 - Distribution wedge identified
 - Clear recommendation (proceed/pivot/kill)
 
-**Note**: Only proceed to PRD if recommendation is PROCEED. This prevents waste by ensuring signal before building.
+**Quality Gate**: Unfair insight must be unique and defensible. Only proceed if recommendation is PROCEED.
 
-### 2. Product Strategist PRD
+### 2. Product-Strategist → Narrative + Desirability PRD
+**Input**: Unfair Insight Brief  
+**Output**: Narrative + Demand-Driven PRD
+
+**Agent**: Product Strategist
+
+**Required Artifacts**:
+- PRD document in `docs/product/PRD-<feature>.md`
+- Value Story (central to Greg's playbook)
+- Why Now (timing rationale)
+- Narrative 1-pager (emotional hook + transformation story)
+- Early adopter profile (community, identity, motivation)
+- "If users love this, what will they tell friends?"
+- Distribution from Day 1
+- 10 High-Velocity Tests
+- Lo-Fi Validation Plan (email, landing page, Loom demo, tweet test, DM conversations)
+- Success metrics (leading/lagging)
+- Risks + mitigations
+
+**Deliverables**:
+- Value Story crafted
+- Why Now justified
+- Narrative with emotional hook
+- Early adopter profile defined
+- Word-of-mouth message identified
+- Distribution from Day 1 planned
+- 10 High-Velocity Tests designed
+- Lo-Fi Validation Plan created
+- Desirability validated (not just buildability)
+
+**Quality Gate**: PRD must validate desirability before buildability. Value Story and Why Now are required.
+
+### 3. Market-Scanner → Community Heat + Moat
+**Input**: Insight Brief, PRD  
+**Output**: Community Heat Analysis + Social Moat assessment
+
+**Agent**: Market Scanner
+
+**Required Artifacts**:
+- Community Heat Analysis in `docs/research/market-scan-<feature>.md`
+- Community Heat Map (high/medium/low heat communities)
+- "Which community has the most pain + activation energy?" answered
+- "What niche internet tribe desperately wants this?" answered
+- "What micro-community can we win first?" answered
+- Social Moat potential assessed
+- "Where does this product naturally spread? Why?" answered
+- Top 3 direct competitors (secondary)
+- Switching costs + lock-in analysis
+
+**Deliverables**:
+- High-heat communities identified
+- Social Moat potential assessed
+- Natural distribution patterns identified
+- Community entry points defined
+- Competitor analysis (secondary to community)
+
+**Quality Gate**: At least one high-heat community identified. Social Moat potential assessed.
+
+### 4. Run Validation Tests (emails, DMs, landing page)
+**Input**: PRD, Community Heat Map, Lo-Fi Validation Plan  
+**Output**: Validation test results
+
+**Agents**: Product Strategist, UX Researcher, Implementer (minimal)
+
+**Required Artifacts**:
+- Email validation results
+- DM conversation results
+- Landing page + waitlist results
+- Loom demo feedback
+- Tweet test results
+- "Would you be upset if this disappeared?" test results
+- Manual concierge/MVP test results
+
+**Deliverables**:
+- At least 3 validation tests executed
+- Results documented
+- Clear signals of demand (or lack thereof)
+- Willingness to pay validated (if applicable)
+
+**Quality Gate**: At least 3 demand-validation tests must pass. See `.cursor/rules/000-playbook-pre-build-validation.mdc` for detailed test requirements.
+
+### 5. Green-Light Decision
+**Input**: All validation results  
+**Output**: Go/No-Go decision
+
+**Decision Criteria**:
+
+#### Green-Light (PROCEED) if:
+- ✅ At least 3 demand-validation tests passed
+- ✅ Unfair insight validated
+- ✅ Value Story resonates
+- ✅ High-heat community identified
+- ✅ Social Moat potential exists
+- ✅ Distribution from Day 1 is clear
+- ✅ Early adopter profile defined
+
+#### Yellow-Light (PIVOT) if:
+- ⚠️ Some validation signals but not all
+- ⚠️ Need to adjust: insight, narrative, community, or approach
+- ⚠️ Return to validation phase with adjustments
+
+#### Red-Light (KILL) if:
+- ❌ Less than 3 tests passed
+- ❌ No high-heat community
+- ❌ No social moat potential
+- ❌ No distribution path
+- ❌ No early adopter interest
+
+**Rule**: **No feature enters architecture phase without green-light decision.**
+
+## Architecture Phase: Build After Validation
+
+### 6. IA Designer flows/edge cases (parallel OK)
 **Input**: Feature request or user need  
 **Output**: Product Requirements Document
 
@@ -95,7 +219,7 @@ Insight + Narrative → PRD → flows/edge cases (parallel OK) → ADR + schema 
 - Feature module structure defined
 - Patterns and conventions documented
 
-### 4. Test Engineer test plan + stubs
+### 8. Test Engineer test plan + stubs
 **Input**: ADR, schema, router plan  
 **Output**: Test plan and test stubs
 
@@ -111,7 +235,7 @@ Insight + Narrative → PRD → flows/edge cases (parallel OK) → ADR + schema 
 - Edge case test scenarios defined
 - **Tests must be written before implementation**
 
-### 5. Implementer build (small diffs)
+### 9. Implementer build (small diffs)
 **Input**: ADR, schema, router plan, test stubs  
 **Output**: Implemented feature
 
@@ -137,7 +261,7 @@ Insight + Narrative → PRD → flows/edge cases (parallel OK) → ADR + schema 
 - Run tests after each change
 - Commit frequently with logical units
 
-### 6. Accessibility audit + fix loop
+### 10. Accessibility audit + fix loop
 **Input**: Implemented feature  
 **Output**: Accessibility fixes
 
@@ -156,7 +280,7 @@ Insight + Narrative → PRD → flows/edge cases (parallel OK) → ADR + schema 
 **Process**:
 - Audit → Fix → Re-audit → Fix (loop until all issues resolved)
 
-### 7. Test verify
+### 11. Test verify
 **Input**: Complete feature with a11y fixes  
 **Output**: Verified test results
 
@@ -167,7 +291,7 @@ Insight + Narrative → PRD → flows/edge cases (parallel OK) → ADR + schema 
 - No regressions introduced
 - Test coverage verified
 
-### 8. PRD acceptance check
+### 12. PRD acceptance check
 **Input**: Complete feature, test results  
 **Output**: PRD acceptance confirmation
 
@@ -196,8 +320,18 @@ A feature is considered done when:
 
 ## Quality Gates
 
+### Validation Phase Gates
 Each step must pass quality gates before proceeding:
-- **PRD**: Stakeholder approval
+- **Unfair Insight**: Unique and defensible, PROCEED recommendation
+- **Narrative + PRD**: Value Story and Why Now defined, desirability validated
+- **Community Heat + Moat**: High-heat community identified, social moat potential assessed
+- **Validation Tests**: At least 3 tests passed
+- **Green-Light**: Clear PROCEED decision (not PIVOT or KILL)
+
+**CRITICAL**: No feature enters architecture phase without green-light decision.
+
+### Architecture Phase Gates
+Each step must pass quality gates before proceeding:
 - **Flows**: User validation
 - **ADR**: Technical review
 - **Test Plan**: Coverage verified
