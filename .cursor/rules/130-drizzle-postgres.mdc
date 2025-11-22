@@ -1,6 +1,8 @@
 # Drizzle + PostgreSQL
 
-- Define schemas in `src/lib/db/schema.ts`
+- Canonical schema at `/drizzle/schema.ts`
+- Migrations in `/drizzle/migrations`
+- All tenant-scoped tables include orgId and are always filtered
 - Use Drizzle's type inference (`$inferSelect`, `$inferInsert`)
 - Export types alongside schemas
 - Use Drizzle query builder (no raw SQL unless necessary)

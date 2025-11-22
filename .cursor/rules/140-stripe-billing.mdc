@@ -1,5 +1,8 @@
 # Stripe Billing
 
+- Subscription states: trial → active → past_due → churned
+- Webhooks verify signature and are idempotent
+- Entitlements enforced in API + UI
 - Always verify webhook signatures using `stripe.webhooks.constructEvent()`
 - Never process webhooks without signature verification
 - Return appropriate error codes for invalid signatures

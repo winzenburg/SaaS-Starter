@@ -1,12 +1,11 @@
 # Next.js App Router
 
-- App Router only: `src/app/` directory structure exclusively
+- Route groups: `(marketing)` and `(app)`
+- Server components by default; client components only when necessary
+- Default runtime nodejs; edge only via ADR
 - Routes in `src/app/(app)/*` import UI from `src/features/*`
-- No duplicated UI - all UI components live in feature modules
-- Server Components by default
-- Mark client components with `"use client"` only when needed
+- No duplicated UI in `/app`
 - Route handlers: `src/app/api/**/route.ts` for API endpoints
 - Server actions preferred over client mutations
 - Use Next.js metadata API for SEO
 - Use Next.js Image component for images
-- Use Next.js font optimization
