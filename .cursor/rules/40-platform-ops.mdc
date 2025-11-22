@@ -10,12 +10,16 @@
 
 ## Vercel Platform
 
-- **Node.js runtime** - Default runtime (use Edge only with justification)
+- **Default runtime Node.js; Edge only with ADR justification** - Use Node.js runtime by default
+  - Edge runtime requires an Architecture Decision Record (ADR) in `docs/adr/`
+  - Document why Edge is needed and what trade-offs are acceptable
 - **Environment variables** - Use Vercel dashboard for secrets
-- **Feature flags** - Use Vercel Feature Flags for rollouts
+- **Use feature flags for risky rollouts** - Use Vercel Feature Flags for any potentially risky changes
+  - New features that could impact users
+  - Performance-sensitive changes
+  - Breaking changes or migrations
 - **Cron jobs** - Use Vercel Cron (configure in `vercel.json`)
 - **Observability** - Use Vercel Analytics and Speed Insights
-- **Edge runtime** - Only use when explicitly needed (document why)
 
 ## Deployment
 
@@ -96,9 +100,30 @@
 - ESLint handles code quality, Prettier handles style
 - Follow existing patterns in the codebase
 
+## Server Actions
+
+- **Emit observability events on server actions** - All server actions must emit observability events
+  - Log start/completion of actions
+  - Track errors and performance metrics
+  - Use structured logging for better debugging
+  - Integrate with Vercel Observability or similar
+
 ## Error Handling
 
 - **Always handle errors** - No unhandled promises or try/catch blocks
 - **User-friendly messages** - Errors should be clear and actionable
 - **Logging** - Log errors with context for debugging
 - **Type-safe errors** - Use discriminated unions for error states
+
+## Security
+
+### Stripe Webhooks
+- **Stripe webhooks verify signatures** - Always verify webhook signatures
+  - Use `stripe.webhooks.constructEvent()` to verify signatures
+  - Never process webhooks without signature verification
+  - Return appropriate error codes for invalid signatures
+- **No PII in logs** - Never log personally identifiable information
+  - Don't log credit card numbers, SSNs, passwords, or other sensitive data
+  - Use identifiers or hashed values instead
+  - Be careful with email addresses and names in logs
+  - Follow data privacy regulations (GDPR, CCPA, etc.)
