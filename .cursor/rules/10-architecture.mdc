@@ -8,15 +8,35 @@
 - Avoid premature optimization
 - When architecture changes are needed, create an ADR in `docs/adr/`
 
-### Feature Module Structure
+## Next.js App Router
+
+- **App Router only** - Use `src/app/` directory structure exclusively
+- No Pages Router patterns or file conventions
+- All routes defined in `src/app/` directory
+
+## Feature Module Structure
+
 - All features live in `src/features/<feature>/`
 - Each feature has three layers:
   - `domain/` - Business logic, types, Zod schemas
   - `data/` - Server actions, tRPC procedures, API routes
   - `ui/` - React components
 - Features export a public API via `index.ts`
-- **No cross-feature imports** except through public APIs
+- **No cross-feature imports** except through each feature's `index.ts`
 - Shared utilities live in `src/lib/`
+
+### Zod Schemas
+
+- Zod schemas live in `domain/schemas.ts` within each feature
+- Schemas are used in tRPC procedures for validation
+- Export schemas through the feature's `index.ts` if needed by other features
+
+### Route Organization
+
+- Routes in `/app/(app)/*` import UI from `src/features/*`
+- **No duplicated UI** - All UI components live in feature modules
+- Routes are thin wrappers that compose feature UI components
+- Example: `src/app/(app)/dashboard/page.tsx` imports from `src/features/dashboard/ui/`
 
 ### Server-First Approach
 - Prefer server actions and tRPC procedures over client mutations
@@ -87,15 +107,18 @@
 ```
 src/features/auth/
 ├── domain/
-│   ├── loginSchema.ts
-│   └── types.ts
+│   ├── schemas.ts      # Zod schemas for validation
+│   └── types.ts        # TypeScript types
 ├── data/
-│   ├── loginAction.ts
-│   └── authProcedures.ts
+│   ├── loginAction.ts  # Server actions
+│   └── authProcedures.ts  # tRPC procedures (use schemas from domain/)
 ├── ui/
-│   ├── LoginForm.tsx
+│   ├── LoginForm.tsx   # React components
 │   └── LogoutButton.tsx
-└── index.ts
+└── index.ts            # Public API exports
+
+src/app/(app)/login/
+└── page.tsx            # Route imports from src/features/auth/ui/
 ```
 
 ## Database
