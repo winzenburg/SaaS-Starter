@@ -1,10 +1,14 @@
 # Core Observability
 
-- Every server action emits an event
-- No PII in logs
-- Include trace IDs in errors
-- Log start/completion of actions
-- Track errors and performance metrics
-- Use structured logging
-- Integrate with Vercel Observability or similar
-- No console.log in production code
+Goal: Make every template app operable in production.
+
+- Every server action emits an event (success/failure) using a shared helper
+- Include trace/request IDs in logs/errors
+- Errors are user-safe with internal detail captured separately
+- No PII in telemetry
+- Critical flows get dashboard-ready events (auth, billing, core CRUD)
+- Vercel Observability is a default fit here
+- Structured logging (JSON format)
+- Use correlation IDs for request tracing
+- Log levels: error, warn, info, debug
+- Monitor key metrics: latency, error rates, throughput
