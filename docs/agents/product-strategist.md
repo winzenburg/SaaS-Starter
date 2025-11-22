@@ -148,27 +148,61 @@ Output: /docs/product/PRD-<feature>.md
 - User needs advanced features (tiers) → First paid moment: Feature need
 - User needs to remove branding (tiers) → First paid moment: Branding removal
 
-#### Natural Expansion Revenue
+#### Natural Expansion Revenue (REQUIRED)
 
-**CRITICAL**: Define how revenue naturally expands over time. This is not just "more users" but a clear expansion path.
+**CRITICAL**: MRR is fragile unless pricing grows with value. While the first paid moment defines initial revenue, explicit expansion levers turn a $29/mo tool into a $290/mo business without acquisition cost. Every product must include at least one expansion revenue lever.
 
-##### Seat-Based Expansion
-- How does revenue grow with team size?
-- What triggers seat expansion?
-- What's the natural expansion path?
-- **Example**: User invites team members → more seats → more revenue
+##### Required: At Least One Expansion Revenue Lever
 
-##### Usage-Based Expansion
-- How does revenue grow with usage volume?
-- What triggers usage expansion?
-- What's the natural expansion path?
-- **Example**: User processes more data → more usage → more revenue
+Choose at least one (or combine multiple):
 
-##### Tier-Based Expansion
-- How does revenue grow with feature tiers?
-- What triggers tier upgrade?
-- What's the natural expansion path?
-- **Example**: User needs advanced features → upgrade tier → more revenue
+1. **Usage-Based Pricing**: Revenue grows with usage volume (API calls, data processed, actions taken, etc.)
+2. **Additional Seats**: Revenue grows with team size
+3. **Add-Ons**: Revenue grows with optional add-on products/services
+4. **Premium Automations**: Revenue grows with advanced automation features
+5. **AI Enhanced Insights**: Revenue grows with AI-powered insights and recommendations
+6. **Compliance/Integrations**: Revenue grows with compliance features and integrations
+7. **Advanced Analytics**: Revenue grows with advanced analytics and reporting
+8. **Custom Workflows**: Revenue grows with custom workflow capabilities
+
+##### Expansion Revenue Strategy
+
+**CRITICAL**: Define how revenue expands from initial paid moment to 10x revenue.
+
+- **Initial revenue**: [What's the starting MRR?]
+- **Expansion path**: [How does revenue grow?]
+- **Target expansion**: [What's the target MRR per customer?]
+- **Expansion timeline**: [How long to reach target expansion?]
+- **Expansion triggers**: [What triggers each expansion?]
+
+**Example Expansion Paths**:
+- **$29/mo → $290/mo (10x)**: Base product → usage growth → premium features → add-ons
+- **$29/mo → $145/mo (5x)**: Base product → team growth → advanced features
+- **$29/mo → $87/mo (3x)**: Base product → usage growth → premium tier
+
+##### Expansion Revenue Metrics
+
+- **Expansion rate**: [What % of customers expand?]
+- **Average expansion**: [What's the average expansion multiple?]
+- **Time to expansion**: [How long until first expansion?]
+- **Expansion frequency**: [How often do customers expand?]
+- **Expansion revenue**: [What % of MRR comes from expansion?]
+
+##### Expansion Revenue Projections
+
+- **Month 1-3**: [Expected expansion revenue, % of customers expanding]
+- **Month 4-6**: [Expected expansion revenue, % of customers expanding]
+- **Month 7-12**: [Expected expansion revenue, % of customers expanding]
+
+#### Quality Gate
+
+- At least one expansion revenue lever must be selected
+- Expansion path must be clear (how to get from initial to 10x)
+- Expansion triggers must be natural (aligned with customer success)
+- Expansion revenue projections must be realistic
+- Expansion metrics must be measurable
+
+**Critical Rule**: MRR is fragile unless pricing grows with value. Every product must include at least one expansion revenue lever. This is how you turn a $29/mo tool into a $290/mo business without acquisition cost.
 
 #### Value Metric Scales with Customer Success
 
