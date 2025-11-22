@@ -1,6 +1,57 @@
 # Core Idea Criteria
 
-Goal: Avoid building "feature factories" and align with Greg's "only build what has heat."
+**Goal**: Avoid building "feature factories" and ensure only viable product ideas proceed to engineering.
+
+## Rule
+
+A viable product idea must satisfy all 6 criteria:
+
+1. **Strong desirability demonstrated via community heat signals**
+   - Proof: waitlists, DMs, preorders, repeat usage, validation tests passed
+
+2. **Identity-level pain or aspiration**
+   - The problem is tied to how users see themselves or their role
+   - Not just functional pain; emotional/identity connection required
+
+3. **Recurring job with weekly/monthly frequency**
+   - Not a one-time problem; users need this repeatedly
+   - Weekly or monthly frequency (or frequency boosters if rare)
+
+4. **A budgeted buyer with willingness to pay**
+   - Clear economic buyer with budget authority
+   - Demonstrated willingness to pay (not just "they might pay")
+
+5. **Clear first monetization wedge**
+   - What is the first paid moment?
+   - What is the natural expansion revenue?
+   - What value metric scales with customer success?
+
+6. **Path to defensibility (data, workflow, switching cost, or community moat)**
+   - At least one moat type identified
+   - Clear path to building the moat
+   - Moat creates switching costs or compounding value
+
+## Quality Gate
+
+**If an idea fails 2+ criteria, pivot or kill before engineering.**
+
+### Decision Matrix
+
+- **0-1 criteria failed**: Proceed to validation
+- **2+ criteria failed**: Pivot or kill (do not proceed to engineering)
+
+## Validation
+
+Before pre-build validation (`.cursor/rules/200-playbook-insight-validation.mdc`), verify:
+
+- [ ] Strong desirability (community heat signals present)
+- [ ] Identity-level pain or aspiration (not just functional)
+- [ ] Recurring job (weekly/monthly frequency or boosters)
+- [ ] Budgeted buyer (clear buyer with willingness to pay)
+- [ ] First monetization wedge (clear first paid moment)
+- [ ] Path to defensibility (at least one moat type identified)
+
+If any 2+ criteria missing → pivot idea or kill it. Do not proceed to validation or engineering.
 
 ## Two-Filter Pipeline Mental Model
 
@@ -17,26 +68,3 @@ Think of your pipeline as two stacked filters:
 **Proof**: recurring job, budgeted buyer, retention loop, moat map.
 
 **Heat gets you in. Durability makes it a real SaaS business.**
-
-## Core Criteria
-
-A product must have:
-
-- **Identity-level pain**: The problem is tied to how users see themselves or their role
-- **Ongoing, recurring need**: Not a one-time problem; users need this repeatedly
-- **Distribution wedge baked in**: Product naturally spreads through communities/networks
-- **Match between insight + community**: Unfair insight aligns with high-heat community
-
-If not: pivot or kill.
-
-## Validation
-
-Before pre-build validation (`.cursor/rules/200-playbook-insight-validation.mdc`), verify:
-
-- [ ] Identity-level pain identified (not just functional pain)
-- [ ] Ongoing, recurring need confirmed (not one-time)
-- [ ] Distribution wedge identified (how it spreads naturally)
-- [ ] Insight matches community (unfair insight + high-heat community align)
-- [ ] **Durability Filter passed** (see `.cursor/rules/200-playbook-insight-validation.mdc`)
-
-If any criteria missing → pivot idea or kill it. Do not proceed to validation.
