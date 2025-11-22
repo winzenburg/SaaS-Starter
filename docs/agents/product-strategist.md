@@ -127,7 +127,52 @@ Output: /docs/product/PRD-<feature>.md
 - **Growth loops**: How does usage drive distribution?
 - **No-code distribution**: How to distribute before building?
 
-### 9. 10 High-Velocity Tests
+### 9. Retention Thesis
+
+**CRITICAL**: MRR durability = retention architecture. Many niche products die from "strong launch, weak week-8 retention." Retention must be designed in, not patched later.
+
+#### Why Do Users Come Back Weekly/Monthly?
+- What recurring job drives return visits?
+- What problem needs solving repeatedly?
+- What value is delivered on a recurring basis?
+- What makes this a weekly/monthly need, not a one-time need?
+
+#### What's the Recurring Job or Frequency Driver?
+- **Recurring job**: What job does the user need to do repeatedly?
+- **Frequency driver**: What triggers the user to return?
+- **Value cadence**: How often does new value appear?
+- **Update frequency**: What changes/updates bring users back?
+
+#### What Habit Loop / Alert / Collaborative Ritual Keeps Usage Alive?
+- **Habit loop**: What cue → routine → reward loop exists?
+- **Alerts/notifications**: What triggers bring users back?
+- **Collaborative rituals**: What team/community rituals depend on the product?
+- **Social triggers**: What social signals drive return visits?
+- **Status/identity**: How does continued usage signal identity?
+
+#### Retention Mechanics
+- How is retention designed into the product?
+- What prevents churn (not just what drives acquisition)?
+- What switching costs exist?
+- What habit formation is built in?
+- What collaborative dependencies exist?
+
+#### Examples of Retention Mechanics
+- **Weekly reports**: Users return weekly to see updated reports
+- **Team collaboration**: Product is essential to team workflows
+- **Habit loop**: Daily check-in becomes a habit
+- **Alerts**: Notifications bring users back for updates
+- **Social proof**: Community activity drives return visits
+- **Data accumulation**: Product gets better with more data (data moat)
+
+#### Quality Gate
+- Retention thesis must be clear and specific
+- Recurring job must be identified
+- Frequency driver must be defined
+- Habit loop/ritual must be designed
+- Retention mechanics must be designed in (not patched later)
+
+### 10. 10 High-Velocity Tests
 - **Test 1**: [Name] - [Method] - [Success criteria] - [Timeline]
 - **Test 2**: [Name] - [Method] - [Success criteria] - [Timeline]
 - **Test 3**: [Name] - [Method] - [Success criteria] - [Timeline]
@@ -141,7 +186,7 @@ Output: /docs/product/PRD-<feature>.md
 
 **Note**: High-velocity tests are fast, low-cost ways to validate demand before building.
 
-### 10. Lo-Fi Validation Plan
+### 11. Lo-Fi Validation Plan
 - **Email validation**: [How to test via email]
 - **Landing page**: [What landing page tests demand?]
 - **Loom demo**: [How to use Loom to validate interest?]
@@ -164,14 +209,14 @@ Output: /docs/product/PRD-<feature>.md
 - **Timing risks**: What if timing is wrong?
 - **Mitigation strategies**: How to mitigate each risk
 
-### 13. Rollout Plan with Feature Flags
+### 14. Rollout Plan with Feature Flags
 - **Feature flag name**: [Name]
 - **Rollout stages**: 0% → 10% → 50% → 100%
 - **Success criteria for each stage**: [Criteria]
 - **Rollback plan**: [How to rollback]
 - **Monitoring plan**: [What to monitor]
 
-### 14. Analytics Events Schema
+### 15. Analytics Events Schema
 - **Event names**: [List]
 - **Event properties**: [Properties for each event]
 - **When events fire**: [Triggers]
@@ -187,12 +232,13 @@ Output: /docs/product/PRD-<feature>.md
 7. Define early adopter profile (community, identity, motivation)
 8. Answer "If users love this, what will they tell friends?"
 9. Plan distribution from Day 1
-10. Design 10 High-Velocity Tests
-11. Create Lo-Fi Validation Plan
-12. Define success metrics (leading/lagging)
-13. Identify risks and mitigations
-14. Create rollout plan with feature flags
-15. Define analytics events schema
+10. **Define Retention Thesis** (recurring job, frequency driver, habit loop)
+11. Design 10 High-Velocity Tests
+12. Create Lo-Fi Validation Plan
+13. Define success metrics (leading/lagging)
+14. Identify risks and mitigations
+15. Create rollout plan with feature flags
+16. Define analytics events schema
 16. Create PRD document
 17. Get stakeholder alignment
 
@@ -204,6 +250,8 @@ Output: /docs/product/PRD-<feature>.md
 - Early adopter profile is specific
 - "If users love this" question is answered
 - Distribution from Day 1 is planned
+- **Retention Thesis is defined** (recurring job, frequency driver, habit loop)
+- **Retention mechanics are designed in** (not patched later)
 - 10 High-Velocity Tests are actionable
 - Lo-Fi Validation Plan is complete
 - Success metrics are measurable (leading/lagging)
