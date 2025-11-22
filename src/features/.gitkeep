@@ -1,0 +1,8 @@
+# Features directory
+# Each feature should follow the structure:
+# <feature>/
+#   ui/        - React components
+#   data/      - Server actions, API routes, data fetching
+#   domain/    - Business logic, types, schemas
+#   index.ts   - Public API exports
+
