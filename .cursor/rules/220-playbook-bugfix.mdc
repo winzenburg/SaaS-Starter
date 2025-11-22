@@ -1,31 +1,117 @@
 # Playbook: Bug Fix
 
-## Workflow
-Reproduce → Test → Fix → Verify
+## Step Sequence
+
+```
+Test Engineer writes failing test → Implementer fixes minimal surface area → Test Engineer verifies and cleans tests → Accessibility quick check if UI touched → Add regression note to changelog if user-visible
+```
 
 ## Steps
 
-1. **Reproduce**
-   - Identify the bug
-   - Create failing test that reproduces it
-   - Document expected vs actual behavior
+### 1. Test Engineer writes failing test
+**Input**: Bug report or issue  
+**Output**: Failing test that reproduces the bug
 
-2. **Test**
-   - Write failing test (unit, integration, or E2E as appropriate)
-   - Test must fail with current code
-   - Test must pass after fix
+**Required Artifacts**:
+- Failing test in appropriate location:
+  - Unit test: `src/features/<feature>/domain/*.test.ts`
+  - Integration test: `src/features/<feature>/data/*.test.ts`
+  - E2E test: `e2e/<feature>/*.spec.ts`
+- Test must fail with current code
+- Test must pass after fix
 
-3. **Fix**
-   - Fix the root cause
-   - Keep changes minimal
-   - Follow project rules
+**Deliverables**:
+- Test that reproduces the bug
+- Clear description of expected vs actual behavior
+- Test must fail before fix, pass after fix
 
-4. **Verify**
-   - All tests pass
-   - No regressions introduced
-   - Code review complete
+### 2. Implementer fixes minimal surface area
+**Input**: Failing test  
+**Output**: Bug fix
 
-## Rules
-- Always write test first
+**Required Artifacts**:
+- Minimal code changes to fix root cause
+- No unrelated changes
+- Follow project rules
+
+**Deliverables**:
+- Root cause fixed (not symptoms)
+- Minimal changes made
+- All tests passing
+- Code follows project conventions
+
+**Rules**:
 - Fix root cause, not symptoms
-- Verify no regressions
+- Keep changes minimal
+- Don't refactor unrelated code
+- Run tests after fix
+
+### 3. Test Engineer verifies and cleans tests
+**Input**: Bug fix  
+**Output**: Verified and cleaned test suite
+
+**Required Artifacts**:
+- All tests passing
+- Test code reviewed and cleaned
+- No test regressions
+
+**Deliverables**:
+- All tests passing (unit + integration + e2e)
+- Test code is clean and maintainable
+- No regressions introduced
+- Test coverage verified
+
+### 4. Accessibility quick check if UI touched
+**Input**: Bug fix (if UI was modified)  
+**Output**: Accessibility verification
+
+**Required Artifacts**:
+- Quick accessibility check if UI was touched
+- Screen reader test if interactive elements changed
+- Keyboard navigation check if navigation changed
+
+**Deliverables**:
+- Accessibility verified (if UI touched)
+- WCAG 2.2 AA compliance maintained
+- No new accessibility issues introduced
+
+**Note**: Full audit not required unless major UI changes
+
+### 5. Add regression note to changelog if user-visible
+**Input**: Complete bug fix  
+**Output**: Changelog entry
+
+**Required Artifacts**:
+- Changelog entry in `CHANGELOG.md` or similar
+- Description of bug fix
+- Impact on users (if user-visible)
+
+**Deliverables**:
+- Changelog entry added (if user-visible bug)
+- Clear description of fix
+- User impact documented
+
+**Note**: Only required for user-visible bugs
+
+## Definition of Done Checklist
+
+A bug fix is considered done when:
+
+- ✅ Failing test written and failing
+- ✅ Bug fixed with minimal changes
+- ✅ All tests passing (green)
+- ✅ Test code verified and cleaned
+- ✅ Accessibility checked (if UI touched)
+- ✅ Changelog entry added (if user-visible)
+- ✅ Code review completed
+- ✅ No regressions introduced
+- ✅ Ready for merge
+
+## Quality Gates
+
+Each step must pass quality gates before proceeding:
+- **Failing Test**: Test must fail with current code
+- **Fix**: All tests passing, minimal changes
+- **Verify**: All tests green, no regressions
+- **A11y**: Quick check passed (if UI touched)
+- **Changelog**: Entry added (if user-visible)
