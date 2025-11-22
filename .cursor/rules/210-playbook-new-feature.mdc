@@ -1,16 +1,22 @@
 # Playbook: New Feature
 
 ## Prerequisites
-**CRITICAL**: This playbook assumes insight validation is complete. See `.cursor/rules/200-playbook-insight-validation.mdc`.
+**CRITICAL**: This playbook assumes insight validation AND moat/MRR validation are complete. See:
+- `.cursor/rules/200-playbook-insight-validation.mdc` (must complete first)
+- `.cursor/rules/205-playbook-moat-mrr-validation.mdc` (must complete second)
 
 **Required before starting**:
 - ✅ At least 3 demand-validation tests passed
 - ✅ Unfair Insight Brief validated
 - ✅ Narrative 1-pager created with emotional hook
 - ✅ Community Heat Map identifies high-heat community
+- ✅ **Desirability signal confirmed** (from moat/MRR validation)
+- ✅ **Retention thesis defined** (habit/frequency driver)
+- ✅ **Monetization wedge defined** (first paid moment, expansion revenue, value metric)
+- ✅ **Moat map completed** (2+ types with implementation plan)
 - ✅ Decision to PROCEED (not PIVOT or KILL)
 
-**Rule**: No feature enters engineering without passing at least 3 demand-validation tests (see `.cursor/rules/027-core-desirability-first.mdc`).
+**Rule**: No feature enters engineering without (a) desirability signal and (b) a retention + monetization wedge (see `.cursor/rules/205-playbook-moat-mrr-validation.mdc`).
 
 ## Step Sequence
 
