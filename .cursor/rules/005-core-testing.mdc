@@ -1,14 +1,15 @@
 # Core Testing
 
-- Behavior-first. Tests define correctness
-- Required test types by change (unit/integration/e2e)
+Goal: Behavior-first development and regression safety.
+
+- Tests define correctness
+- New feature requires:
+  - unit tests for domain logic
+  - integration tests for server actions/tRPC + DB
+  - e2e tests for critical journeys
+- Refactors require coverage check first
 - No merge if CI red
-- New features require unit + integration + e2e where applicable
-- All domain logic must have unit tests
-- All server actions must have integration tests
-- All tRPC procedures must have tests
-- Critical flows must have E2E tests
-- Tests must be green before further refactors
+- Prefer small diffs with green tests between steps
 - Unit tests: `src/**/*.test.ts` (co-located)
 - Integration tests: `src/**/*.test.ts`
 - E2E tests: `e2e/**/*.spec.ts` (Playwright)
