@@ -1,31 +1,71 @@
-# Core Desirability-First
+# Core Rule: Desirability First
 
-Goal: Prevent building features that nobody wants. Validate demand before code.
+**Goal**: Prevent building features that nobody wants. No build until validated.
 
 ## Rule
 
-**No build until validated.**
+**No feature or product may enter engineering until all 4 gates are passed:**
 
-## Requirements
+1. **Insight & Narrative Strategist completes an Unfair Insight brief**
+   - Output: `/docs/product/INSIGHT-<product>.md`
+   - Must include: Unfair insight, narrative, target community, early signals, 5 demand-validation tests, distribution wedge
 
-Before any engineering work begins:
+2. **Product Strategist validates desirability via lo-fi tests**
+   - Output: `/docs/product/PRD-<product>.md`
+   - Must include: Value Story, Why Now, Lo-Fi Validation Plan, 10 High-Velocity Tests, "If users love this...", Early adopter profile, Distribution from Day 1
+   - At least 3 demand-validation tests must pass
 
-- [ ] Unfair insight validated (see `.cursor/rules/200-playbook-insight-validation.mdc`)
-- [ ] Narrative resonates with target community
-- [ ] **Retention Thesis defined** (why users come back weekly/monthly)
-- [ ] At least 3 demand-validation tests passed
-- [ ] "Would you be upset if this disappeared?" test shows emotional attachment
-- [ ] Manual concierge/MVP test shows willingness to pay
-- [ ] Community Heat Map identifies high-heat community
+3. **Portfolio Prioritizer approves based on expected value**
+   - Output: `/docs/product/PORTFOLIO-SCORE-<idea>.md`
+   - Must include: Desirability signal strength, Niche Durability Score, Moat potential, Expansion revenue depth, JTBD frequency map, Wave/timing analysis, Implementation cost + risk, Expected value (EV) model
+   - Verdict must be "Proceed" (not "Kill" or "Pivot")
 
-## Enforcement
+4. **Moat-MRR Strategist confirms defensibility strategy**
+   - Output: `/docs/product/MOAT-MRR-<product>.md`
+   - Must include: Moat map (2-3 types), Data Moat Thesis, Retention thesis, Expansion revenue model, Churn risks + mitigation, Motivation loops
 
-- Engineering Architect must check validation results before creating ADR
-- Implementer must not start building without validation proof
-- No feature enters `.cursor/rules/210-playbook-new-feature.mdc` without passing validation
+## Quality Gate
 
-## If Not Validated
+**Building before validation is forbidden.**
 
-- Pivot idea, narrative, or community
-- Re-run validation tests
-- Kill idea if validation fails repeatedly
+### Engineering Gate Checklist
+
+Before any feature or product enters engineering, verify:
+
+- [ ] Insight & Narrative Strategist has completed Unfair Insight brief
+- [ ] Product Strategist has validated desirability via lo-fi tests (3+ tests passed)
+- [ ] Portfolio Prioritizer has approved based on expected value (verdict: "Proceed")
+- [ ] Moat-MRR Strategist has confirmed defensibility strategy
+
+If any gate is not passed → do not proceed to engineering. Complete missing gates first.
+
+## Workflow
+
+```
+Raw Idea
+  ↓
+1. Insight & Narrative Strategist → Unfair Insight brief
+  ↓
+2. Product Strategist → Desirability validation (lo-fi tests)
+  ↓
+3. Portfolio Prioritizer → Expected value approval
+  ↓
+4. Moat-MRR Strategist → Defensibility strategy confirmation
+  ↓
+Engineering (if all 4 gates passed)
+```
+
+## Rules
+
+- **No exceptions**: Building before validation is forbidden
+- **All 4 gates required**: No feature or product may enter engineering until all 4 gates are passed
+- **Gate order matters**: Gates must be completed in sequence (cannot skip gates)
+- **Validation is mandatory**: Desirability validation is not optional
+
+## Integration
+
+This rule integrates with:
+- `.cursor/rules/000-core-idea-criteria.mdc` - Core idea criteria (must pass before Insight Strategist)
+- `.cursor/rules/200-playbook-insight-validation.mdc` - Insight validation playbook
+- `.cursor/rules/205-playbook-moat-mrr-validation.mdc` - Moat & MRR validation playbook
+- `.cursor/rules/210-playbook-new-feature.mdc` - New feature playbook (requires all 4 gates)
