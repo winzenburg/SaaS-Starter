@@ -1,14 +1,17 @@
 "use client";
 
 import { useFormState } from "react-dom";
-import { exampleAction } from "../data/exampleAction";
+import { exampleAction, type ExampleActionState } from "../data/exampleAction";
 
 /**
  * Example form component
  * Demonstrates the UI layer structure
  */
 export function ExampleForm() {
-  const [state, formAction] = useFormState(exampleAction, null);
+  const [state, formAction] = useFormState<ExampleActionState, FormData>(
+    exampleAction,
+    null,
+  );
 
   return (
     <form action={formAction} className="space-y-4">
