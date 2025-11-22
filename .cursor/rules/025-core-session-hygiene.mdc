@@ -1,5 +1,12 @@
 # Core Session Hygiene
 
-- Plan before implementing
-- Keep diffs small; avoid simultaneous cross-cutting changes
-- If unsure about paths/conventions, search the codebase first
+Goal: Stop agents from making giant messy diffs.
+
+- Plan before implement
+- Search existing code first before creating new patterns
+- Keep diffs small: one feature/concern at a time
+- Don't change unrelated files
+- If unsure → ask for clarification or reference existing feature
+- Commit logical units separately
+- Review existing patterns before introducing new abstractions
+- Prefer incremental changes over large refactors
