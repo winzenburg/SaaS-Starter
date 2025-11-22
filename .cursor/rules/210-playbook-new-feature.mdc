@@ -1,11 +1,15 @@
 # Playbook: New Feature
 
 ## Prerequisites
-**CRITICAL**: This playbook assumes insight validation AND moat/MRR validation are complete. See:
-- `.cursor/rules/200-playbook-insight-validation.mdc` (must complete first)
-- `.cursor/rules/205-playbook-moat-mrr-validation.mdc` (must complete second)
+**CRITICAL**: This playbook assumes portfolio management, insight validation AND moat/MRR validation are complete. See:
+- `.cursor/rules/207-playbook-portfolio-management.mdc` (must score and prioritize first)
+- `.cursor/rules/200-playbook-insight-validation.mdc` (must complete second)
+- `.cursor/rules/205-playbook-moat-mrr-validation.mdc` (must complete third)
 
 **Required before starting**:
+- ✅ **Portfolio scoring completed** (expected value, risk score, strategic fit, resource requirements, time to value)
+- ✅ **Portfolio prioritization passed** (product is high priority or portfolio priority, score ≥ 15)
+- ✅ **Engineering capacity available** (portfolio management check)
 - ✅ At least 3 demand-validation tests passed
 - ✅ Unfair Insight Brief validated
 - ✅ Narrative 1-pager created with emotional hook
@@ -16,7 +20,7 @@
 - ✅ **Moat map completed** (2+ types with implementation plan)
 - ✅ Decision to PROCEED (not PIVOT or KILL)
 
-**Rule**: No feature enters engineering without (a) desirability signal and (b) a retention + monetization wedge (see `.cursor/rules/205-playbook-moat-mrr-validation.mdc`).
+**Rule**: No feature enters engineering without (a) portfolio prioritization, (b) desirability signal, and (c) a retention + monetization wedge (see `.cursor/rules/207-playbook-portfolio-management.mdc` and `.cursor/rules/205-playbook-moat-mrr-validation.mdc`).
 
 ## Step Sequence
 
