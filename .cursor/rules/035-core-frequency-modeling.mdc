@@ -1,0 +1,96 @@
+# Core Rule: Frequency Modeling
+
+**Goal**: Ensure retention through job frequency. Retention requires job frequency.
+
+## Rule
+
+**Every feature must include frequency modeling before engineering.**
+
+## Required Components
+
+### 1. JTBD Frequency Map
+- **Daily jobs**: Job occurs daily (highest retention potential)
+- **Weekly jobs**: Job occurs weekly (strong retention potential)
+- **Monthly jobs**: Job occurs monthly (moderate retention potential)
+- **Quarterly jobs**: Job occurs quarterly (low retention potential)
+- **Event-driven jobs**: Job occurs when specific events happen (variable retention)
+- **Rare jobs**: Job occurs rarely (low retention potential, needs frequency boosters)
+
+### 2. Value Driver for Each Timeframe
+- **Daily value driver**: [What value is delivered daily?]
+- **Weekly value driver**: [What value is delivered weekly?]
+- **Monthly value driver**: [What value is delivered monthly?]
+- **Quarterly value driver**: [What value is delivered quarterly?]
+- **Event-driven value driver**: [What value is delivered when events occur?]
+
+### 3. Mechanisms to Increase Frequency
+- **Success factors**: [What makes the job happen more often?]
+- **Growth factors**: [What causes the job to scale?]
+- **Value factors**: [What makes the job more valuable when done frequently?]
+- **Dependency factors**: [What creates dependencies that increase frequency?]
+
+### 4. Notification or Workflow Triggers
+- **Notification triggers**: [What notifications bring users back?]
+- **Workflow triggers**: [What workflows bring users back?]
+- **Trigger frequency**: [How often do triggers fire?]
+- **Trigger effectiveness**: [How effective are triggers?]
+
+## Low Frequency Requirements
+
+**If job frequency is low (quarterly, event-driven, or rare), PM must design:**
+
+### 1. Critical Alerts
+- **Alert types**: [What alerts are critical?]
+- **Alert triggers**: [When do alerts fire?]
+- **Alert frequency**: [How often are alerts sent?]
+- **Alert value**: [What value do alerts provide?]
+
+### 2. Batching Workflows
+- **Batching mechanism**: [How are jobs batched?]
+- **Batching frequency**: [How often does batching occur?]
+- **Batching value**: [What value does batching provide?]
+- **Batching triggers**: [What triggers batching?]
+
+### 3. Periodic Review Cycles
+- **Review cycle frequency**: [How often do review cycles occur?]
+- **Review cycle value**: [What value do review cycles provide?]
+- **Review cycle triggers**: [What triggers review cycles?]
+- **Review cycle content**: [What is reviewed in each cycle?]
+
+## Quality Gate
+
+**Frequency modeling must be complete before engineering.**
+
+### Frequency Modeling Checklist
+
+Before any feature enters engineering, verify:
+
+- [ ] JTBD frequency map is complete (frequency identified)
+- [ ] Value driver for each timeframe is defined
+- [ ] Mechanisms to increase frequency are designed
+- [ ] Notification or workflow triggers are defined
+- [ ] If job frequency is low, critical alerts, batching workflows, and periodic review cycles are designed
+
+If frequency modeling is incomplete → do not proceed to engineering. Complete frequency modeling first.
+
+## Rules
+
+- **Frequency modeling is mandatory**: Every feature must include frequency modeling
+- **Low frequency requires boosters**: If job frequency is low, PM must design critical alerts, batching workflows, and periodic review cycles
+- **Value drivers required**: Value driver must be defined for each timeframe
+- **Triggers required**: Notification or workflow triggers must be defined
+
+## Integration
+
+This rule integrates with:
+- `.cursor/rules/006-core-frequency-modeling.mdc` - Detailed frequency modeling requirements
+- `.cursor/rules/027-core-desirability-first.mdc` - Desirability first (frequency modeling is part of validation)
+- `.cursor/rules/205-playbook-moat-mrr-validation.mdc` - Moat & MRR validation (includes frequency modeling)
+- `docs/agents/moat-mrr-strategist.md` - Moat & MRR Strategist (includes frequency modeling)
+- `docs/agents/product-strategist.md` - Product Strategist (includes frequency modeling)
+
+## Mental Model
+
+**Retention requires job frequency.**
+
+If the core job isn't frequent, MRR collapses after the initial honeymoon. Every feature/product must include a "JTBD Frequency Map." If the job is rare, you need frequency boosters (critical alerts, batching workflows, periodic review cycles) to keep the product alive.
