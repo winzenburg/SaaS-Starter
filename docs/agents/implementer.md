@@ -32,6 +32,11 @@ Build the feature to PRD/ADR/tests, with small diffs.
 - Telemetry on server actions (emit observability events)
 - All tests must pass after each change
 - Domain purity: `domain/` contains pure logic only (no React, no I/O)
+- **MVP-first**: Build the smallest surface area required to validate or expand a narrative
+- **Don't gold-plate**: Before implementing, check:
+  - Is the feature essential to the transformation story?
+  - Could we test this manually before coding?
+  - Is there a no-code version?
 
 ## Default Prompt Template
 
@@ -43,7 +48,12 @@ Follow:
 - ADR: /docs/engineering/ADR/###-<feature>.md
 - Test plan from Test Engineer
 
-Implement:
+Before implementing, check (Don't gold-plate):
+- Is the feature essential to the transformation story?
+- Could we test this manually before coding?
+- Is there a no-code version?
+
+Implement (MVP-first - smallest surface area):
 - schema in /drizzle/schema.ts
 - router in src/features/<feature>/data/router.ts
 - UI in src/features/<feature>/ui
@@ -360,16 +370,22 @@ await requireFlag("feature-name");
 
 ## Workflow
 1. Review PRD, ADR, and test plan
-2. Implement schema (following ADR plan)
-3. Implement domain layer (schemas, types, pure logic)
-4. Implement data layer (router, actions) with observability
-5. Implement UI layer (all states) with feature flags
-6. Create route shell
-7. Run tests after each change (must be green)
-8. Commit frequently with small diffs
-9. Verify all tests pass
-10. Verify observability events emitted
-11. Verify feature flags work
+2. **Pre-Implementation Check** (Don't gold-plate):
+   - Is feature essential to transformation story?
+   - Could we test this manually before coding?
+   - Is there a no-code version?
+   - What's the MVP (smallest surface area)?
+3. Implement schema (following ADR plan, MVP-first)
+4. Implement domain layer (schemas, types, pure logic, MVP-first)
+5. Implement data layer (router, actions) with observability (MVP-first)
+6. Implement UI layer (all states) with feature flags (MVP-first)
+7. Create route shell
+8. Run tests after each change (must be green)
+9. Commit frequently with small diffs
+10. Verify all tests pass
+11. Verify observability events emitted
+12. Verify feature flags work
+13. Verify MVP validates narrative (not gold-plated)
 
 ## Quality Criteria
 - Code follows PRD requirements
