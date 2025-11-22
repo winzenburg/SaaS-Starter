@@ -1,514 +1,292 @@
 # Playbook: New Feature
 
-## Prerequisites
-**CRITICAL**: This playbook assumes portfolio management, insight validation AND moat/MRR validation are complete. See:
-- `.cursor/rules/207-playbook-portfolio-management.mdc` (must score and prioritize first)
-- `.cursor/rules/200-playbook-insight-validation.mdc` (must complete second)
-- `.cursor/rules/205-playbook-moat-mrr-validation.mdc` (must complete third)
+**Goal**: Build a new feature or product with validated demand, clear retention architecture, and defensibility strategy.
 
-**Required before starting**:
-- ✅ **Portfolio scoring completed** (expected value, risk score, strategic fit, resource requirements, time to value)
-- ✅ **Portfolio prioritization passed** (product is high priority or portfolio priority, score ≥ 15)
-- ✅ **Engineering capacity available** (portfolio management check)
-- ✅ At least 3 demand-validation tests passed
-- ✅ Unfair Insight Brief validated
-- ✅ Narrative 1-pager created with emotional hook
-- ✅ Community Heat Map identifies high-heat community
-- ✅ **Desirability signal confirmed** (from moat/MRR validation)
-- ✅ **Retention thesis defined** (habit/frequency driver)
-- ✅ **Monetization wedge defined** (first paid moment, expansion revenue, value metric)
-- ✅ **Moat map completed** (2+ types with implementation plan)
-- ✅ Decision to PROCEED (not PIVOT or KILL)
+## Prerequisites (REQUIRED Before Building)
 
-**Rule**: No feature enters engineering without (a) portfolio prioritization, (b) desirability signal, and (c) a retention + monetization wedge (see `.cursor/rules/207-playbook-portfolio-management.mdc` and `.cursor/rules/205-playbook-moat-mrr-validation.mdc`).
+**No feature may enter engineering without all 5 prerequisites:**
+
+1. **Insight Brief** (`/docs/product/INSIGHT-<product>.md`)
+   - Unfair insight validated
+   - Target community identified
+   - Distribution wedge clear
+
+2. **Narrative PRD** (`/docs/product/PRD-<product>.md`)
+   - Value Story clear
+   - Desirability validated (3+ tests passed)
+   - Early adopter profile defined
+   - JTBD Frequency Modeling complete
+
+3. **Retention Architecture** (`/docs/product/RETENTION-<product>.md`)
+   - Activation path designed
+   - Weekly/monthly value drivers mapped
+   - Notification/re-engagement triggers defined
+   - Churn-prevention design complete
+
+4. **Moat + MRR Strategy** (`/docs/product/MOAT-MRR-<product>.md`)
+   - 2-3 moat types selected
+   - Data Moat Thesis complete
+   - Expansion revenue model defined
+   - Retention thesis clear
+
+5. **Portfolio Greenlight** (`/docs/product/PORTFOLIO-SCORE-<idea>.md`)
+   - Portfolio score calculated
+   - Expected value modeled
+   - Verdict: "Proceed"
+
+**Rule**: No exceptions. All 5 prerequisites must be complete before engineering.
 
 ## Step Sequence
 
 ```
-Updated Flow: Insight → Validation → Moat → Retention → Monetization → Build
+Prerequisites Complete → Design Phase → Engineering Phase → Verification Phase
 
-Phase 1: Insight & Validation (must complete first):
-1. Portfolio-Prioritizer → Score idea (portfolio scoring)
-2. Insight-Strategist → Unfair Insight
-3. Product-Strategist → Narrative + Desirability PRD
-4. Market-Scanner → Community Heat + Moat
-5. Run Validation Tests (emails, DMs, landing page, "would you be upset?", manual concierge)
-6. Green-light decision (validation)
+Design Phase:
+1. @UX-Researcher → User research (if needed)
+2. @IA-Designer → IA/flows/edge cases
 
-Phase 2: Moat & Retention (must complete second):
-7. Moat & MRR Strategist → Moat map + Data Moat Thesis + Expansion Revenue Strategy
-8. Retention Architect → Activation path + Habit loops + Notification strategy + Collaboration loops + Renewal triggers
-9. Green-light decision (moat + retention)
+Engineering Phase:
+3. @Engineering-Architect → ADR + schema + router plan
+4. @Test-Engineer → Test plan + stubs
+5. @Implementer → Build (small diffs, MVP-first)
 
-Phase 3: Monetization (must complete third):
-10. Product Strategist → Monetization Wedge + Expansion Revenue Strategy (finalize)
-11. Green-light decision (monetization)
-
-Phase 4: Build (if all green-lights):
-12. IA Designer → flows/edge cases (parallel OK)
-13. Engineering Architect → ADR + schema + router plan
-14. Test Engineer → test plan + stubs
-15. Implementer → build (small diffs, MVP-first)
-16. Accessibility Agent → a11y audit + fix loop
-17. Test Engineer → test verify
-18. Product Strategist → PRD acceptance check
+Verification Phase:
+6. @Accessibility-Agent → A11y audit + fix loop
+7. @Test-Engineer → Test verify
+8. @Product-Strategist → PRD acceptance check
 ```
-
-**Note**: Steps 1-6 should follow `.cursor/rules/200-playbook-insight-validation.mdc` if not already completed. Steps 7-9 should follow `.cursor/rules/205-playbook-moat-mrr-validation.mdc` if not already completed.
 
 ## Steps
 
-## Validation Phase: Demand Before Code
+### Design Phase
 
-### 1. Insight-Strategist → Unfair Insight
-**Input**: Raw product/feature idea  
-**Output**: Unfair Insight document
+#### 1. @UX-Researcher → User Research (if needed)
 
-**Agent**: Insight & Narrative Strategist
+**Input**: Insight Brief, Narrative PRD  
+**Output**: User research findings  
+**Agent**: UX Researcher
 
-**Required Artifacts**:
-- Insight document in `docs/product/INSIGHT-<product>.md`
-- Unfair insight (what do we know that others don't?)
-- Clear POV ("What problem do we exist to punch in the face?")
-- Target community identification
-- Early signals definition
-- 5 demand-validation tests (no-code/human first)
-- Distribution wedge
-- Recommendation (proceed, pivot, or kill)
+**Optional**: Only if research gaps exist
 
 **Deliverables**:
-- Unfair insight documented
-- Clear POV articulated
-- Target community identified
-- Early signals defined
-- Demand-validation tests designed
-- Distribution wedge identified
-- Clear recommendation (proceed/pivot/kill)
+- User interview scripts
+- Research synthesis
+- Narrative resonance tests
+- Identity-pain questions
 
-**Quality Gate**: Unfair insight must be unique and defensible. Only proceed if recommendation is PROCEED.
+**Quality Gate**: Research findings align with Insight Brief and PRD
 
-### 2. Product-Strategist → Narrative + Desirability PRD
-**Input**: Unfair Insight Brief  
-**Output**: Narrative + Demand-Driven PRD
+#### 2. @IA-Designer → IA/Flows/Edge Cases
 
-**Agent**: Product Strategist
-
-**Required Artifacts**:
-- PRD document in `docs/product/PRD-<feature>.md`
-- Value Story (central to Greg's playbook)
-- Why Now (timing rationale)
-- Narrative 1-pager (emotional hook + transformation story)
-- Early adopter profile (community, identity, motivation)
-- "If users love this, what will they tell friends?"
-- Distribution from Day 1
-- 10 High-Velocity Tests
-- Lo-Fi Validation Plan (email, landing page, Loom demo, tweet test, DM conversations)
-- Success metrics (leading/lagging)
-- Risks + mitigations
-
-**Deliverables**:
-- Value Story crafted
-- Why Now justified
-- Narrative with emotional hook
-- Early adopter profile defined
-- Word-of-mouth message identified
-- Distribution from Day 1 planned
-- 10 High-Velocity Tests designed
-- Lo-Fi Validation Plan created
-- Desirability validated (not just buildability)
-
-**Quality Gate**: PRD must validate desirability before buildability. Value Story and Why Now are required.
-
-### 3. Monetization Wedge
-**Input**: PRD, Narrative  
-**Output**: Monetization Wedge
-
-**Agent**: Product Strategist
-
-**Required Artifacts**:
-- Monetization Wedge in PRD
-- **What is the first paid moment?** (answered)
-- **What is the natural expansion revenue?** (seats, usage, tiers) (answered)
-- **What value metric scales with customer success?** (answered)
-- Pricing strategy defined (not just "free to grow")
-- Value metric identified (what customers pay for)
-- Expansion path defined (how revenue grows)
-
-**Deliverables**:
-- Clear first paid moment identified
-- Natural expansion revenue path defined
-- Value metric that scales with customer success
-- Pricing strategy prevents "free audience, no business"
-- Monetization wedge designed (not just community growth)
-
-**Quality Gate**: 
-- First paid moment must be clear and early
-- Natural expansion revenue must be defined
-- Value metric must scale with customer success
-- **Pricing as product** (not just free to grow)
-- **Prevents "free audience, no business"**
-
-**Critical Rule**: Community products often start free/cheap to grow. That's fine for validation, but to get strong MRR you need pricing as product earlier.
-
-### 4. Retention Thesis
-**Input**: PRD, Narrative  
-**Output**: Retention Thesis
-
-**Agent**: Product Strategist
-
-**Required Artifacts**:
-- Retention Thesis in PRD
-- **Why do users come back weekly/monthly?** (answered)
-- **What's the recurring job or frequency driver?** (answered)
-- **What habit loop / alert / collaborative ritual keeps usage alive?** (answered)
-- Retention mechanics defined (not just acquisition)
-- Habit formation strategy
-- Recurring value delivery mechanism
-
-**Deliverables**:
-- Clear retention thesis documented
-- Recurring job identified (why they come back)
-- Frequency driver identified (weekly/monthly trigger)
-- Habit loop or ritual defined (what keeps usage alive)
-- Retention mechanics designed (not just acquisition)
-
-**Quality Gate**: 
-- Retention thesis must be clear and specific
-- Recurring job must be identified
-- Frequency driver must be defined
-- Habit loop/ritual must be designed
-- **MRR durability = retention architecture** (not just launch)
-
-**Critical Rule**: Many niche products die from "strong launch, weak week-8 retention." Retention must be designed in, not patched later.
-
-### 5. Durability Filter
-**Input**: PRD, Community Heat Map  
-**Output**: Durability Assessment
-
-**Agent**: Market Scanner / Product Strategist
-
-**Required Artifacts**:
-- Durability Filter scoring in PRD or market scan
-- **Frequency of the job** (scored 1-5)
-- **Economic buyer has budget** (scored 1-5)
-- **Problem exists independent of hype** (scored 1-5)
-- **Users would be upset if it disappeared** (scored 1-5)
-- **Clear path to switching costs / workflow embed** (scored 1-5)
-- Total durability score (out of 25)
-- Durability assessment: **Durable Market** | **Cash-Flow Micro-Bet** | **Low Durability**
-
-**Scoring Criteria** (same as insight validation playbook):
-- Frequency of the job (1-5)
-- Economic buyer has budget (1-5)
-- Problem exists independent of hype (1-5)
-- Users would be upset if it disappeared (1-5)
-- Clear path to switching costs / workflow embed (1-5)
-
-**Durability Assessment**:
-- **Durable Market (18-25)**: Compounding SaaS asset, build for long-term MRR
-- **Cash-Flow Micro-Bet (10-17)**: Cash-flow micro-bet, build for short-term revenue, expect trend fade
-- **Low Durability (5-9)**: Consider pivot or kill
-
-**Strategic Recommendation**:
-- If **Durable Market**: Full product development, structural moats, long-term investment
-- If **Cash-Flow Micro-Bet**: Minimal viable product, fast iteration, community moat only, expect competition
-- If **Low Durability**: Minimal investment, validate quickly, likely pivot or kill
-
-**Quality Gate**: 
-- Durability Filter must be scored
-- Assessment must be clear
-- Strategic recommendation must align with durability score
-
-**Critical Rule**: Some niches are trend-spikes, not durable markets. Filter for structural vs. cyclical pain, recurring workflow vs. novelty, budgeted spend vs. hobby spend.
-
-### 6. Moat & MRR Strategist → Defensibility + Expansion Plan
-**Input**: PRD, Durability Assessment, Monetization Wedge, Retention Thesis  
-**Output**: Moat & MRR Strategy
-
-**Agent**: Moat & MRR Strategist
-
-**Required Artifacts**:
-- Moat & MRR Strategy document in `docs/product/MOAT-MRR-<product>.md`
-- **Moat map** (2+ types selected with implementation plan)
-- **Retention thesis** (habit/frequency driver)
-- **Expansion model** (seat/usage/tier)
-- **Churn risks & counter-features**
-- **Lifecycle state machine**
-- **Activation → habit → expansion plan**
-- **Churn-prevention triggers**
-
-**Deliverables**:
-- At least 2 moat types mapped with implementation plan
-- Clear retention thesis (habit/frequency driver)
-- Expansion model defined (seat/usage/tier)
-- Churn risks identified with counter-features
-- Lifecycle state machine designed
-- Activation → habit → expansion plan created
-- Churn-prevention triggers defined
-
-**Quality Gate**: 
-- Moat map must include at least 2 moat types
-- Retention thesis must be clear (habit/frequency driver)
-- Expansion model must align with Monetization Wedge
-- Lifecycle state machine must be complete
-- Churn-prevention triggers must be defined
-
-**Critical Rule**: Convert niche PMF into defensibility + expansion revenue plan. Design lifecycle loops before coding.
-
-### 7. Market-Scanner → Community Heat + Moat Design
-**Input**: Insight Brief, PRD, Durability Assessment  
-**Output**: Community Heat Analysis + Moat Design
-
-**Agent**: Market Scanner
-
-**Required Artifacts**:
-- Community Heat Analysis in `docs/research/market-scan-<feature>.md`
-- Community Heat Map (high/medium/low heat communities)
-- "Which community has the most pain + activation energy?" answered
-- "What niche internet tribe desperately wants this?" answered
-- "What micro-community can we win first?" answered
-- "Where does this product naturally spread? Why?" answered
-- **Moat Design** (at least 2 moat types selected):
-  - Data moat (proprietary usage data → better outcomes)
-  - Workflow lock-in (deep integration into daily ops)
-  - Network effects (value increases with more users)
-  - Ecosystem moat (plugins, integrations, templates)
-  - Switching costs (migration pain, saved state, team habits)
-  - Brand/identity moat (community + narrative)
-- **Moat implementation plan** (how to build each selected moat over time)
-- Top 3 direct competitors (secondary)
-- Switching costs + lock-in analysis
-
-**Deliverables**:
-- High-heat communities identified
-- **At least 2 moat types selected and justified**
-- **Moat implementation plan for each selected moat**
-- **How moats will be built over time (not just community)**
-- Natural distribution patterns identified
-- Community entry points defined
-- Competitor analysis (secondary to community)
-
-**Quality Gate**: 
-- At least one high-heat community identified
-- **At least 2 moat types selected**
-- **Moat implementation plan created**
-- **Moat design goes beyond community (structural defensibility)**
-
-### 8. Run Validation Tests (emails, DMs, landing page)
-**Input**: PRD, Community Heat Map, Lo-Fi Validation Plan  
-**Output**: Validation test results
-
-**Agents**: Product Strategist, UX Researcher, Implementer (minimal)
-
-**Required Artifacts**:
-- Email validation results
-- DM conversation results
-- Landing page + waitlist results
-- Loom demo feedback
-- Tweet test results
-- "Would you be upset if this disappeared?" test results
-- Manual concierge/MVP test results
-
-**Deliverables**:
-- At least 3 validation tests executed
-- Results documented
-- Clear signals of demand (or lack thereof)
-- Willingness to pay validated (if applicable)
-
-**Quality Gate**: At least 3 demand-validation tests must pass. See `.cursor/rules/000-playbook-pre-build-validation.mdc` for detailed test requirements.
-
-### 9. Green-Light Decision
-**Input**: All validation results  
-**Output**: Go/No-Go decision
-
-**Decision Criteria**:
-
-#### Green-Light (PROCEED) if:
-- ✅ At least 3 demand-validation tests passed
-- ✅ Unfair insight validated
-- ✅ Value Story resonates
-- ✅ **Monetization Wedge defined** (first paid moment, expansion revenue, value metric)
-- ✅ **Durability Filter scored** (frequency, budget, independent of hype, upset if disappeared, switching costs)
-- ✅ **Durability assessment clear** (Durable Market | Cash-Flow Micro-Bet | Low Durability)
-- ✅ **Moat & MRR Strategy defined** (moat map, retention thesis, expansion model, lifecycle state machine)
-- ✅ **Retention Thesis defined** (recurring job, frequency driver, habit loop)
-- ✅ High-heat community identified
-- ✅ Social Moat potential exists
-- ✅ Distribution from Day 1 is clear
-- ✅ Early adopter profile defined
-
-#### Yellow-Light (PIVOT) if:
-- ⚠️ Some validation signals but not all
-- ⚠️ Need to adjust: insight, narrative, community, or approach
-- ⚠️ Return to validation phase with adjustments
-
-#### Red-Light (KILL) if:
-- ❌ Less than 3 tests passed
-- ❌ No high-heat community
-- ❌ No social moat potential
-- ❌ No distribution path
-- ❌ No early adopter interest
-
-**Rule**: **No feature enters architecture phase without green-light decision.**
-
-## Architecture Phase: Build After Validation
-
-### 6. IA Designer flows/edge cases (parallel OK)
-**Input**: PRD (after green-light)  
-**Output**: Information architecture and user flows
-
+**Input**: Narrative PRD, Retention Architecture  
+**Output**: IA document + user flows  
 **Agent**: IA Designer
 
 **Required Artifacts**:
 - IA document in `docs/ux/IA-<feature>.md`
-- User flow diagrams in `docs/ux/user-flows-<feature>.md` (Mermaid ok)
-- Edge case documentation
-- Wireframes or mockups
-- IA documentation
+- User flows (Mermaid diagrams)
+- Happy path + failure paths
+- Empty/loading/error states
+- Permissions-based variants
+- Keyboard/focus expectations
+- Emotional peak, aha moment, story resolution identified
 
 **Deliverables**:
-- Information architecture designed
-- User flows created (happy path + failure paths)
-- Edge cases documented (empty/loading/error states)
-- Permission-based variants defined
-- Keyboard/focus expectations specified
+- Complete IA document
+- User flows documented
+- Edge cases identified
+- Interaction patterns defined
 
-**Note**: Can run in parallel with other architecture work
+**Quality Gate**: All user flows complete, edge cases covered, emotional journey mapped
 
-### 7. Engineering Architect ADR + schema + router plan
-**Input**: PRD, flows  
-**Output**: Architecture Decision Record, schema design, router plan
+### Engineering Phase
+
+#### 3. @Engineering-Architect → ADR + Schema + Router Plan
+
+**Input**: Narrative PRD, IA document, Retention Architecture, Moat + MRR Strategy  
+**Output**: ADR + technical plan  
+**Agent**: Engineering Architect
 
 **Required Artifacts**:
-- ADR document in `docs/adr/<number>-<feature-name>.md`
-- Schema design in `drizzle/schema.ts` (or feature-specific schema)
-- Router plan in `src/features/<feature>/data/router.ts` (structure)
-- Technical design document
+- ADR in `docs/engineering/ADR/NNNN-<feature>.md`
+- Schema plan (Drizzle)
+- Router plan (tRPC)
+- Tenancy scoping plan
+- Runtime choice (nodejs/edge)
+- Data capture instrumentation plan (for Data Moat)
+- Expansion revenue implementation plan
+- Defensibility enablers noted (if relevant)
 
 **Deliverables**:
-- ADR created with decision rationale
-- Database schema designed
-- tRPC router structure planned
-- Feature module structure defined
-- Patterns and conventions documented
+- ADR complete
+- Technical plan documented
+- Schema designed
+- Router structure planned
+- Data moat instrumentation planned
 
-### 8. Test Engineer test plan + stubs
-**Input**: ADR, schema, router plan  
-**Output**: Test plan and test stubs
+**Quality Gate**: ADR complete, technical plan clear, schema/router aligned with PRD
+
+#### 4. @Test-Engineer → Test Plan + Stubs
+
+**Input**: ADR, Narrative PRD, Retention Architecture  
+**Output**: Test plan + test stubs  
+**Agent**: Test Engineer
 
 **Required Artifacts**:
-- Test plan document
-- Unit test stubs in `src/features/<feature>/domain/*.test.ts`
-- Integration test stubs in `src/features/<feature>/data/*.test.ts`
-- E2E test stubs in `e2e/<feature>/*.spec.ts`
+- Unit tests for domain logic
+- Integration tests for routers/actions + DB
+- E2E tests for critical journeys
+- Tests keyed to acceptance criteria
+- Invariants explicit
+- Realistic seed scenarios
 
 **Deliverables**:
-- Test plan covering all scenarios
-- Test stubs with clear descriptions
-- Edge case test scenarios defined
-- **Tests must be written before implementation**
+- Test plan documented
+- Test stubs created
+- Acceptance criteria mapped to tests
+- Test coverage plan clear
 
-### 9. Implementer build (small diffs)
-**Input**: ADR, schema, router plan, test stubs  
-**Output**: Implemented feature
+**Quality Gate**: All acceptance criteria have tests, test plan complete
+
+#### 5. @Implementer → Build (Small Diffs, MVP-First)
+
+**Input**: ADR, Test plan, IA document  
+**Output**: Working code  
+**Agent**: Implementer
 
 **Required Artifacts**:
-- Feature module in `src/features/<feature>/`
-  - `domain/schemas.ts` - Zod schemas
-  - `domain/types.ts` - TypeScript types
-  - `data/router.ts` - tRPC procedures
-  - `data/actions.ts` - Server actions
-  - `ui/` - React components
-  - `index.ts` - Public API
+- Code in `src/features/<feature>/*`
+- Route shells in `/app` routes
+- Passing tests
+- Observability events + flags
+- Data capture instrumentation (for Data Moat)
+- Expansion revenue implementation
+- All UI states (loading, empty, error, success)
 
 **Deliverables**:
-- Feature module structure created
-- Domain logic implemented
-- Server actions and tRPC procedures created
-- UI components with all states (loading/empty/error/success)
-- Observability events added (success/failure)
-- Integration with existing systems
+- Feature code complete
+- Tests passing
+- UI states implemented
+- Data capture instrumented
+- Expansion revenue mechanisms implemented
 
-**Rules**:
-- Keep diffs small (one concern at a time)
-- Run tests after each change
-- Commit frequently with logical units
+**Quality Gate**: Tests green, code follows feature module boundaries, MVP-first, small diffs
 
-### 10. Accessibility audit + fix loop
-**Input**: Implemented feature  
-**Output**: Accessibility fixes
+### Verification Phase
+
+#### 6. @Accessibility-Agent → A11y Audit + Fix Loop
+
+**Input**: Working code  
+**Output**: A11y audit + fixes  
+**Agent**: Accessibility Agent
 
 **Required Artifacts**:
-- Accessibility audit report
-- Fixed accessibility issues
-- WCAG 2.2 AA compliance verification
-
-**Deliverables**:
-- UI audited for WCAG 2.2 AA compliance
-- Screen reader testing completed
+- A11y audit in `docs/ux/A11Y-AUDIT-<feature>.md`
+- WCAG 2.2 AA compliance
 - Keyboard navigation verified
-- Color contrast checked
-- All accessibility issues fixed
-
-**Process**:
-- Audit → Fix → Re-audit → Fix (loop until all issues resolved)
-
-### 11. Test verify
-**Input**: Complete feature with a11y fixes  
-**Output**: Verified test results
+- Screen reader labels verified
+- Touch targets verified
+- Contrast verified
 
 **Deliverables**:
-- All unit tests passing
-- All integration tests passing
-- All E2E tests passing
-- No regressions introduced
-- Test coverage verified
+- A11y audit complete
+- Critical issues fixed
+- Serious issues fixed
+- Minor issues documented (fix later)
 
-### 12. PRD acceptance check
-**Input**: Complete feature, test results  
-**Output**: PRD acceptance confirmation
+**Quality Gate**: No critical or serious a11y issues remain
+
+#### 7. @Test-Engineer → Test Verify
+
+**Input**: Complete code + fixes  
+**Output**: Test verification report  
+**Agent**: Test Engineer
+
+**Required Artifacts**:
+- All tests passing
+- Coverage report
+- E2E tests verified
+- Edge cases tested
+- Acceptance criteria verified
 
 **Deliverables**:
-- Feature matches PRD requirements
-- Acceptance criteria met
-- Success metrics baseline established
-- Stakeholder sign-off obtained
+- Test verification complete
+- All tests green
+- Coverage meets requirements
+- Edge cases covered
 
-## Definition of Done Checklist
+**Quality Gate**: All tests green, coverage adequate, edge cases verified
 
-A feature is considered done when:
+#### 8. @Product-Strategist → PRD Acceptance Check
 
-- ✅ PRD approved by stakeholders
-- ✅ User flows validated
-- ✅ ADR created and reviewed
-- ✅ All tests written and passing (green)
-- ✅ Observability events added (success/failure)
-- ✅ All UI states exist (loading/empty/error/success)
+**Input**: Complete feature  
+**Output**: Acceptance decision  
+**Agent**: Product Strategist
+
+**Required Artifacts**:
+- PRD acceptance criteria verified
+- Value Story delivered
+- Retention architecture implemented
+- Data capture instrumented
+- Expansion revenue mechanisms implemented
+- All UI states present
+
+**Deliverables**:
+- Acceptance decision (Accept | Reject)
+- Acceptance notes
+- Follow-up items (if any)
+
+**Quality Gate**: All acceptance criteria met, PRD delivered
+
+## Definition of Done
+
+Feature is considered done when:
+
+- ✅ All 5 prerequisites complete before engineering
+- ✅ Design phase complete (IA + flows documented)
+- ✅ Engineering phase complete (ADR + tests + code)
+- ✅ Verification phase complete (A11y + tests + acceptance)
+- ✅ All tests green
+- ✅ No critical/serious a11y issues
+- ✅ PRD acceptance criteria met
+- ✅ Data capture instrumented (for Data Moat)
+- ✅ Expansion revenue mechanisms implemented
+- ✅ All UI states present (loading, empty, error, success)
+- ✅ Observability events added
+- ✅ Feature flags configured (if needed)
 - ✅ Documentation updated
-- ✅ WCAG 2.2 AA compliance verified (a11y pass)
-- ✅ Code review completed
-- ✅ No linting or type errors
-- ✅ PRD acceptance check passed
-- ✅ Ready for merge
+- ✅ Ready for deployment
 
-## Quality Gates
+## Rules
 
-### Validation Phase Gates
-Each step must pass quality gates before proceeding:
-- **Unfair Insight**: Unique and defensible, PROCEED recommendation
-- **Narrative + PRD**: Value Story and Why Now defined, desirability validated
-- **Community Heat + Moat**: High-heat community identified, social moat potential assessed
-- **Validation Tests**: At least 3 tests passed
-- **Green-Light**: Clear PROCEED decision (not PIVOT or KILL)
+- **All prerequisites required**: No feature may enter engineering without all 5 prerequisites complete
+- **No build until validated**: Building before validation is forbidden (`.cursor/rules/027-core-desirability-first.mdc`)
+- **Small diffs**: Keep changes small and incremental
+- **MVP-first**: Build smallest surface area to validate or expand narrative
+- **Tests define correctness**: Tests must pass before deployment
+- **A11y required**: No critical/serious a11y issues allowed
 
-**CRITICAL**: No feature enters architecture phase without green-light decision.
+## Integration
 
-### Architecture Phase Gates
-Each step must pass quality gates before proceeding:
-- **Flows**: User validation
-- **ADR**: Technical review
-- **Test Plan**: Coverage verified
-- **Build**: Tests passing, code review, linting, type checking
-- **A11y**: WCAG 2.2 AA compliance
-- **Test Verify**: All tests green
-- **PRD Acceptance**: Requirements met
+This playbook integrates with:
+- `.cursor/rules/200-playbook-insight-validation.mdc` - Insight validation (prerequisite)
+- `.cursor/rules/027-core-desirability-first.mdc` - Desirability first (enforces prerequisites)
+- `.cursor/rules/001-core-architecture.mdc` - Architecture principles
+- `.cursor/rules/005-core-testing.mdc` - Testing requirements
+- `.cursor/rules/010-core-ux-a11y.mdc` - UX and accessibility
+- `.cursor/rules/170-data-moat.mdc` - Data moat implementation
+- `.cursor/rules/180-expansion-revenue.mdc` - Expansion revenue implementation
+- All agent prompts in `docs/agents/*.md`
+
+## Anti-Patterns to Avoid
+
+- ❌ Starting engineering without all 5 prerequisites
+- ❌ Skipping design phase
+- ❌ Building without tests
+- ❌ Ignoring edge cases
+- ❌ Skipping a11y audit
+- ❌ Large diffs (multiple concerns in one PR)
+- ❌ Gold-plating features beyond PRD
+- ❌ Missing UI states (loading, empty, error)
+- ❌ No data capture instrumentation
+- ❌ No expansion revenue implementation
