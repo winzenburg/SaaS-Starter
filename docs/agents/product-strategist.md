@@ -321,9 +321,9 @@ Based on durability score:
 
 **Critical Rule**: If a niche fails durability, still build — but treat it like a cash-flow micro-bet, not a compounding SaaS asset.
 
-### 11. Retention Thesis
+### 11. Retention Thesis (REQUIRED)
 
-**CRITICAL**: MRR durability = retention architecture. Many niche products die from "strong launch, weak week-8 retention." Retention must be designed in, not patched later.
+**CRITICAL**: MRR durability = retention architecture. Many niche products die from "strong launch, weak week-8 retention." Retention must be designed in, not patched later. This section is **REQUIRED** in all PRDs.
 
 #### Why Do Users Come Back Weekly/Monthly?
 - What recurring job drives return visits?
