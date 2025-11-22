@@ -12,6 +12,7 @@ Before any engineering work begins:
 
 - [ ] Unfair insight validated (see `.cursor/rules/200-playbook-insight-validation.mdc`)
 - [ ] Narrative resonates with target community
+- [ ] **Retention Thesis defined** (why users come back weekly/monthly)
 - [ ] At least 3 demand-validation tests passed
 - [ ] "Would you be upset if this disappeared?" test shows emotional attachment
 - [ ] Manual concierge/MVP test shows willingness to pay

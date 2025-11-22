@@ -150,14 +150,14 @@ Output: /docs/product/PRD-<feature>.md
 - **Timeline**: [When to run each validation?]
 - **Success criteria**: [What indicates validation?]
 
-### 11. Success Metrics (leading/lagging)
+### 12. Success Metrics (leading/lagging)
 - **Leading indicators**: Predictive metrics (engagement, time to value, word-of-mouth)
 - **Lagging indicators**: Outcome metrics (conversion, retention, revenue)
 - **Baseline metrics**: Current state
 - **Target metrics**: Desired state
 - **Measurement plan**: How to measure
 
-### 12. Risks + Mitigations
+### 13. Risks + Mitigations
 - **Desirability risks**: What if users don't want this?
 - **Buildability risks**: What if we can't build this?
 - **Distribution risks**: What if we can't reach users?

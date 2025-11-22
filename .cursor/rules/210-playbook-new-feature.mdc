@@ -97,7 +97,38 @@ If green-light → Architecture Phase:
 
 **Quality Gate**: PRD must validate desirability before buildability. Value Story and Why Now are required.
 
-### 3. Market-Scanner → Community Heat + Moat Design
+### 3. Retention Thesis
+**Input**: PRD, Narrative  
+**Output**: Retention Thesis
+
+**Agent**: Product Strategist
+
+**Required Artifacts**:
+- Retention Thesis in PRD
+- **Why do users come back weekly/monthly?** (answered)
+- **What's the recurring job or frequency driver?** (answered)
+- **What habit loop / alert / collaborative ritual keeps usage alive?** (answered)
+- Retention mechanics defined (not just acquisition)
+- Habit formation strategy
+- Recurring value delivery mechanism
+
+**Deliverables**:
+- Clear retention thesis documented
+- Recurring job identified (why they come back)
+- Frequency driver identified (weekly/monthly trigger)
+- Habit loop or ritual defined (what keeps usage alive)
+- Retention mechanics designed (not just acquisition)
+
+**Quality Gate**: 
+- Retention thesis must be clear and specific
+- Recurring job must be identified
+- Frequency driver must be defined
+- Habit loop/ritual must be designed
+- **MRR durability = retention architecture** (not just launch)
+
+**Critical Rule**: Many niche products die from "strong launch, weak week-8 retention." Retention must be designed in, not patched later.
+
+### 4. Market-Scanner → Community Heat + Moat Design
 **Input**: Insight Brief, PRD  
 **Output**: Community Heat Analysis + Moat Design
 
@@ -136,7 +167,7 @@ If green-light → Architecture Phase:
 - **Moat implementation plan created**
 - **Moat design goes beyond community (structural defensibility)**
 
-### 4. Run Validation Tests (emails, DMs, landing page)
+### 5. Run Validation Tests (emails, DMs, landing page)
 **Input**: PRD, Community Heat Map, Lo-Fi Validation Plan  
 **Output**: Validation test results
 
@@ -159,7 +190,7 @@ If green-light → Architecture Phase:
 
 **Quality Gate**: At least 3 demand-validation tests must pass. See `.cursor/rules/000-playbook-pre-build-validation.mdc` for detailed test requirements.
 
-### 5. Green-Light Decision
+### 6. Green-Light Decision
 **Input**: All validation results  
 **Output**: Go/No-Go decision
 
@@ -169,6 +200,7 @@ If green-light → Architecture Phase:
 - ✅ At least 3 demand-validation tests passed
 - ✅ Unfair insight validated
 - ✅ Value Story resonates
+- ✅ **Retention Thesis defined** (recurring job, frequency driver, habit loop)
 - ✅ High-heat community identified
 - ✅ Social Moat potential exists
 - ✅ Distribution from Day 1 is clear

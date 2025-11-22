@@ -69,7 +69,38 @@ Unfair Insight Brief → Narrative 1-pager → Community Heat Map → 10 Lo-Fi T
 
 **Quality Gate**: Narrative must have clear emotional hook and transformation story
 
-### 3. Community Heat Map + Moat Design
+### 3. Retention Thesis
+**Input**: Unfair Insight Brief, Narrative  
+**Output**: Retention Thesis document
+
+**Agent**: Product Strategist
+
+**Required Artifacts**:
+- Retention Thesis in PRD or separate document
+- **Why do users come back weekly/monthly?** (answered)
+- **What's the recurring job or frequency driver?** (answered)
+- **What habit loop / alert / collaborative ritual keeps usage alive?** (answered)
+- Retention mechanics defined (not just acquisition)
+- Habit formation strategy
+- Recurring value delivery mechanism
+
+**Deliverables**:
+- Clear retention thesis documented
+- Recurring job identified (why they come back)
+- Frequency driver identified (weekly/monthly trigger)
+- Habit loop or ritual defined (what keeps usage alive)
+- Retention mechanics designed (not just acquisition)
+
+**Quality Gate**: 
+- Retention thesis must be clear and specific
+- Recurring job must be identified
+- Frequency driver must be defined
+- Habit loop/ritual must be designed
+- **MRR durability = retention architecture** (not just launch)
+
+**Critical Rule**: Many niche products die from "strong launch, weak week-8 retention." Retention must be designed in, not patched later.
+
+### 4. Community Heat Map + Moat Design
 **Input**: Unfair Insight Brief, Narrative  
 **Output**: Community Heat Analysis + Moat Design
 
@@ -104,8 +135,8 @@ Unfair Insight Brief → Narrative 1-pager → Community Heat Map → 10 Lo-Fi T
 - At least 2 moat types selected
 - Moat implementation plan created
 
-### 4. 10 Lo-Fi Tests
-**Input**: Insight Brief, Narrative, Community Heat Map  
+### 5. 10 Lo-Fi Tests
+**Input**: Insight Brief, Narrative, Retention Thesis, Community Heat Map  
 **Output**: 10 High-Velocity Tests
 
 **Agent**: Product Strategist
@@ -124,7 +155,7 @@ Unfair Insight Brief → Narrative 1-pager → Community Heat Map → 10 Lo-Fi T
 
 **Quality Gate**: All 10 tests must be actionable and low-cost
 
-### 5. "Would You Be Upset If This Disappeared?" Test
+### 6. "Would You Be Upset If This Disappeared?" Test
 **Input**: Insight Brief, Narrative, Community Heat Map  
 **Output**: Emotional attachment validation
 
@@ -144,7 +175,7 @@ Unfair Insight Brief → Narrative 1-pager → Community Heat Map → 10 Lo-Fi T
 
 **Quality Gate**: At least 30% of test participants should indicate they would be upset
 
-### 6. Landing Page + Waitlist Test
+### 7. Landing Page + Waitlist Test
 **Input**: Insight Brief, Narrative, Community Heat Map  
 **Output**: Landing page validation results
 
@@ -168,7 +199,7 @@ Unfair Insight Brief → Narrative 1-pager → Community Heat Map → 10 Lo-Fi T
 - Traffic from target community
 - Signups indicate genuine interest
 
-### 7. Manual Concierge/MVP Test
+### 8. Manual Concierge/MVP Test
 **Input**: All previous validation  
 **Output**: Manual service validation
 
@@ -192,7 +223,7 @@ Unfair Insight Brief → Narrative 1-pager → Community Heat Map → 10 Lo-Fi T
 - Positive feedback on value delivered
 - Customers would use automated version
 
-### 8. Decision Point: Proceed → Pivot → Kill
+### 9. Decision Point: Proceed → Pivot → Kill
 **Input**: All validation results  
 **Output**: Go/No-Go decision
 
@@ -219,6 +250,7 @@ Unfair Insight Brief → Narrative 1-pager → Community Heat Map → 10 Lo-Fi T
 - ✅ Manual concierge shows willingness to pay
 - ✅ Community Heat Map shows high-heat community
 - ✅ **At least 2 moat types selected and planned**
+- ✅ **Retention Thesis defined** (recurring job, frequency driver, habit loop)
 - ✅ Unfair insight is validated
 - ✅ Narrative resonates
 
@@ -241,6 +273,7 @@ Insight validation is considered done when:
 
 - ✅ Unfair Insight Brief created and validated
 - ✅ Narrative 1-pager created with emotional hook
+- ✅ **Retention Thesis defined** (recurring job, frequency driver, habit loop)
 - ✅ Community Heat Map identifies high-heat communities
 - ✅ **Moat Design completed (at least 2 moat types selected)**
 - ✅ 10 Lo-Fi Tests designed and documented
@@ -259,6 +292,7 @@ Insight validation is considered done when:
 Each step must pass quality gates before proceeding:
 - **Unfair Insight**: Unique and defensible
 - **Narrative**: Clear emotional hook and transformation
+- **Retention Thesis**: Recurring job, frequency driver, and habit loop defined
 - **Community Heat Map**: High-heat community identified
 - **Moat Design**: At least 2 moat types selected with implementation plan
 - **10 Lo-Fi Tests**: All actionable and low-cost
