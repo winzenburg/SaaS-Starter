@@ -107,6 +107,7 @@ Parallel agents use git worktrees; merge intentionally and avoid accepting chang
 
 ## See Also
 
+- `docs/SYSTEMS.md` - **The Four Systems for Building a SaaS Empire** (consolidated framework)
 - `.cursor/rules/` - Project guardrails and playbooks
 - `docs/agents/` - Agent role prompts
 - `docs/agent-packs/` - Domain-specific agent configurations
