@@ -1,5 +1,14 @@
 # Next.js App Router
 
-- Route groups: `(marketing)` and `(app)`
-- Server components by default; client components only when necessary
-- Default runtime nodejs; edge only via ADR
+Goal: Prevent path/layout disagreements between agents.
+
+- Use route groups:
+  - `/app/(marketing)` for public
+  - `/app/(app)` for authed
+- Server Components by default
+- Client components require `"use client"` and reason
+- Data fetching in server layer first; client fetch only when necessary
+- Default runtime: `nodejs` (Edge requires ADR)
+- Metadata in `layout.tsx` or `page.tsx`
+- Route handlers in `/app/api/**/route.ts`
+- Server Actions in `"use server"` files
