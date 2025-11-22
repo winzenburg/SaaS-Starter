@@ -59,10 +59,21 @@ Invoked when needed. Detailed "how to do X" guides.
 - `250-playbook-billing-change.mdc` - Billing changes
 - `260-playbook-multi-tenancy.mdc` - Multi-tenancy implementation
 
+## Domain Agent Packs
+
+For specific SaaS categories, add agent packs in `/docs/agent-packs/`:
+
+- `ai-saas.md` - AI/ML SaaS patterns
+- `b2b-admin-saas.md` - B2B admin dashboard patterns
+- `usage-billing-saas.md` - Usage-based billing patterns
+
+Agent packs extend base agents with domain-specific workflows and patterns.
+
 ## See Also
 
 - `.cursor/rules/` - Project guardrails and playbooks
 - `docs/agents/` - Agent role prompts
+- `docs/agent-packs/` - Domain-specific agent configurations
 - `docs/ARCHITECTURE.md` - Architecture patterns
 - `docs/CONTRIBUTING.md` - Development guidelines
 - `docs/adr/` - Architecture Decision Records
