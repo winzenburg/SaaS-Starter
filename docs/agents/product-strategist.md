@@ -544,11 +544,12 @@ Based on durability score:
 - Early adopter profile is specific
 - "If users love this" question is answered
 - Distribution from Day 1 is planned
-- **Monetization Wedge is defined** (first paid moment, expansion revenue, value metric)
+- **Monetization Wedge is REQUIRED** (first paid moment, expansion revenue, value metric)
+- **Data Moat Thesis is REQUIRED** (proprietary data, compounding mechanism, 10× value, feedback loop)
 - **Durability Filter is scored** (all 5 criteria scored 1-5)
 - **Durability assessment is clear** (Durable Market | Cash-Flow Micro-Bet | Low Durability)
 - **Strategic recommendation aligned with durability** (long-term vs. short-term strategy)
-- **Retention Thesis is defined** (recurring job, frequency driver, habit loop)
+- **Retention Thesis is REQUIRED** (recurring job, frequency driver, habit loop)
 - **Retention mechanics are designed in** (not patched later)
 - 10 High-Velocity Tests are actionable
 - Lo-Fi Validation Plan is complete
