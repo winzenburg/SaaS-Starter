@@ -1,39 +1,191 @@
 # Playbook: Billing Change
 
-## Workflow
-Plan → Test → Implement → Verify
+## Prerequisites
+
+- Billing changes require feature flag rollout unless trivial
+- All billing changes must be reviewed and approved
+- Test in staging with test Stripe accounts first
+
+## Step Sequence
+
+```
+PRD addendum → ADR → Backfill/migration plan → Feature-flagged rollout → Test matrix → Verify
+```
 
 ## Steps
 
-1. **Plan**
-   - Review Stripe documentation
-   - Plan webhook event handling
-   - Design database schema changes
-   - Plan feature flag usage
+### 1. PRD Addendum for Pricing/Plan Change
+**Input**: Billing change request  
+**Output**: PRD addendum document
 
-2. **Test**
-   - Test with Stripe test mode
-   - Write tests for webhook handlers
-   - Test subscription lifecycle
-   - Test payment failures
+**Required Artifacts**:
+- PRD addendum in `docs/prd/billing-<change-name>.md`
+- Pricing/plan change documentation
+- Impact analysis on existing customers
+- Migration strategy for existing subscriptions
+- Communication plan for customers
 
-3. **Implement**
-   - Update Stripe webhook handler
-   - Verify webhook signatures
-   - Update database schema if needed
-   - Implement feature flag
-   - Add observability events
+**Deliverables**:
+- Pricing/plan changes documented
+- Impact on existing customers analyzed
+- Migration strategy defined
+- Customer communication plan created
+- Stakeholder approval obtained
 
-4. **Verify**
-   - Test webhook signature verification
-   - Verify no PII in logs
-   - Test error handling
-   - Verify observability events
-   - Test with Stripe test mode
+**Note**: Required for any pricing or plan structure changes
 
-## Security Checklist
-- Webhook signatures verified
-- No PII in logs
-- Error handling robust
-- Observability events emitted
-- Feature flag used for rollout
+### 2. ADR for Schema/Webhook/Entitlement Updates
+**Input**: PRD addendum  
+**Output**: Architecture Decision Record
+
+**Required Artifacts**:
+- ADR document in `docs/adr/<number>-billing-<change-name>.md`
+- Schema changes documented
+- Webhook handler updates documented
+- Entitlement changes documented
+
+**Deliverables**:
+- ADR created with decision rationale
+- Database schema changes designed
+- Webhook handler updates planned
+- Entitlement system updates planned
+- Technical approach documented
+
+**Required Changes**:
+- Schema updates in `drizzle/schema.ts`
+- Webhook handler updates in `/app/api/webhooks/stripe/route.ts`
+- Entitlement updates in `/infra/billing/entitlements.ts`
+- tRPC procedure updates for billing
+
+### 3. Backfill/Migration Plan
+**Input**: ADR, schema changes  
+**Output**: Migration plan
+
+**Required Artifacts**:
+- Migration script in `scripts/migrations/<timestamp>-<migration-name>.ts`
+- Backfill plan document
+- Rollback plan
+- Data validation plan
+
+**Deliverables**:
+- Migration script created and tested
+- Backfill strategy for existing data
+- Rollback procedure documented
+- Data validation checks defined
+- Tested in staging environment
+
+**Migration Requirements**:
+- Idempotent migration scripts
+- Tested on staging data first
+- Backup before migration
+- Validation after migration
+- Rollback procedure ready
+
+### 4. Feature-Flagged Rollout
+**Input**: Migration plan, code changes  
+**Output**: Feature-flagged deployment
+
+**Required Artifacts**:
+- Feature flag created in Vercel Feature Flags
+- Rollout plan document
+- Monitoring plan
+
+**Deliverables**:
+- Feature flag created and configured
+- Gradual rollout plan (e.g., 10% → 50% → 100%)
+- Monitoring dashboard set up
+- Rollback procedure ready
+
+**Rollout Process**:
+1. Enable for internal team (0%)
+2. Enable for beta users (10%)
+3. Monitor for issues
+4. Gradual increase (25% → 50% → 100%)
+5. Monitor at each stage
+
+**Rules**:
+- **Feature flag required for all billing changes** (unless trivial)
+- Monitor error rates and customer support tickets
+- Have rollback plan ready at each stage
+- Communicate changes to affected customers
+
+### 5. Test Matrix for All Subscription States
+**Input**: Code changes, feature flag  
+**Output**: Comprehensive test coverage
+
+**Required Artifacts**:
+- Test matrix document
+- Tests for all subscription states
+- Integration tests for webhooks
+- E2E tests for billing flows
+
+**Deliverables**:
+- Test matrix covering all subscription states:
+  - `trial` → `active` → `past_due` → `churned`
+  - State transitions tested
+  - Edge cases covered
+- Unit tests for entitlement logic
+- Integration tests for webhook handlers
+- E2E tests for checkout and billing flows
+- All tests passing
+
+**Test Matrix**:
+- [ ] Trial subscription flows
+- [ ] Active subscription flows
+- [ ] Past due subscription flows
+- [ ] Churned subscription flows
+- [ ] Subscription upgrades
+- [ ] Subscription downgrades
+- [ ] Subscription cancellations
+- [ ] Payment method updates
+- [ ] Invoice generation
+- [ ] Webhook event handling
+- [ ] Entitlement enforcement
+
+### 6. Verify
+**Input**: Feature-flagged rollout, test results  
+**Output**: Verified billing change
+
+**Deliverables**:
+- All tests passing
+- Feature flag at 100% with no issues
+- Monitoring shows no errors
+- Customer support tickets normal
+- Billing data validated
+- Ready to remove feature flag
+
+## Definition of Done Checklist
+
+A billing change is considered done when:
+
+- ✅ PRD addendum created and approved
+- ✅ ADR created for schema/webhook/entitlement updates
+- ✅ Backfill/migration plan created and tested
+- ✅ Feature flag created and configured
+- ✅ Test matrix completed for all subscription states
+- ✅ All tests passing (unit + integration + e2e)
+- ✅ Feature-flagged rollout successful (100%)
+- ✅ Monitoring shows no errors
+- ✅ Customer support tickets normal
+- ✅ Billing data validated
+- ✅ Documentation updated
+- ✅ Ready for production
+
+## Quality Gates
+
+Each step must pass quality gates before proceeding:
+- **PRD Addendum**: Stakeholder approval
+- **ADR**: Technical review
+- **Migration Plan**: Tested in staging
+- **Feature Flag**: Rollout plan approved
+- **Test Matrix**: All subscription states tested
+- **Verify**: All quality gates passed
+
+## Anti-Patterns to Avoid
+
+- ❌ Billing changes without feature flags
+- ❌ Schema changes without migration plan
+- ❌ Webhook changes without idempotency
+- ❌ Entitlement changes without testing all states
+- ❌ Rollout without monitoring
+- ❌ Changes without rollback plan
