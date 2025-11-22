@@ -1,0 +1,65 @@
+# Core Enterprise-Readiness Primitives
+
+Goal: Bake enterprise-readiness primitives into the starter, even if dormant. Speed-centric approach can underweight operational complexity and compliance, which matter for B2B niches and long-term MRR.
+
+## Why This Matters
+
+- **Unlocks bigger deals**: Enterprise customers require audit logs, RBAC, data export/delete
+- **Lowers churn**: Compliance and reliability reduce churn risk
+- **Future-proofs**: Easier to add enterprise features later if primitives exist
+- **B2B niches**: Many B2B niches require these from day 1
+
+## Required Primitives (Baked In, Even If Dormant)
+
+### 1. Audit Log Table
+- **Schema**: `audit_log` table in Drizzle schema
+- **Fields**: `id`, `org_id`, `user_id`, `action`, `resource_type`, `resource_id`, `metadata`, `ip_address`, `user_agent`, `created_at`
+- **Purpose**: Track all user actions for compliance and debugging
+- **Usage**: Can be dormant initially, but infrastructure exists
+
+### 2. Export/Delete Flows
+- **Export flow**: Scaffolded endpoint/action to export user data
+- **Delete flow**: Scaffolded endpoint/action to delete user data (GDPR compliance)
+- **Purpose**: Data portability and GDPR compliance
+- **Usage**: Can be minimal initially, but structure exists
+
+### 3. RBAC Scaffolding
+- **Schema**: `roles`, `permissions`, `role_permissions`, `user_roles` tables
+- **Middleware**: RBAC enforcement in tRPC procedures and server actions
+- **Purpose**: Permissions model for enterprise customers
+- **Usage**: Can start simple (owner/member), but structure supports expansion
+
+### 4. Rate Limiting
+- **Infrastructure**: Rate limiting middleware/utilities
+- **Purpose**: Prevent abuse and ensure reliability
+- **Usage**: Can be permissive initially, but infrastructure exists
+
+### 5. Observability Baseline
+- **Events**: Server action events (see `.cursor/rules/020-core-observability.mdc`)
+- **Trace IDs**: Request tracing for debugging
+- **Logging**: Structured logging with no PII
+- **Purpose**: Operational visibility and debugging
+- **Usage**: Already required, but ensure baseline exists
+
+## Implementation
+
+These primitives should be:
+- **Baked into starter template**: Present from day 1
+- **Dormant if not needed**: Can be minimal/simple initially
+- **Easy to activate**: Clear path to enable/expand when needed
+- **Well-documented**: Clear how to use/expand each primitive
+
+## When to Activate
+
+- **Audit logs**: When compliance requirements emerge
+- **Export/delete**: When GDPR/compliance requirements emerge
+- **RBAC**: When multi-role permissions needed
+- **Rate limiting**: When abuse or scale issues emerge
+- **Observability**: Always active (see `.cursor/rules/020-core-observability.mdc`)
+
+## Anti-Patterns to Avoid
+
+- ❌ Adding these only when enterprise customer asks (too late)
+- ❌ Building without primitives, then retrofitting (expensive)
+- ❌ Over-engineering primitives (keep them simple, extensible)
+- ❌ Ignoring compliance until forced (regulatory risk)

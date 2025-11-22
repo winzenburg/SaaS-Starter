@@ -44,6 +44,7 @@ Always active. Short, enforceable constraints.
 - `027-core-adr-trigger.mdc` - When to write ADRs
 - `027-core-desirability-first.mdc` - No build until validated
 - `030-core-style.mdc` - Code style
+- `035-core-enterprise-readiness.mdc` - Enterprise-readiness primitives (audit logs, RBAC, export/delete, rate limiting)
 
 ### Layer B: Stack/Integration Rules (100-199)
 Always active. Precise conventions for Next.js, tRPC, Drizzle, Stripe, Vercel.
