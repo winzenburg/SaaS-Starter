@@ -128,7 +128,97 @@ For each competitor:
 - **Medium heat communities**: [List with scores]
 - **Low heat communities**: [List with scores]
 
-### 5. Durability Filter
+### 5. Niche Compounding Score (NCS)
+
+**CRITICAL**: Not all niches are equal. Some niches behave like compounding markets — they naturally grow over time. Others decay or stagnate. This ensures you don't accidentally select "hot but shrinking" markets.
+
+#### Scoring Criteria (Score 1-5 for each)
+
+##### 1. Market Velocity
+- **5**: Market is rapidly expanding (20%+ annual growth)
+- **4**: Market is growing steadily (10-20% annual growth)
+- **3**: Market is stable (0-10% annual growth)
+- **2**: Market is declining slowly (-10% to 0% annual growth)
+- **1**: Market is declining rapidly (-20%+ annual decline)
+
+**Examples of compounding markets**:
+- Creators → more creators every year
+- Therapists → growing demand
+- Compliance → increasingly mandated
+- Security → always rising
+
+**Examples of decaying markets**:
+- Legacy tools being replaced
+- Declining industries
+- Trend-dependent markets that fade
+
+##### 2. Forced Adoption (Regulation, Compliance, Trend Permanence)
+- **5**: Mandated adoption (regulation, compliance, legal requirement)
+- **4**: Industry standard (de facto requirement)
+- **3**: Strong trend with staying power (not just hype)
+- **2**: Trend-dependent (may fade)
+- **1**: No forced adoption, purely optional
+
+##### 3. Increasing Complexity
+- **5**: Complexity increasing rapidly (more features, integrations, requirements)
+- **4**: Complexity increasing steadily
+- **3**: Complexity stable
+- **2**: Complexity decreasing (simplification trend)
+- **1**: Complexity decreasing rapidly (commoditization)
+
+##### 4. Growth of the Community Itself
+- **5**: Community growing rapidly (20%+ annual growth)
+- **4**: Community growing steadily (10-20% annual growth)
+- **3**: Community stable (0-10% annual growth)
+- **2**: Community declining slowly (-10% to 0% annual growth)
+- **1**: Community declining rapidly (-20%+ annual decline)
+
+##### 5. Willingness-to-Pay Trajectory
+- **5**: Willingness-to-pay increasing rapidly (budgets growing, value increasing)
+- **4**: Willingness-to-pay increasing steadily
+- **3**: Willingness-to-pay stable
+- **2**: Willingness-to-pay declining slowly (price pressure, commoditization)
+- **1**: Willingness-to-pay declining rapidly (race to bottom)
+
+#### Niche Compounding Assessment
+
+**Total Score (out of 25)**:
+
+- **Compounding Niche (20-25)**: 
+  - **Treatment**: High-priority target
+  - **Strategy**: Build for long-term compounding growth
+  - **Investment**: Full product development
+  - **Expectation**: Market will grow with you
+
+- **Stable Niche (15-19)**: 
+  - **Treatment**: Good target, but monitor trends
+  - **Strategy**: Build for steady growth
+  - **Investment**: Full product development
+  - **Expectation**: Market will remain stable
+
+- **Decaying Niche (10-14)**: 
+  - **Treatment**: Proceed with caution
+  - **Strategy**: Build for short-term revenue, plan exit
+  - **Investment**: Minimal viable product
+  - **Expectation**: Market may shrink
+
+- **Declining Niche (5-9)**: 
+  - **Treatment**: Avoid or pivot
+  - **Strategy**: Not recommended
+  - **Investment**: Minimal, validate quickly
+  - **Expectation**: Market will decline
+
+#### Strategic Recommendation
+
+Based on NCS score:
+- **If Compounding Niche (20-25)**: High priority, build for compounding growth
+- **If Stable Niche (15-19)**: Good target, build for steady growth
+- **If Decaying Niche (10-14)**: Proceed with caution, plan exit strategy
+- **If Declining Niche (5-9)**: Avoid or pivot to adjacent compounding niche
+
+**Critical Rule**: Don't accidentally select "hot but shrinking" markets. NCS helps identify compounding niches that will grow over time.
+
+### 6. Durability Filter
 
 **CRITICAL**: Some niches are trend-spikes, not durable markets. Isenberg is great at catching waves, but defensive moat + enduring MRR requires filtering for structural vs. cyclical pain, recurring workflow vs. novelty, budgeted spend vs. hobby spend.
 
@@ -201,7 +291,7 @@ Based on durability score, provide:
 
 **Critical Rule**: If a niche fails durability, still build — but treat it like a cash-flow micro-bet, not a compounding SaaS asset.
 
-### 6. Moat Design
+### 7. Moat Design
 
 **CRITICAL**: Niche heat gets users; moats keep them. Community alone can be copied unless you lock in more structural moats.
 
@@ -358,28 +448,32 @@ A social moat is when your product becomes part of a community's identity, makin
 2. Research communities (primary focus)
 3. Identify niche internet tribes and micro-communities
 4. Assess Community Heat (pain + activation energy)
-5. **Score Durability Filter** (frequency, budget, independent of hype, upset if disappeared, switching costs)
-6. **Assess Durability** (Durable Market | Cash-Flow Micro-Bet | Low Durability)
-7. **Design Moats** (select at least 2 moat types with implementation plan)
-8. Analyze natural distribution patterns
-9. Assess Social Moat potential
-10. Research top 3 direct competitors (secondary)
-11. Identify substitutes and adjacent tools
-12. Analyze switching costs and lock-in
-13. Identify differentiation wedges
-14. Assess risks and trends
-15. Document findings
-16. Provide recommendations (aligned with durability assessment)
+5. **Score Niche Compounding Score (NCS)** (market velocity, forced adoption, increasing complexity, community growth, willingness-to-pay trajectory)
+6. **Assess Niche Compounding** (Compounding Niche | Stable Niche | Decaying Niche | Declining Niche)
+7. **Score Durability Filter** (frequency, budget, independent of hype, upset if disappeared, switching costs)
+8. **Assess Durability** (Durable Market | Cash-Flow Micro-Bet | Low Durability)
+9. **Design Moats** (select at least 2 moat types with implementation plan)
+10. Analyze natural distribution patterns
+11. Assess Social Moat potential
+12. Research top 3 direct competitors (secondary)
+13. Identify substitutes and adjacent tools
+14. Analyze switching costs and lock-in
+15. Identify differentiation wedges
+16. Assess risks and trends
+17. Document findings
+18. Provide recommendations (aligned with NCS and durability assessment)
 
 ## Quality Criteria
 - Research is community-first (not competitor-first)
 - Communities are specific and identifiable
 - Community Heat Analysis is comprehensive
+- **Niche Compounding Score (NCS) scored** (all 5 criteria scored 1-5: market velocity, forced adoption, increasing complexity, community growth, willingness-to-pay trajectory)
+- **Niche Compounding assessment clear** (Compounding Niche | Stable Niche | Decaying Niche | Declining Niche)
 - **Structural vs Trend Market Analysis completed** (market type, durability, risk factors)
 - **Competitor retention patterns analyzed** (not just features/pricing)
 - **Durability Filter scored** (all 5 criteria scored 1-5)
 - **Durability assessment clear** (Durable Market | Cash-Flow Micro-Bet | Low Durability)
-- **Strategic recommendation aligned with durability** (long-term vs. short-term strategy)
+- **Strategic recommendation aligned with NCS and durability** (compounding vs. stable vs. decaying vs. declining)
 - **At least 2 moat types selected**
 - **Moat implementation plan created for each selected moat**
 - **Moats go beyond community (structural defensibility)**

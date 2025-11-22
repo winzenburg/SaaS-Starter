@@ -141,8 +141,50 @@ Unfair Insight Brief → Narrative 1-pager → Community Heat Map → 10 Lo-Fi T
 
 **Critical Rule**: Many niche products die from "strong launch, weak week-8 retention." Retention must be designed in, not patched later.
 
-### 5. Durability Filter
+### 5. Niche Compounding Score (NCS)
 **Input**: Unfair Insight Brief, Narrative, Community Heat Map  
+**Output**: Niche Compounding Assessment
+
+**Agent**: Market Scanner
+
+**Required Artifacts**:
+- Niche Compounding Score in market scan
+- **Market velocity** (scored 1-5)
+- **Forced adoption** (regulation, compliance, trend permanence) (scored 1-5)
+- **Increasing complexity** (scored 1-5)
+- **Growth of the community itself** (scored 1-5)
+- **Willingness-to-pay trajectory** (scored 1-5)
+- Total NCS score (out of 25)
+- Niche Compounding assessment: **Compounding Niche** | **Stable Niche** | **Decaying Niche** | **Declining Niche**
+
+**Scoring Criteria**:
+- Market velocity (1-5): Rapidly expanding (5) to declining rapidly (1)
+- Forced adoption (1-5): Mandated adoption (5) to no forced adoption (1)
+- Increasing complexity (1-5): Complexity increasing rapidly (5) to decreasing rapidly (1)
+- Growth of the community itself (1-5): Community growing rapidly (5) to declining rapidly (1)
+- Willingness-to-pay trajectory (1-5): Increasing rapidly (5) to declining rapidly (1)
+
+**Niche Compounding Assessment**:
+- **Compounding Niche (20-25)**: High-priority target, build for long-term compounding growth
+- **Stable Niche (15-19)**: Good target, build for steady growth
+- **Decaying Niche (10-14)**: Proceed with caution, plan exit strategy
+- **Declining Niche (5-9)**: Avoid or pivot to adjacent compounding niche
+
+**Deliverables**:
+- NCS scores for all 5 criteria
+- Total NCS score
+- Niche Compounding assessment (Compounding Niche | Stable Niche | Decaying Niche | Declining Niche)
+- Strategic recommendation based on NCS
+
+**Quality Gate**: 
+- NCS must be scored (all 5 criteria scored 1-5)
+- Assessment must be clear (Compounding Niche | Stable Niche | Decaying Niche | Declining Niche)
+- Strategic recommendation must align with NCS score
+
+**Critical Rule**: Not all niches are equal. Some niches behave like compounding markets — they naturally grow over time. Others decay or stagnate. Don't accidentally select "hot but shrinking" markets.
+
+### 6. Durability Filter
+**Input**: Unfair Insight Brief, Narrative, Community Heat Map, NCS Assessment  
 **Output**: Durability Assessment
 
 **Agent**: Market Scanner / Product Strategist
@@ -227,7 +269,7 @@ Unfair Insight Brief → Narrative 1-pager → Community Heat Map → 10 Lo-Fi T
 
 **Critical Rule**: Some niches are trend-spikes, not durable markets. Isenberg is great at catching waves, but defensive moat + enduring MRR requires filtering for structural vs. cyclical pain, recurring workflow vs. novelty, budgeted spend vs. hobby spend.
 
-### 6. Community Heat Map + Moat Design
+### 7. Community Heat Map + Moat Design
 **Input**: Unfair Insight Brief, Narrative, Durability Assessment  
 **Output**: Community Heat Analysis + Moat Design
 
@@ -262,7 +304,7 @@ Unfair Insight Brief → Narrative 1-pager → Community Heat Map → 10 Lo-Fi T
 - At least 2 moat types selected
 - Moat implementation plan created
 
-### 7. 10 Lo-Fi Tests
+### 8. 10 Lo-Fi Tests
 **Input**: Insight Brief, Narrative, Retention Thesis, Community Heat Map  
 **Output**: 10 High-Velocity Tests
 
@@ -282,7 +324,7 @@ Unfair Insight Brief → Narrative 1-pager → Community Heat Map → 10 Lo-Fi T
 
 **Quality Gate**: All 10 tests must be actionable and low-cost
 
-### 8. "Would You Be Upset If This Disappeared?" Test
+### 9. "Would You Be Upset If This Disappeared?" Test
 **Input**: Insight Brief, Narrative, Community Heat Map  
 **Output**: Emotional attachment validation
 
@@ -302,7 +344,7 @@ Unfair Insight Brief → Narrative 1-pager → Community Heat Map → 10 Lo-Fi T
 
 **Quality Gate**: At least 30% of test participants should indicate they would be upset
 
-### 9. Landing Page + Waitlist Test
+### 10. Landing Page + Waitlist Test
 **Input**: Insight Brief, Narrative, Community Heat Map  
 **Output**: Landing page validation results
 
@@ -326,7 +368,7 @@ Unfair Insight Brief → Narrative 1-pager → Community Heat Map → 10 Lo-Fi T
 - Traffic from target community
 - Signups indicate genuine interest
 
-### 10. Manual Concierge/MVP Test
+### 11. Manual Concierge/MVP Test
 **Input**: All previous validation  
 **Output**: Manual service validation
 
@@ -350,7 +392,7 @@ Unfair Insight Brief → Narrative 1-pager → Community Heat Map → 10 Lo-Fi T
 - Positive feedback on value delivered
 - Customers would use automated version
 
-### 11. Decision Point: Proceed → Pivot → Kill
+### 12. Decision Point: Proceed → Pivot → Kill
 **Input**: All validation results  
 **Output**: Go/No-Go decision
 
@@ -377,6 +419,8 @@ Unfair Insight Brief → Narrative 1-pager → Community Heat Map → 10 Lo-Fi T
 - ✅ Manual concierge shows willingness to pay
 - ✅ Community Heat Map shows high-heat community
 - ✅ **Monetization Wedge defined** (first paid moment, expansion revenue, value metric)
+- ✅ **Niche Compounding Score (NCS) scored** (market velocity, forced adoption, increasing complexity, community growth, willingness-to-pay trajectory)
+- ✅ **Niche Compounding assessment clear** (Compounding Niche | Stable Niche | Decaying Niche | Declining Niche)
 - ✅ **Durability Filter scored** (frequency, budget, independent of hype, upset if disappeared, switching costs)
 - ✅ **Durability assessment clear** (Durable Market | Cash-Flow Micro-Bet | Low Durability)
 - ✅ **At least 2 moat types selected and planned**
@@ -404,6 +448,8 @@ Insight validation is considered done when:
 - ✅ Unfair Insight Brief created and validated
 - ✅ Narrative 1-pager created with emotional hook
 - ✅ **Monetization Wedge defined** (first paid moment, expansion revenue, value metric)
+- ✅ **Niche Compounding Score (NCS) scored** (all 5 criteria scored, total score calculated)
+- ✅ **Niche Compounding assessment clear** (Compounding Niche | Stable Niche | Decaying Niche | Declining Niche)
 - ✅ **Durability Filter scored** (all 5 criteria scored, total score calculated)
 - ✅ **Durability assessment clear** (Durable Market | Cash-Flow Micro-Bet | Low Durability)
 - ✅ **Retention Thesis defined** (recurring job, frequency driver, habit loop)
@@ -426,6 +472,7 @@ Each step must pass quality gates before proceeding:
 - **Unfair Insight**: Unique and defensible
 - **Narrative**: Clear emotional hook and transformation
 - **Monetization Wedge**: First paid moment, expansion revenue, and value metric defined
+- **Niche Compounding Score (NCS)**: All 5 criteria scored, assessment clear (Compounding Niche | Stable Niche | Decaying Niche | Declining Niche)
 - **Durability Filter**: All 5 criteria scored, assessment clear (Durable Market | Cash-Flow Micro-Bet | Low Durability)
 - **Retention Thesis**: Recurring job, frequency driver, and habit loop defined
 - **Community Heat Map**: High-heat community identified
