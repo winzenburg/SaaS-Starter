@@ -2,6 +2,17 @@
 
 > Machine-readable README for Cursor 2.x multi-agent system
 
+## Bottom Line
+
+**Isenberg's approach is a great desirability engine for niches.**
+
+**To match our goals (defensive moat + enduring MRR), we explicitly encode durability, retention architecture, and moat design as first-class steps — not assumptions.**
+
+This means:
+- **Durability Filter** is a required validation step (not assumed)
+- **Retention architecture** is designed before building (not patched later)
+- **Moat design** is a required planning step (not an afterthought)
+
 ## Operating Principles
 
 - Boring, evolutionary code
