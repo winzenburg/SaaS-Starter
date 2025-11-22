@@ -2,6 +2,10 @@
 
 ## Test Coverage Requirements
 
+- **New features require unit + integration + e2e where applicable**
+  - Unit tests for domain logic and pure functions
+  - Integration tests for server actions, tRPC procedures, and API routes
+  - E2E tests for critical user flows (auth, payments, key workflows)
 - **Domain logic** - All business logic must have unit tests
 - **Server actions** - All server actions must have integration tests
 - **tRPC procedures** - All procedures must have tests
@@ -32,7 +36,8 @@
 
 ## Test Requirements
 
+- **Tests must be green before further refactors** - All tests must pass before continuing with code changes
 - All tests must pass before merging
-- New features must include tests
+- New features must include tests (unit + integration + e2e where applicable)
 - Refactors must maintain or improve test coverage
 - Tests should be fast and reliable
