@@ -199,7 +199,41 @@ If green-light → Architecture Phase:
 
 **Critical Rule**: Some niches are trend-spikes, not durable markets. Filter for structural vs. cyclical pain, recurring workflow vs. novelty, budgeted spend vs. hobby spend.
 
-### 6. Market-Scanner → Community Heat + Moat Design
+### 6. Moat & MRR Strategist → Defensibility + Expansion Plan
+**Input**: PRD, Durability Assessment, Monetization Wedge, Retention Thesis  
+**Output**: Moat & MRR Strategy
+
+**Agent**: Moat & MRR Strategist
+
+**Required Artifacts**:
+- Moat & MRR Strategy document in `docs/product/MOAT-MRR-<product>.md`
+- **Moat map** (2+ types selected with implementation plan)
+- **Retention thesis** (habit/frequency driver)
+- **Expansion model** (seat/usage/tier)
+- **Churn risks & counter-features**
+- **Lifecycle state machine**
+- **Activation → habit → expansion plan**
+- **Churn-prevention triggers**
+
+**Deliverables**:
+- At least 2 moat types mapped with implementation plan
+- Clear retention thesis (habit/frequency driver)
+- Expansion model defined (seat/usage/tier)
+- Churn risks identified with counter-features
+- Lifecycle state machine designed
+- Activation → habit → expansion plan created
+- Churn-prevention triggers defined
+
+**Quality Gate**: 
+- Moat map must include at least 2 moat types
+- Retention thesis must be clear (habit/frequency driver)
+- Expansion model must align with Monetization Wedge
+- Lifecycle state machine must be complete
+- Churn-prevention triggers must be defined
+
+**Critical Rule**: Convert niche PMF into defensibility + expansion revenue plan. Design lifecycle loops before coding.
+
+### 7. Market-Scanner → Community Heat + Moat Design
 **Input**: Insight Brief, PRD, Durability Assessment  
 **Output**: Community Heat Analysis + Moat Design
 
@@ -238,7 +272,7 @@ If green-light → Architecture Phase:
 - **Moat implementation plan created**
 - **Moat design goes beyond community (structural defensibility)**
 
-### 7. Run Validation Tests (emails, DMs, landing page)
+### 8. Run Validation Tests (emails, DMs, landing page)
 **Input**: PRD, Community Heat Map, Lo-Fi Validation Plan  
 **Output**: Validation test results
 
@@ -261,7 +295,7 @@ If green-light → Architecture Phase:
 
 **Quality Gate**: At least 3 demand-validation tests must pass. See `.cursor/rules/000-playbook-pre-build-validation.mdc` for detailed test requirements.
 
-### 8. Green-Light Decision
+### 9. Green-Light Decision
 **Input**: All validation results  
 **Output**: Go/No-Go decision
 
@@ -274,6 +308,7 @@ If green-light → Architecture Phase:
 - ✅ **Monetization Wedge defined** (first paid moment, expansion revenue, value metric)
 - ✅ **Durability Filter scored** (frequency, budget, independent of hype, upset if disappeared, switching costs)
 - ✅ **Durability assessment clear** (Durable Market | Cash-Flow Micro-Bet | Low Durability)
+- ✅ **Moat & MRR Strategy defined** (moat map, retention thesis, expansion model, lifecycle state machine)
 - ✅ **Retention Thesis defined** (recurring job, frequency driver, habit loop)
 - ✅ High-heat community identified
 - ✅ Social Moat potential exists
