@@ -116,7 +116,10 @@ Parallel agents use git worktrees; merge intentionally and avoid accepting chang
 
 ## See Also
 
+- `docs/FINAL_SYSTEM_SUMMARY.md` - **Complete 12-agent product creation engine overview** (start here)
 - `docs/SYSTEMS.md` - **The Four Systems for Building a SaaS Empire** (consolidated framework)
+- `docs/AGENT_ROSTER.md` - Complete agent roster with workflow and integration points
+- `docs/VERIFICATION.md` - System verification confirming all 7 blocks integrated
 - `.cursor/rules/` - Project guardrails and playbooks
 - `docs/agents/` - Agent role prompts
 - `docs/agent-packs/` - Domain-specific agent configurations
