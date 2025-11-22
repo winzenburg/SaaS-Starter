@@ -1,4 +1,4 @@
-import { getFlag } from "@vercel/flags/next";
+import { getFlag } from "flags/next";
 
 /**
  * Feature flag utilities
