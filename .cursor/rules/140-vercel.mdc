@@ -1,0 +1,29 @@
+# Vercel Platform Rules
+
+## Runtime
+- Default runtime: Node.js
+- Edge runtime requires ADR justification in `docs/adr/`
+- Document why Edge is needed and trade-offs
+
+## Feature Flags
+- Use Vercel Feature Flags for risky rollouts
+- New features that could impact users
+- Performance-sensitive changes
+- Breaking changes or migrations
+
+## Observability
+- Emit observability events on all server actions
+- Log start/completion of actions
+- Track errors and performance metrics
+- Use structured logging
+- Integrate with Vercel Observability
+
+## Deployment
+- Automatic deployments from `main` branch
+- Preview deployments from pull requests
+- Environment variables in Vercel dashboard
+- Use Vercel defaults unless justified
+
+## Services
+- Cron jobs: Use Vercel Cron (configure in `vercel.json`)
+- Analytics: Use Vercel Analytics and Speed Insights

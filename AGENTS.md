@@ -68,15 +68,21 @@ PRD → IA/flows → ADR → tests → build → a11y audit → verify
 
 ```
 .cursor/
-├── rules/           # Guardrails (constraints, what NOT to do)
-│   ├── 00-meta.mdc  # Memory & session hygiene
-│   ├── 10-architecture.mdc
-│   ├── 20-testing.mdc
-│   ├── 30-ux-a11y.mdc
-│   └── 40-platform-ops.mdc
-├── playbooks/       # Workflows (how to do things)
-│   ├── 10-feature-development.mdc
-│   └── 20-refactoring.mdc
+├── rules/           # Three-layer rule system
+│   ├── 001-099/     # Layer A: Core Guardrails (always on)
+│   │   ├── 001-meta.mdc
+│   │   ├── 010-architecture.mdc
+│   │   ├── 020-testing.mdc
+│   │   └── 030-ux-a11y.mdc
+│   ├── 100-199/     # Layer B: Stack/Integration Rules (always on)
+│   │   ├── 100-nextjs.mdc
+│   │   ├── 110-trpc.mdc
+│   │   ├── 120-drizzle.mdc
+│   │   ├── 130-stripe.mdc
+│   │   └── 140-vercel.mdc
+│   └── 200-299/     # Layer C: Playbooks/Workflows (invoked when needed)
+│       ├── 200-feature-development.mdc
+│       └── 210-refactoring.mdc
 └── agents/          # Role prompts (agent-specific instructions)
     ├── product-strategist.mdc
     ├── engineering-architect.mdc
@@ -85,20 +91,27 @@ PRD → IA/flows → ADR → tests → build → a11y audit → verify
     └── accessibility.mdc
 ```
 
-## Rule Types
+## Rule Layers
 
-### Guardrails (`.cursor/rules/*.mdc`)
-**Purpose**: Define constraints and what NOT to do
-- Architecture constraints
-- Testing requirements
-- Accessibility standards
-- Platform operations rules
+### Layer A: Core Guardrails (001-099)
+**Purpose**: Short, enforceable constraints. Always active.
+- 001-meta: Memory & session hygiene
+- 010-architecture: Core principles, feature modules, type safety
+- 020-testing: Test coverage requirements
+- 030-ux-a11y: UX patterns and accessibility baseline
 
-### Playbooks (`.cursor/playbooks/*.mdc`)
-**Purpose**: Define workflows and how to do things
-- Feature development process
-- Refactoring workflows
-- Quality gates and checkpoints
+### Layer B: Stack/Integration Rules (100-199)
+**Purpose**: Precise conventions for Next.js, tRPC, Drizzle, Stripe, Vercel. Always active.
+- 100-nextjs: App Router conventions
+- 110-trpc: tRPC procedure and router patterns
+- 120-drizzle: Drizzle schema and query conventions
+- 130-stripe: Webhook security and integration
+- 140-vercel: Runtime, feature flags, observability
+
+### Layer C: Playbooks/Workflows (200-299)
+**Purpose**: Longer "how to do X" guides. Invoked when needed.
+- 200-feature-development: Complete feature development workflow
+- 210-refactoring: Refactoring process and patterns
 
 ### Role Prompts (`.cursor/agents/*.mdc`)
 **Purpose**: Agent-specific instructions and responsibilities
@@ -106,13 +119,6 @@ PRD → IA/flows → ADR → tests → build → a11y audit → verify
 - Workflow for that agent
 - Quality criteria
 - Output expectations
-
-### Meta Rules (`.cursor/rules/00-meta.mdc`)
-**Purpose**: Memory and session hygiene
-- When to create memories
-- Session management
-- Context preservation
-- Error recovery
 
 ## Parallel Workflows
 

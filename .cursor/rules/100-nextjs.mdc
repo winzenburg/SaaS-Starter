@@ -1,0 +1,22 @@
+# Next.js App Router Rules
+
+## Directory Structure
+- App Router only: `src/app/` directory structure exclusively
+- No Pages Router patterns or file conventions
+- Routes in `src/app/(app)/*` import UI from `src/features/*`
+- No duplicated UI - all UI components live in feature modules
+
+## Components
+- Server Components by default
+- Mark client components with `"use client"` only when needed
+- Keep client components minimal and focused
+
+## Routes
+- Route handlers: `src/app/api/**/route.ts` for API endpoints
+- Server actions preferred over client mutations
+- Use Next.js metadata API for SEO
+
+## Performance
+- Use Next.js Image component for images
+- Use Next.js font optimization
+- Code splitting automatic with App Router

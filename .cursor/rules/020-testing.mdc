@@ -1,0 +1,20 @@
+# Testing Guardrails
+
+## Coverage Requirements
+- New features require unit + integration + e2e where applicable
+- All domain logic must have unit tests
+- All server actions must have integration tests
+- All tRPC procedures must have tests
+- Critical flows must have E2E tests
+
+## Test Organization
+- Unit tests: `src/**/*.test.ts` (co-located)
+- Integration tests: `src/**/*.test.ts`
+- E2E tests: `e2e/**/*.spec.ts` (Playwright)
+- Test utilities: `src/test/`
+
+## Requirements
+- Tests must be green before further refactors
+- All tests must pass before merging
+- Refactors must maintain or improve test coverage
+- Tests should be fast and reliable

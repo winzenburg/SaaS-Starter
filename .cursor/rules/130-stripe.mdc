@@ -1,0 +1,18 @@
+# Stripe Rules
+
+## Webhooks
+- Always verify webhook signatures using `stripe.webhooks.constructEvent()`
+- Never process webhooks without signature verification
+- Return appropriate error codes for invalid signatures
+- Webhook handler in `src/app/api/webhooks/stripe/route.ts`
+
+## Security
+- Never log PII (credit cards, SSNs, passwords, sensitive data)
+- Use identifiers or hashed values in logs
+- Be careful with email addresses and names in logs
+- Follow data privacy regulations (GDPR, CCPA, etc.)
+
+## Integration
+- Use Stripe client from `@/lib/stripe`
+- Handle all Stripe events appropriately
+- Use Stripe types for type safety
