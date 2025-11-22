@@ -1,13 +1,16 @@
 # Core Architecture
 
-- App Router only
-- Feature modules at `src/features/<feature>/{ui,data,domain}`
-- No cross-feature imports except via each feature's `index.ts`
-- Routes in `/app/(app)/*` import UI from features. No duplicated UI in `/app`
-- Zod boundary schemas live in `domain/schemas.ts`
+Goal: Prevent architecture drift and keep code boring/evolutionary.
+
+- App Router only. No Pages Router.
+- Feature-module standard: `src/features/<feature>/{ui,data,domain}`
+- Public API only: cross-feature imports must go through `src/features/<feature>/index.ts`
+- Domain purity: `domain/` contains pure logic only (no React, no I/O)
+- Validation at edges: Zod schemas in `domain/schemas.ts`, used by server actions/tRPC
+- Route shells only: `/app/(app)/<feature>` imports UI from `src/features/*/ui`; no duplicate UI under `/app`
+- Keep it boring: no new abstractions unless repeated ≥3 times
 - TypeScript strict mode always ON
 - Never use `any` (explicit or implicit)
-- Use Zod schemas for all input validation
 - Create type guards for parsing unknown data
 - Use `noUncheckedIndexedAccess` for safer array/object access
 - Prefer simple, maintainable solutions over clever abstractions
