@@ -3,9 +3,3 @@
 - Route groups: `(marketing)` and `(app)`
 - Server components by default; client components only when necessary
 - Default runtime nodejs; edge only via ADR
-- Routes in `src/app/(app)/*` import UI from `src/features/*`
-- No duplicated UI in `/app`
-- Route handlers: `src/app/api/**/route.ts` for API endpoints
-- Server actions preferred over client mutations
-- Use Next.js metadata API for SEO
-- Use Next.js Image component for images
