@@ -354,7 +354,7 @@ For each selected moat type, document:
 - Moats must go beyond community (structural defensibility)
 - Moats must be buildable over time (not just theoretical)
 
-### 6. Where Does This Product Naturally Spread? Why?
+### 8. Where Does This Product Naturally Spread? Why?
 
 #### Natural Distribution Patterns
 - **Word-of-mouth triggers**: [What makes people share this?]
