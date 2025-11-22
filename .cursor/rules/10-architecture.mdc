@@ -1,0 +1,123 @@
+# Architecture Rules
+
+## Core Principles
+
+### Boring, Evolutionary Architecture
+- Prefer simple, maintainable solutions over clever abstractions
+- Make small, verifiable changes
+- Avoid premature optimization
+- When architecture changes are needed, create an ADR in `docs/adr/`
+
+### Feature Module Structure
+- All features live in `src/features/<feature>/`
+- Each feature has three layers:
+  - `domain/` - Business logic, types, Zod schemas
+  - `data/` - Server actions, tRPC procedures, API routes
+  - `ui/` - React components
+- Features export a public API via `index.ts`
+- **No cross-feature imports** except through public APIs
+- Shared utilities live in `src/lib/`
+
+### Server-First Approach
+- Prefer server actions and tRPC procedures over client mutations
+- Use React Server Components by default
+- Mark client components with `"use client"` only when needed
+- Keep client components minimal and focused
+
+## Type Safety
+
+- TypeScript strict mode is always ON
+- Never use `any` (explicit or implicit)
+- Use Zod schemas for all input validation
+- Create type guards for parsing unknown data (see `src/lib/type-guards.ts`)
+- Use `noUncheckedIndexedAccess` for safer array/object access
+- Use `unknown` and type guards instead of `any`
+- Precise types - Avoid overly broad types like `object` or `Record<string, unknown>`
+- Generic constraints - Constrain generics appropriately (`<T extends {...}>`)
+
+## Feature Development
+
+### Adding a New Feature
+
+1. **Create feature directory**: `src/features/<feature-name>/`
+2. **Set up structure**:
+   - `domain/` - Schemas, types, business logic
+   - `data/` - Server actions, tRPC procedures
+   - `ui/` - React components
+   - `index.ts` - Public API exports
+3. **Write tests** alongside implementation
+4. **Update documentation** if needed
+5. **Follow feature module pattern** strictly
+
+### Feature Module Pattern
+
+#### Domain Layer (`domain/`)
+- Zod schemas for validation
+- TypeScript types and interfaces
+- Pure business logic functions
+- No side effects
+
+#### Data Layer (`data/`)
+- Server actions (`"use server"`)
+- tRPC procedures
+- API route handlers
+- Database queries
+- External API calls
+
+#### UI Layer (`ui/`)
+- React components
+- Client components (`"use client"` when needed)
+- Form components
+- Presentational components
+
+#### Public API (`index.ts`)
+- Export only what other features need
+- Hide implementation details
+- Provide clear, typed interfaces
+
+### Cross-Feature Communication
+
+- **No direct imports** between features
+- Use public APIs via `index.ts`
+- Prefer composition over coupling
+- Use shared utilities in `src/lib/` for common needs
+
+### Example Structure
+
+```
+src/features/auth/
+├── domain/
+│   ├── loginSchema.ts
+│   └── types.ts
+├── data/
+│   ├── loginAction.ts
+│   └── authProcedures.ts
+├── ui/
+│   ├── LoginForm.tsx
+│   └── LogoutButton.tsx
+└── index.ts
+```
+
+## Database
+
+- Use Drizzle ORM for all database operations
+- Define schemas in `src/lib/db/schema.ts`
+- Use connection pooling via `src/lib/db/index.ts`
+- Never write raw SQL unless absolutely necessary
+- Always use transactions for multi-step operations
+
+## API Layer
+
+- Use tRPC for type-safe APIs
+- Define procedures in feature modules under `data/` directory
+- Export procedures through feature's `index.ts`
+- Use Zod for input/output validation
+- Handle errors gracefully with proper error types
+
+## Code Style
+
+- **Explicit over clever** - Prefer readable, straightforward code
+- **Co-locate files** - Keep related files near where they're used
+- **Small functions** - Functions should do one thing well
+- **Pure components** - Components should be deterministic and accessible
+- **No console.log** - Use proper logging (remove before committing)
