@@ -4,31 +4,29 @@
 
 ## Operating Principles
 
-- **Boring, evolutionary code** - Prefer simple, maintainable solutions over clever abstractions
-- **Tests define correctness** - Write tests that describe expected behavior
-- **Small diffs** - Make incremental, verifiable changes
-- **WCAG 2.2 AA** - All UI must meet accessibility standards
+- Boring, evolutionary code
+- Tests define correctness
+- Small diffs
+- WCAG 2.2 AA
 
-## Agent Roster
+## Agents
 
-| Agent | Role | Prompt | When to Use |
-|-------|------|--------|-------------|
-| **Product Strategist** | Define product requirements and strategy | `docs/agents/product-strategist.md` | New features, product decisions, requirement gathering |
-| **Market Scanner** | Research market and competitive landscape | `docs/agents/market-scanner.md` | New feature planning, competitive analysis, technology selection |
-| **UX Researcher** | Understand users and validate designs | `docs/agents/ux-researcher.md` | Feature discovery, user validation, usability testing |
-| **IA/Interaction** | Design information architecture and interactions | `docs/agents/ia-designer.md` | New features, major redesigns, flow improvements |
-| **Accessibility** | Ensure WCAG 2.2 AA compliance | `docs/agents/accessibility.md` | UI implementation, accessibility reviews, compliance checks |
-| **Engineering Architect** | Design technical architecture and patterns | `docs/agents/engineering-architect.md` | New features, architectural decisions, major refactors |
-| **Test Engineer** | Write and maintain comprehensive tests | `docs/agents/test-engineer.md` | New features, refactoring, bug fixes, test maintenance |
-| **Implementer** | Build features and implement code | `docs/agents/implementer.md` | Feature implementation, bug fixes, improvements |
+See `docs/agents/*.md` for full prompts.
 
-## Standard Workflow
+1. **Product Strategist** — PRDs in `/docs/product`
+2. **Market Scanner** — market scans in `/docs/research`
+3. **UX Researcher** — scripts/synthesis in `/docs/research`
+4. **IA Designer** — IA/flows in `/docs/ux`
+5. **Accessibility** — audits in `/docs/ux`
+6. **Engineering Architect** — ADRs + schemas in `/docs/engineering`
+7. **Test Engineer** — test plans + suites in `/tests` and `/e2e`
+8. **Implementer** — code in `/src/features` + `/app` routes
 
-```
-PRD → IA/flows → ADR → tests → build → a11y audit → verify
-```
+## Default Workflows
 
-**Playbook**: `.cursor/rules/210-playbook-new-feature.mdc`
+- **New feature**: `.cursor/rules/210-playbook-new-feature.mdc`
+- **Bugfix**: `.cursor/rules/220-playbook-bugfix.mdc`
+- **Refactor**: `.cursor/rules/230-playbook-refactor.mdc`
 
 ## Rule System
 
@@ -60,21 +58,6 @@ Invoked when needed. Detailed "how to do X" guides.
 - `240-playbook-a11y-audit.mdc` - Accessibility audit
 - `250-playbook-billing-change.mdc` - Billing changes
 - `260-playbook-multi-tenancy.mdc` - Multi-tenancy implementation
-
-## Parallel Workflows
-
-- **Market Scanner** can research while **Product Strategist** writes PRD
-- **UX Researcher** can validate while **IA/Interaction** designs flows
-- **Test Engineer** can write tests while **Engineering Architect** creates ADR
-- **Accessibility** can audit while **Implementer** builds (with coordination)
-
-## Quality Gates
-
-- Follow `.cursor/rules/*` guardrails
-- Use `.cursor/rules/200-299/*` playbooks when needed
-- Tests must be green before merging
-- WCAG 2.2 AA compliance required
-- Code must pass linting and type checking
 
 ## See Also
 
