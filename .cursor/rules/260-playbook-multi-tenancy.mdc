@@ -1,36 +1,144 @@
 # Playbook: Multi-Tenancy
 
-## Workflow
-Design → Schema → Queries → Verify
+## Isolation Approach
 
-## Steps
+### App-Scoped (Recommended)
+- Tenant ID (`orgId`) included in all tenant-scoped tables
+- All queries filtered by `orgId` at application level
+- Simpler to implement and reason about
+- Good performance with proper indexing
+- Easier to debug and audit
 
-1. **Design**
-   - Define tenant isolation strategy
-   - Plan tenant identification
-   - Design data access patterns
-   - Create ADR for multi-tenancy approach
+### Row-Level Security (RLS)
+- Database-level isolation using PostgreSQL RLS
+- More complex to set up and maintain
+- Requires careful policy management
+- Better for strict compliance requirements
+- Use only if app-scoped doesn't meet requirements
 
-2. **Schema**
-   - Add tenant_id to relevant tables
-   - Create indexes on tenant_id
-   - Plan migration strategy
-   - Update Drizzle schemas
+**Decision**: Use app-scoped unless RLS is specifically required. Document decision in ADR.
 
-3. **Queries**
-   - Always filter by tenant_id
-   - Use transactions for tenant-scoped operations
-   - Verify tenant isolation in queries
-   - Add tenant context to tRPC procedures
+## Required Tables and Guardrails
 
-4. **Verify**
-   - Test tenant isolation
-   - Verify no cross-tenant data access
-   - Test tenant switching
-   - Performance test with multiple tenants
+### Schema Requirements
+- All tenant-scoped tables must include `orgId` column
+- `orgId` must be indexed for performance
+- Foreign keys must include `orgId` in composite keys
+- No cross-tenant relationships allowed
 
-## Rules
-- Always filter by tenant_id
-- Never allow cross-tenant access
-- Use transactions for tenant operations
-- Test tenant isolation thoroughly
+### Query Guardrails
+- **Always filter by orgId** - Every query must include orgId filter
+- Use transactions for tenant-scoped operations
+- Verify tenant isolation in all queries
+- Add tenant context to tRPC procedures
+
+### Example Schema
+```typescript
+export const users = pgTable("users", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  orgId: uuid("org_id").notNull(),
+  email: text("email").notNull(),
+  // ... other fields
+});
+
+// Index for performance
+export const usersOrgIdIndex = index("users_org_id_idx").on(users.orgId);
+```
+
+### Example Query Pattern
+```typescript
+// ✅ CORRECT - Always filter by orgId
+const user = await db.query.users.findFirst({
+  where: and(
+    eq(users.id, userId),
+    eq(users.orgId, orgId) // Required!
+  ),
+});
+
+// ❌ WRONG - Missing orgId filter
+const user = await db.query.users.findFirst({
+  where: eq(users.id, userId),
+});
+```
+
+## Anti-Patterns to Avoid
+
+### ❌ Missing orgId Filter
+```typescript
+// WRONG - No orgId filter
+const users = await db.select().from(users);
+```
+
+### ❌ Trusting User-Provided orgId
+```typescript
+// WRONG - Don't trust user input
+const orgId = request.body.orgId;
+const users = await db.select().from(users).where(eq(users.orgId, orgId));
+```
+
+### ❌ Cross-Tenant Data Access
+```typescript
+// WRONG - No orgId check
+const user = await db.query.users.findFirst({
+  where: eq(users.id, userId),
+});
+// Could return user from different org!
+```
+
+### ❌ Missing orgId in Joins
+```typescript
+// WRONG - Join without orgId
+const result = await db
+  .select()
+  .from(users)
+  .innerJoin(projects, eq(users.id, projects.userId));
+// Could join across tenants!
+```
+
+### ✅ Correct Patterns
+```typescript
+// CORRECT - Always filter by orgId from authenticated context
+const orgId = await getOrgIdFromSession(request);
+const users = await db.select().from(users).where(eq(users.orgId, orgId));
+
+// CORRECT - Include orgId in joins
+const result = await db
+  .select()
+  .from(users)
+  .innerJoin(
+    projects,
+    and(
+      eq(users.id, projects.userId),
+      eq(users.orgId, orgId),
+      eq(projects.orgId, orgId)
+    )
+  );
+```
+
+## Implementation Steps
+
+1. **Design** - Choose isolation approach (app-scoped or RLS)
+2. **Schema** - Add orgId to all tenant-scoped tables
+3. **Migrations** - Create migration for schema changes
+4. **Context** - Add orgId to request context
+5. **Queries** - Update all queries to filter by orgId
+6. **Tests** - Test tenant isolation thoroughly
+7. **Verify** - Verify no cross-tenant access possible
+
+## Testing Requirements
+
+- Test tenant isolation (users can't access other orgs' data)
+- Test tenant switching
+- Test cross-tenant queries fail
+- Performance test with multiple tenants
+- Test concurrent access from different tenants
+
+## Security Checklist
+
+- [ ] orgId always from authenticated session, never user input
+- [ ] All queries filter by orgId
+- [ ] No cross-tenant data access possible
+- [ ] Foreign keys include orgId
+- [ ] Indexes on orgId for performance
+- [ ] Tests verify tenant isolation
+- [ ] Audit logs include orgId

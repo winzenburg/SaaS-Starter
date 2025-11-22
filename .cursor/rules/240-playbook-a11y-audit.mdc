@@ -1,41 +1,115 @@
 # Playbook: Accessibility Audit
 
+## Exact Checklist
+
+### Semantic HTML
+- [ ] Proper HTML elements used (not divs for everything)
+- [ ] Heading hierarchy correct (h1 → h2 → h3, no skipping)
+- [ ] Landmark regions used (nav, main, aside, etc.)
+- [ ] Form labels associated with inputs
+- [ ] ARIA only when semantic HTML insufficient
+
+### Keyboard Navigation
+- [ ] All interactive elements keyboard accessible
+- [ ] Logical tab order
+- [ ] Visible focus indicators
+- [ ] Skip links provided for main content
+- [ ] No keyboard traps
+
+### Screen Readers
+- [ ] Tested with NVDA (Windows)
+- [ ] Tested with JAWS (Windows)
+- [ ] Tested with VoiceOver (macOS/iOS)
+- [ ] ARIA labels used appropriately
+- [ ] ARIA live regions for dynamic content
+- [ ] Error messages associated with form fields
+
+### Visual Accessibility
+- [ ] Color contrast meets WCAG 2.2 AA (4.5:1 for text, 3:1 for UI)
+- [ ] Color not sole means of conveying information
+- [ ] All images have descriptive alt attributes
+- [ ] Decorative images have empty alt attributes
+- [ ] Focus indicators visible and clear
+
+### States
+- [ ] Loading states accessible
+- [ ] Empty states accessible
+- [ ] Error states accessible and associated with inputs
+- [ ] Success states accessible
+- [ ] Focus management correct for modals/dialogs
+
+## How to Add @axe-core/playwright A11y Tests
+
+### Installation
+```bash
+pnpm add -D @axe-core/playwright
+```
+
+### Test Structure
+```typescript
+import { test, expect } from "@playwright/test";
+import AxeBuilder from "@axe-core/playwright";
+
+test("page should be accessible", async ({ page }) => {
+  await page.goto("/your-page");
+  
+  const accessibilityScanResults = await new AxeBuilder({ page })
+    .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
+    .analyze();
+
+  expect(accessibilityScanResults.violations).toEqual([]);
+});
+```
+
+### Test Location
+- Add a11y tests in `e2e/<feature>/a11y.spec.ts`
+- Run with `pnpm test:e2e`
+- Include in CI pipeline
+
+### Best Practices
+- Test all pages and key user flows
+- Test with WCAG 2.2 AA tags
+- Fix violations before merging
+- Re-test after fixes
+
+## Priority Scale for Fixes
+
+### P0 - Critical (Must Fix)
+- Keyboard navigation broken
+- Screen reader completely unusable
+- Color contrast below 3:1
+- Missing form labels
+- Focus traps
+
+### P1 - High (Should Fix)
+- Color contrast below 4.5:1 for text
+- Missing ARIA labels where needed
+- Incorrect heading hierarchy
+- Missing skip links
+- Focus indicators not visible
+
+### P2 - Medium (Nice to Fix)
+- Minor ARIA improvements
+- Better alt text
+- Improved focus management
+- Enhanced error messaging
+
+### P3 - Low (Future Enhancement)
+- Enhanced ARIA descriptions
+- Additional skip links
+- Advanced keyboard shortcuts
+
 ## Workflow
-Audit → Test → Fix → Verify
 
-## Steps
+1. **Audit** - Run automated tests and manual review
+2. **Prioritize** - Categorize issues by priority
+3. **Fix** - Address P0 and P1 issues first
+4. **Re-test** - Verify fixes with automated and manual testing
+5. **Verify** - Final check with screen readers
 
-1. **Audit**
-   - Review UI for WCAG 2.2 AA compliance
-   - Check semantic HTML usage
-   - Verify ARIA usage (only if needed)
-   - Check color contrast
-   - Review keyboard navigation
+## Tools
 
-2. **Test**
-   - Test with screen readers (NVDA, JAWS, VoiceOver)
-   - Verify keyboard navigation
-   - Test with keyboard only
-   - Check focus management
-
-3. **Fix**
-   - Fix semantic HTML issues
-   - Add ARIA only when semantic HTML insufficient
-   - Fix color contrast issues
-   - Improve keyboard navigation
-   - Fix focus management
-
-4. **Verify**
-   - Re-test with screen readers
-   - Verify keyboard navigation works
-   - Check color contrast meets standards
-   - Final WCAG 2.2 AA compliance check
-
-## Checklist
-- Semantic HTML used correctly
-- ARIA only when needed
-- Keyboard navigation works
-- Screen reader compatible
-- Color contrast meets WCAG 2.2 AA
-- Focus indicators visible
-- Focus management correct
+- **Automated**: @axe-core/playwright, Lighthouse
+- **Manual**: NVDA, JAWS, VoiceOver
+- **Color Contrast**: WebAIM Contrast Checker
+- **Keyboard Testing**: Tab through entire page

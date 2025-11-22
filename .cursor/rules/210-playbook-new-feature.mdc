@@ -1,55 +1,161 @@
 # Playbook: New Feature
 
-## Workflow
-PRD → IA/flows → ADR → tests → build → a11y audit → verify
+## Step Sequence
 
-## Steps
+```
+PRD → flows → ADR → tests → build → a11y → verify
+```
 
-1. **PRD** (Product Strategist)
-   - Define user problems and JTBD
-   - Identify success metrics and risks
-   - Document edge cases and failure modes
-   - Deliverable: PRD in `docs/prd/`
+## Step-by-Step Process
 
-2. **IA/flows** (IA/Interaction + UX Researcher)
-   - Design information architecture
-   - Create user flows and wireframes
-   - Validate with user research
-   - Deliverable: User flow diagrams, wireframes
+### 1. PRD (Product Strategist)
+**Input**: Feature request or user need  
+**Output**: Product Requirements Document
 
-3. **ADR** (Engineering Architect)
-   - Create ADR in `docs/adr/`
-   - Design technical approach
-   - Plan feature module structure
-   - Deliverable: ADR document
+**Required Artifacts**:
+- PRD document in `docs/prd/<feature-name>.md`
+- User stories and acceptance criteria
+- Success metrics definition
+- Risk assessment
 
-4. **Tests** (Test Engineer)
-   - Write tests that define correctness
-   - Unit tests for domain logic
-   - Integration tests for server actions
-   - E2E tests for critical flows
-   - **Tests must pass before implementation**
-   - Deliverable: Test suite
+**Deliverables**:
+- User problems and JTBD (Jobs To Be Done) documented
+- Success metrics defined
+- Edge cases and failure modes documented
+- Stakeholder alignment obtained
 
-5. **Build** (Implementer)
-   - Create feature module structure
-   - Implement domain logic
-   - Create server actions and tRPC procedures
-   - Build UI components with all states
-   - Deliverable: Feature module in `src/features/<feature>/`
+### 2. Flows (IA/Interaction + UX Researcher)
+**Input**: PRD  
+**Output**: Information architecture and user flows
 
-6. **A11y Audit** (Accessibility)
-   - Audit UI for WCAG 2.2 AA compliance
-   - Test with screen readers
-   - Verify keyboard navigation
-   - Fix accessibility issues
-   - Deliverable: WCAG 2.2 AA compliance
+**Required Artifacts**:
+- User flow diagrams in `docs/flows/<feature-name>/`
+- Wireframes or mockups
+- IA documentation
 
-7. **Verify** (Test Engineer + Accessibility)
-   - Run full test suite (must be green)
-   - Final accessibility check
-   - Code review
-   - Deliverable: Ready for merge
+**Deliverables**:
+- Information architecture designed
+- User flows created and validated
+- Interaction patterns defined
+- User research validation completed
+
+### 3. ADR (Engineering Architect)
+**Input**: PRD, flows  
+**Output**: Architecture Decision Record
+
+**Required Artifacts**:
+- ADR document in `docs/adr/<number>-<feature-name>.md`
+- Technical design document
+- Feature structure plan
+
+**Deliverables**:
+- ADR created with decision rationale
+- Technical approach designed
+- Feature module structure planned
+- Patterns and conventions defined
+
+### 4. Tests (Test Engineer)
+**Input**: ADR  
+**Output**: Test suite
+
+**Required Artifacts**:
+- Unit tests in `src/features/<feature>/domain/*.test.ts`
+- Integration tests in `src/features/<feature>/data/*.test.ts`
+- E2E tests in `e2e/<feature>/*.spec.ts`
+
+**Deliverables**:
+- Tests that define correctness
+- Unit tests for domain logic
+- Integration tests for server actions
+- E2E tests for critical flows
+- **All tests must pass before implementation**
+
+### 5. Build (Implementer)
+**Input**: ADR, passing tests  
+**Output**: Implemented feature
+
+**Required Artifacts**:
+- Feature module in `src/features/<feature>/`
+  - `domain/schemas.ts` - Zod schemas
+  - `domain/types.ts` - TypeScript types
+  - `data/router.ts` - tRPC procedures
+  - `data/actions.ts` - Server actions
+  - `ui/` - React components
+  - `index.ts` - Public API
+
+**Deliverables**:
+- Feature module structure created
+- Domain logic implemented
+- Server actions and tRPC procedures created
+- UI components with all states (loading/empty/error/success)
+- Integration with existing systems
+
+### 6. A11y (Accessibility)
+**Input**: Implemented feature  
+**Output**: Accessibility fixes
+
+**Required Artifacts**:
+- Accessibility audit report
+- Fixed accessibility issues
+- WCAG 2.2 AA compliance verification
+
+**Deliverables**:
+- UI audited for WCAG 2.2 AA compliance
+- Screen reader testing completed
+- Keyboard navigation verified
+- Color contrast checked
+- All accessibility issues fixed
+
+### 7. Verify (Test Engineer + Accessibility)
+**Input**: Complete feature  
+**Output**: Verified, ready to merge
+
+**Deliverables**:
+- Full test suite passing (must be green)
+- Final accessibility check completed
+- Code review passed
+- All quality gates passed
+
+## Parallel Agent Execution
+
+### Sequential Dependencies
+- PRD must complete before flows
+- Flows must complete before ADR
+- ADR must complete before tests
+- Tests must pass before build
+- Build must complete before a11y
+- A11y must complete before verify
+
+### Parallel Opportunities
+- **Market Scanner** can research while **Product Strategist** writes PRD
+- **UX Researcher** can validate while **IA/Interaction** designs flows
+- **Test Engineer** can write tests while **Engineering Architect** creates ADR (after ADR structure is defined)
+- **Accessibility** can audit while **Implementer** builds (with coordination on component completion)
+
+## Definition of Done
+
+A feature is considered done when:
+
+- ✅ PRD approved by stakeholders
+- ✅ User flows validated
+- ✅ ADR created and reviewed
+- ✅ All tests written and passing
+- ✅ Feature implemented following ADR
+- ✅ All UI states implemented (loading/empty/error/success)
+- ✅ WCAG 2.2 AA compliance verified
+- ✅ All tests passing (unit + integration + e2e)
+- ✅ Code review completed
+- ✅ Documentation updated
+- ✅ No linting or type errors
+- ✅ Ready for merge
 
 ## Quality Gates
-Each step must pass quality gates before proceeding.
+
+Each step must pass quality gates before proceeding:
+- **PRD**: Stakeholder approval
+- **Flows**: User validation
+- **ADR**: Technical review
+- **Tests**: All tests passing
+- **Build**: Code review, linting, type checking
+- **A11y**: WCAG 2.2 AA compliance
+- **Verify**: All quality gates passed
