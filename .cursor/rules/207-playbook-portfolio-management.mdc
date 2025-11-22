@@ -1,0 +1,421 @@
+# Playbook: Portfolio Management (Portfolio Theory)
+
+## Goal
+Systematized product creation with multiple bets and continuous MRR compounding. Avoid "falling in love with every idea" by managing a portfolio of product bets with clear prioritization, expected value modeling, and kill-fast diagnostics.
+
+## Mental Model: Portfolio Theory
+
+**Isenberg focuses on one product at a time. But your goal is:**
+- Systematized product creation
+- Multiple bets
+- Continuous MRR compounding
+
+**This requires:**
+- Prioritization framework
+- Expected value modeling
+- Risk scoring
+- Shared infrastructure to lower marginal cost of new products
+- "Kill fast" diagnostics
+
+## Rule
+**No product enters validation without portfolio scoring. No product graduates to engineering without portfolio prioritization.**
+
+## Prerequisites
+- Multiple product/feature ideas
+- Willingness to manage a portfolio (not just one product)
+- Shared infrastructure strategy
+- Portfolio management discipline
+
+## Portfolio Structure
+
+### Portfolio Tiers
+
+1. **Validation Tier** (Ideas in validation)
+   - Products in insight validation phase
+   - Products in demand validation phase
+   - Products in moat/MRR validation phase
+   - **Target**: 3-5 products simultaneously
+
+2. **Engineering Tier** (Products in build)
+   - Products that passed validation and are being built
+   - Products in active development
+   - **Target**: 1-2 products simultaneously (unless team can handle more)
+
+3. **Growth Tier** (Products in market)
+   - Products launched and growing
+   - Products with established MRR
+   - **Target**: 2-4 products (depends on team capacity)
+
+4. **Maintenance Tier** (Products in maintenance)
+   - Products with stable MRR
+   - Products requiring minimal active development
+   - **Target**: Unlimited (as long as profitable)
+
+## Required: Prioritization Framework
+
+**CRITICAL**: Every product idea must be scored and prioritized before entering validation.
+
+### Scoring Criteria (Score 1-5 for each)
+
+#### 1. Expected Value (EV)
+- **5**: Very high EV (high probability × high impact)
+- **4**: High EV (moderate-high probability × high impact, or high probability × moderate-high impact)
+- **3**: Moderate EV (moderate probability × moderate impact)
+- **2**: Low EV (low probability × moderate impact, or moderate probability × low impact)
+- **1**: Very low EV (low probability × low impact)
+
+**Calculation**: EV = Probability of Success × Impact (MRR potential)
+
+**Examples**:
+- **High EV**: 70% probability × $50k MRR potential = $35k EV
+- **Moderate EV**: 50% probability × $20k MRR potential = $10k EV
+- **Low EV**: 30% probability × $10k MRR potential = $3k EV
+
+#### 2. Risk Score
+- **5**: Very low risk (validated demand, clear moat, strong team fit)
+- **4**: Low risk (some validation, clear path, good team fit)
+- **3**: Moderate risk (unvalidated, unclear path, team fit uncertain)
+- **2**: High risk (unvalidated, unclear path, poor team fit)
+- **1**: Very high risk (unvalidated, no clear path, poor team fit)
+
+**Risk Factors**:
+- Demand validation status
+- Moat clarity
+- Team expertise/fit
+- Market timing
+- Competitive landscape
+- Technical feasibility
+
+#### 3. Resource Requirements
+- **5**: Very low resources (minimal time, existing infrastructure, simple build)
+- **4**: Low resources (moderate time, some infrastructure, straightforward build)
+- **3**: Moderate resources (significant time, new infrastructure, complex build)
+- **2**: High resources (high time, new infrastructure, very complex build)
+- **1**: Very high resources (extreme time, new infrastructure, extremely complex build)
+
+**Resource Factors**:
+- Validation time required
+- Engineering time required
+- Infrastructure needs
+- Team capacity
+- Opportunity cost
+
+#### 4. Strategic Fit
+- **5**: Perfect strategic fit (aligns with vision, leverages strengths, compounds advantage)
+- **4**: Strong strategic fit (aligns with vision, leverages strengths)
+- **3**: Moderate strategic fit (some alignment, some leverage)
+- **2**: Weak strategic fit (limited alignment, limited leverage)
+- **1**: Poor strategic fit (misaligned, doesn't leverage strengths)
+
+**Strategic Factors**:
+- Alignment with company vision
+- Leverages existing strengths/assets
+- Compounds existing advantages
+- Creates synergies with other products
+- Builds on shared infrastructure
+
+#### 5. Time to Value
+- **5**: Very fast (validation in weeks, launch in months)
+- **4**: Fast (validation in months, launch in 3-6 months)
+- **3**: Moderate (validation in months, launch in 6-12 months)
+- **2**: Slow (validation in months, launch in 12-18 months)
+- **1**: Very slow (validation in months, launch in 18+ months)
+
+**Time Factors**:
+- Validation timeline
+- Build timeline
+- Time to first revenue
+- Time to meaningful MRR
+
+### Portfolio Score Calculation
+
+**Total Score (out of 25)**:
+- **Portfolio Priority (20-25)**: Top priority, allocate resources immediately
+- **High Priority (15-19)**: High priority, allocate resources when available
+- **Medium Priority (10-14)**: Medium priority, validate when capacity allows
+- **Low Priority (5-9)**: Low priority, validate only if no better options
+- **Kill (0-4)**: Kill immediately, don't waste resources
+
+### Portfolio Prioritization Matrix
+
+**Prioritize by**: Expected Value × (1 - Risk Score/5) × Strategic Fit × (1 - Resource Requirements/5) / Time to Value
+
+**Simplified**: Focus on high EV, low risk, strong strategic fit, low resources, fast time to value.
+
+## Required: Expected Value Modeling
+
+**CRITICAL**: Model expected value for each product bet.
+
+### Expected Value Components
+
+#### Probability of Success
+- **Demand validation probability**: [What % chance demand is validated?]
+- **Moat/MRR validation probability**: [What % chance moat/MRR plan is validated?]
+- **Build success probability**: [What % chance build succeeds?]
+- **Market success probability**: [What % chance market success?]
+- **Overall probability**: [Combined probability of success]
+
+#### Impact (MRR Potential)
+- **Year 1 MRR potential**: [What's the Year 1 MRR potential?]
+- **Year 2 MRR potential**: [What's the Year 2 MRR potential?]
+- **Year 3 MRR potential**: [What's the Year 3 MRR potential?]
+- **Lifetime value**: [What's the lifetime value potential?]
+
+#### Expected Value Calculation
+- **EV = Probability × Impact**
+- **Example**: 50% probability × $50k Year 1 MRR = $25k EV
+
+### Expected Value Comparison
+
+**Compare products by EV**:
+- Product A: $25k EV
+- Product B: $15k EV
+- Product C: $10k EV
+
+**Prioritize by EV** (all else equal).
+
+## Required: Risk Scoring
+
+**CRITICAL**: Score risk for each product bet.
+
+### Risk Categories
+
+1. **Demand Risk**
+   - **Low**: Strong validation signals, clear demand
+   - **Medium**: Some validation signals, unclear demand
+   - **High**: Weak validation signals, unclear demand
+
+2. **Moat Risk**
+   - **Low**: Clear moat strategy, defensible
+   - **Medium**: Some moat strategy, partially defensible
+   - **High**: Unclear moat strategy, not defensible
+
+3. **Market Risk**
+   - **Low**: Growing market, early wave, low competition
+   - **Medium**: Stable market, mature wave, moderate competition
+   - **High**: Declining market, late wave, high competition
+
+4. **Team Risk**
+   - **Low**: Strong team fit, existing expertise
+   - **Medium**: Some team fit, learnable expertise
+   - **High**: Poor team fit, missing expertise
+
+5. **Technical Risk**
+   - **Low**: Simple build, existing infrastructure
+   - **Medium**: Moderate build, some new infrastructure
+   - **High**: Complex build, new infrastructure
+
+### Risk Score Calculation
+
+**Total Risk Score (out of 25)**:
+- **Very Low Risk (20-25)**: Proceed with confidence
+- **Low Risk (15-19)**: Proceed with caution
+- **Moderate Risk (10-14)**: Proceed with significant caution
+- **High Risk (5-9)**: Proceed only if high EV
+- **Very High Risk (0-4)**: Kill unless exceptional EV
+
+## Required: Shared Infrastructure Strategy
+
+**CRITICAL**: Design shared infrastructure to lower marginal cost of new products.
+
+### Shared Infrastructure Components
+
+1. **Technical Infrastructure**
+   - **What's shared**: [What technical infrastructure is shared?]
+   - **Examples**: Auth, billing, database, APIs, monitoring, logging
+   - **Cost reduction**: [How much does this reduce cost per product?]
+
+2. **Product Infrastructure**
+   - **What's shared**: [What product infrastructure is shared?]
+   - **Examples**: Design system, component library, user management, analytics
+   - **Cost reduction**: [How much does this reduce cost per product?]
+
+3. **Go-to-Market Infrastructure**
+   - **What's shared**: [What GTM infrastructure is shared?]
+   - **Examples**: Marketing channels, sales process, customer success, support
+   - **Cost reduction**: [How much does this reduce cost per product?]
+
+4. **Operational Infrastructure**
+   - **What's shared**: [What operational infrastructure is shared?]
+   - **Examples**: Legal, compliance, finance, HR, processes
+   - **Cost reduction**: [How much does this reduce cost per product?]
+
+### Infrastructure Investment Strategy
+
+- **When to invest**: [When should we invest in shared infrastructure?]
+- **ROI calculation**: [How to calculate ROI on infrastructure?]
+- **Prioritization**: [Which infrastructure investments have highest ROI?]
+
+**Example**: Investing in shared auth/billing infrastructure reduces cost per product by 40%, enabling 2.5x more products with same resources.
+
+## Required: "Kill Fast" Diagnostics
+
+**CRITICAL**: Establish clear kill criteria to avoid wasting resources on bad bets.
+
+### Kill Criteria (Kill if any of these are true)
+
+1. **Demand Kill Signals**
+   - ❌ No demand validation signals after 3+ tests
+   - ❌ Negative feedback from target community
+   - ❌ No willingness to pay
+   - ❌ No emotional attachment ("would you be upset if it disappeared?" = No)
+
+2. **Moat Kill Signals**
+   - ❌ No clear moat strategy possible
+   - ❌ No defensibility path
+   - ❌ No retention thesis possible
+   - ❌ No expansion revenue path
+
+3. **Market Kill Signals**
+   - ❌ Declining market wave
+   - ❌ High competition, no differentiation
+   - ❌ Regulatory risks too high
+   - ❌ Market timing wrong (too early or too late)
+
+4. **Resource Kill Signals**
+   - ❌ Resource requirements exceed capacity
+   - ❌ Opportunity cost too high (better bets available)
+   - ❌ Time to value too long
+   - ❌ Strategic fit too weak
+
+5. **Portfolio Kill Signals**
+   - ❌ Portfolio score too low (< 5)
+   - ❌ Expected value too low (< $5k EV)
+   - ❌ Risk too high (> 20 risk score)
+   - ❌ Better opportunities available
+
+### Kill Process
+
+1. **Identify kill signal**: [What kill signal was triggered?]
+2. **Assess kill decision**: [Is kill decision clear?]
+3. **Document learnings**: [What did we learn?]
+4. **Reallocate resources**: [Where do resources go next?]
+5. **Update portfolio**: [Update portfolio prioritization]
+
+## Portfolio Management Rules
+
+### Rule 1: How Many Simultaneous Bets?
+
+**Validation Tier**: 3-5 products simultaneously
+- **Rationale**: Enough to have options, not so many that validation is shallow
+- **Allocation**: Distribute validation time across bets based on priority
+
+**Engineering Tier**: 1-2 products simultaneously
+- **Rationale**: Focus is critical for build success
+- **Exception**: Can handle more if team capacity allows
+
+**Growth Tier**: 2-4 products
+- **Rationale**: Maintenance mode allows more products
+- **Exception**: Depends on team capacity and product complexity
+
+### Rule 2: How to Allocate Validation Time?
+
+**Allocation Formula**: Time = Portfolio Score / Sum of All Portfolio Scores × Total Validation Time
+
+**Example**:
+- Product A (Score 20): 20/50 = 40% of validation time
+- Product B (Score 15): 15/50 = 30% of validation time
+- Product C (Score 10): 10/50 = 20% of validation time
+- Product D (Score 5): 5/50 = 10% of validation time
+
+**Minimum Time**: Each product gets minimum 10% of validation time (to avoid complete neglect).
+
+### Rule 3: How to Score Opportunity Cost?
+
+**Opportunity Cost = Best Alternative EV - Current Product EV**
+
+**Example**:
+- Current Product EV: $10k
+- Best Alternative EV: $25k
+- Opportunity Cost: $15k
+
+**Kill if**: Opportunity Cost > Current Product EV × 2
+
+**Example**: If opportunity cost is $15k and current product EV is $10k, kill current product (opportunity cost is 1.5x current EV, but threshold is 2x, so keep for now).
+
+### Rule 4: How Many Should Graduate to Engineering?
+
+**Graduation Criteria**:
+- ✅ Portfolio Score ≥ 15 (High Priority or Portfolio Priority)
+- ✅ Expected Value ≥ $10k
+- ✅ Risk Score ≤ 15 (Low Risk or Very Low Risk)
+- ✅ Passed all validation gates (insight, demand, moat/MRR)
+- ✅ Engineering capacity available
+
+**Graduation Limit**: 
+- **Maximum 2 products** graduate to engineering simultaneously
+- **Exception**: Can graduate more if team capacity allows and products are low-resource
+
+**Graduation Process**:
+1. Score product on portfolio criteria
+2. Verify all validation gates passed
+3. Check engineering capacity
+4. Compare to other products in portfolio
+5. Make graduation decision
+
+## Portfolio Review Process
+
+### Weekly Portfolio Review
+
+**Review all products in portfolio**:
+1. Update portfolio scores
+2. Check kill signals
+3. Reallocate validation time
+4. Make graduation decisions
+5. Update prioritization
+
+### Monthly Portfolio Review
+
+**Deep portfolio review**:
+1. Assess portfolio health
+2. Review shared infrastructure investments
+3. Analyze portfolio performance
+4. Adjust portfolio strategy
+5. Make strategic decisions
+
+### Quarterly Portfolio Review
+
+**Strategic portfolio review**:
+1. Review portfolio strategy
+2. Assess market timing
+3. Evaluate infrastructure investments
+4. Make portfolio adjustments
+5. Plan next quarter
+
+## Quality Gates
+
+Portfolio management is working when:
+- ✅ 3-5 products in validation tier
+- ✅ 1-2 products in engineering tier
+- ✅ Portfolio scores updated weekly
+- ✅ Kill decisions made quickly (< 2 weeks after kill signal)
+- ✅ Resources allocated by priority
+- ✅ Expected value modeled for all products
+- ✅ Shared infrastructure reducing marginal cost
+- ✅ Portfolio compounding MRR
+
+## Definition of Done
+
+Portfolio management is done when:
+- ✅ Portfolio structure defined (tiers, targets)
+- ✅ Prioritization framework established
+- ✅ Expected value modeling in place
+- ✅ Risk scoring system created
+- ✅ Shared infrastructure strategy defined
+- ✅ Kill-fast diagnostics established
+- ✅ Portfolio rules defined (bets, allocation, opportunity cost, graduation)
+- ✅ Portfolio review process established
+- ✅ Products scored and prioritized
+- ✅ Resources allocated by priority
+
+## Critical Rules
+
+1. **No product enters validation without portfolio scoring**
+2. **No product graduates to engineering without portfolio prioritization**
+3. **Kill fast**: If kill signal triggered, kill within 2 weeks
+4. **Prioritize by expected value**: All else equal, prioritize high EV
+5. **Manage opportunity cost**: Don't waste resources on low-EV products when high-EV products available
+6. **Invest in shared infrastructure**: Lower marginal cost of new products
+7. **Review portfolio weekly**: Keep portfolio scores updated and decisions current
+
+**Bottom Line**: Isenberg focuses on one product at a time. But your goal is systematized product creation with multiple bets and continuous MRR compounding. Portfolio management prevents "falling in love with every idea" and ensures resources are allocated to highest-value opportunities.
