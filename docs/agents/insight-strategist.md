@@ -99,6 +99,71 @@ Output: /docs/product/INSIGHT-<product>.md
 - Thresholds for "strong validation"
 - Timeline for signal collection
 
+### 4a. Market Timing & Wave Analysis (REQUIRED)
+
+**CRITICAL**: Isenberg is great at identifying present niche pain. But MRR durability often comes from being early on a wave too. This prevents building a niche that is valid, but not future-proof.
+
+#### Wave Maturity Assessment
+
+**Required**: Assess where the market wave is in its lifecycle.
+
+- **Emerging Wave** (0-2 years): Early adopters, experimental solutions, high uncertainty
+- **Growing Wave** (2-5 years): Mainstream adoption begins, clear winners emerge
+- **Mature Wave** (5-10 years): Market established, consolidation, slower growth
+- **Declining Wave** (10+ years): Market shrinking, legacy solutions, disruption risk
+
+**Assessment**: [Where is this wave? What evidence supports this?]
+
+#### Early Indicators Track
+
+**Required**: Track early indicators that signal wave direction.
+
+- **Adoption signals**: [What signals indicate growing adoption?]
+- **Investment signals**: [What investment activity indicates growth?]
+- **Regulatory signals**: [What regulatory changes indicate growth?]
+- **Technology signals**: [What technology changes indicate growth?]
+- **Community signals**: [What community activity indicates growth?]
+
+**Early decline indicators**: [What signals indicate market decline or disruption risk?]
+
+#### Competitor Velocity Mapping
+
+**Required**: Map competitor velocity to understand market dynamics.
+
+- **Fast-moving competitors**: [Who is moving fast? What are they building?]
+- **Slow-moving competitors**: [Who is slow? Why?]
+- **New entrants**: [Who is entering? What are they bringing?]
+- **Exits**: [Who is leaving? Why?]
+
+#### Regulatory Horizon Scan
+
+**Required**: Scan regulatory horizon for opportunities and risks.
+
+- **Regulatory opportunities**: [What new regulations create opportunities?]
+- **Compliance requirements**: [What compliance needs are emerging?]
+- **Regulatory risks**: [What regulatory changes create risks?]
+
+#### Emerging Pain Signals
+
+**Required**: Track emerging pain signals that indicate future opportunities.
+
+- **Technology pain**: [What technology pain is emerging?]
+- **Workflow pain**: [What workflow pain is emerging?]
+- **Compliance pain**: [What compliance pain is emerging?]
+- **Market pain**: [What market pain is emerging?]
+- **Community pain**: [What community pain is emerging?]
+
+#### Market Timing Strategy
+
+**CRITICAL**: Design strategy based on wave analysis.
+
+- **Wave position**: [Where is the wave?]
+- **Timing strategy**: [How to time entry/exit?]
+- **Risk mitigation**: [How to mitigate wave risks?]
+- **Opportunity capture**: [How to capture wave opportunities?]
+
+**Critical Rule**: Isenberg is great at identifying present niche pain. But MRR durability often comes from being early on a wave too. This prevents building a niche that is valid, but not future-proof.
+
 ### 5. 5 Demand-Validation Tests (No-Code/Human First)
 
 #### Test 1: [Name]

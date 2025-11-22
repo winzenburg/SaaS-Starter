@@ -435,23 +435,208 @@ A social moat is when your product becomes part of a community's identity, makin
 - Community ownership models
 - Value-sharing with community
 
-### 10. Risks/Trends
+### 10. Market Timing & Wave Analysis (REQUIRED)
+
+**CRITICAL**: Isenberg is great at identifying present niche pain. But MRR durability often comes from being early on a wave too. This prevents building a niche that is valid, but not future-proof.
+
+#### Why Market Timing & Wave Analysis Matters
+
+- **Future-proofing**: Understanding waves prevents building for a shrinking market
+- **MRR durability**: Being early on a wave creates compounding advantage
+- **Competitive positioning**: Wave analysis helps position against competitors
+- **Regulatory readiness**: Regulatory changes can create or destroy markets
+- **Emerging opportunities**: Early indicators reveal future pain points
+
+#### Required: Wave Maturity Assessment
+
+**CRITICAL**: Assess where the market wave is in its lifecycle.
+
+##### Wave Stages
+
+1. **Emerging Wave** (0-2 years)
+   - **Characteristics**: Early adopters, experimental solutions, high uncertainty
+   - **Opportunity**: First-mover advantage, high growth potential
+   - **Risk**: Market may not materialize, early churn
+   - **Strategy**: Build for early adopters, expect iteration
+   - **Assessment**: [Where is this wave?]
+
+2. **Growing Wave** (2-5 years)
+   - **Characteristics**: Mainstream adoption begins, clear winners emerge
+   - **Opportunity**: Strong growth, established demand
+   - **Risk**: Increased competition, market saturation risk
+   - **Strategy**: Build for mainstream, focus on differentiation
+   - **Assessment**: [Where is this wave?]
+
+3. **Mature Wave** (5-10 years)
+   - **Characteristics**: Market established, consolidation, slower growth
+   - **Opportunity**: Stable demand, proven market
+   - **Risk**: High competition, commoditization
+   - **Strategy**: Build for efficiency, focus on moats
+   - **Assessment**: [Where is this wave?]
+
+4. **Declining Wave** (10+ years)
+   - **Characteristics**: Market shrinking, legacy solutions, disruption risk
+   - **Opportunity**: Niche opportunities, maintenance revenue
+   - **Risk**: Market collapse, technology obsolescence
+   - **Strategy**: Avoid or pivot, focus on transition
+   - **Assessment**: [Where is this wave?]
+
+#### Required: Early Indicators Track
+
+**CRITICAL**: Track early indicators that signal wave direction.
+
+##### Early Growth Indicators
+
+- **Adoption signals**: [What signals indicate growing adoption?]
+- **Investment signals**: [What investment activity indicates growth?]
+- **Regulatory signals**: [What regulatory changes indicate growth?]
+- **Technology signals**: [What technology changes indicate growth?]
+- **Community signals**: [What community activity indicates growth?]
+
+**Examples**:
+- **Adoption signals**: Increasing mentions, growing user base, expanding use cases
+- **Investment signals**: VC funding, acquisitions, partnerships
+- **Regulatory signals**: New regulations, compliance requirements, standards
+- **Technology signals**: New platforms, APIs, integrations
+- **Community signals**: Growing forums, conferences, content
+
+##### Early Decline Indicators
+
+- **Decline signals**: [What signals indicate market decline?]
+- **Disruption signals**: [What signals indicate disruption risk?]
+- **Technology obsolescence**: [What technology changes indicate decline?]
+- **Market saturation**: [What signals indicate saturation?]
+
+**Examples**:
+- **Decline signals**: Decreasing mentions, shrinking user base, consolidating market
+- **Disruption signals**: New technologies, changing behaviors, alternative solutions
+- **Technology obsolescence**: Legacy platforms, outdated standards, migration away
+- **Market saturation**: High competition, low growth, commoditization
+
+#### Required: Competitor Velocity Mapping
+
+**CRITICAL**: Map competitor velocity to understand market dynamics.
+
+##### Competitor Velocity Assessment
+
+- **Fast-moving competitors**: [Who is moving fast? What are they building?]
+- **Slow-moving competitors**: [Who is slow? Why?]
+- **New entrants**: [Who is entering? What are they bringing?]
+- **Exits**: [Who is leaving? Why?]
+
+##### Velocity Metrics
+
+- **Product velocity**: [How fast are competitors shipping?]
+- **Market velocity**: [How fast is the market moving?]
+- **Innovation velocity**: [How fast is innovation happening?]
+- **Adoption velocity**: [How fast is adoption happening?]
+
+**Examples**:
+- **Product velocity**: Weekly releases, rapid feature additions, fast iteration
+- **Market velocity**: Growing market size, expanding use cases, new segments
+- **Innovation velocity**: New technologies, breakthrough features, paradigm shifts
+- **Adoption velocity**: Rapid user growth, expanding geographies, new verticals
+
+#### Required: Regulatory Horizon Scan
+
+**CRITICAL**: Scan regulatory horizon for opportunities and risks.
+
+##### Regulatory Opportunities
+
+- **New regulations**: [What new regulations create opportunities?]
+- **Compliance requirements**: [What compliance needs are emerging?]
+- **Standards development**: [What standards are being developed?]
+- **Enforcement changes**: [What enforcement changes create needs?]
+
+**Examples**:
+- **New regulations**: GDPR, CCPA, SOC2, HIPAA, industry-specific regulations
+- **Compliance requirements**: Data privacy, security, accessibility, reporting
+- **Standards development**: API standards, data formats, interoperability
+- **Enforcement changes**: Increased enforcement, new penalties, audits
+
+##### Regulatory Risks
+
+- **Regulatory changes**: [What regulatory changes create risks?]
+- **Compliance burden**: [What compliance requirements are burdensome?]
+- **Enforcement risk**: [What enforcement actions are risky?]
+
+**Examples**:
+- **Regulatory changes**: Repealed regulations, changed requirements, new restrictions
+- **Compliance burden**: High costs, complex requirements, frequent changes
+- **Enforcement risk**: Fines, penalties, audits, shutdowns
+
+#### Required: Emerging Pain Signals
+
+**CRITICAL**: Track emerging pain signals that indicate future opportunities.
+
+##### Emerging Pain Categories
+
+1. **Technology Pain**
+   - **Pain signals**: [What technology pain is emerging?]
+   - **Examples**: New platforms, integration challenges, scalability issues
+
+2. **Workflow Pain**
+   - **Pain signals**: [What workflow pain is emerging?]
+   - **Examples**: Process changes, new workflows, collaboration needs
+
+3. **Compliance Pain**
+   - **Pain signals**: [What compliance pain is emerging?]
+   - **Examples**: New regulations, audit requirements, reporting needs
+
+4. **Market Pain**
+   - **Pain signals**: [What market pain is emerging?]
+   - **Examples**: Market shifts, new segments, changing needs
+
+5. **Community Pain**
+   - **Pain signals**: [What community pain is emerging?]
+   - **Examples**: Growing communities, new use cases, unmet needs
+
+#### Market Timing Strategy
+
+**CRITICAL**: Design strategy based on wave analysis.
+
+- **Wave position**: [Where is the wave?]
+- **Timing strategy**: [How to time entry/exit?]
+- **Risk mitigation**: [How to mitigate wave risks?]
+- **Opportunity capture**: [How to capture wave opportunities?]
+
+**Example Strategies**:
+- **Emerging wave**: Build for early adopters, expect iteration, focus on learning
+- **Growing wave**: Build for mainstream, focus on differentiation, scale fast
+- **Mature wave**: Build for efficiency, focus on moats, optimize operations
+- **Declining wave**: Avoid or pivot, focus on transition, preserve value
+
+#### Quality Gate
+
+- Wave maturity must be assessed (Emerging/Growing/Mature/Declining)
+- Early indicators must be tracked (growth and decline signals)
+- Competitor velocity must be mapped (fast/slow/new/exits)
+- Regulatory horizon must be scanned (opportunities and risks)
+- Emerging pain signals must be identified (technology/workflow/compliance/market/community)
+- Market timing strategy must be defined
+
+**Critical Rule**: Isenberg is great at identifying present niche pain. But MRR durability often comes from being early on a wave too. This prevents building a niche that is valid, but not future-proof.
+
+### 11. Risks/Trends
 
 #### Market Risks
 - Community fragmentation
 - Community migration to new platforms
 - Loss of community trust
 - New community-driven competitors
+- **Wave decline risks** (from Market Timing & Wave Analysis)
 
 #### Technology Trends
 - Community platform changes
 - New community tools
 - Shifting community behaviors
+- **Technology obsolescence risks** (from Market Timing & Wave Analysis)
 
 #### User Behavior Trends
 - How communities are evolving
 - New community formation patterns
 - Community tool preferences
+- **Emerging pain signals** (from Market Timing & Wave Analysis)
 
 ## Workflow
 1. Identify research scope
@@ -462,16 +647,17 @@ A social moat is when your product becomes part of a community's identity, makin
 6. **Assess Niche Compounding** (Compounding Niche | Stable Niche | Decaying Niche | Declining Niche)
 7. **Score Durability Filter** (frequency, budget, independent of hype, upset if disappeared, switching costs)
 8. **Assess Durability** (Durable Market | Cash-Flow Micro-Bet | Low Durability)
-9. **Design Moats** (select at least 2 moat types with implementation plan)
-10. Analyze natural distribution patterns
-11. Assess Social Moat potential
-12. Research top 3 direct competitors (secondary)
-13. Identify substitutes and adjacent tools
-14. Analyze switching costs and lock-in
-15. Identify differentiation wedges
-16. Assess risks and trends
-17. Document findings
-18. Provide recommendations (aligned with NCS and durability assessment)
+9. **Conduct Market Timing & Wave Analysis** (wave maturity, early indicators, competitor velocity, regulatory horizon, emerging pain signals)
+10. **Design Moats** (select at least 2 moat types with implementation plan)
+11. Analyze natural distribution patterns
+12. Assess Social Moat potential
+13. Research top 3 direct competitors (secondary)
+14. Identify substitutes and adjacent tools
+15. Analyze switching costs and lock-in
+16. Identify differentiation wedges
+17. Assess risks and trends
+18. Document findings
+19. Provide recommendations (aligned with NCS, durability assessment, and wave analysis)
 
 ## Quality Criteria
 - Research is community-first (not competitor-first)
@@ -483,7 +669,8 @@ A social moat is when your product becomes part of a community's identity, makin
 - **Competitor retention patterns analyzed** (not just features/pricing)
 - **Durability Filter scored** (all 5 criteria scored 1-5)
 - **Durability assessment clear** (Durable Market | Cash-Flow Micro-Bet | Low Durability)
-- **Strategic recommendation aligned with NCS and durability** (compounding vs. stable vs. decaying vs. declining)
+- **Market Timing & Wave Analysis completed** (wave maturity assessed, early indicators tracked, competitor velocity mapped, regulatory horizon scanned, emerging pain signals identified)
+- **Strategic recommendation aligned with NCS, durability, and wave analysis** (compounding vs. stable vs. decaying vs. declining, wave position, timing strategy)
 - **At least 2 moat types selected**
 - **Moat implementation plan created for each selected moat**
 - **Moats go beyond community (structural defensibility)**
