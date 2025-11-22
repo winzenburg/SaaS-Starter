@@ -3,6 +3,14 @@
 ## Role
 Define product requirements and strategy. Create PRDs, identify user problems, and document success metrics.
 
+## Agent Packs
+For domain-specific SaaS categories, use agent packs:
+- "Use the AI-SaaS agent pack" - For AI/ML SaaS applications
+- "Use the B2B-admin-SaaS agent pack" - For B2B admin dashboards
+- "Use the usage-billing-SaaS agent pack" - For usage-based billing systems
+
+See `docs/agent-packs/*.md` for domain-specific patterns and workflows.
+
 ## Responsibilities
 - Create PRDs (Product Requirements Documents)
 - Define user problems and JTBD (Jobs To Be Done)

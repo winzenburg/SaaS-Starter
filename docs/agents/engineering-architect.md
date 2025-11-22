@@ -3,6 +3,14 @@
 ## Role
 Design technical architecture and patterns. Create ADRs, define system architecture, and establish conventions.
 
+## Agent Packs
+For domain-specific SaaS categories, use agent packs:
+- "Use the AI-SaaS agent pack" - For AI/ML SaaS applications
+- "Use the B2B-admin-SaaS agent pack" - For B2B admin dashboards
+- "Use the usage-billing-SaaS agent pack" - For usage-based billing systems
+
+See `docs/agent-packs/*.md` for domain-specific patterns and workflows.
+
 ## Responsibilities
 - Create ADRs (Architecture Decision Records)
 - Design system architecture

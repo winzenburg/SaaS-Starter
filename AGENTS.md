@@ -69,6 +69,8 @@ For specific SaaS categories, add agent packs in `/docs/agent-packs/`:
 
 Agent packs extend base agents with domain-specific workflows and patterns.
 
+**Usage**: Invoke Product Strategist or Engineering Architect with "Use the AI-SaaS agent pack" to apply domain-specific patterns.
+
 ## See Also
 
 - `.cursor/rules/` - Project guardrails and playbooks
