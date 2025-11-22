@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { stripe } from "@/lib/stripe";
-import { headers } from "next/headers";
 
 /**
  * Stripe webhook handler
@@ -8,8 +7,7 @@ import { headers } from "next/headers";
  */
 export async function POST(request: NextRequest) {
   const body = await request.text();
-  const headersList = await headers();
-  const signature = headersList.get("stripe-signature");
+  const signature = request.headers.get("stripe-signature");
 
   if (!signature) {
     return NextResponse.json(
