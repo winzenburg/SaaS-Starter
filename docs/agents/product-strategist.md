@@ -344,7 +344,94 @@ Output: /docs/product/PRD-<feature>.md
 
 **Critical Rule**: Every niche product should have a Data Moat Thesis. This turns every product into a compounding dataset → defensible advantage.
 
-### 11. Durability Filter
+### 11. Network Effects or Collaboration Loops (REQUIRED)
+
+**CRITICAL**: Most niche SaaS dies because it's single-player only. Even simple "soft" network effects dramatically boost MRR durability. Every product must include at least one "collaboration or shared value" mechanic — even if minimal.
+
+#### Why Network Effects Matter
+
+- **Single-player products die**: Users churn when there's no shared value
+- **Soft network effects boost retention**: Even minimal collaboration increases stickiness
+- **MRR durability**: Network effects create compounding value and switching costs
+- **Defensibility**: Shared value creates moats that competitors can't easily replicate
+
+#### Required: At Least One Collaboration or Shared Value Mechanic
+
+Choose at least one (or combine multiple):
+
+##### 1. Shared Templates
+- Users can share templates/workflows with others
+- Templates become part of the product's value
+- Switching costs: users lose access to shared templates
+- **Implementation**: [How to implement shared templates?]
+
+##### 2. Shared Knowledge
+- Users can share knowledge/insights with others
+- Knowledge base grows with usage
+- Switching costs: users lose access to shared knowledge
+- **Implementation**: [How to implement shared knowledge?]
+
+##### 3. Cross-Org Insights
+- Users can see anonymized insights from other organizations
+- Benchmarks and comparisons create value
+- Switching costs: users lose access to cross-org insights
+- **Implementation**: [How to implement cross-org insights?]
+
+##### 4. Benchmarks
+- Users can compare their performance to benchmarks
+- Benchmarks improve with more users
+- Switching costs: users lose access to benchmarks
+- **Implementation**: [How to implement benchmarks?]
+
+##### 5. Team Invites
+- Users can invite team members
+- Collaboration features create network effects
+- Switching costs: team coordination and workflows
+- **Implementation**: [How to implement team invites?]
+
+##### 6. Community Badges
+- Users can earn badges/recognition in the community
+- Social status creates engagement
+- Switching costs: users lose social status
+- **Implementation**: [How to implement community badges?]
+
+##### 7. Leaderboards
+- Users can see rankings/leaderboards
+- Competition creates engagement
+- Switching costs: users lose their ranking
+- **Implementation**: [How to implement leaderboards?]
+
+##### 8. Anonymized Best-Practice Insights
+- Users can see anonymized best practices from others
+- Insights improve with more users
+- Switching costs: users lose access to best practices
+- **Implementation**: [How to implement anonymized insights?]
+
+#### Network Effects Implementation Plan
+
+- **Phase 1** (Months 1-3): [Which collaboration mechanic to build first?]
+- **Phase 2** (Months 4-6): [Which additional mechanics to add?]
+- **Phase 3** (Months 7-12): [How to deepen network effects?]
+
+#### Network Effects Metrics
+
+- **User participation**: [How many users participate in collaboration?]
+- **Shared value creation**: [How much shared value is created?]
+- **Network effects strength**: [How to measure network effects?]
+- **Retention impact**: [How do network effects impact retention?]
+- **Switching costs**: [How do network effects create switching costs?]
+
+#### Quality Gate
+
+- At least one collaboration or shared value mechanic must be selected
+- Implementation plan must be created
+- Network effects must be measurable
+- Retention impact must be defined
+- Switching costs must be identified
+
+**Critical Rule**: Every product must include at least one "collaboration or shared value" mechanic — even if minimal. Most niche SaaS dies because it's single-player only.
+
+### 12. Durability Filter
 
 **CRITICAL**: Some niches are trend-spikes, not durable markets. Isenberg is great at catching waves, but defensive moat + enduring MRR requires filtering for structural vs. cyclical pain, recurring workflow vs. novelty, budgeted spend vs. hobby spend.
 
@@ -417,7 +504,7 @@ Based on durability score:
 
 **Critical Rule**: If a niche fails durability, still build — but treat it like a cash-flow micro-bet, not a compounding SaaS asset.
 
-### 12. Retention Thesis (REQUIRED)
+### 13. Retention Thesis (REQUIRED)
 
 **CRITICAL**: MRR durability = retention architecture. Many niche products die from "strong launch, weak week-8 retention." Retention must be designed in, not patched later. This section is **REQUIRED** in all PRDs.
 
@@ -462,7 +549,7 @@ Based on durability score:
 - Habit loop/ritual must be designed
 - Retention mechanics must be designed in (not patched later)
 
-### 13. 10 High-Velocity Tests
+### 14. 10 High-Velocity Tests
 - **Test 1**: [Name] - [Method] - [Success criteria] - [Timeline]
 - **Test 2**: [Name] - [Method] - [Success criteria] - [Timeline]
 - **Test 3**: [Name] - [Method] - [Success criteria] - [Timeline]
@@ -476,7 +563,7 @@ Based on durability score:
 
 **Note**: High-velocity tests are fast, low-cost ways to validate demand before building.
 
-### 14. Lo-Fi Validation Plan
+### 15. Lo-Fi Validation Plan
 - **Email validation**: [How to test via email]
 - **Landing page**: [What landing page tests demand?]
 - **Loom demo**: [How to use Loom to validate interest?]
@@ -485,28 +572,28 @@ Based on durability score:
 - **Timeline**: [When to run each validation?]
 - **Success criteria**: [What indicates validation?]
 
-### 15. Success Metrics (leading/lagging)
+### 16. Success Metrics (leading/lagging)
 - **Leading indicators**: Predictive metrics (engagement, time to value, word-of-mouth)
 - **Lagging indicators**: Outcome metrics (conversion, retention, revenue)
 - **Baseline metrics**: Current state
 - **Target metrics**: Desired state
 - **Measurement plan**: How to measure
 
-### 16. Risks + Mitigations
+### 17. Risks + Mitigations
 - **Desirability risks**: What if users don't want this?
 - **Buildability risks**: What if we can't build this?
 - **Distribution risks**: What if we can't reach users?
 - **Timing risks**: What if timing is wrong?
 - **Mitigation strategies**: How to mitigate each risk
 
-### 17. Rollout Plan with Feature Flags
+### 18. Rollout Plan with Feature Flags
 - **Feature flag name**: [Name]
 - **Rollout stages**: 0% → 10% → 50% → 100%
 - **Success criteria for each stage**: [Criteria]
 - **Rollback plan**: [How to rollback]
 - **Monitoring plan**: [What to monitor]
 
-### 18. Analytics Events Schema
+### 19. Analytics Events Schema
 - **Event names**: [List]
 - **Event properties**: [Properties for each event]
 - **When events fire**: [Triggers]
@@ -524,15 +611,16 @@ Based on durability score:
 9. Plan distribution from Day 1
 10. **Define Monetization Wedge** (first paid moment, expansion revenue, value metric)
 11. **Define Data Moat Thesis** (proprietary data, compounding mechanism, 10× value, feedback loop)
-12. **Score Durability Filter** (frequency, budget, independent of hype, upset if disappeared, switching costs)
-13. **Assess Durability** (Durable Market | Cash-Flow Micro-Bet | Low Durability)
-14. **Define Retention Thesis** (recurring job, frequency driver, habit loop)
-15. Design 10 High-Velocity Tests
-16. Create Lo-Fi Validation Plan
-17. Define success metrics (leading/lagging)
-18. Identify risks and mitigations
-19. Create rollout plan with feature flags
-20. Define analytics events schema
+12. **Define Network Effects or Collaboration Loops** (at least one collaboration or shared value mechanic)
+13. **Score Durability Filter** (frequency, budget, independent of hype, upset if disappeared, switching costs)
+14. **Assess Durability** (Durable Market | Cash-Flow Micro-Bet | Low Durability)
+15. **Define Retention Thesis** (recurring job, frequency driver, habit loop)
+16. Design 10 High-Velocity Tests
+17. Create Lo-Fi Validation Plan
+18. Define success metrics (leading/lagging)
+19. Identify risks and mitigations
+20. Create rollout plan with feature flags
+21. Define analytics events schema
 16. Create PRD document
 17. Get stakeholder alignment
 

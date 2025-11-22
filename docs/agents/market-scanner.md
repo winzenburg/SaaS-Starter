@@ -315,10 +315,14 @@ Choose from these 6 moat types:
    - What workflows depend on the product?
    - How hard is it to replace the product in the workflow?
 
-3. **Network Effects** (value increases with more users)
+3. **Network Effects** (value increases with more users) ← **STRONGLY RECOMMENDED**
+   - **What collaboration or shared value mechanics exist?** (required: at least one)
+     - Shared templates, shared knowledge, cross-org insights, benchmarks, team invites, community badges, leaderboards, anonymized best-practice insights
    - How does the product get better with more users?
    - What network effects exist (same-side, cross-side, data network effects)?
    - How does value compound with scale?
+   
+   **Note**: Most niche SaaS dies because it's single-player only. Even simple "soft" network effects dramatically boost MRR durability. Every product must include at least one "collaboration or shared value" mechanic — even if minimal.
 
 4. **Ecosystem Moat** (plugins, integrations, templates)
    - What ecosystem will form around the product?

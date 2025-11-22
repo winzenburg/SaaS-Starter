@@ -27,7 +27,8 @@ After validating PMF, you need to convert that validation into a defensible, exp
 ## Non-Negotiables
 - Must reference validated PMF (insight validation must be complete)
 - **Data Moat Thesis is REQUIRED** (proprietary data, compounding mechanism, 10× value, feedback loop)
-- At least 2 moat types must be selected and mapped (Data Moat strongly recommended)
+- **Network Effects or Collaboration Loops are REQUIRED** (at least one collaboration or shared value mechanic)
+- At least 2 moat types must be selected and mapped (Data Moat and Network Effects strongly recommended)
 - Retention thesis must be clear (habit/frequency driver)
 - Expansion model must be defined (seat/usage/tier)
 - Churn risks must be identified with counter-features
@@ -154,9 +155,96 @@ Output: /docs/product/MOAT-MRR-<product>.md
 
 **Critical Rule**: Every niche product should have a Data Moat Thesis. This turns every product into a compounding dataset → defensible advantage.
 
-### 2. Moat Map
+### 2. Network Effects or Collaboration Loops (REQUIRED)
 
-**CRITICAL**: Pick at least 2 moat types with implementation plan. **Data Moat is strongly recommended as one of the 2+ moat types.**
+**CRITICAL**: Most niche SaaS dies because it's single-player only. Even simple "soft" network effects dramatically boost MRR durability. Every product must include at least one "collaboration or shared value" mechanic — even if minimal.
+
+#### Why Network Effects Matter
+
+- **Single-player products die**: Users churn when there's no shared value
+- **Soft network effects boost retention**: Even minimal collaboration increases stickiness
+- **MRR durability**: Network effects create compounding value and switching costs
+- **Defensibility**: Shared value creates moats that competitors can't easily replicate
+
+#### Required: At Least One Collaboration or Shared Value Mechanic
+
+Choose at least one (or combine multiple):
+
+##### 1. Shared Templates
+- Users can share templates/workflows with others
+- Templates become part of the product's value
+- Switching costs: users lose access to shared templates
+- **Implementation**: [How to implement shared templates?]
+
+##### 2. Shared Knowledge
+- Users can share knowledge/insights with others
+- Knowledge base grows with usage
+- Switching costs: users lose access to shared knowledge
+- **Implementation**: [How to implement shared knowledge?]
+
+##### 3. Cross-Org Insights
+- Users can see anonymized insights from other organizations
+- Benchmarks and comparisons create value
+- Switching costs: users lose access to cross-org insights
+- **Implementation**: [How to implement cross-org insights?]
+
+##### 4. Benchmarks
+- Users can compare their performance to benchmarks
+- Benchmarks improve with more users
+- Switching costs: users lose access to benchmarks
+- **Implementation**: [How to implement benchmarks?]
+
+##### 5. Team Invites
+- Users can invite team members
+- Collaboration features create network effects
+- Switching costs: team coordination and workflows
+- **Implementation**: [How to implement team invites?]
+
+##### 6. Community Badges
+- Users can earn badges/recognition in the community
+- Social status creates engagement
+- Switching costs: users lose social status
+- **Implementation**: [How to implement community badges?]
+
+##### 7. Leaderboards
+- Users can see rankings/leaderboards
+- Competition creates engagement
+- Switching costs: users lose their ranking
+- **Implementation**: [How to implement leaderboards?]
+
+##### 8. Anonymized Best-Practice Insights
+- Users can see anonymized best practices from others
+- Insights improve with more users
+- Switching costs: users lose access to best practices
+- **Implementation**: [How to implement anonymized insights?]
+
+#### Network Effects Implementation Plan
+
+- **Phase 1** (Months 1-3): [Which collaboration mechanic to build first?]
+- **Phase 2** (Months 4-6): [Which additional mechanics to add?]
+- **Phase 3** (Months 7-12): [How to deepen network effects?]
+
+#### Network Effects Metrics
+
+- **User participation**: [How many users participate in collaboration?]
+- **Shared value creation**: [How much shared value is created?]
+- **Network effects strength**: [How to measure network effects?]
+- **Retention impact**: [How do network effects impact retention?]
+- **Switching costs**: [How do network effects create switching costs?]
+
+#### Quality Gate
+
+- At least one collaboration or shared value mechanic must be selected
+- Implementation plan must be created
+- Network effects must be measurable
+- Retention impact must be defined
+- Switching costs must be identified
+
+**Critical Rule**: Every product must include at least one "collaboration or shared value" mechanic — even if minimal. Most niche SaaS dies because it's single-player only.
+
+### 3. Moat Map
+
+**CRITICAL**: Pick at least 2 moat types with implementation plan. **Data Moat is strongly recommended as one of the 2+ moat types. Network Effects (from collaboration loops) is also strongly recommended.**
 
 #### Selected Moat Types
 
@@ -417,14 +505,15 @@ Choose from these 6 moat types:
 
 ## Quality Criteria
 - **Data Moat Thesis is complete** (proprietary data, compounding mechanism, 10× value, feedback loop)
-- At least 2 moat types selected with implementation plan (Data Moat strongly recommended)
+- **Network Effects or Collaboration Loops are defined** (at least one collaboration or shared value mechanic selected)
+- At least 2 moat types selected with implementation plan (Data Moat and Network Effects strongly recommended)
 - Retention thesis is clear (habit/frequency driver)
 - Expansion model is defined (seat/usage/tier)
 - Churn risks identified with counter-features
 - Lifecycle state machine is complete
 - Activation → habit → expansion plan is clear
 - Churn-prevention triggers are defined
-- Strategy converts PMF into defensibility + expansion revenue
+- Strategy converts PMD into defensibility + expansion revenue
 
 ## Rules
 - Must reference validated PMF (insight validation must be complete)

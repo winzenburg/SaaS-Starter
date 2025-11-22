@@ -78,7 +78,8 @@ Insight/Narrative Brief → Demand Validation (Greg style) → Moat + Retention 
 **Required Artifacts**:
 - Moat & MRR Strategy document (`/docs/product/MOAT-MRR-<product>.md`)
 - **Data Moat Thesis** (REQUIRED: proprietary data, compounding mechanism, 10× value, feedback loop)
-- **Moat map** (2+ types selected with implementation plan, Data Moat strongly recommended)
+- **Network Effects or Collaboration Loops** (REQUIRED: at least one collaboration or shared value mechanic)
+- **Moat map** (2+ types selected with implementation plan, Data Moat and Network Effects strongly recommended)
 - **Retention thesis** (habit/frequency driver)
 - **Expansion model** (seat/usage/tier)
 - **Churn risks & counter-features**
@@ -88,7 +89,8 @@ Insight/Narrative Brief → Demand Validation (Greg style) → Moat + Retention 
 
 **Deliverables**:
 - **Data Moat Thesis completed** (proprietary data, compounding mechanism, 10× value, feedback loop)
-- At least 2 moat types mapped with implementation plan (Data Moat strongly recommended)
+- **Network Effects or Collaboration Loops defined** (at least one collaboration or shared value mechanic selected)
+- At least 2 moat types mapped with implementation plan (Data Moat and Network Effects strongly recommended)
 - Clear retention thesis (habit/frequency driver)
 - Expansion model defined (seat/usage/tier)
 - Churn risks identified with counter-features
@@ -98,7 +100,8 @@ Insight/Narrative Brief → Demand Validation (Greg style) → Moat + Retention 
 
 **Quality Gate**: 
 - **Data Moat Thesis must be complete** (proprietary data, compounding mechanism, 10× value, feedback loop)
-- Moat map must include at least 2 moat types (Data Moat strongly recommended)
+- **Network Effects or Collaboration Loops must be defined** (at least one collaboration or shared value mechanic selected)
+- Moat map must include at least 2 moat types (Data Moat and Network Effects strongly recommended)
 - Retention thesis must be clear (habit/frequency driver)
 - Expansion model must align with Monetization Wedge
 - Lifecycle state machine must be complete
@@ -119,7 +122,8 @@ Insight/Narrative Brief → Demand Validation (Greg style) → Moat + Retention 
 - ✅ **Retention thesis defined** (habit/frequency driver)
 - ✅ **Monetization wedge defined** (first paid moment, expansion revenue, value metric)
 - ✅ **Data Moat Thesis completed** (proprietary data, compounding mechanism, 10× value, feedback loop)
-- ✅ **Moat map completed** (2+ types with implementation plan, Data Moat strongly recommended)
+- ✅ **Network Effects or Collaboration Loops defined** (at least one collaboration or shared value mechanic)
+- ✅ **Moat map completed** (2+ types with implementation plan, Data Moat and Network Effects strongly recommended)
 - ✅ **Lifecycle state machine designed**
 - ✅ **Churn-prevention triggers defined**
 - ✅ Durability Filter passed
@@ -152,7 +156,8 @@ Moat & MRR validation is considered done when:
 - ✅ **Retention thesis defined** (habit/frequency driver)
 - ✅ **Monetization wedge defined** (first paid moment, expansion revenue, value metric)
 - ✅ **Data Moat Thesis completed** (proprietary data, compounding mechanism, 10× value, feedback loop)
-- ✅ **Moat map completed** (2+ types with implementation plan, Data Moat strongly recommended)
+- ✅ **Network Effects or Collaboration Loops defined** (at least one collaboration or shared value mechanic)
+- ✅ **Moat map completed** (2+ types with implementation plan, Data Moat and Network Effects strongly recommended)
 - ✅ **Lifecycle state machine designed**
 - ✅ **Activation → habit → expansion plan created**
 - ✅ **Churn-prevention triggers defined**
@@ -170,9 +175,10 @@ Each step must pass quality gates before proceeding:
 - **Insight Brief**: Validated, durability scored, recurring job + budgeted buyer confirmed
 - **Desirability Signal**: At least 3 tests passed, emotional attachment validated
 - **Data Moat Thesis**: Proprietary data, compounding mechanism, 10× value, feedback loop defined
+- **Network Effects or Collaboration Loops**: At least one collaboration or shared value mechanic defined
 - **Retention Thesis**: Clear habit/frequency driver
 - **Monetization Wedge**: First paid moment, expansion revenue, value metric defined
-- **Moat Map**: At least 2 moat types with implementation plan (Data Moat strongly recommended)
+- **Moat Map**: At least 2 moat types with implementation plan (Data Moat and Network Effects strongly recommended)
 - **Lifecycle State Machine**: Complete with all states and transitions
 - **Gate Decision**: Clear and justified
 
