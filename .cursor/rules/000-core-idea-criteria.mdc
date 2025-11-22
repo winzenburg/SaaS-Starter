@@ -13,11 +13,12 @@ If not: pivot or kill.
 
 ## Validation
 
-Before pre-build validation (`.cursor/rules/000-playbook-pre-build-validation.mdc`), verify:
+Before pre-build validation (`.cursor/rules/200-playbook-insight-validation.mdc`), verify:
 
 - [ ] Identity-level pain identified (not just functional pain)
 - [ ] Ongoing, recurring need confirmed (not one-time)
 - [ ] Distribution wedge identified (how it spreads naturally)
 - [ ] Insight matches community (unfair insight + high-heat community align)
+- [ ] **Durability Filter passed** (see `.cursor/rules/200-playbook-insight-validation.mdc`)
 
 If any criteria missing → pivot idea or kill it. Do not proceed to validation.

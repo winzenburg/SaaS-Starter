@@ -176,7 +176,80 @@ Output: /docs/product/PRD-<feature>.md
 - Pricing strategy prevents "free audience, no business"
 - Monetization wedge designed (not just community growth)
 
-### 10. Retention Thesis
+### 10. Durability Filter
+
+**CRITICAL**: Some niches are trend-spikes, not durable markets. Isenberg is great at catching waves, but defensive moat + enduring MRR requires filtering for structural vs. cyclical pain, recurring workflow vs. novelty, budgeted spend vs. hobby spend.
+
+#### Scoring Criteria (Score 1-5 for each)
+
+##### 1. Frequency of the Job
+- **5**: Daily/weekly recurring job
+- **4**: Monthly recurring job
+- **3**: Quarterly recurring job
+- **2**: Occasional/seasonal job
+- **1**: One-time or rare job
+
+##### 2. Economic Buyer Has Budget
+- **5**: Budgeted spend, enterprise buyer
+- **4**: Budgeted spend, SMB buyer
+- **3**: Discretionary spend, but regular
+- **2**: Hobby spend, occasional
+- **1**: No budget, free only
+
+##### 3. Problem Exists Independent of Hype
+- **5**: Structural pain, exists regardless of trends
+- **4**: Long-term pain, not trend-dependent
+- **3**: Pain exists but may be amplified by trends
+- **2**: Trend-dependent pain, may fade
+- **1**: Purely trend-driven, likely temporary
+
+##### 4. Users Would Be Upset If It Disappeared
+- **5**: Critical to operations, high emotional attachment
+- **4**: Important to workflow, would be missed
+- **3**: Useful but replaceable
+- **2**: Nice to have, low attachment
+- **1**: No attachment, easily forgotten
+
+##### 5. Clear Path to Switching Costs / Workflow Embed
+- **5**: Deep workflow integration, high switching costs
+- **4**: Moderate integration, some switching costs
+- **3**: Light integration, minimal switching costs
+- **2**: No integration, easy to switch
+- **1**: No switching costs, purely transactional
+
+#### Durability Assessment
+
+**Total Score (out of 25)**:
+
+- **Durable Market (18-25)**: 
+  - **Treatment**: Compounding SaaS asset
+  - **Strategy**: Build for long-term MRR
+  - **Investment**: Full product development
+  - **Moat focus**: Structural moats (data, workflow, network effects)
+
+- **Cash-Flow Micro-Bet (10-17)**: 
+  - **Treatment**: Cash-flow micro-bet, not compounding asset
+  - **Strategy**: Build for short-term revenue, expect trend fade
+  - **Investment**: Minimal viable product, fast iteration
+  - **Moat focus**: Community moat only, expect competition
+
+- **Low Durability (5-9)**: 
+  - **Treatment**: Consider pivot or kill
+  - **Strategy**: Not recommended unless strong distribution wedge
+  - **Investment**: Minimal, validate quickly
+  - **Moat focus**: None, likely temporary
+
+#### Strategic Recommendation
+
+Based on durability score:
+- **Product strategy**: Long-term vs. short-term
+- **Investment level**: Full development vs. MVP
+- **Moat strategy**: Structural moats vs. community moat only
+- **Expectations**: Compounding asset vs. cash-flow micro-bet
+
+**Critical Rule**: If a niche fails durability, still build — but treat it like a cash-flow micro-bet, not a compounding SaaS asset.
+
+### 11. Retention Thesis
 
 **CRITICAL**: MRR durability = retention architecture. Many niche products die from "strong launch, weak week-8 retention." Retention must be designed in, not patched later.
 
@@ -221,7 +294,7 @@ Output: /docs/product/PRD-<feature>.md
 - Habit loop/ritual must be designed
 - Retention mechanics must be designed in (not patched later)
 
-### 11. 10 High-Velocity Tests
+### 12. 10 High-Velocity Tests
 - **Test 1**: [Name] - [Method] - [Success criteria] - [Timeline]
 - **Test 2**: [Name] - [Method] - [Success criteria] - [Timeline]
 - **Test 3**: [Name] - [Method] - [Success criteria] - [Timeline]
@@ -235,7 +308,7 @@ Output: /docs/product/PRD-<feature>.md
 
 **Note**: High-velocity tests are fast, low-cost ways to validate demand before building.
 
-### 12. Lo-Fi Validation Plan
+### 13. Lo-Fi Validation Plan
 - **Email validation**: [How to test via email]
 - **Landing page**: [What landing page tests demand?]
 - **Loom demo**: [How to use Loom to validate interest?]
@@ -244,28 +317,28 @@ Output: /docs/product/PRD-<feature>.md
 - **Timeline**: [When to run each validation?]
 - **Success criteria**: [What indicates validation?]
 
-### 13. Success Metrics (leading/lagging)
+### 14. Success Metrics (leading/lagging)
 - **Leading indicators**: Predictive metrics (engagement, time to value, word-of-mouth)
 - **Lagging indicators**: Outcome metrics (conversion, retention, revenue)
 - **Baseline metrics**: Current state
 - **Target metrics**: Desired state
 - **Measurement plan**: How to measure
 
-### 14. Risks + Mitigations
+### 15. Risks + Mitigations
 - **Desirability risks**: What if users don't want this?
 - **Buildability risks**: What if we can't build this?
 - **Distribution risks**: What if we can't reach users?
 - **Timing risks**: What if timing is wrong?
 - **Mitigation strategies**: How to mitigate each risk
 
-### 15. Rollout Plan with Feature Flags
+### 16. Rollout Plan with Feature Flags
 - **Feature flag name**: [Name]
 - **Rollout stages**: 0% → 10% → 50% → 100%
 - **Success criteria for each stage**: [Criteria]
 - **Rollback plan**: [How to rollback]
 - **Monitoring plan**: [What to monitor]
 
-### 16. Analytics Events Schema
+### 17. Analytics Events Schema
 - **Event names**: [List]
 - **Event properties**: [Properties for each event]
 - **When events fire**: [Triggers]
@@ -282,13 +355,15 @@ Output: /docs/product/PRD-<feature>.md
 8. Answer "If users love this, what will they tell friends?"
 9. Plan distribution from Day 1
 10. **Define Monetization Wedge** (first paid moment, expansion revenue, value metric)
-11. **Define Retention Thesis** (recurring job, frequency driver, habit loop)
-12. Design 10 High-Velocity Tests
-13. Create Lo-Fi Validation Plan
-14. Define success metrics (leading/lagging)
-15. Identify risks and mitigations
-16. Create rollout plan with feature flags
-17. Define analytics events schema
+11. **Score Durability Filter** (frequency, budget, independent of hype, upset if disappeared, switching costs)
+12. **Assess Durability** (Durable Market | Cash-Flow Micro-Bet | Low Durability)
+13. **Define Retention Thesis** (recurring job, frequency driver, habit loop)
+14. Design 10 High-Velocity Tests
+15. Create Lo-Fi Validation Plan
+16. Define success metrics (leading/lagging)
+17. Identify risks and mitigations
+18. Create rollout plan with feature flags
+19. Define analytics events schema
 16. Create PRD document
 17. Get stakeholder alignment
 
@@ -301,6 +376,9 @@ Output: /docs/product/PRD-<feature>.md
 - "If users love this" question is answered
 - Distribution from Day 1 is planned
 - **Monetization Wedge is defined** (first paid moment, expansion revenue, value metric)
+- **Durability Filter is scored** (all 5 criteria scored 1-5)
+- **Durability assessment is clear** (Durable Market | Cash-Flow Micro-Bet | Low Durability)
+- **Strategic recommendation aligned with durability** (long-term vs. short-term strategy)
 - **Retention Thesis is defined** (recurring job, frequency driver, habit loop)
 - **Retention mechanics are designed in** (not patched later)
 - 10 High-Velocity Tests are actionable

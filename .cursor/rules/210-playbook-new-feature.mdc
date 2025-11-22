@@ -159,8 +159,48 @@ If green-light → Architecture Phase:
 
 **Critical Rule**: Many niche products die from "strong launch, weak week-8 retention." Retention must be designed in, not patched later.
 
-### 5. Market-Scanner → Community Heat + Moat Design
-**Input**: Insight Brief, PRD  
+### 5. Durability Filter
+**Input**: PRD, Community Heat Map  
+**Output**: Durability Assessment
+
+**Agent**: Market Scanner / Product Strategist
+
+**Required Artifacts**:
+- Durability Filter scoring in PRD or market scan
+- **Frequency of the job** (scored 1-5)
+- **Economic buyer has budget** (scored 1-5)
+- **Problem exists independent of hype** (scored 1-5)
+- **Users would be upset if it disappeared** (scored 1-5)
+- **Clear path to switching costs / workflow embed** (scored 1-5)
+- Total durability score (out of 25)
+- Durability assessment: **Durable Market** | **Cash-Flow Micro-Bet** | **Low Durability**
+
+**Scoring Criteria** (same as insight validation playbook):
+- Frequency of the job (1-5)
+- Economic buyer has budget (1-5)
+- Problem exists independent of hype (1-5)
+- Users would be upset if it disappeared (1-5)
+- Clear path to switching costs / workflow embed (1-5)
+
+**Durability Assessment**:
+- **Durable Market (18-25)**: Compounding SaaS asset, build for long-term MRR
+- **Cash-Flow Micro-Bet (10-17)**: Cash-flow micro-bet, build for short-term revenue, expect trend fade
+- **Low Durability (5-9)**: Consider pivot or kill
+
+**Strategic Recommendation**:
+- If **Durable Market**: Full product development, structural moats, long-term investment
+- If **Cash-Flow Micro-Bet**: Minimal viable product, fast iteration, community moat only, expect competition
+- If **Low Durability**: Minimal investment, validate quickly, likely pivot or kill
+
+**Quality Gate**: 
+- Durability Filter must be scored
+- Assessment must be clear
+- Strategic recommendation must align with durability score
+
+**Critical Rule**: Some niches are trend-spikes, not durable markets. Filter for structural vs. cyclical pain, recurring workflow vs. novelty, budgeted spend vs. hobby spend.
+
+### 6. Market-Scanner → Community Heat + Moat Design
+**Input**: Insight Brief, PRD, Durability Assessment  
 **Output**: Community Heat Analysis + Moat Design
 
 **Agent**: Market Scanner
@@ -198,7 +238,7 @@ If green-light → Architecture Phase:
 - **Moat implementation plan created**
 - **Moat design goes beyond community (structural defensibility)**
 
-### 6. Run Validation Tests (emails, DMs, landing page)
+### 7. Run Validation Tests (emails, DMs, landing page)
 **Input**: PRD, Community Heat Map, Lo-Fi Validation Plan  
 **Output**: Validation test results
 
@@ -221,7 +261,7 @@ If green-light → Architecture Phase:
 
 **Quality Gate**: At least 3 demand-validation tests must pass. See `.cursor/rules/000-playbook-pre-build-validation.mdc` for detailed test requirements.
 
-### 7. Green-Light Decision
+### 8. Green-Light Decision
 **Input**: All validation results  
 **Output**: Go/No-Go decision
 
@@ -232,6 +272,8 @@ If green-light → Architecture Phase:
 - ✅ Unfair insight validated
 - ✅ Value Story resonates
 - ✅ **Monetization Wedge defined** (first paid moment, expansion revenue, value metric)
+- ✅ **Durability Filter scored** (frequency, budget, independent of hype, upset if disappeared, switching costs)
+- ✅ **Durability assessment clear** (Durable Market | Cash-Flow Micro-Bet | Low Durability)
 - ✅ **Retention Thesis defined** (recurring job, frequency driver, habit loop)
 - ✅ High-heat community identified
 - ✅ Social Moat potential exists

@@ -89,7 +89,80 @@ For each competitor:
 - **Medium heat communities**: [List with scores]
 - **Low heat communities**: [List with scores]
 
-### 4. Moat Design
+### 4. Durability Filter
+
+**CRITICAL**: Some niches are trend-spikes, not durable markets. Isenberg is great at catching waves, but defensive moat + enduring MRR requires filtering for structural vs. cyclical pain, recurring workflow vs. novelty, budgeted spend vs. hobby spend.
+
+#### Scoring Criteria (Score 1-5 for each)
+
+##### 1. Frequency of the Job
+- **5**: Daily/weekly recurring job
+- **4**: Monthly recurring job
+- **3**: Quarterly recurring job
+- **2**: Occasional/seasonal job
+- **1**: One-time or rare job
+
+##### 2. Economic Buyer Has Budget
+- **5**: Budgeted spend, enterprise buyer
+- **4**: Budgeted spend, SMB buyer
+- **3**: Discretionary spend, but regular
+- **2**: Hobby spend, occasional
+- **1**: No budget, free only
+
+##### 3. Problem Exists Independent of Hype
+- **5**: Structural pain, exists regardless of trends
+- **4**: Long-term pain, not trend-dependent
+- **3**: Pain exists but may be amplified by trends
+- **2**: Trend-dependent pain, may fade
+- **1**: Purely trend-driven, likely temporary
+
+##### 4. Users Would Be Upset If It Disappeared
+- **5**: Critical to operations, high emotional attachment
+- **4**: Important to workflow, would be missed
+- **3**: Useful but replaceable
+- **2**: Nice to have, low attachment
+- **1**: No attachment, easily forgotten
+
+##### 5. Clear Path to Switching Costs / Workflow Embed
+- **5**: Deep workflow integration, high switching costs
+- **4**: Moderate integration, some switching costs
+- **3**: Light integration, minimal switching costs
+- **2**: No integration, easy to switch
+- **1**: No switching costs, purely transactional
+
+#### Durability Assessment
+
+**Total Score (out of 25)**:
+
+- **Durable Market (18-25)**: 
+  - **Treatment**: Compounding SaaS asset
+  - **Strategy**: Build for long-term MRR
+  - **Investment**: Full product development
+  - **Moat focus**: Structural moats (data, workflow, network effects)
+
+- **Cash-Flow Micro-Bet (10-17)**: 
+  - **Treatment**: Cash-flow micro-bet, not compounding asset
+  - **Strategy**: Build for short-term revenue, expect trend fade
+  - **Investment**: Minimal viable product, fast iteration
+  - **Moat focus**: Community moat only, expect competition
+
+- **Low Durability (5-9)**: 
+  - **Treatment**: Consider pivot or kill
+  - **Strategy**: Not recommended unless strong distribution wedge
+  - **Investment**: Minimal, validate quickly
+  - **Moat focus**: None, likely temporary
+
+#### Strategic Recommendation
+
+Based on durability score, provide:
+- **Product strategy**: Long-term vs. short-term
+- **Investment level**: Full development vs. MVP
+- **Moat strategy**: Structural moats vs. community moat only
+- **Expectations**: Compounding asset vs. cash-flow micro-bet
+
+**Critical Rule**: If a niche fails durability, still build — but treat it like a cash-flow micro-bet, not a compounding SaaS asset.
+
+### 5. Moat Design
 
 **CRITICAL**: Niche heat gets users; moats keep them. Community alone can be copied unless you lock in more structural moats.
 
@@ -152,7 +225,7 @@ For each selected moat type, document:
 - Moats must go beyond community (structural defensibility)
 - Moats must be buildable over time (not just theoretical)
 
-### 5. Where Does This Product Naturally Spread? Why?
+### 6. Where Does This Product Naturally Spread? Why?
 
 #### Natural Distribution Patterns
 - **Word-of-mouth triggers**: [What makes people share this?]
@@ -166,7 +239,7 @@ For each selected moat type, document:
 - **Network effects**: [What network effects exist?]
 - **Emotional resonance**: [What makes people want to share?]
 
-### 6. Social Moat Potential (Greg's Idea)
+### 7. Social Moat Potential (Greg's Idea)
 
 #### What Is a Social Moat?
 A social moat is when your product becomes part of a community's identity, making it hard for competitors to displace you even if they have better features.
@@ -184,7 +257,7 @@ A social moat is when your product becomes part of a community's identity, makin
 - Platforms where leaving means leaving the community
 - Products that signal identity/status within a community
 
-### 7. Switching Costs + Lock-In
+### 8. Switching Costs + Lock-In
 
 #### Data Portability
 - Can users export their data?
@@ -206,7 +279,7 @@ A social moat is when your product becomes part of a community's identity, makin
 - What habits are formed?
 - What training is needed?
 
-### 8. Differentiation Wedges
+### 9. Differentiation Wedges
 
 #### Community-Based Differentiation
 - **Unique community access**: [What community can we uniquely serve?]
@@ -223,7 +296,7 @@ A social moat is when your product becomes part of a community's identity, makin
 - Community ownership models
 - Value-sharing with community
 
-### 9. Risks/Trends
+### 10. Risks/Trends
 
 #### Market Risks
 - Community fragmentation
@@ -246,21 +319,26 @@ A social moat is when your product becomes part of a community's identity, makin
 2. Research communities (primary focus)
 3. Identify niche internet tribes and micro-communities
 4. Assess Community Heat (pain + activation energy)
-5. **Design Moats** (select at least 2 moat types with implementation plan)
-6. Analyze natural distribution patterns
-7. Assess Social Moat potential
-8. Research top 3 direct competitors (secondary)
-9. Identify substitutes and adjacent tools
-10. Analyze switching costs and lock-in
-11. Identify differentiation wedges
-12. Assess risks and trends
-13. Document findings
-14. Provide recommendations
+5. **Score Durability Filter** (frequency, budget, independent of hype, upset if disappeared, switching costs)
+6. **Assess Durability** (Durable Market | Cash-Flow Micro-Bet | Low Durability)
+7. **Design Moats** (select at least 2 moat types with implementation plan)
+8. Analyze natural distribution patterns
+9. Assess Social Moat potential
+10. Research top 3 direct competitors (secondary)
+11. Identify substitutes and adjacent tools
+12. Analyze switching costs and lock-in
+13. Identify differentiation wedges
+14. Assess risks and trends
+15. Document findings
+16. Provide recommendations (aligned with durability assessment)
 
 ## Quality Criteria
 - Research is community-first (not competitor-first)
 - Communities are specific and identifiable
 - Community Heat Analysis is comprehensive
+- **Durability Filter scored** (all 5 criteria scored 1-5)
+- **Durability assessment clear** (Durable Market | Cash-Flow Micro-Bet | Low Durability)
+- **Strategic recommendation aligned with durability** (long-term vs. short-term strategy)
 - **At least 2 moat types selected**
 - **Moat implementation plan created for each selected moat**
 - **Moats go beyond community (structural defensibility)**

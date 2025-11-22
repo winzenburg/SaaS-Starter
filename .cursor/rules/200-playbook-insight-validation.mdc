@@ -131,8 +131,94 @@ Unfair Insight Brief → Narrative 1-pager → Community Heat Map → 10 Lo-Fi T
 
 **Critical Rule**: Many niche products die from "strong launch, weak week-8 retention." Retention must be designed in, not patched later.
 
-### 5. Community Heat Map + Moat Design
-**Input**: Unfair Insight Brief, Narrative  
+### 5. Durability Filter
+**Input**: Unfair Insight Brief, Narrative, Community Heat Map  
+**Output**: Durability Assessment
+
+**Agent**: Market Scanner / Product Strategist
+
+**Required Artifacts**:
+- Durability Filter scoring in market scan or PRD
+- **Frequency of the job** (scored 1-5)
+- **Economic buyer has budget** (scored 1-5)
+- **Problem exists independent of hype** (scored 1-5)
+- **Users would be upset if it disappeared** (scored 1-5)
+- **Clear path to switching costs / workflow embed** (scored 1-5)
+- Total durability score (out of 25)
+- Durability assessment: **Durable Market** | **Cash-Flow Micro-Bet**
+
+**Scoring Criteria**:
+
+#### 1. Frequency of the Job (1-5)
+- **5**: Daily/weekly recurring job
+- **4**: Monthly recurring job
+- **3**: Quarterly recurring job
+- **2**: Occasional/seasonal job
+- **1**: One-time or rare job
+
+#### 2. Economic Buyer Has Budget (1-5)
+- **5**: Budgeted spend, enterprise buyer
+- **4**: Budgeted spend, SMB buyer
+- **3**: Discretionary spend, but regular
+- **2**: Hobby spend, occasional
+- **1**: No budget, free only
+
+#### 3. Problem Exists Independent of Hype (1-5)
+- **5**: Structural pain, exists regardless of trends
+- **4**: Long-term pain, not trend-dependent
+- **3**: Pain exists but may be amplified by trends
+- **2**: Trend-dependent pain, may fade
+- **1**: Purely trend-driven, likely temporary
+
+#### 4. Users Would Be Upset If It Disappeared (1-5)
+- **5**: Critical to operations, high emotional attachment
+- **4**: Important to workflow, would be missed
+- **3**: Useful but replaceable
+- **2**: Nice to have, low attachment
+- **1**: No attachment, easily forgotten
+
+#### 5. Clear Path to Switching Costs / Workflow Embed (1-5)
+- **5**: Deep workflow integration, high switching costs
+- **4**: Moderate integration, some switching costs
+- **3**: Light integration, minimal switching costs
+- **2**: No integration, easy to switch
+- **1**: No switching costs, purely transactional
+
+**Durability Assessment**:
+
+#### Durable Market (Score 18-25)
+- **Treatment**: Compounding SaaS asset
+- **Strategy**: Build for long-term MRR
+- **Investment**: Full product development
+- **Moat focus**: Structural moats (data, workflow, network effects)
+
+#### Cash-Flow Micro-Bet (Score 10-17)
+- **Treatment**: Cash-flow micro-bet, not compounding asset
+- **Strategy**: Build for short-term revenue, expect trend fade
+- **Investment**: Minimal viable product, fast iteration
+- **Moat focus**: Community moat only, expect competition
+
+#### Low Durability (Score 5-9)
+- **Treatment**: Consider pivot or kill
+- **Strategy**: Not recommended unless strong distribution wedge
+- **Investment**: Minimal, validate quickly
+- **Moat focus**: None, likely temporary
+
+**Deliverables**:
+- Durability scores for all 5 criteria
+- Total durability score
+- Durability assessment (Durable Market | Cash-Flow Micro-Bet | Low Durability)
+- Strategic recommendation based on durability
+
+**Quality Gate**: 
+- Durability Filter must be scored
+- Assessment must be clear (Durable Market | Cash-Flow Micro-Bet | Low Durability)
+- Strategic recommendation must align with durability score
+
+**Critical Rule**: Some niches are trend-spikes, not durable markets. Isenberg is great at catching waves, but defensive moat + enduring MRR requires filtering for structural vs. cyclical pain, recurring workflow vs. novelty, budgeted spend vs. hobby spend.
+
+### 6. Community Heat Map + Moat Design
+**Input**: Unfair Insight Brief, Narrative, Durability Assessment  
 **Output**: Community Heat Analysis + Moat Design
 
 **Agent**: Market Scanner
@@ -166,7 +252,7 @@ Unfair Insight Brief → Narrative 1-pager → Community Heat Map → 10 Lo-Fi T
 - At least 2 moat types selected
 - Moat implementation plan created
 
-### 6. 10 Lo-Fi Tests
+### 7. 10 Lo-Fi Tests
 **Input**: Insight Brief, Narrative, Retention Thesis, Community Heat Map  
 **Output**: 10 High-Velocity Tests
 
@@ -186,7 +272,7 @@ Unfair Insight Brief → Narrative 1-pager → Community Heat Map → 10 Lo-Fi T
 
 **Quality Gate**: All 10 tests must be actionable and low-cost
 
-### 7. "Would You Be Upset If This Disappeared?" Test
+### 8. "Would You Be Upset If This Disappeared?" Test
 **Input**: Insight Brief, Narrative, Community Heat Map  
 **Output**: Emotional attachment validation
 
@@ -206,7 +292,7 @@ Unfair Insight Brief → Narrative 1-pager → Community Heat Map → 10 Lo-Fi T
 
 **Quality Gate**: At least 30% of test participants should indicate they would be upset
 
-### 8. Landing Page + Waitlist Test
+### 9. Landing Page + Waitlist Test
 **Input**: Insight Brief, Narrative, Community Heat Map  
 **Output**: Landing page validation results
 
@@ -230,7 +316,7 @@ Unfair Insight Brief → Narrative 1-pager → Community Heat Map → 10 Lo-Fi T
 - Traffic from target community
 - Signups indicate genuine interest
 
-### 9. Manual Concierge/MVP Test
+### 10. Manual Concierge/MVP Test
 **Input**: All previous validation  
 **Output**: Manual service validation
 
@@ -254,7 +340,7 @@ Unfair Insight Brief → Narrative 1-pager → Community Heat Map → 10 Lo-Fi T
 - Positive feedback on value delivered
 - Customers would use automated version
 
-### 10. Decision Point: Proceed → Pivot → Kill
+### 11. Decision Point: Proceed → Pivot → Kill
 **Input**: All validation results  
 **Output**: Go/No-Go decision
 
@@ -281,6 +367,8 @@ Unfair Insight Brief → Narrative 1-pager → Community Heat Map → 10 Lo-Fi T
 - ✅ Manual concierge shows willingness to pay
 - ✅ Community Heat Map shows high-heat community
 - ✅ **Monetization Wedge defined** (first paid moment, expansion revenue, value metric)
+- ✅ **Durability Filter scored** (frequency, budget, independent of hype, upset if disappeared, switching costs)
+- ✅ **Durability assessment clear** (Durable Market | Cash-Flow Micro-Bet | Low Durability)
 - ✅ **At least 2 moat types selected and planned**
 - ✅ **Retention Thesis defined** (recurring job, frequency driver, habit loop)
 - ✅ Unfair insight is validated
@@ -306,6 +394,8 @@ Insight validation is considered done when:
 - ✅ Unfair Insight Brief created and validated
 - ✅ Narrative 1-pager created with emotional hook
 - ✅ **Monetization Wedge defined** (first paid moment, expansion revenue, value metric)
+- ✅ **Durability Filter scored** (all 5 criteria scored, total score calculated)
+- ✅ **Durability assessment clear** (Durable Market | Cash-Flow Micro-Bet | Low Durability)
 - ✅ **Retention Thesis defined** (recurring job, frequency driver, habit loop)
 - ✅ Community Heat Map identifies high-heat communities
 - ✅ **Moat Design completed (at least 2 moat types selected)**
@@ -326,6 +416,7 @@ Each step must pass quality gates before proceeding:
 - **Unfair Insight**: Unique and defensible
 - **Narrative**: Clear emotional hook and transformation
 - **Monetization Wedge**: First paid moment, expansion revenue, and value metric defined
+- **Durability Filter**: All 5 criteria scored, assessment clear (Durable Market | Cash-Flow Micro-Bet | Low Durability)
 - **Retention Thesis**: Recurring job, frequency driver, and habit loop defined
 - **Community Heat Map**: High-heat community identified
 - **Moat Design**: At least 2 moat types selected with implementation plan
