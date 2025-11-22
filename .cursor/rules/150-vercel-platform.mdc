@@ -1,5 +1,12 @@
-# Vercel Platform
+# Vercel Platform Conventions
 
-- Feature flags required for risky rollouts
-- Cron jobs idempotent + observable
-- Vercel Observability used by default
+Goal: Prevent path/layout disagreements between agents.
+
+- Default runtime `nodejs`
+- Edge only when latency-critical and ADR says so
+- Use Vercel Cron for background jobs; jobs must be idempotent + observable
+- Use Vercel Observability by default; Sentry optional add-on
+- Parallel agent worktrees are a Cursor 2.x feature relying on git worktrees
+- Feature flags via `flags` package (not `@vercel/flags`)
+- Cron jobs in `/app/api/cron/**/route.ts`
+- Environment variables via Vercel dashboard or `.env.local`
