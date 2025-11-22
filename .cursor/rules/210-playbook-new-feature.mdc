@@ -169,40 +169,28 @@ flows/edge cases (parallel OK) → ADR + schema + router plan → test plan + st
 ## Architecture Phase: Build After Validation
 
 ### 6. IA Designer flows/edge cases (parallel OK)
-**Input**: Feature request or user need  
-**Output**: Product Requirements Document
-
-**Required Artifacts**:
-- PRD document in `docs/prd/<feature-name>.md`
-- User stories and acceptance criteria
-- Success metrics definition
-- Risk assessment
-
-**Deliverables**:
-- User problems and JTBD (Jobs To Be Done) documented
-- Success metrics defined
-- Edge cases and failure modes documented
-- Stakeholder alignment obtained
-
-### 2. IA Designer flows/edge cases (parallel OK)
-**Input**: PRD  
+**Input**: PRD (after green-light)  
 **Output**: Information architecture and user flows
 
+**Agent**: IA Designer
+
 **Required Artifacts**:
-- User flow diagrams in `docs/flows/<feature-name>/`
+- IA document in `docs/ux/IA-<feature>.md`
+- User flow diagrams in `docs/ux/user-flows-<feature>.md` (Mermaid ok)
 - Edge case documentation
 - Wireframes or mockups
 - IA documentation
 
 **Deliverables**:
 - Information architecture designed
-- User flows created and validated
-- Edge cases documented
-- Interaction patterns defined
+- User flows created (happy path + failure paths)
+- Edge cases documented (empty/loading/error states)
+- Permission-based variants defined
+- Keyboard/focus expectations specified
 
-**Note**: Can run in parallel with PRD refinement
+**Note**: Can run in parallel with other architecture work
 
-### 3. Engineering Architect ADR + schema + router plan
+### 7. Engineering Architect ADR + schema + router plan
 **Input**: PRD, flows  
 **Output**: Architecture Decision Record, schema design, router plan
 
