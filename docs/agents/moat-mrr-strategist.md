@@ -29,6 +29,7 @@ After validating PMF, you need to convert that validation into a defensible, exp
 - **Data Moat Thesis is REQUIRED** (proprietary data, compounding mechanism, 10× value, feedback loop)
 - **Network Effects or Collaboration Loops are REQUIRED** (at least one collaboration or shared value mechanic)
 - At least 2 moat types must be selected and mapped (Data Moat and Network Effects strongly recommended)
+- **JTBD Frequency Modeling is REQUIRED** (frequency map, job triggers, frequency increase factors, frequency boosters if rare)
 - Retention thesis must be clear (habit/frequency driver)
 - **Expansion Revenue Strategy is REQUIRED** (at least one expansion revenue lever: usage-based, seats, add-ons, premium automations, AI insights, compliance/integrations, advanced analytics, custom workflows)
 - Churn risks must be identified with counter-features
@@ -297,7 +298,128 @@ Choose from these 6 moat types:
 - What metrics indicate moat is working?
 - What signals indicate moat is weak?
 
-### 4. Retention Thesis (Habit/Frequency Driver)
+### 4. Jobs-to-be-Done (JTBD) Frequency Modeling (REQUIRED)
+
+**CRITICAL**: Greg focuses on emotional narrative and problem resonance — great for early demand. But for retention, it's all about frequency. If the core job isn't frequent, MRR collapses after the initial honeymoon. Every feature/product must include a "JTBD Frequency Map."
+
+#### Why JTBD Frequency Matters
+
+- **Retention depends on frequency**: Weekly/daily jobs drive retention; rare jobs lead to churn
+- **MRR durability**: Frequent jobs create habit loops and recurring value
+- **Honeymoon period**: Initial excitement fades; frequency keeps the product alive
+- **Job triggers**: Understanding what triggers the job helps design retention mechanics
+
+#### Required: JTBD Frequency Map
+
+**CRITICAL**: Map the frequency of the core job-to-be-done.
+
+##### How Often Does the Job Occur?
+
+**Required**: Define the frequency of the core job.
+
+- **Daily jobs**: Job occurs daily (highest retention potential)
+- **Weekly jobs**: Job occurs weekly (strong retention potential)
+- **Monthly jobs**: Job occurs monthly (moderate retention potential)
+- **Quarterly jobs**: Job occurs quarterly (low retention potential)
+- **Event-driven jobs**: Job occurs when specific events happen (variable retention)
+- **Rare jobs**: Job occurs rarely (low retention potential, needs frequency boosters)
+
+**Examples**:
+- **Daily**: Daily standup, daily reporting, daily monitoring
+- **Weekly**: Weekly planning, weekly reviews, weekly reports
+- **Monthly**: Monthly reporting, monthly planning, monthly audits
+- **Quarterly**: Quarterly reviews, quarterly planning
+- **Event-driven**: Onboarding new team member, launching campaign, compliance audit
+- **Rare**: One-time setup, annual review, emergency response
+
+##### What Triggers the Job?
+
+**Required**: Define what triggers the job to occur.
+
+- **Time-based triggers**: Scheduled time (daily at 9am, weekly on Monday)
+- **Event-based triggers**: Specific events (new user signs up, error occurs, milestone reached)
+- **Action-based triggers**: User actions (completes task, reaches limit, needs update)
+- **External triggers**: External factors (market changes, compliance requirements, team growth)
+- **Internal triggers**: Internal factors (deadline approaching, goal achieved, problem detected)
+
+**Examples**:
+- **Time-based**: "Every Monday at 9am, team needs weekly planning"
+- **Event-based**: "When new team member joins, need to onboard them"
+- **Action-based**: "When user completes task, need to review results"
+- **External triggers**: "When compliance deadline approaches, need to audit"
+- **Internal triggers**: "When error rate exceeds threshold, need to investigate"
+
+##### What Increases the Frequency?
+
+**Required**: Define what increases the frequency of the job.
+
+- **Success factors**: What makes the job happen more often?
+- **Growth factors**: What causes the job to scale?
+- **Value factors**: What makes the job more valuable when done frequently?
+- **Dependency factors**: What creates dependencies that increase frequency?
+
+**Examples**:
+- **Success factors**: More successful outcomes → more frequent job execution
+- **Growth factors**: Team growth → more frequent collaboration needs
+- **Value factors**: More frequent execution → better outcomes → higher value
+- **Dependency factors**: More integrations → more frequent sync needs
+
+#### If the Job Is Rare: Frequency Boosters (REQUIRED)
+
+**CRITICAL**: If the core job is rare (quarterly, event-driven, or one-time), you need frequency boosters to keep the product alive. Without frequency boosters, MRR collapses after the honeymoon period.
+
+##### Required Frequency Boosters (Choose at least one):
+
+1. **Alerts**
+   - Product sends alerts/notifications to bring users back
+   - **Example**: Weekly digest emails, error alerts, milestone notifications
+   - **Implementation**: [How to implement alerts?]
+
+2. **Monitoring**
+   - Product monitors conditions and surfaces insights regularly
+   - **Example**: Dashboard updates, health checks, performance monitoring
+   - **Implementation**: [How to implement monitoring?]
+
+3. **Workflows**
+   - Product automates workflows that require regular attention
+   - **Example**: Automated reports, scheduled tasks, recurring processes
+   - **Implementation**: [How to implement workflows?]
+
+4. **Repeated Jobs**
+   - Product creates repeated instances of the job
+   - **Example**: Multiple projects, recurring campaigns, batch processing
+   - **Implementation**: [How to implement repeated jobs?]
+
+5. **Recurring Tasks**
+   - Product creates recurring tasks that need regular completion
+   - **Example**: Weekly reviews, monthly audits, quarterly planning
+   - **Implementation**: [How to implement recurring tasks?]
+
+#### JTBD Frequency Strategy
+
+**CRITICAL**: Design the frequency strategy to ensure retention.
+
+- **Target frequency**: [What's the target frequency for retention?]
+- **Frequency boosters**: [Which frequency boosters are needed?]
+- **Retention mechanism**: [How does frequency drive retention?]
+- **Habit formation**: [How does frequency create habits?]
+
+**Example Strategies**:
+- **Rare job + Alerts**: One-time setup job → weekly alerts → monthly check-ins → retention
+- **Event-driven + Monitoring**: Event-driven job → continuous monitoring → weekly insights → retention
+- **Quarterly + Workflows**: Quarterly job → monthly workflows → weekly updates → retention
+
+#### Quality Gate
+
+- JTBD frequency must be clearly defined (daily/weekly/monthly/quarterly/event-driven/rare)
+- Job triggers must be identified
+- Frequency increase factors must be defined
+- If job is rare, frequency boosters must be selected (at least one)
+- Frequency strategy must ensure retention
+
+**Critical Rule**: If the core job isn't frequent, MRR collapses after the initial honeymoon. Every feature/product must include a "JTBD Frequency Map." If the job is rare, you need frequency boosters (alerts, monitoring, workflows, repeated jobs, recurring tasks) to keep the product alive.
+
+### 5. Retention Thesis (Habit/Frequency Driver)
 
 #### Why Do Users Come Back Weekly/Monthly?
 - What recurring job drives return visits?
@@ -586,6 +708,7 @@ Choose at least one (or combine multiple):
 - **Data Moat Thesis is complete** (proprietary data, compounding mechanism, 10× value, feedback loop)
 - **Network Effects or Collaboration Loops are defined** (at least one collaboration or shared value mechanic selected)
 - At least 2 moat types selected with implementation plan (Data Moat and Network Effects strongly recommended)
+- **JTBD Frequency Modeling is complete** (frequency map defined, job triggers identified, frequency increase factors defined, frequency boosters selected if job is rare)
 - Retention thesis is clear (habit/frequency driver)
 - **Expansion Revenue Strategy is complete** (at least one expansion revenue lever selected, expansion path defined, expansion triggers natural, expansion metrics measurable)
 - Churn risks identified with counter-features

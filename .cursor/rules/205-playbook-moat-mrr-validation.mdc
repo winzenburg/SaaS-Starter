@@ -80,6 +80,7 @@ Insight/Narrative Brief → Demand Validation (Greg style) → Moat + Retention 
 - **Data Moat Thesis** (REQUIRED: proprietary data, compounding mechanism, 10× value, feedback loop)
 - **Network Effects or Collaboration Loops** (REQUIRED: at least one collaboration or shared value mechanic)
 - **Moat map** (2+ types selected with implementation plan, Data Moat and Network Effects strongly recommended)
+- **JTBD Frequency Modeling** (REQUIRED: frequency map, job triggers, frequency increase factors, frequency boosters if rare)
 - **Retention thesis** (habit/frequency driver)
 - **Expansion Revenue Strategy** (REQUIRED: at least one expansion revenue lever: usage-based, seats, add-ons, premium automations, AI insights, compliance/integrations, advanced analytics, custom workflows)
 - **Churn risks & counter-features**
@@ -91,6 +92,7 @@ Insight/Narrative Brief → Demand Validation (Greg style) → Moat + Retention 
 - **Data Moat Thesis completed** (proprietary data, compounding mechanism, 10× value, feedback loop)
 - **Network Effects or Collaboration Loops defined** (at least one collaboration or shared value mechanic selected)
 - At least 2 moat types mapped with implementation plan (Data Moat and Network Effects strongly recommended)
+- **JTBD Frequency Modeling completed** (frequency map defined, job triggers identified, frequency increase factors defined, frequency boosters selected if job is rare)
 - Clear retention thesis (habit/frequency driver)
 - **Expansion Revenue Strategy completed** (at least one expansion revenue lever selected, expansion path defined, expansion triggers natural, expansion metrics measurable)
 - Churn risks identified with counter-features
@@ -102,6 +104,7 @@ Insight/Narrative Brief → Demand Validation (Greg style) → Moat + Retention 
 - **Data Moat Thesis must be complete** (proprietary data, compounding mechanism, 10× value, feedback loop)
 - **Network Effects or Collaboration Loops must be defined** (at least one collaboration or shared value mechanic selected)
 - Moat map must include at least 2 moat types (Data Moat and Network Effects strongly recommended)
+- **JTBD Frequency Modeling must be complete** (frequency map defined, job triggers identified, frequency increase factors defined, frequency boosters selected if job is rare)
 - Retention thesis must be clear (habit/frequency driver)
 - **Expansion Revenue Strategy must be complete** (at least one expansion revenue lever selected, expansion path defined, expansion triggers natural, expansion metrics measurable)
 - Lifecycle state machine must be complete
@@ -120,6 +123,7 @@ Insight/Narrative Brief → Demand Validation (Greg style) → Moat + Retention 
 - ✅ Insight/Narrative Brief validated
 - ✅ **Desirability signal confirmed** (at least 3 tests passed)
 - ✅ **Retention thesis defined** (habit/frequency driver)
+- ✅ **JTBD Frequency Modeling completed** (frequency map defined, job triggers identified, frequency boosters selected if rare)
 - ✅ **Monetization wedge defined** (first paid moment, expansion revenue, value metric)
 - ✅ **Expansion Revenue Strategy completed** (at least one expansion revenue lever selected, expansion path defined)
 - ✅ **Data Moat Thesis completed** (proprietary data, compounding mechanism, 10× value, feedback loop)
@@ -155,6 +159,7 @@ Moat & MRR validation is considered done when:
 - ✅ Insight/Narrative Brief reviewed and validated
 - ✅ **Desirability signal confirmed** (at least 3 tests passed)
 - ✅ **Retention thesis defined** (habit/frequency driver)
+- ✅ **JTBD Frequency Modeling completed** (frequency map defined, job triggers identified, frequency boosters selected if rare)
 - ✅ **Monetization wedge defined** (first paid moment, expansion revenue, value metric)
 - ✅ **Expansion Revenue Strategy completed** (at least one expansion revenue lever selected, expansion path defined)
 - ✅ **Data Moat Thesis completed** (proprietary data, compounding mechanism, 10× value, feedback loop)
@@ -178,6 +183,7 @@ Each step must pass quality gates before proceeding:
 - **Desirability Signal**: At least 3 tests passed, emotional attachment validated
 - **Data Moat Thesis**: Proprietary data, compounding mechanism, 10× value, feedback loop defined
 - **Network Effects or Collaboration Loops**: At least one collaboration or shared value mechanic defined
+- **JTBD Frequency Modeling**: Frequency map defined, job triggers identified, frequency boosters selected if rare
 - **Retention Thesis**: Clear habit/frequency driver
 - **Monetization Wedge**: First paid moment, expansion revenue, value metric defined
 - **Expansion Revenue Strategy**: At least one expansion revenue lever selected, expansion path defined, expansion triggers natural
