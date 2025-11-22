@@ -148,7 +148,30 @@ Output: /docs/product/INSIGHT-<product>.md
 - **Wedge 2**: [Alternative entry point]
 - **Wedge 3**: [Alternative entry point]
 
-### 7. Recommendation: Proceed, Pivot, or Kill
+### 7. Monetization Wedge (Optional in Insight Brief, Required in PRD)
+
+**Note**: Monetization Wedge can be included in Insight Brief if known, but is required in PRD. This prevents "free audience, no business."
+
+#### What Is the First Paid Moment?
+- When does the user first pay?
+- What triggers the first payment?
+- What value justifies the first payment?
+- How early in the journey is the paid moment?
+
+#### What Is the Natural Expansion Revenue?
+- **Seats**: How does revenue grow with team size?
+- **Usage**: How does revenue grow with usage volume?
+- **Tiers**: How does revenue grow with feature tiers?
+- **Add-ons**: What additional products/services drive expansion?
+
+#### What Value Metric Scales with Customer Success?
+- **Value metric**: What do customers pay for? (users, API calls, storage, projects, etc.)
+- **Customer success alignment**: How does the value metric align with customer success?
+- **Scaling mechanism**: How does customer success drive higher value metric usage?
+
+**Note**: Full Monetization Wedge details should be developed in PRD by Product Strategist.
+
+### 8. Recommendation: Proceed, Pivot, or Kill
 
 #### Recommendation
 - **Decision**: [PROCEED | PIVOT | KILL]
