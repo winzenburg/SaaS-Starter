@@ -22,6 +22,12 @@ Decide structure, data model, and tradeoffs via ADR.
 - Runtime choice noted (default `nodejs`, Edge requires justification)
 - Migration/backfill if relevant (must be planned for schema changes)
 - ADR must follow template structure (decision, options, tradeoffs, consequences)
+- **Enterprise-readiness primitives** must be included (even if dormant):
+  - `audit_log` table in schema
+  - Export/delete flows scaffolded
+  - RBAC scaffolding
+  - Rate limiting infrastructure
+  - Observability baseline
 
 ## Default Prompt Template
 
@@ -64,6 +70,64 @@ Output:
 
 ### 4. Drizzle Schema Changes (`/drizzle/schema.ts`)
 
+#### Enterprise-Readiness Primitives (Required, Even If Dormant)
+
+**CRITICAL**: These primitives must be included in the schema from day 1, even if not actively used. They unlock bigger deals and lower churn for B2B niches.
+
+##### Audit Log Table
+```typescript
+export const auditLogTable = pgTable("audit_log", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  orgId: uuid("org_id").notNull().references(() => orgs.id),
+  userId: uuid("user_id").references(() => users.id),
+  action: text("action").notNull(), // e.g., "create", "update", "delete"
+  resourceType: text("resource_type").notNull(), // e.g., "project", "user"
+  resourceId: uuid("resource_id"),
+  metadata: jsonb("metadata"), // Additional context
+  ipAddress: text("ip_address"),
+  userAgent: text("user_agent"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const auditLogOrgIdIndex = index("audit_log_org_id_idx").on(auditLogTable.orgId);
+export const auditLogCreatedAtIndex = index("audit_log_created_at_idx").on(auditLogTable.createdAt);
+```
+
+##### RBAC Tables
+```typescript
+export const rolesTable = pgTable("roles", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  orgId: uuid("org_id").notNull().references(() => orgs.id),
+  name: text("name").notNull(), // e.g., "owner", "admin", "member", "viewer"
+  description: text("description"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const permissionsTable = pgTable("permissions", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  name: text("name").notNull().unique(), // e.g., "project:create", "user:delete"
+  description: text("description"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const rolePermissionsTable = pgTable("role_permissions", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  roleId: uuid("role_id").notNull().references(() => rolesTable.id),
+  permissionId: uuid("permission_id").notNull().references(() => permissionsTable.id),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const userRolesTable = pgTable("user_roles", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  userId: uuid("user_id").notNull().references(() => users.id),
+  roleId: uuid("role_id").notNull().references(() => rolesTable.id),
+  orgId: uuid("org_id").notNull().references(() => orgs.id),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+```
+
+**Note**: These can be minimal initially (e.g., just owner/member roles), but the structure exists for expansion.
+
 #### New Tables
 ```typescript
 // Table name and purpose
@@ -87,6 +151,23 @@ export const tableName = pgTable("table_name", {
 - Rollback plan: [Description]
 
 ### 5. tRPC Router Plan (`src/features/<feature>/data/router.ts`)
+
+#### Enterprise-Readiness Primitives
+
+##### RBAC Enforcement
+- All protected procedures should check permissions
+- Use shared RBAC middleware/utilities
+- Document required permissions for each procedure
+
+##### Rate Limiting
+- Rate limiting middleware should be applied to all procedures
+- Can be permissive initially, but infrastructure exists
+- Document rate limits in ADR
+
+##### Audit Logging
+- Critical actions should log to `audit_log` table
+- Use shared audit logging utility
+- Include: action, resource type, resource ID, metadata
 
 #### Router Structure
 ```typescript
@@ -221,6 +302,8 @@ src/features/<feature>/ui/
 - Tradeoffs and alternatives documented
 - Consequences identified
 - Technical approach is justified
+- **Enterprise-readiness primitives included** (audit_log, RBAC, export/delete, rate limiting, observability)
+- **Primitives can be dormant** but infrastructure exists
 
 ## Rules
 - Must create ADR for significant architectural decisions (see `.cursor/rules/027-core-adr-trigger.mdc`)

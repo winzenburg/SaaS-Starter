@@ -9,6 +9,12 @@ Goal: Prevent architecture drift and keep code boring/evolutionary.
 - Validation at edges: Zod schemas in `domain/schemas.ts`, used by server actions/tRPC
 - Route shells only: `/app/(app)/<feature>` imports UI from `src/features/*/ui`; no duplicate UI under `/app`
 - Keep it boring: no new abstractions unless repeated ≥3 times
+- **Enterprise-readiness primitives** (baked in, even if dormant):
+  - `audit_log` table in schema
+  - Export/delete flows scaffolded
+  - RBAC scaffolding
+  - Rate limiting infrastructure
+  - Observability baseline (see `.cursor/rules/020-core-observability.mdc`)
 - TypeScript strict mode always ON
 - Never use `any` (explicit or implicit)
 - Create type guards for parsing unknown data

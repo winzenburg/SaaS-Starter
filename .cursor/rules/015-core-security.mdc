@@ -12,3 +12,9 @@ Goal: Avoid common SaaS security footguns.
 - Rate limiting on public endpoints
 - CSRF protection on state-changing operations
 - Sanitize user input before rendering
+- **Enterprise-readiness primitives** (baked in, even if dormant):
+  - RBAC scaffolding (roles, permissions, enforcement)
+  - Rate limiting infrastructure
+  - Audit log table for compliance
+  - Export/delete flows for data portability and GDPR
+  - Security and abuse controls
