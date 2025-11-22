@@ -16,6 +16,7 @@ Greg's approach emphasizes community resonance and social moats over competitive
 ## Outputs
 - Market scan document in `/docs/research/market-scan-<feature>.md`
 - Community Heat Analysis (replaces pricing analysis)
+- **Moat Design** (at least 2 moat types selected with implementation plan)
 - Social Moat potential assessment
 - Natural distribution patterns
 - Competitor matrix (secondary to community analysis)
@@ -27,6 +28,8 @@ Greg's approach emphasizes community resonance and social moats over competitive
 - Community Heat Analysis required (replaces pricing analysis)
 - "Where does this product naturally spread? Why?" must be answered
 - "Which community has the most pain + activation energy?" must be identified
+- **Must select at least 2 moat types** (beyond community)
+- **Must create moat implementation plan** for each selected moat
 - Social Moat potential must be assessed
 - Distribution patterns must be identified
 
@@ -86,7 +89,70 @@ For each competitor:
 - **Medium heat communities**: [List with scores]
 - **Low heat communities**: [List with scores]
 
-### 4. Where Does This Product Naturally Spread? Why?
+### 4. Moat Design
+
+**CRITICAL**: Niche heat gets users; moats keep them. Community alone can be copied unless you lock in more structural moats.
+
+#### Required: Select at Least 2 Moat Types
+
+Choose from these 6 moat types:
+
+1. **Data Moat** (proprietary usage data → better outcomes)
+   - How will proprietary data make the product better over time?
+   - What data will be unique to your product?
+   - How does data create compounding value?
+
+2. **Workflow Lock-In** (deep integration into daily ops)
+   - How does the product become essential to daily operations?
+   - What workflows depend on the product?
+   - How hard is it to replace the product in the workflow?
+
+3. **Network Effects** (value increases with more users)
+   - How does the product get better with more users?
+   - What network effects exist (same-side, cross-side, data network effects)?
+   - How does value compound with scale?
+
+4. **Ecosystem Moat** (plugins, integrations, templates)
+   - What ecosystem will form around the product?
+   - How will plugins/integrations create lock-in?
+   - What templates/workflows will users build that are hard to migrate?
+
+5. **Switching Costs** (migration pain, saved state, team habits)
+   - What switching costs exist?
+   - How much data/work is stored in the product?
+   - What team habits depend on the product?
+   - How painful is migration?
+
+6. **Brand/Identity Moat** (community + narrative)
+   - How does the brand/identity create defensibility?
+   - What community forms around the product?
+   - How does narrative create emotional attachment?
+
+#### Moat Implementation Plan
+
+For each selected moat type, document:
+
+- **How to build it**: Specific steps to create this moat
+- **Timeline**: When will this moat be built?
+- **Metrics**: How will you measure moat strength?
+- **Dependencies**: What needs to happen first?
+- **Risks**: What could prevent this moat from forming?
+
+#### Example Moat Combinations
+
+- **Data + Workflow Lock-In**: Product learns from usage (data) and becomes essential to daily ops (workflow)
+- **Network Effects + Ecosystem**: Product gets better with more users (network) and plugins create lock-in (ecosystem)
+- **Switching Costs + Brand**: High migration pain (switching) + emotional attachment (brand)
+- **Data + Network Effects**: Proprietary data improves product (data) and value increases with users (network)
+
+#### Quality Gate
+
+- At least 2 moat types must be selected
+- Each selected moat must have an implementation plan
+- Moats must go beyond community (structural defensibility)
+- Moats must be buildable over time (not just theoretical)
+
+### 5. Where Does This Product Naturally Spread? Why?
 
 #### Natural Distribution Patterns
 - **Word-of-mouth triggers**: [What makes people share this?]
@@ -100,7 +166,7 @@ For each competitor:
 - **Network effects**: [What network effects exist?]
 - **Emotional resonance**: [What makes people want to share?]
 
-### 5. Social Moat Potential (Greg's Idea)
+### 6. Social Moat Potential (Greg's Idea)
 
 #### What Is a Social Moat?
 A social moat is when your product becomes part of a community's identity, making it hard for competitors to displace you even if they have better features.
@@ -118,7 +184,7 @@ A social moat is when your product becomes part of a community's identity, makin
 - Platforms where leaving means leaving the community
 - Products that signal identity/status within a community
 
-### 6. Switching Costs + Lock-In
+### 7. Switching Costs + Lock-In
 
 #### Data Portability
 - Can users export their data?
@@ -140,7 +206,7 @@ A social moat is when your product becomes part of a community's identity, makin
 - What habits are formed?
 - What training is needed?
 
-### 7. Differentiation Wedges
+### 8. Differentiation Wedges
 
 #### Community-Based Differentiation
 - **Unique community access**: [What community can we uniquely serve?]
@@ -157,7 +223,7 @@ A social moat is when your product becomes part of a community's identity, makin
 - Community ownership models
 - Value-sharing with community
 
-### 8. Risks/Trends
+### 9. Risks/Trends
 
 #### Market Risks
 - Community fragmentation
@@ -180,20 +246,24 @@ A social moat is when your product becomes part of a community's identity, makin
 2. Research communities (primary focus)
 3. Identify niche internet tribes and micro-communities
 4. Assess Community Heat (pain + activation energy)
-5. Analyze natural distribution patterns
-6. Assess Social Moat potential
-7. Research top 3 direct competitors (secondary)
-8. Identify substitutes and adjacent tools
-9. Analyze switching costs and lock-in
-10. Identify differentiation wedges
-11. Assess risks and trends
-12. Document findings
-13. Provide recommendations
+5. **Design Moats** (select at least 2 moat types with implementation plan)
+6. Analyze natural distribution patterns
+7. Assess Social Moat potential
+8. Research top 3 direct competitors (secondary)
+9. Identify substitutes and adjacent tools
+10. Analyze switching costs and lock-in
+11. Identify differentiation wedges
+12. Assess risks and trends
+13. Document findings
+14. Provide recommendations
 
 ## Quality Criteria
 - Research is community-first (not competitor-first)
 - Communities are specific and identifiable
 - Community Heat Analysis is comprehensive
+- **At least 2 moat types selected**
+- **Moat implementation plan created for each selected moat**
+- **Moats go beyond community (structural defensibility)**
 - Natural distribution patterns are identified
 - Social Moat potential is assessed
 - "Where does this spread?" is answered
