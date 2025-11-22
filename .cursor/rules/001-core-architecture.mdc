@@ -1,14 +1,15 @@
 # Core Architecture
 
-- Prefer simple, maintainable solutions over clever abstractions
-- Make small, verifiable changes
-- Create ADR in `docs/adr/` when architecture changes are needed
-- All features in `src/features/<feature>/` with three layers: `domain/`, `data/`, `ui/`
-- Features export public API via `index.ts`
-- No cross-feature imports except through each feature's `index.ts`
-- Shared utilities in `src/lib/`
+- App Router only
+- Feature modules at `src/features/<feature>/{ui,data,domain}`
+- No cross-feature imports except via each feature's `index.ts`
+- Routes in `/app/(app)/*` import UI from features. No duplicated UI in `/app`
+- Zod boundary schemas live in `domain/schemas.ts`
 - TypeScript strict mode always ON
 - Never use `any` (explicit or implicit)
 - Use Zod schemas for all input validation
 - Create type guards for parsing unknown data
 - Use `noUncheckedIndexedAccess` for safer array/object access
+- Prefer simple, maintainable solutions over clever abstractions
+- Make small, verifiable changes
+- Create ADR in `docs/adr/` when architecture changes are needed

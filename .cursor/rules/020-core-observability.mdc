@@ -1,6 +1,8 @@
 # Core Observability
 
-- Emit observability events on all server actions
+- Every server action emits an event
+- No PII in logs
+- Include trace IDs in errors
 - Log start/completion of actions
 - Track errors and performance metrics
 - Use structured logging

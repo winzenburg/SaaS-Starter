@@ -1,13 +1,14 @@
 # Core Testing
 
+- Behavior-first. Tests define correctness
+- Required test types by change (unit/integration/e2e)
+- No merge if CI red
 - New features require unit + integration + e2e where applicable
 - All domain logic must have unit tests
 - All server actions must have integration tests
 - All tRPC procedures must have tests
 - Critical flows must have E2E tests
 - Tests must be green before further refactors
-- All tests must pass before merging
-- Refactors must maintain or improve test coverage
 - Unit tests: `src/**/*.test.ts` (co-located)
 - Integration tests: `src/**/*.test.ts`
 - E2E tests: `e2e/**/*.spec.ts` (Playwright)
