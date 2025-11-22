@@ -1,115 +1,142 @@
 # Playbook: Accessibility Audit
 
-## Exact Checklist
+## Automated Checks
 
-### Semantic HTML
-- [ ] Proper HTML elements used (not divs for everything)
-- [ ] Heading hierarchy correct (h1 → h2 → h3, no skipping)
-- [ ] Landmark regions used (nav, main, aside, etc.)
-- [ ] Form labels associated with inputs
-- [ ] ARIA only when semantic HTML insufficient
+### Component Testing
+- Use `@axe-core/react` for component accessibility testing
+- Run axe checks in unit/integration tests
+- Fail tests on critical/serious violations
+
+### E2E Testing
+- Use `@axe-core/playwright` for end-to-end accessibility testing
+- Run axe checks in E2E test suites
+- Include accessibility checks in critical user journeys
+
+## Audit Checklist
 
 ### Keyboard Navigation
 - [ ] All interactive elements keyboard accessible
-- [ ] Logical tab order
-- [ ] Visible focus indicators
-- [ ] Skip links provided for main content
+- [ ] Logical tab order throughout
 - [ ] No keyboard traps
+- [ ] Escape key closes modals/dialogs
+- [ ] Arrow keys work in lists/menus
+- [ ] Enter/Space activate buttons/links
 
-### Screen Readers
-- [ ] Tested with NVDA (Windows)
-- [ ] Tested with JAWS (Windows)
-- [ ] Tested with VoiceOver (macOS/iOS)
-- [ ] ARIA labels used appropriately
-- [ ] ARIA live regions for dynamic content
-- [ ] Error messages associated with form fields
+### Focus Management
+- [ ] Visible focus indicators on all interactive elements
+- [ ] Focus order is logical and intuitive
+- [ ] Focus returns to trigger after modal closes
+- [ ] Focus visible in high contrast mode
+- [ ] Skip links available for main content
 
-### Visual Accessibility
-- [ ] Color contrast meets WCAG 2.2 AA (4.5:1 for text, 3:1 for UI)
-- [ ] Color not sole means of conveying information
-- [ ] All images have descriptive alt attributes
-- [ ] Decorative images have empty alt attributes
-- [ ] Focus indicators visible and clear
+### Screen Reader Labels
+- [ ] All images have descriptive alt text
+- [ ] Form inputs have associated labels
+- [ ] Buttons have descriptive text or aria-label
+- [ ] Icons have aria-label or aria-hidden
+- [ ] Landmarks properly marked (header, nav, main, footer)
+- [ ] ARIA roles used appropriately
+- [ ] Live regions for dynamic content
+- [ ] Error messages announced to screen readers
 
-### States
-- [ ] Loading states accessible
-- [ ] Empty states accessible
-- [ ] Error states accessible and associated with inputs
-- [ ] Success states accessible
-- [ ] Focus management correct for modals/dialogs
+### Color Contrast
+- [ ] Text meets WCAG AA (4.5:1 for normal text, 3:1 for large text)
+- [ ] UI components meet WCAG AA (3:1)
+- [ ] Color not sole indicator of information
+- [ ] High contrast mode supported
 
-## How to Add @axe-core/playwright A11y Tests
+### Touch Targets
+- [ ] Interactive elements at least 44x44px
+- [ ] Adequate spacing between touch targets
+- [ ] Touch targets don't overlap
+- [ ] Mobile-friendly interaction patterns
 
-### Installation
-```bash
-pnpm add -D @axe-core/playwright
-```
+## Severity Scale
 
-### Test Structure
-```typescript
-import { test, expect } from "@playwright/test";
-import AxeBuilder from "@axe-core/playwright";
+### Critical
+- Blocks core functionality
+- Prevents users from completing primary tasks
+- Violates WCAG Level A requirements
+- Examples: missing form labels, keyboard traps, no focus indicators
 
-test("page should be accessible", async ({ page }) => {
-  await page.goto("/your-page");
-  
-  const accessibilityScanResults = await new AxeBuilder({ page })
-    .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
-    .analyze();
+**Fix Priority**: Immediate
 
-  expect(accessibilityScanResults.violations).toEqual([]);
-});
-```
+### Serious
+- Significantly impacts usability
+- Makes tasks difficult or confusing
+- Violates WCAG Level AA requirements
+- Examples: poor contrast, missing alt text, unclear focus
 
-### Test Location
-- Add a11y tests in `e2e/<feature>/a11y.spec.ts`
-- Run with `pnpm test:e2e`
-- Include in CI pipeline
+**Fix Priority**: High (before next release)
 
-### Best Practices
-- Test all pages and key user flows
-- Test with WCAG 2.2 AA tags
-- Fix violations before merging
-- Re-test after fixes
+### Minor
+- Minor usability issues
+- Best practice violations
+- Examples: redundant ARIA, minor contrast issues, suboptimal labeling
 
-## Priority Scale for Fixes
+**Fix Priority**: Medium (address in next sprint)
 
-### P0 - Critical (Must Fix)
-- Keyboard navigation broken
-- Screen reader completely unusable
-- Color contrast below 3:1
-- Missing form labels
-- Focus traps
+## Fix Order Rules
 
-### P1 - High (Should Fix)
-- Color contrast below 4.5:1 for text
-- Missing ARIA labels where needed
-- Incorrect heading hierarchy
-- Missing skip links
-- Focus indicators not visible
+1. **Critical issues first** - Fix all critical issues before proceeding
+2. **Serious issues next** - Address serious issues in priority order
+3. **Minor issues last** - Fix minor issues as time permits
+4. **Re-audit after fixes** - Run full audit again after each severity level
+5. **Verify with screen readers** - Test with actual screen readers (NVDA, JAWS, VoiceOver)
+6. **Test keyboard-only navigation** - Verify all functionality works without mouse
 
-### P2 - Medium (Nice to Fix)
-- Minor ARIA improvements
-- Better alt text
-- Improved focus management
-- Enhanced error messaging
+## Process
 
-### P3 - Low (Future Enhancement)
-- Enhanced ARIA descriptions
-- Additional skip links
-- Advanced keyboard shortcuts
+### 1. Run Automated Checks
+- Run `@axe-core/react` on components
+- Run `@axe-core/playwright` in E2E tests
+- Document all violations
 
-## Workflow
+### 2. Manual Audit
+- Go through checklist systematically
+- Test with keyboard only
+- Test with screen reader
+- Test in high contrast mode
+- Test on mobile devices
 
-1. **Audit** - Run automated tests and manual review
-2. **Prioritize** - Categorize issues by priority
-3. **Fix** - Address P0 and P1 issues first
-4. **Re-test** - Verify fixes with automated and manual testing
-5. **Verify** - Final check with screen readers
+### 3. Categorize Issues
+- Classify each issue by severity (critical/serious/minor)
+- Document impact and affected users
+- Prioritize fixes
+
+### 4. Fix Issues
+- Fix critical issues first
+- Fix serious issues next
+- Fix minor issues last
+- Re-audit after each severity level
+
+### 5. Verify Fixes
+- Re-run automated checks
+- Re-run manual audit
+- Test with actual assistive technologies
+- Verify no regressions
+
+## Definition of Done Checklist
+
+An accessibility audit is considered done when:
+
+- ✅ Automated checks passing (@axe-core/react, @axe-core/playwright)
+- ✅ All critical issues fixed
+- ✅ All serious issues fixed (or documented for next release)
+- ✅ Manual audit completed
+- ✅ Keyboard navigation verified
+- ✅ Screen reader testing completed
+- ✅ Color contrast verified
+- ✅ Touch targets verified
+- ✅ WCAG 2.2 AA compliance achieved
+- ✅ Re-audit completed after fixes
+- ✅ No regressions introduced
 
 ## Tools
 
-- **Automated**: @axe-core/playwright, Lighthouse
-- **Manual**: NVDA, JAWS, VoiceOver
-- **Color Contrast**: WebAIM Contrast Checker
-- **Keyboard Testing**: Tab through entire page
+- **@axe-core/react** - Component accessibility testing
+- **@axe-core/playwright** - E2E accessibility testing
+- **axe DevTools** - Browser extension for manual testing
+- **WAVE** - Web accessibility evaluation tool
+- **Lighthouse** - Accessibility scoring
+- **Screen readers**: NVDA (Windows), JAWS (Windows), VoiceOver (macOS/iOS)
