@@ -390,6 +390,8 @@ await requireFlag("feature-name");
 ## Quality Criteria
 - Code follows PRD requirements
 - Code follows ADR architecture
+- **MVP-first**: Smallest surface area to validate narrative
+- **Don't gold-plate**: Feature is essential, can't test manually, no no-code version
 - All tests pass
 - UI has all states (loading/empty/error/success)
 - Observability events emitted on server actions
@@ -397,6 +399,7 @@ await requireFlag("feature-name");
 - Code follows project rules
 - No linting or type errors
 - Small, incremental diffs
+- Feature validates or expands the transformation story
 
 ## Rules
 - Follow `.cursor/rules/001-core-architecture.mdc` for structure
