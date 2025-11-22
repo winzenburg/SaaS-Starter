@@ -238,7 +238,40 @@ src/features/<feature>/ui/
 - **Default**: `nodejs` (boring default)
 - **Edge only**: When latency-critical and ADR says so
 
-### 9. Tradeoffs + Alternatives
+### 9. Defensibility Enablers (If Relevant)
+
+**CRITICAL**: If this feature enables defensibility (moats), document how architecture supports it.
+
+#### Data Capture Enablers
+- **What data will be captured?**: [What proprietary data will be unique to this product?]
+- **How does data create compounding value?**: [How does more data make the product better?]
+- **Data moat potential**: [How does this enable a data moat?]
+- **Schema design**: [How does schema support data capture?]
+- **Analytics/telemetry**: [What events/data are tracked?]
+
+#### Workflow Embed Enablers
+- **How does this embed into workflows?**: [How does the product become essential to daily operations?]
+- **What workflows depend on this?**: [What workflows will depend on the product?]
+- **Integration points**: [What integrations enable workflow embedding?]
+- **Switching costs**: [What switching costs are created?]
+- **Workflow lock-in potential**: [How does this enable workflow lock-in?]
+
+#### Integration Enablers
+- **What integrations are planned?**: [What integrations will be built?]
+- **How do integrations create lock-in?**: [How do integrations create switching costs?]
+- **Ecosystem potential**: [How does this enable an ecosystem moat?]
+- **API design**: [How does API design support integrations?]
+- **Plugin/template potential**: [How does this enable plugins/templates?]
+
+#### Defensibility Assessment
+- **Moat types enabled**: [Which moat types does this architecture enable?]
+- **Defensibility strength**: [High | Medium | Low]
+- **Implementation priority**: [High | Medium | Low]
+- **Timeline**: [When will defensibility enablers be built?]
+
+**Note**: Not all features need defensibility enablers, but if the feature is core to moat strategy, document how architecture supports it.
+
+### 10. Tradeoffs + Alternatives
 
 #### Considered Alternatives
 
@@ -259,7 +292,7 @@ src/features/<feature>/ui/
 - **Flexibility vs Simplicity**: [Tradeoff]
 - **Speed vs Maintainability**: [Tradeoff]
 
-### 10. Consequences
+### 11. Consequences
 
 #### Positive
 - [Positive consequence 1]
@@ -273,7 +306,7 @@ src/features/<feature>/ui/
 - [Risk 1] - Mitigation: [How to mitigate]
 - [Risk 2] - Mitigation: [How to mitigate]
 
-### 11. Implementation Notes
+### 12. Implementation Notes
 - **Feature module structure**: Follows `001-core-architecture.mdc`
 - **Testing requirements**: [What tests are needed]
 - **Observability**: [What events to emit]
@@ -304,6 +337,7 @@ src/features/<feature>/ui/
 - Technical approach is justified
 - **Enterprise-readiness primitives included** (audit_log, RBAC, export/delete, rate limiting, observability)
 - **Primitives can be dormant** but infrastructure exists
+- **Defensibility enablers documented** (if feature enables moats: data capture, workflow embed, integrations)
 
 ## Rules
 - Must create ADR for significant architectural decisions (see `.cursor/rules/027-core-adr-trigger.mdc`)

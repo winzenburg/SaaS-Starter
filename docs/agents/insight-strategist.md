@@ -148,7 +148,63 @@ Output: /docs/product/INSIGHT-<product>.md
 - **Wedge 2**: [Alternative entry point]
 - **Wedge 3**: [Alternative entry point]
 
-### 7. Monetization Wedge (Optional in Insight Brief, Required in PRD)
+### 7. Durability Filter Score
+
+**CRITICAL**: Some niches are trend-spikes, not durable markets. Score the idea on durability before proceeding.
+
+#### Scoring Criteria (Score 1-5 for each)
+
+##### 1. Frequency of the Job
+- **5**: Daily/weekly recurring job
+- **4**: Monthly recurring job
+- **3**: Quarterly recurring job
+- **2**: Occasional/seasonal job
+- **1**: One-time or rare job
+
+##### 2. Economic Buyer Has Budget
+- **5**: Budgeted spend, enterprise buyer
+- **4**: Budgeted spend, SMB buyer
+- **3**: Discretionary spend, but regular
+- **2**: Hobby spend, occasional
+- **1**: No budget, free only
+
+##### 3. Problem Exists Independent of Hype
+- **5**: Structural pain, exists regardless of trends
+- **4**: Long-term pain, not trend-dependent
+- **3**: Pain exists but may be amplified by trends
+- **2**: Trend-dependent pain, may fade
+- **1**: Purely trend-driven, likely temporary
+
+##### 4. Users Would Be Upset If It Disappeared
+- **5**: Critical to operations, high emotional attachment
+- **4**: Important to workflow, would be missed
+- **3**: Useful but replaceable
+- **2**: Nice to have, low attachment
+- **1**: No attachment, easily forgotten
+
+##### 5. Clear Path to Switching Costs / Workflow Embed
+- **5**: Deep workflow integration, high switching costs
+- **4**: Moderate integration, some switching costs
+- **3**: Light integration, minimal switching costs
+- **2**: No integration, easy to switch
+- **1**: No switching costs, purely transactional
+
+#### Durability Assessment
+
+**Total Score (out of 25)**:
+- **Durable Market (18-25)**: Compounding SaaS asset, build for long-term MRR
+- **Cash-Flow Micro-Bet (10-17)**: Cash-flow micro-bet, build for short-term revenue, expect trend fade
+- **Low Durability (5-9)**: Consider pivot or kill
+
+#### Recurring Job + Budgeted Buyer Check
+
+**CRITICAL**: Before proceeding, verify:
+- ✅ **Recurring job identified**: What is the recurring job that drives return visits?
+- ✅ **Budgeted buyer confirmed**: Does the economic buyer have budget (not just hobby spend)?
+
+**If recurring job is unclear or buyer has no budget** → Consider pivot or kill. Do not proceed to PRD.
+
+### 8. Monetization Wedge (Optional in Insight Brief, Required in PRD)
 
 **Note**: Monetization Wedge can be included in Insight Brief if known, but is required in PRD. This prevents "free audience, no business."
 
@@ -171,7 +227,7 @@ Output: /docs/product/INSIGHT-<product>.md
 
 **Note**: Full Monetization Wedge details should be developed in PRD by Product Strategist.
 
-### 8. Recommendation: Proceed, Pivot, or Kill
+### 9. Recommendation: Proceed, Pivot, or Kill
 
 #### Recommendation
 - **Decision**: [PROCEED | PIVOT | KILL]
@@ -212,6 +268,9 @@ Output: /docs/product/INSIGHT-<product>.md
 - Early signals are measurable and clear
 - Demand-validation tests are no-code/human first
 - Distribution wedge is actionable
+- **Durability Filter scored** (all 5 criteria scored 1-5)
+- **Durability assessment clear** (Durable Market | Cash-Flow Micro-Bet | Low Durability)
+- **Recurring job + budgeted buyer confirmed** (recurring job identified, buyer has budget)
 - Recommendation is clear and justified
 - Document prevents waste by ensuring signal before building
 

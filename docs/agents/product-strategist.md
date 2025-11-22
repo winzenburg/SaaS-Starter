@@ -127,9 +127,81 @@ Output: /docs/product/PRD-<feature>.md
 - **Growth loops**: How does usage drive distribution?
 - **No-code distribution**: How to distribute before building?
 
-### 9. Monetization Wedge
+### 9. Monetization Wedge (REQUIRED)
 
-**CRITICAL**: Community products often start free/cheap to grow. That's fine for validation, but to get strong MRR you need pricing as product earlier. This prevents "free audience, no business."
+**CRITICAL**: Community products often start free/cheap to grow. That's fine for validation, but to get strong MRR you need pricing as product earlier. This section is **REQUIRED** in all PRDs.
+
+#### First Paid Moment (REQUIRED)
+
+**CRITICAL**: Define the first paid moment clearly. This is when the user first pays, not when they might pay later.
+
+- **When does the user first pay?**: [Specific moment in user journey]
+- **What triggers the first payment?**: [What action or need triggers payment?]
+- **What value justifies the first payment?**: [What value does the user get?]
+- **How early in the journey is the paid moment?**: [Early (first week) | Mid (first month) | Late (after value proven)]
+- **What prevents "free forever"?**: [What forces the paid moment?]
+
+**Examples**:
+- User needs to invite team members (seats) → First paid moment: Team invite
+- User exceeds free tier limits (usage) → First paid moment: Usage limit hit
+- User needs advanced features (tiers) → First paid moment: Feature need
+- User needs to remove branding (tiers) → First paid moment: Branding removal
+
+#### Natural Expansion Revenue
+
+**CRITICAL**: Define how revenue naturally expands over time. This is not just "more users" but a clear expansion path.
+
+##### Seat-Based Expansion
+- How does revenue grow with team size?
+- What triggers seat expansion?
+- What's the natural expansion path?
+- **Example**: User invites team members → more seats → more revenue
+
+##### Usage-Based Expansion
+- How does revenue grow with usage volume?
+- What triggers usage expansion?
+- What's the natural expansion path?
+- **Example**: User processes more data → more usage → more revenue
+
+##### Tier-Based Expansion
+- How does revenue grow with feature tiers?
+- What triggers tier upgrade?
+- What's the natural expansion path?
+- **Example**: User needs advanced features → upgrade tier → more revenue
+
+#### Value Metric Scales with Customer Success
+
+**CRITICAL**: Define the value metric that scales with customer success. This is what customers pay for.
+
+- **Value metric**: What do customers pay for? (users, API calls, storage, projects, etc.)
+- **Customer success alignment**: How does the value metric align with customer success?
+- **Scaling mechanism**: How does customer success drive higher value metric usage?
+- **Pricing alignment**: How does pricing align with value delivered?
+
+#### Pricing Strategy
+- **Pricing model**: Freemium, usage-based, seat-based, tiered, etc.
+- **Free tier strategy**: What's free and why? (not just "free to grow")
+- **Paid tier strategy**: What's paid and why?
+- **Pricing as product**: How does pricing create value, not just capture value?
+- **Expansion strategy**: How does pricing enable natural expansion?
+
+#### Examples of Monetization Wedges
+- **First paid moment**: User needs to invite team members (seats)
+- **Expansion revenue**: More team members = more seats = more revenue
+- **Value metric**: Number of team members (scales with customer success)
+- **First paid moment**: User exceeds free tier limits (usage)
+- **Expansion revenue**: More usage = more revenue
+- **Value metric**: API calls or data processed (scales with customer success)
+- **First paid moment**: User needs advanced features (tiers)
+- **Expansion revenue**: Upgrade to higher tier = more revenue
+- **Value metric**: Feature access (scales with customer success)
+
+#### Quality Gate
+- **First Paid Moment must be clear and early** (not "maybe later")
+- **Natural expansion revenue must be defined** (not just "more users")
+- **Value metric must scale with customer success** (not arbitrary)
+- **Pricing strategy prevents "free audience, no business"**
+- **Monetization wedge designed** (not just community growth) This prevents "free audience, no business."
 
 #### What Is the First Paid Moment?
 - When does the user first pay?

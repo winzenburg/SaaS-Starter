@@ -60,16 +60,55 @@ For each competitor:
 - Target market
 - Strengths and weaknesses
 - Market share (if available)
+- **Retention patterns** (not just features/pricing):
+  - How do they retain users? (habit loops, frequency drivers, switching costs)
+  - What retention mechanisms exist? (notifications, workflows, data accumulation)
+  - What churn risks do they face? (how do users leave?)
+  - What retention features prevent churn? (what keeps users coming back?)
+- **Structural vs Trend Market Analysis**:
+  - Is this a structural market (pain exists regardless of trends)?
+  - Or a trend market (pain is amplified by current trends)?
+  - How durable is the market? (will it exist in 2-5 years?)
 
-**Note**: Competitor analysis is secondary to community analysis.
+**Note**: Competitor analysis is secondary to community analysis, but retention patterns and market structure are critical for defensibility.
 
-### 2. Substitutes/Adjacent Tools
+### 2. Structural Market vs Trend Market Analysis
+
+**CRITICAL**: Distinguish between structural markets (durable, pain exists regardless of trends) and trend markets (amplified by current trends, may fade).
+
+#### Structural Market Indicators
+- **Pain exists regardless of trends**: Problem existed before current trend and will exist after
+- **Recurring job**: Users have a recurring job that needs solving
+- **Budgeted spend**: Economic buyer has budget (not just hobby spend)
+- **Switching costs**: Natural switching costs exist (workflow integration, data, habits)
+- **Independent of hype**: Market exists independent of current hype cycle
+
+#### Trend Market Indicators
+- **Trend-dependent pain**: Pain is amplified by current trends
+- **Novelty-driven**: Users are trying it because it's new/trendy
+- **Hobby spend**: No budgeted spend, just discretionary/hobby spend
+- **Low switching costs**: Easy to switch or abandon
+- **Hype-dependent**: Market may fade when trend fades
+
+#### Market Structure Assessment
+- **Market type**: [Structural Market | Trend Market | Hybrid]
+- **Durability**: [High (5+ years) | Medium (2-5 years) | Low (<2 years)]
+- **Risk factors**: [What could make this market fade?]
+- **Defensibility**: [How defensible is this market?]
+
+#### Strategic Implications
+- **If Structural Market**: Build for long-term MRR, structural moats, compounding asset
+- **If Trend Market**: Build for short-term revenue, community moat, cash-flow micro-bet
+- **If Hybrid**: Build structural moats while trend is hot, transition to structural market
+
+### 3. Substitutes/Adjacent Tools
 - Indirect competitors
 - Alternative solutions users might consider
 - Adjacent tools that could expand into this space
 - How users solve this problem today (if not using competitors)
+- **Retention patterns**: How do substitutes retain users? (what keeps them using alternatives?)
 
-### 3. Community Heat Analysis (Replaces Pricing Analysis)
+### 4. Community Heat Analysis (Replaces Pricing Analysis)
 
 #### Community Identification
 - **What niche internet tribe desperately wants this?**: [Specific community/tribe]
@@ -89,7 +128,7 @@ For each competitor:
 - **Medium heat communities**: [List with scores]
 - **Low heat communities**: [List with scores]
 
-### 4. Durability Filter
+### 5. Durability Filter
 
 **CRITICAL**: Some niches are trend-spikes, not durable markets. Isenberg is great at catching waves, but defensive moat + enduring MRR requires filtering for structural vs. cyclical pain, recurring workflow vs. novelty, budgeted spend vs. hobby spend.
 
@@ -162,7 +201,7 @@ Based on durability score, provide:
 
 **Critical Rule**: If a niche fails durability, still build — but treat it like a cash-flow micro-bet, not a compounding SaaS asset.
 
-### 5. Moat Design
+### 6. Moat Design
 
 **CRITICAL**: Niche heat gets users; moats keep them. Community alone can be copied unless you lock in more structural moats.
 
@@ -336,6 +375,8 @@ A social moat is when your product becomes part of a community's identity, makin
 - Research is community-first (not competitor-first)
 - Communities are specific and identifiable
 - Community Heat Analysis is comprehensive
+- **Structural vs Trend Market Analysis completed** (market type, durability, risk factors)
+- **Competitor retention patterns analyzed** (not just features/pricing)
 - **Durability Filter scored** (all 5 criteria scored 1-5)
 - **Durability assessment clear** (Durable Market | Cash-Flow Micro-Bet | Low Durability)
 - **Strategic recommendation aligned with durability** (long-term vs. short-term strategy)
