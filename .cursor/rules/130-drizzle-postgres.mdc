@@ -1,5 +1,12 @@
-# Drizzle + PostgreSQL
+# Drizzle/Postgres Conventions
 
-- Canonical schema at `/drizzle/schema.ts`
+Goal: Prevent path/layout disagreements between agents.
+
+- Canonical schema path: `/drizzle/schema.ts`
 - Migrations in `/drizzle/migrations`
-- All tenant-scoped tables include orgId and are always filtered
+- Drizzle client in `src/lib/db.ts`
+- Tenant scoping rule: any org table includes `orgId` and is always filtered by `orgId` in queries
+- Use `pg` driver (Postgres)
+- All queries use parameterized statements (Drizzle handles this)
+- Transactions for multi-step operations
+- Index foreign keys and frequently queried columns
