@@ -97,7 +97,38 @@ If green-light → Architecture Phase:
 
 **Quality Gate**: PRD must validate desirability before buildability. Value Story and Why Now are required.
 
-### 3. Retention Thesis
+### 3. Monetization Wedge
+**Input**: PRD, Narrative  
+**Output**: Monetization Wedge
+
+**Agent**: Product Strategist
+
+**Required Artifacts**:
+- Monetization Wedge in PRD
+- **What is the first paid moment?** (answered)
+- **What is the natural expansion revenue?** (seats, usage, tiers) (answered)
+- **What value metric scales with customer success?** (answered)
+- Pricing strategy defined (not just "free to grow")
+- Value metric identified (what customers pay for)
+- Expansion path defined (how revenue grows)
+
+**Deliverables**:
+- Clear first paid moment identified
+- Natural expansion revenue path defined
+- Value metric that scales with customer success
+- Pricing strategy prevents "free audience, no business"
+- Monetization wedge designed (not just community growth)
+
+**Quality Gate**: 
+- First paid moment must be clear and early
+- Natural expansion revenue must be defined
+- Value metric must scale with customer success
+- **Pricing as product** (not just free to grow)
+- **Prevents "free audience, no business"**
+
+**Critical Rule**: Community products often start free/cheap to grow. That's fine for validation, but to get strong MRR you need pricing as product earlier.
+
+### 4. Retention Thesis
 **Input**: PRD, Narrative  
 **Output**: Retention Thesis
 
@@ -128,7 +159,7 @@ If green-light → Architecture Phase:
 
 **Critical Rule**: Many niche products die from "strong launch, weak week-8 retention." Retention must be designed in, not patched later.
 
-### 4. Market-Scanner → Community Heat + Moat Design
+### 5. Market-Scanner → Community Heat + Moat Design
 **Input**: Insight Brief, PRD  
 **Output**: Community Heat Analysis + Moat Design
 
@@ -167,7 +198,7 @@ If green-light → Architecture Phase:
 - **Moat implementation plan created**
 - **Moat design goes beyond community (structural defensibility)**
 
-### 5. Run Validation Tests (emails, DMs, landing page)
+### 6. Run Validation Tests (emails, DMs, landing page)
 **Input**: PRD, Community Heat Map, Lo-Fi Validation Plan  
 **Output**: Validation test results
 
@@ -190,7 +221,7 @@ If green-light → Architecture Phase:
 
 **Quality Gate**: At least 3 demand-validation tests must pass. See `.cursor/rules/000-playbook-pre-build-validation.mdc` for detailed test requirements.
 
-### 6. Green-Light Decision
+### 7. Green-Light Decision
 **Input**: All validation results  
 **Output**: Go/No-Go decision
 
@@ -200,6 +231,7 @@ If green-light → Architecture Phase:
 - ✅ At least 3 demand-validation tests passed
 - ✅ Unfair insight validated
 - ✅ Value Story resonates
+- ✅ **Monetization Wedge defined** (first paid moment, expansion revenue, value metric)
 - ✅ **Retention Thesis defined** (recurring job, frequency driver, habit loop)
 - ✅ High-heat community identified
 - ✅ Social Moat potential exists

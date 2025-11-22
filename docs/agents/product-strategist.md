@@ -127,7 +127,56 @@ Output: /docs/product/PRD-<feature>.md
 - **Growth loops**: How does usage drive distribution?
 - **No-code distribution**: How to distribute before building?
 
-### 9. Retention Thesis
+### 9. Monetization Wedge
+
+**CRITICAL**: Community products often start free/cheap to grow. That's fine for validation, but to get strong MRR you need pricing as product earlier. This prevents "free audience, no business."
+
+#### What Is the First Paid Moment?
+- When does the user first pay?
+- What triggers the first payment?
+- What value justifies the first payment?
+- How early in the journey is the paid moment?
+- What's the free-to-paid conversion trigger?
+
+#### What Is the Natural Expansion Revenue?
+- **Seats**: How does revenue grow with team size?
+- **Usage**: How does revenue grow with usage volume?
+- **Tiers**: How does revenue grow with feature tiers?
+- **Add-ons**: What additional products/services drive expansion?
+- **Natural expansion path**: What's the organic growth in revenue per customer?
+
+#### What Value Metric Scales with Customer Success?
+- **Value metric**: What do customers pay for? (users, API calls, storage, projects, etc.)
+- **Customer success alignment**: How does the value metric align with customer success?
+- **Scaling mechanism**: How does customer success drive higher value metric usage?
+- **Pricing alignment**: How does pricing align with value delivered?
+
+#### Pricing Strategy
+- **Pricing model**: Freemium, usage-based, seat-based, tiered, etc.
+- **Free tier strategy**: What's free and why? (not just "free to grow")
+- **Paid tier strategy**: What's paid and why?
+- **Pricing as product**: How does pricing create value, not just capture value?
+- **Expansion strategy**: How does pricing enable natural expansion?
+
+#### Examples of Monetization Wedges
+- **First paid moment**: User needs to invite team members (seats)
+- **Expansion revenue**: More team members = more seats = more revenue
+- **Value metric**: Number of team members (scales with customer success)
+- **First paid moment**: User exceeds free tier limits (usage)
+- **Expansion revenue**: More usage = more revenue
+- **Value metric**: API calls or data processed (scales with customer success)
+- **First paid moment**: User needs advanced features (tiers)
+- **Expansion revenue**: Upgrade to higher tier = more revenue
+- **Value metric**: Feature access (scales with customer success)
+
+#### Quality Gate
+- First paid moment must be clear and early
+- Natural expansion revenue must be defined
+- Value metric must scale with customer success
+- Pricing strategy prevents "free audience, no business"
+- Monetization wedge designed (not just community growth)
+
+### 10. Retention Thesis
 
 **CRITICAL**: MRR durability = retention architecture. Many niche products die from "strong launch, weak week-8 retention." Retention must be designed in, not patched later.
 
@@ -172,7 +221,7 @@ Output: /docs/product/PRD-<feature>.md
 - Habit loop/ritual must be designed
 - Retention mechanics must be designed in (not patched later)
 
-### 10. 10 High-Velocity Tests
+### 11. 10 High-Velocity Tests
 - **Test 1**: [Name] - [Method] - [Success criteria] - [Timeline]
 - **Test 2**: [Name] - [Method] - [Success criteria] - [Timeline]
 - **Test 3**: [Name] - [Method] - [Success criteria] - [Timeline]
@@ -186,7 +235,7 @@ Output: /docs/product/PRD-<feature>.md
 
 **Note**: High-velocity tests are fast, low-cost ways to validate demand before building.
 
-### 11. Lo-Fi Validation Plan
+### 12. Lo-Fi Validation Plan
 - **Email validation**: [How to test via email]
 - **Landing page**: [What landing page tests demand?]
 - **Loom demo**: [How to use Loom to validate interest?]
@@ -195,28 +244,28 @@ Output: /docs/product/PRD-<feature>.md
 - **Timeline**: [When to run each validation?]
 - **Success criteria**: [What indicates validation?]
 
-### 12. Success Metrics (leading/lagging)
+### 13. Success Metrics (leading/lagging)
 - **Leading indicators**: Predictive metrics (engagement, time to value, word-of-mouth)
 - **Lagging indicators**: Outcome metrics (conversion, retention, revenue)
 - **Baseline metrics**: Current state
 - **Target metrics**: Desired state
 - **Measurement plan**: How to measure
 
-### 13. Risks + Mitigations
+### 14. Risks + Mitigations
 - **Desirability risks**: What if users don't want this?
 - **Buildability risks**: What if we can't build this?
 - **Distribution risks**: What if we can't reach users?
 - **Timing risks**: What if timing is wrong?
 - **Mitigation strategies**: How to mitigate each risk
 
-### 14. Rollout Plan with Feature Flags
+### 15. Rollout Plan with Feature Flags
 - **Feature flag name**: [Name]
 - **Rollout stages**: 0% → 10% → 50% → 100%
 - **Success criteria for each stage**: [Criteria]
 - **Rollback plan**: [How to rollback]
 - **Monitoring plan**: [What to monitor]
 
-### 15. Analytics Events Schema
+### 16. Analytics Events Schema
 - **Event names**: [List]
 - **Event properties**: [Properties for each event]
 - **When events fire**: [Triggers]
@@ -232,13 +281,14 @@ Output: /docs/product/PRD-<feature>.md
 7. Define early adopter profile (community, identity, motivation)
 8. Answer "If users love this, what will they tell friends?"
 9. Plan distribution from Day 1
-10. **Define Retention Thesis** (recurring job, frequency driver, habit loop)
-11. Design 10 High-Velocity Tests
-12. Create Lo-Fi Validation Plan
-13. Define success metrics (leading/lagging)
-14. Identify risks and mitigations
-15. Create rollout plan with feature flags
-16. Define analytics events schema
+10. **Define Monetization Wedge** (first paid moment, expansion revenue, value metric)
+11. **Define Retention Thesis** (recurring job, frequency driver, habit loop)
+12. Design 10 High-Velocity Tests
+13. Create Lo-Fi Validation Plan
+14. Define success metrics (leading/lagging)
+15. Identify risks and mitigations
+16. Create rollout plan with feature flags
+17. Define analytics events schema
 16. Create PRD document
 17. Get stakeholder alignment
 
@@ -250,6 +300,7 @@ Output: /docs/product/PRD-<feature>.md
 - Early adopter profile is specific
 - "If users love this" question is answered
 - Distribution from Day 1 is planned
+- **Monetization Wedge is defined** (first paid moment, expansion revenue, value metric)
 - **Retention Thesis is defined** (recurring job, frequency driver, habit loop)
 - **Retention mechanics are designed in** (not patched later)
 - 10 High-Velocity Tests are actionable

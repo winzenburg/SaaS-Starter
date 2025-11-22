@@ -69,7 +69,38 @@ Unfair Insight Brief → Narrative 1-pager → Community Heat Map → 10 Lo-Fi T
 
 **Quality Gate**: Narrative must have clear emotional hook and transformation story
 
-### 3. Retention Thesis
+### 3. Monetization Wedge
+**Input**: Unfair Insight Brief, Narrative  
+**Output**: Monetization Wedge document
+
+**Agent**: Product Strategist / Insight Strategist
+
+**Required Artifacts**:
+- Monetization Wedge in PRD or Insight Brief
+- **What is the first paid moment?** (answered)
+- **What is the natural expansion revenue?** (seats, usage, tiers) (answered)
+- **What value metric scales with customer success?** (answered)
+- Pricing strategy defined (not just "free to grow")
+- Value metric identified (what customers pay for)
+- Expansion path defined (how revenue grows)
+
+**Deliverables**:
+- Clear first paid moment identified
+- Natural expansion revenue path defined
+- Value metric that scales with customer success
+- Pricing strategy prevents "free audience, no business"
+- Monetization wedge designed (not just community growth)
+
+**Quality Gate**: 
+- First paid moment must be clear and early
+- Natural expansion revenue must be defined
+- Value metric must scale with customer success
+- **Pricing as product** (not just free to grow)
+- **Prevents "free audience, no business"**
+
+**Critical Rule**: Community products often start free/cheap to grow. That's fine for validation, but to get strong MRR you need pricing as product earlier.
+
+### 4. Retention Thesis
 **Input**: Unfair Insight Brief, Narrative  
 **Output**: Retention Thesis document
 
@@ -100,7 +131,7 @@ Unfair Insight Brief → Narrative 1-pager → Community Heat Map → 10 Lo-Fi T
 
 **Critical Rule**: Many niche products die from "strong launch, weak week-8 retention." Retention must be designed in, not patched later.
 
-### 4. Community Heat Map + Moat Design
+### 5. Community Heat Map + Moat Design
 **Input**: Unfair Insight Brief, Narrative  
 **Output**: Community Heat Analysis + Moat Design
 
@@ -135,7 +166,7 @@ Unfair Insight Brief → Narrative 1-pager → Community Heat Map → 10 Lo-Fi T
 - At least 2 moat types selected
 - Moat implementation plan created
 
-### 5. 10 Lo-Fi Tests
+### 6. 10 Lo-Fi Tests
 **Input**: Insight Brief, Narrative, Retention Thesis, Community Heat Map  
 **Output**: 10 High-Velocity Tests
 
@@ -155,7 +186,7 @@ Unfair Insight Brief → Narrative 1-pager → Community Heat Map → 10 Lo-Fi T
 
 **Quality Gate**: All 10 tests must be actionable and low-cost
 
-### 6. "Would You Be Upset If This Disappeared?" Test
+### 7. "Would You Be Upset If This Disappeared?" Test
 **Input**: Insight Brief, Narrative, Community Heat Map  
 **Output**: Emotional attachment validation
 
@@ -175,7 +206,7 @@ Unfair Insight Brief → Narrative 1-pager → Community Heat Map → 10 Lo-Fi T
 
 **Quality Gate**: At least 30% of test participants should indicate they would be upset
 
-### 7. Landing Page + Waitlist Test
+### 8. Landing Page + Waitlist Test
 **Input**: Insight Brief, Narrative, Community Heat Map  
 **Output**: Landing page validation results
 
@@ -199,7 +230,7 @@ Unfair Insight Brief → Narrative 1-pager → Community Heat Map → 10 Lo-Fi T
 - Traffic from target community
 - Signups indicate genuine interest
 
-### 8. Manual Concierge/MVP Test
+### 9. Manual Concierge/MVP Test
 **Input**: All previous validation  
 **Output**: Manual service validation
 
@@ -223,7 +254,7 @@ Unfair Insight Brief → Narrative 1-pager → Community Heat Map → 10 Lo-Fi T
 - Positive feedback on value delivered
 - Customers would use automated version
 
-### 9. Decision Point: Proceed → Pivot → Kill
+### 10. Decision Point: Proceed → Pivot → Kill
 **Input**: All validation results  
 **Output**: Go/No-Go decision
 
@@ -273,6 +304,7 @@ Insight validation is considered done when:
 
 - ✅ Unfair Insight Brief created and validated
 - ✅ Narrative 1-pager created with emotional hook
+- ✅ **Monetization Wedge defined** (first paid moment, expansion revenue, value metric)
 - ✅ **Retention Thesis defined** (recurring job, frequency driver, habit loop)
 - ✅ Community Heat Map identifies high-heat communities
 - ✅ **Moat Design completed (at least 2 moat types selected)**
@@ -292,6 +324,7 @@ Insight validation is considered done when:
 Each step must pass quality gates before proceeding:
 - **Unfair Insight**: Unique and defensible
 - **Narrative**: Clear emotional hook and transformation
+- **Monetization Wedge**: First paid moment, expansion revenue, and value metric defined
 - **Retention Thesis**: Recurring job, frequency driver, and habit loop defined
 - **Community Heat Map**: High-heat community identified
 - **Moat Design**: At least 2 moat types selected with implementation plan
