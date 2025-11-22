@@ -1,9 +1,13 @@
 # Feature Flags
 
-- Use Vercel Feature Flags for risky rollouts
-- New features that could impact users
-- Performance-sensitive changes
-- Breaking changes or migrations
-- Use `isFeatureEnabled` from `@/lib/feature-flags`
-- Default to false for new features
-- Document feature flag usage in code
+Goal: Prevent path/layout disagreements between agents.
+
+- Feature flags required for risky rollouts / schema migrations / pricing changes
+- Provider interface:
+  - env flags locally
+  - Vercel Feature Flags in prod
+- Hook: `useFeatureFlag("flag")`
+- Server guard: `requireFlag("flag")`
+- Feature flag utility: `src/lib/feature-flags.ts`
+- Default value for missing flags: `false`
+- Type-safe flag names (no magic strings)
