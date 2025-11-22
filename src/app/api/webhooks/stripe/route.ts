@@ -4,6 +4,7 @@ import { stripe } from "@/lib/stripe";
 /**
  * Stripe webhook handler
  * Handles Stripe events securely
+ * Uses request.headers directly (Next.js 15 compatible)
  */
 export async function POST(request: NextRequest) {
   const body = await request.text();
