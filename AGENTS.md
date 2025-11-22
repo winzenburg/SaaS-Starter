@@ -25,8 +25,8 @@ See `docs/agents/*.md` for full prompts.
 
 ## Default Workflows
 
-- **Pre-build validation**: `.cursor/rules/000-playbook-pre-build-validation.mdc` (must pass before new feature)
-- **New feature**: `.cursor/rules/210-playbook-new-feature.mdc` (requires pre-build validation)
+- **Insight validation**: `.cursor/rules/200-playbook-insight-validation.mdc` (must pass before new feature)
+- **New feature**: `.cursor/rules/210-playbook-new-feature.mdc` (requires insight validation)
 - **Bugfix**: `.cursor/rules/220-playbook-bugfix.mdc`
 - **Refactor**: `.cursor/rules/230-playbook-refactor.mdc`
 
@@ -42,6 +42,7 @@ Always active. Short, enforceable constraints.
 - `020-core-observability.mdc` - Observability requirements
 - `025-core-session-hygiene.mdc` - Planning and diff management
 - `027-core-adr-trigger.mdc` - When to write ADRs
+- `027-core-desirability-first.mdc` - No build until validated
 - `030-core-style.mdc` - Code style
 
 ### Layer B: Stack/Integration Rules (100-199)
@@ -53,10 +54,10 @@ Always active. Precise conventions for Next.js, tRPC, Drizzle, Stripe, Vercel.
 - `150-vercel-platform.mdc` - Vercel runtime and services
 - `160-feature-flags.mdc` - Feature flag usage
 
-### Layer C: Playbooks (000-299)
+### Layer C: Playbooks (200-299)
 Invoked when needed. Detailed "how to do X" guides.
-- `000-playbook-pre-build-validation.mdc` - Pre-build validation (Isenberg Edition) - **Must pass before new feature**
-- `210-playbook-new-feature.mdc` - Feature development workflow
+- `200-playbook-insight-validation.mdc` - Greg's pre-build validation process (Isenberg Edition) - **Must pass before new feature**
+- `210-playbook-new-feature.mdc` - Feature development workflow (requires insight validation)
 - `220-playbook-bugfix.mdc` - Bug fix process
 - `230-playbook-refactor.mdc` - Refactoring process
 - `240-playbook-a11y-audit.mdc` - Accessibility audit

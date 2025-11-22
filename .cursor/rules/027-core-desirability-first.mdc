@@ -1,0 +1,30 @@
+# Core Desirability-First
+
+Goal: Prevent building features that nobody wants. Validate demand before code.
+
+## Rule
+
+**No build until validated.**
+
+## Requirements
+
+Before any engineering work begins:
+
+- [ ] Unfair insight validated (see `.cursor/rules/200-playbook-insight-validation.mdc`)
+- [ ] Narrative resonates with target community
+- [ ] At least 3 demand-validation tests passed
+- [ ] "Would you be upset if this disappeared?" test shows emotional attachment
+- [ ] Manual concierge/MVP test shows willingness to pay
+- [ ] Community Heat Map identifies high-heat community
+
+## Enforcement
+
+- Engineering Architect must check validation results before creating ADR
+- Implementer must not start building without validation proof
+- No feature enters `.cursor/rules/210-playbook-new-feature.mdc` without passing validation
+
+## If Not Validated
+
+- Pivot idea, narrative, or community
+- Re-run validation tests
+- Kill idea if validation fails repeatedly

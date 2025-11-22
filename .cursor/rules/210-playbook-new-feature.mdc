@@ -1,29 +1,38 @@
 # Playbook: New Feature
 
 ## Prerequisites
-**CRITICAL**: This playbook assumes pre-build validation is complete. See `.cursor/rules/000-playbook-pre-build-validation.mdc`.
+**CRITICAL**: This playbook assumes insight validation is complete. See `.cursor/rules/200-playbook-insight-validation.mdc`.
 
 **Required before starting**:
 - ✅ At least 3 demand-validation tests passed
 - ✅ Unfair Insight Brief validated
+- ✅ Narrative 1-pager created with emotional hook
 - ✅ Community Heat Map identifies high-heat community
 - ✅ Decision to PROCEED (not PIVOT or KILL)
 
-**Rule**: No feature enters engineering without passing at least 3 demand-validation tests.
+**Rule**: No feature enters engineering without passing at least 3 demand-validation tests (see `.cursor/rules/027-core-desirability-first.mdc`).
 
 ## Step Sequence
 
 ```
-Validation Phase (demand before code):
-Insight-Strategist → Unfair Insight
-Product-Strategist → Narrative + Desirability PRD
-Market-Scanner → Community Heat + Moat
-Run Validation Tests (emails, DMs, landing page)
-Green-light decision
+Insight → Narrative → Validation (must complete first):
+1. Insight-Strategist → Unfair Insight
+2. Product-Strategist → Narrative + Desirability PRD
+3. Market-Scanner → Community Heat + Moat
+4. Run Validation Tests (emails, DMs, landing page, "would you be upset?", manual concierge)
+5. Green-light decision
 
 If green-light → Architecture Phase:
-flows/edge cases (parallel OK) → ADR + schema + router plan → test plan + stubs → build (small diffs) → a11y audit + fix loop → test verify → PRD acceptance check
+6. IA Designer → flows/edge cases (parallel OK)
+7. Engineering Architect → ADR + schema + router plan
+8. Test Engineer → test plan + stubs
+9. Implementer → build (small diffs, MVP-first)
+10. Accessibility Agent → a11y audit + fix loop
+11. Test Engineer → test verify
+12. Product Strategist → PRD acceptance check
 ```
+
+**Note**: Steps 1-5 should follow `.cursor/rules/200-playbook-insight-validation.mdc` if not already completed.
 
 ## Steps
 

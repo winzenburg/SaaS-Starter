@@ -1,0 +1,290 @@
+# Playbook: Insight Validation (Isenberg Edition)
+
+## Goal
+Greg's pre-build validation process encoded step-by-step. Validate demand before building.
+
+## Rule
+**No feature enters engineering without passing at least 3 demand-validation tests.**
+
+## Prerequisites
+- Raw product/feature idea
+- Initial market context
+- Willingness to validate before building
+
+**CRITICAL**: Before starting validation, verify idea meets core criteria (`.cursor/rules/000-core-idea-criteria.mdc`):
+- Identity-level pain
+- Ongoing, recurring need
+- Distribution wedge baked in
+- Match between insight + community
+
+If criteria not met → pivot or kill. Do not proceed to validation.
+
+## Step Sequence
+
+```
+Unfair Insight Brief → Narrative 1-pager → Community Heat Map → 10 Lo-Fi Tests → "Would you be upset?" test → Landing page + waitlist → Manual concierge/MVP → Decision point (Proceed/Pivot/Kill)
+```
+
+## Steps
+
+### 1. Unfair Insight Brief
+**Input**: Raw product/feature idea  
+**Output**: Unfair Insight document
+
+**Agent**: Insight & Narrative Strategist
+
+**Required Artifacts**:
+- Insight document in `docs/product/INSIGHT-<product>.md`
+- Unfair insight (what do we know that others don't?)
+- Target community identification
+- Early signals definition
+- 5 demand-validation tests (no-code/human first)
+- Distribution wedge
+- Recommendation (proceed, pivot, or kill)
+
+**Deliverables**:
+- Unfair insight documented
+- Clear POV ("What problem do we exist to punch in the face?")
+- Target community identified
+- Early signals defined
+
+**Quality Gate**: Unfair insight must be unique and defensible
+
+### 2. Narrative 1-pager
+**Input**: Unfair Insight Brief  
+**Output**: Narrative 1-pager
+
+**Agent**: Insight & Narrative Strategist
+
+**Required Artifacts**:
+- Narrative document (can be part of Insight Brief)
+- Emotional hook
+- Transformation story
+- Value proposition
+
+**Deliverables**:
+- Clear narrative with emotional resonance
+- Transformation story (before → after)
+- Value proposition articulated
+
+**Quality Gate**: Narrative must have clear emotional hook and transformation story
+
+### 3. Community Heat Map
+**Input**: Unfair Insight Brief, Narrative  
+**Output**: Community Heat Analysis
+
+**Agent**: Market Scanner
+
+**Required Artifacts**:
+- Community Heat Analysis in `docs/research/market-scan-<feature>.md`
+- Identification of niche internet tribes
+- Micro-communities to win first
+- Pain + activation energy assessment
+- Community Heat Map (high/medium/low heat)
+
+**Deliverables**:
+- Communities identified and ranked by heat
+- "Which community has the most pain + activation energy?" answered
+- "What niche internet tribe desperately wants this?" answered
+- "What micro-community can we win first?" answered
+
+**Quality Gate**: At least one high-heat community identified
+
+### 4. 10 Lo-Fi Tests
+**Input**: Insight Brief, Narrative, Community Heat Map  
+**Output**: 10 High-Velocity Tests
+
+**Agent**: Product Strategist
+
+**Required Artifacts**:
+- 10 High-Velocity Tests in PRD
+- Each test with: name, method, success criteria, timeline
+- Tests must be fast and low-cost
+- No-code/human first approach
+
+**Deliverables**:
+- 10 actionable tests designed
+- Success criteria defined for each
+- Timeline for running tests
+- Tests are runnable without engineering
+
+**Quality Gate**: All 10 tests must be actionable and low-cost
+
+### 5. "Would You Be Upset If This Disappeared?" Test
+**Input**: Insight Brief, Narrative, Community Heat Map  
+**Output**: Emotional attachment validation
+
+**Agent**: Product Strategist / UX Researcher
+
+**Required Artifacts**:
+- Test plan for "Would you be upset?" question
+- Method for asking (interviews, surveys, conversations)
+- Success criteria (what indicates emotional attachment?)
+- Results documented
+
+**Deliverables**:
+- Test executed
+- Results documented
+- Emotional attachment level assessed
+- Clear signal: would users be upset if this disappeared?
+
+**Quality Gate**: At least 30% of test participants should indicate they would be upset
+
+### 6. Landing Page + Waitlist Test
+**Input**: Insight Brief, Narrative, Community Heat Map  
+**Output**: Landing page validation results
+
+**Agent**: Product Strategist / Implementer (minimal implementation)
+
+**Required Artifacts**:
+- Landing page created (can be simple)
+- Waitlist signup mechanism
+- Analytics tracking
+- Conversion metrics
+
+**Deliverables**:
+- Landing page live
+- Waitlist signups tracked
+- Conversion rate measured
+- Traffic sources identified
+- Clear signal: do people sign up?
+
+**Quality Gate**: 
+- Minimum 50 waitlist signups (or 5% conversion rate, whichever is higher)
+- Traffic from target community
+- Signups indicate genuine interest
+
+### 7. Manual Concierge/MVP Test
+**Input**: All previous validation  
+**Output**: Manual service validation
+
+**Agent**: Product Strategist / Implementer (manual process)
+
+**Required Artifacts**:
+- Manual process for delivering value
+- Service delivery mechanism (email, spreadsheet, manual work)
+- Customer feedback collection
+- Results documented
+
+**Deliverables**:
+- Manual service delivered to 5-10 customers
+- Value delivered without building product
+- Customer feedback collected
+- Willingness to pay validated
+- Clear signal: do customers value this enough to pay?
+
+**Quality Gate**:
+- At least 3 customers willing to pay for manual service
+- Positive feedback on value delivered
+- Customers would use automated version
+
+### 8. Decision Point: Proceed → Pivot → Kill
+**Input**: All validation results  
+**Output**: Go/No-Go decision
+
+**Agent**: Product Strategist / Team
+
+**Required Artifacts**:
+- Validation results summary
+- Decision document
+- Rationale for decision
+- Next steps (if proceed)
+
+**Deliverables**:
+- Clear decision: PROCEED | PIVOT | KILL
+- Rationale documented
+- Validation test results summarized
+- At least 3 tests passed (if PROCEED)
+
+**Decision Criteria**:
+
+#### PROCEED (if all true):
+- ✅ At least 3 demand-validation tests passed
+- ✅ "Would you be upset?" test shows emotional attachment
+- ✅ Landing page shows signup interest
+- ✅ Manual concierge shows willingness to pay
+- ✅ Community Heat Map shows high-heat community
+- ✅ Unfair insight is validated
+- ✅ Narrative resonates
+
+#### PIVOT (if some true):
+- ⚠️ Some validation signals but not all
+- ⚠️ Need to adjust: insight, narrative, community, or approach
+- ⚠️ New tests needed after pivot
+
+#### KILL (if most false):
+- ❌ Less than 3 tests passed
+- ❌ No emotional attachment
+- ❌ No signup interest
+- ❌ No willingness to pay
+- ❌ No high-heat community
+- ❌ Insight not validated
+
+## Definition of Done Checklist
+
+Insight validation is considered done when:
+
+- ✅ Unfair Insight Brief created and validated
+- ✅ Narrative 1-pager created with emotional hook
+- ✅ Community Heat Map identifies high-heat communities
+- ✅ 10 Lo-Fi Tests designed and documented
+- ✅ "Would you be upset?" test executed (30%+ would be upset)
+- ✅ Landing page + waitlist test executed (50+ signups or 5%+ conversion)
+- ✅ Manual concierge/MVP test executed (3+ paying customers)
+- ✅ At least 3 demand-validation tests passed
+- ✅ Decision made: PROCEED | PIVOT | KILL
+- ✅ Rationale documented
+- ✅ If PROCEED: Ready to enter new feature playbook
+- ✅ If PIVOT: New validation plan created
+- ✅ If KILL: Learnings documented
+
+## Quality Gates
+
+Each step must pass quality gates before proceeding:
+- **Unfair Insight**: Unique and defensible
+- **Narrative**: Clear emotional hook and transformation
+- **Community Heat Map**: High-heat community identified
+- **10 Lo-Fi Tests**: All actionable and low-cost
+- **"Would you be upset?"**: 30%+ would be upset
+- **Landing page**: 50+ signups or 5%+ conversion
+- **Manual concierge**: 3+ paying customers
+- **Decision**: Clear and justified
+
+## Rule Enforcement
+
+**CRITICAL RULE**: No feature enters engineering without passing at least 3 demand-validation tests.
+
+This means:
+- If less than 3 tests pass → KILL or PIVOT (do not proceed to engineering)
+- If 3+ tests pass → Can proceed to new feature playbook
+- Engineering Architect should check validation results before creating ADR
+- Implementer should not start building without validation proof
+
+## Anti-Patterns to Avoid
+
+- ❌ Building before validating demand
+- ❌ Proceeding with less than 3 passed tests
+- ❌ Skipping manual concierge test
+- ❌ Ignoring "would you be upset?" results
+- ❌ Building landing page without measuring results
+- ❌ Not identifying high-heat community
+- ❌ Proceeding without clear unfair insight
+
+## Next Steps
+
+### If PROCEED
+- Move to `.cursor/rules/210-playbook-new-feature.mdc`
+- Use validated insight, narrative, and community in PRD
+- Reference validation results in PRD
+
+### If PIVOT
+- Identify what to pivot (insight, narrative, community, approach)
+- Create new validation plan
+- Re-run validation tests
+- Return to decision point
+
+### If KILL
+- Document learnings
+- Identify what didn't work
+- Consider alternative directions
+- Archive validation results for future reference
