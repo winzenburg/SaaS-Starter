@@ -1,0 +1,245 @@
+# Playbook: Moat & MRR Validation
+
+## Goal
+Validate defensibility and monetization before building. Ensure every product/feature has a clear retention thesis and monetization wedge before engineering begins.
+
+## Rule
+**No product/feature graduates to engineering without (a) desirability signal and (b) a retention + monetization wedge.**
+
+## Prerequisites
+- Insight/Narrative Brief completed (`/docs/product/INSIGHT-<product>.md`)
+- Demand validation completed (Greg style - at least 3 tests passed)
+- Durability Filter scored and assessed
+
+**CRITICAL**: This playbook runs AFTER insight validation (`.cursor/rules/200-playbook-insight-validation.mdc`) but BEFORE new feature development (`.cursor/rules/210-playbook-new-feature.mdc`).
+
+## Step Sequence
+
+```
+Insight/Narrative Brief → Demand Validation (Greg style) → Moat + Retention + Monetization Plan → PRD/ADR/Tests/Build
+```
+
+## Steps
+
+### 1. Insight/Narrative Brief Review
+**Input**: Insight Brief from Insight & Narrative Strategist  
+**Output**: Confirmed insight and narrative
+
+**Required Artifacts**:
+- Insight Brief exists (`/docs/product/INSIGHT-<product>.md`)
+- Unfair insight validated
+- Narrative with emotional hook
+- Target community identified
+- Durability Filter scored
+- Recurring job + budgeted buyer confirmed
+
+**Quality Gate**: 
+- Insight Brief must exist and be validated
+- Durability Filter must be scored
+- Recurring job must be identified
+- Budgeted buyer must be confirmed
+
+### 2. Demand Validation (Greg Style)
+**Input**: Insight Brief, validation test results  
+**Output**: Confirmed desirability signal
+
+**Required Artifacts**:
+- At least 3 demand-validation tests passed (from insight validation playbook)
+- "Would you be upset if this disappeared?" test results
+- Landing page + waitlist test results
+- Manual concierge/MVP test results
+- Community Heat Map shows high-heat community
+- Emotional attachment validated
+
+**Quality Gate**: 
+- At least 3 demand-validation tests must have passed
+- Clear desirability signal confirmed
+- High-heat community identified
+- Emotional attachment validated (30%+ would be upset)
+
+**Critical Rule**: **No product/feature graduates to engineering without desirability signal.**
+
+### 3. Moat + Retention + Monetization Plan
+**Input**: Insight Brief, Demand Validation Results, Durability Assessment  
+**Output**: Moat & MRR Strategy document
+
+**Agent**: Moat & MRR Strategist
+
+**Required Artifacts**:
+- Moat & MRR Strategy document (`/docs/product/MOAT-MRR-<product>.md`)
+- **Moat map** (2+ types selected with implementation plan)
+- **Retention thesis** (habit/frequency driver)
+- **Expansion model** (seat/usage/tier)
+- **Churn risks & counter-features**
+- **Lifecycle state machine**
+- **Activation → habit → expansion plan**
+- **Churn-prevention triggers**
+
+**Deliverables**:
+- At least 2 moat types mapped with implementation plan
+- Clear retention thesis (habit/frequency driver)
+- Expansion model defined (seat/usage/tier)
+- Churn risks identified with counter-features
+- Lifecycle state machine designed
+- Activation → habit → expansion plan created
+- Churn-prevention triggers defined
+
+**Quality Gate**: 
+- Moat map must include at least 2 moat types
+- Retention thesis must be clear (habit/frequency driver)
+- Expansion model must align with Monetization Wedge
+- Lifecycle state machine must be complete
+- Churn-prevention triggers must be defined
+
+**Critical Rule**: **No product/feature graduates to engineering without retention + monetization wedge.**
+
+### 4. Gate Decision: Proceed to PRD/ADR/Tests/Build
+
+**Input**: All validation results (desirability + moat/MRR plan)  
+**Output**: Go/No-Go decision
+
+**Decision Criteria**:
+
+#### Green-Light (PROCEED) if:
+- ✅ Insight/Narrative Brief validated
+- ✅ **Desirability signal confirmed** (at least 3 tests passed)
+- ✅ **Retention thesis defined** (habit/frequency driver)
+- ✅ **Monetization wedge defined** (first paid moment, expansion revenue, value metric)
+- ✅ **Moat map completed** (2+ types with implementation plan)
+- ✅ **Lifecycle state machine designed**
+- ✅ **Churn-prevention triggers defined**
+- ✅ Durability Filter passed
+- ✅ High-heat community identified
+
+#### Yellow-Light (PIVOT) if:
+- ⚠️ Desirability signal weak (less than 3 tests passed)
+- ⚠️ Retention thesis unclear
+- ⚠️ Monetization wedge undefined
+- ⚠️ Moat map incomplete
+- ⚠️ Need to adjust: insight, narrative, community, or approach
+- ⚠️ Return to validation phase with adjustments
+
+#### Red-Light (KILL) if:
+- ❌ No desirability signal
+- ❌ No retention thesis possible
+- ❌ No monetization wedge possible
+- ❌ No moat potential
+- ❌ Low durability (trend-spike, not durable market)
+- ❌ No high-heat community
+
+**Rule**: **No feature enters PRD/ADR/Tests/Build phase without green-light decision.**
+
+## Definition of Done Checklist
+
+Moat & MRR validation is considered done when:
+
+- ✅ Insight/Narrative Brief reviewed and validated
+- ✅ **Desirability signal confirmed** (at least 3 tests passed)
+- ✅ **Retention thesis defined** (habit/frequency driver)
+- ✅ **Monetization wedge defined** (first paid moment, expansion revenue, value metric)
+- ✅ **Moat map completed** (2+ types with implementation plan)
+- ✅ **Lifecycle state machine designed**
+- ✅ **Activation → habit → expansion plan created**
+- ✅ **Churn-prevention triggers defined**
+- ✅ Durability Filter passed
+- ✅ High-heat community identified
+- ✅ Gate decision made: PROCEED | PIVOT | KILL
+- ✅ Rationale documented
+- ✅ If PROCEED: Ready to enter new feature playbook (`.cursor/rules/210-playbook-new-feature.mdc`)
+- ✅ If PIVOT: New validation plan created
+- ✅ If KILL: Learnings documented
+
+## Quality Gates
+
+Each step must pass quality gates before proceeding:
+- **Insight Brief**: Validated, durability scored, recurring job + budgeted buyer confirmed
+- **Desirability Signal**: At least 3 tests passed, emotional attachment validated
+- **Retention Thesis**: Clear habit/frequency driver
+- **Monetization Wedge**: First paid moment, expansion revenue, value metric defined
+- **Moat Map**: At least 2 moat types with implementation plan
+- **Lifecycle State Machine**: Complete with all states and transitions
+- **Gate Decision**: Clear and justified
+
+## Rule Enforcement
+
+**CRITICAL RULE**: No product/feature graduates to engineering without (a) desirability signal and (b) a retention + monetization wedge.
+
+This means:
+- If desirability signal is weak → PIVOT or KILL (do not proceed to engineering)
+- If retention thesis is unclear → PIVOT or KILL (do not proceed to engineering)
+- If monetization wedge is undefined → PIVOT or KILL (do not proceed to engineering)
+- If moat map is incomplete → PIVOT or KILL (do not proceed to engineering)
+- Engineering Architect should check Moat & MRR Strategy before creating ADR
+- Implementer should not start building without retention + monetization wedge
+
+## Anti-Patterns to Avoid
+
+- ❌ Building before validating retention + monetization
+- ❌ Proceeding with weak desirability signal
+- ❌ Skipping moat map
+- ❌ Ignoring retention thesis
+- ❌ Building without monetization wedge
+- ❌ Not designing lifecycle state machine
+- ❌ Proceeding without churn-prevention triggers
+
+## Next Steps
+
+### If PROCEED
+- Move to `.cursor/rules/210-playbook-new-feature.mdc`
+- Use validated insight, narrative, and community in PRD
+- Reference Moat & MRR Strategy in PRD
+- Engineering Architect should reference Moat & MRR Strategy in ADR
+
+### If PIVOT
+- Identify what to pivot (insight, narrative, community, retention, monetization)
+- Create new validation plan
+- Re-run validation tests
+- Return to gate decision
+
+### If KILL
+- Document learnings
+- Identify what didn't work
+- Consider alternative directions
+- Archive validation results for future reference
+
+## Integration with Other Playbooks
+
+### Before This Playbook
+- `.cursor/rules/200-playbook-insight-validation.mdc` - Must complete first
+  - Insight/Narrative Brief created
+  - Demand validation tests executed
+  - Durability Filter scored
+
+### After This Playbook
+- `.cursor/rules/210-playbook-new-feature.mdc` - Can proceed if green-light
+  - PRD creation
+  - ADR creation
+  - Test planning
+  - Implementation
+
+## Workflow Summary
+
+1. **Review Insight/Narrative Brief** (from Insight & Narrative Strategist)
+2. **Confirm Demand Validation** (at least 3 tests passed)
+3. **Create Moat + Retention + Monetization Plan** (Moat & MRR Strategist)
+4. **Gate Decision** (PROCEED | PIVOT | KILL)
+5. **If PROCEED**: Move to new feature playbook
+6. **If PIVOT**: Return to validation with adjustments
+7. **If KILL**: Document learnings and archive
+
+## Critical Success Factors
+
+- **Desirability signal must be strong** (at least 3 tests passed)
+- **Retention thesis must be clear** (habit/frequency driver)
+- **Monetization wedge must be defined** (first paid moment, expansion revenue, value metric)
+- **Moat map must be complete** (2+ types with implementation plan)
+- **Lifecycle state machine must be designed** (before coding)
+- **Churn-prevention triggers must be defined** (before coding)
+
+## Notes
+
+- This playbook ensures defensibility and monetization are validated before engineering
+- It prevents building features that have demand but no retention or monetization path
+- It forces explicit moat strategy before building
+- It ensures lifecycle loops are designed before coding
+- It prevents "free audience, no business" scenarios

@@ -26,8 +26,9 @@ See `docs/agents/*.md` for full prompts.
 
 ## Default Workflows
 
-- **Insight validation**: `.cursor/rules/200-playbook-insight-validation.mdc` (must pass before new feature)
-- **New feature**: `.cursor/rules/210-playbook-new-feature.mdc` (requires insight validation)
+- **Insight validation**: `.cursor/rules/200-playbook-insight-validation.mdc` (must pass before moat/MRR validation)
+- **Moat & MRR validation**: `.cursor/rules/205-playbook-moat-mrr-validation.mdc` (must pass before new feature)
+- **New feature**: `.cursor/rules/210-playbook-new-feature.mdc` (requires insight validation + moat/MRR validation)
 - **Bugfix**: `.cursor/rules/220-playbook-bugfix.mdc`
 - **Refactor**: `.cursor/rules/230-playbook-refactor.mdc`
 
@@ -58,8 +59,9 @@ Always active. Precise conventions for Next.js, tRPC, Drizzle, Stripe, Vercel.
 
 ### Layer C: Playbooks (200-299)
 Invoked when needed. Detailed "how to do X" guides.
-- `200-playbook-insight-validation.mdc` - Greg's pre-build validation process (Isenberg Edition) - **Must pass before new feature**
-- `210-playbook-new-feature.mdc` - Feature development workflow (requires insight validation)
+- `200-playbook-insight-validation.mdc` - Greg's pre-build validation process (Isenberg Edition) - **Must pass before moat/MRR validation**
+- `205-playbook-moat-mrr-validation.mdc` - Moat & MRR validation (defensibility + monetization) - **Must pass before new feature**
+- `210-playbook-new-feature.mdc` - Feature development workflow (requires insight validation + moat/MRR validation)
 - `220-playbook-bugfix.mdc` - Bug fix process
 - `230-playbook-refactor.mdc` - Refactoring process
 - `240-playbook-a11y-audit.mdc` - Accessibility audit
