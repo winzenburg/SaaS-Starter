@@ -2,6 +2,24 @@
 
 Goal: Avoid building "feature factories" and align with Greg's "only build what has heat."
 
+## Two-Filter Pipeline Mental Model
+
+Think of your pipeline as two stacked filters:
+
+### Heat Filter (Isenberg)
+**"Do a tribe of real humans urgently want this?"**
+
+**Proof**: waitlists, DMs, preorders, repeat usage.
+
+### Durability Filter
+**"Will this still matter and keep paying 12–36 months from now?"**
+
+**Proof**: recurring job, budgeted buyer, retention loop, moat map.
+
+**Heat gets you in. Durability makes it a real SaaS business.**
+
+## Core Criteria
+
 A product must have:
 
 - **Identity-level pain**: The problem is tied to how users see themselves or their role

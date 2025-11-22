@@ -3,6 +3,16 @@
 ## Goal
 Greg's pre-build validation process encoded step-by-step. Validate demand before building.
 
+## Mental Model: Heat Filter
+
+**"Do a tribe of real humans urgently want this?"**
+
+**Proof**: waitlists, DMs, preorders, repeat usage.
+
+This playbook validates the **Heat Filter** (Isenberg). The **Durability Filter** is validated in `.cursor/rules/205-playbook-moat-mrr-validation.mdc`.
+
+**Heat gets you in. Durability makes it a real SaaS business.**
+
 ## Rule
 **No feature enters engineering without passing at least 3 demand-validation tests.**
 

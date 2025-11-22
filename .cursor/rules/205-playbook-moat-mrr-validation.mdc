@@ -3,6 +3,16 @@
 ## Goal
 Validate defensibility and monetization before building. Ensure every product/feature has a clear retention thesis and monetization wedge before engineering begins.
 
+## Mental Model: Durability Filter
+
+**"Will this still matter and keep paying 12–36 months from now?"**
+
+**Proof**: recurring job, budgeted buyer, retention loop, moat map.
+
+This playbook validates the **Durability Filter**. The **Heat Filter** (Isenberg) is validated in `.cursor/rules/200-playbook-insight-validation.mdc`.
+
+**Heat gets you in. Durability makes it a real SaaS business.**
+
 ## Rule
 **No product/feature graduates to engineering without (a) desirability signal and (b) a retention + monetization wedge.**
 

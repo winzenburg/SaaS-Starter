@@ -26,11 +26,15 @@ See `docs/agents/*.md` for full prompts.
 
 ## Default Workflows
 
-- **Insight validation**: `.cursor/rules/200-playbook-insight-validation.mdc` (must pass before moat/MRR validation)
-- **Moat & MRR validation**: `.cursor/rules/205-playbook-moat-mrr-validation.mdc` (must pass before new feature)
+- **Insight validation** (Heat Filter): `.cursor/rules/200-playbook-insight-validation.mdc` (must pass before moat/MRR validation)
+  - **Mental Model**: "Do a tribe of real humans urgently want this?" (Proof: waitlists, DMs, preorders, repeat usage)
+- **Moat & MRR validation** (Durability Filter): `.cursor/rules/205-playbook-moat-mrr-validation.mdc` (must pass before new feature)
+  - **Mental Model**: "Will this still matter and keep paying 12–36 months from now?" (Proof: recurring job, budgeted buyer, retention loop, moat map)
 - **New feature**: `.cursor/rules/210-playbook-new-feature.mdc` (requires insight validation + moat/MRR validation)
 - **Bugfix**: `.cursor/rules/220-playbook-bugfix.mdc`
 - **Refactor**: `.cursor/rules/230-playbook-refactor.mdc`
+
+**Two-Filter Pipeline**: Heat gets you in. Durability makes it a real SaaS business.
 
 ## Rule System
 
