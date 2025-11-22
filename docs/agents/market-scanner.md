@@ -299,10 +299,16 @@ Based on durability score, provide:
 
 Choose from these 6 moat types:
 
-1. **Data Moat** (proprietary usage data → better outcomes)
+1. **Data Moat** (proprietary usage data → better outcomes) ← **STRONGLY RECOMMENDED**
+   - **What proprietary data will we capture?** (required)
+   - **How does it get better as users grow?** (required)
+   - **How does that unlock 10× better UX, insights, automation, or recommendations?** (required)
+   - **What feedback loop improves retention?** (required)
    - How will proprietary data make the product better over time?
    - What data will be unique to your product?
    - How does data create compounding value?
+   
+   **Note**: In 2025, data moats are the only durable moats for small SaaS. Every niche product should have a Data Moat Thesis.
 
 2. **Workflow Lock-In** (deep integration into daily ops)
    - How does the product become essential to daily operations?

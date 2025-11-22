@@ -77,7 +77,8 @@ Insight/Narrative Brief → Demand Validation (Greg style) → Moat + Retention 
 
 **Required Artifacts**:
 - Moat & MRR Strategy document (`/docs/product/MOAT-MRR-<product>.md`)
-- **Moat map** (2+ types selected with implementation plan)
+- **Data Moat Thesis** (REQUIRED: proprietary data, compounding mechanism, 10× value, feedback loop)
+- **Moat map** (2+ types selected with implementation plan, Data Moat strongly recommended)
 - **Retention thesis** (habit/frequency driver)
 - **Expansion model** (seat/usage/tier)
 - **Churn risks & counter-features**
@@ -86,7 +87,8 @@ Insight/Narrative Brief → Demand Validation (Greg style) → Moat + Retention 
 - **Churn-prevention triggers**
 
 **Deliverables**:
-- At least 2 moat types mapped with implementation plan
+- **Data Moat Thesis completed** (proprietary data, compounding mechanism, 10× value, feedback loop)
+- At least 2 moat types mapped with implementation plan (Data Moat strongly recommended)
 - Clear retention thesis (habit/frequency driver)
 - Expansion model defined (seat/usage/tier)
 - Churn risks identified with counter-features
@@ -95,7 +97,8 @@ Insight/Narrative Brief → Demand Validation (Greg style) → Moat + Retention 
 - Churn-prevention triggers defined
 
 **Quality Gate**: 
-- Moat map must include at least 2 moat types
+- **Data Moat Thesis must be complete** (proprietary data, compounding mechanism, 10× value, feedback loop)
+- Moat map must include at least 2 moat types (Data Moat strongly recommended)
 - Retention thesis must be clear (habit/frequency driver)
 - Expansion model must align with Monetization Wedge
 - Lifecycle state machine must be complete
@@ -115,7 +118,8 @@ Insight/Narrative Brief → Demand Validation (Greg style) → Moat + Retention 
 - ✅ **Desirability signal confirmed** (at least 3 tests passed)
 - ✅ **Retention thesis defined** (habit/frequency driver)
 - ✅ **Monetization wedge defined** (first paid moment, expansion revenue, value metric)
-- ✅ **Moat map completed** (2+ types with implementation plan)
+- ✅ **Data Moat Thesis completed** (proprietary data, compounding mechanism, 10× value, feedback loop)
+- ✅ **Moat map completed** (2+ types with implementation plan, Data Moat strongly recommended)
 - ✅ **Lifecycle state machine designed**
 - ✅ **Churn-prevention triggers defined**
 - ✅ Durability Filter passed
@@ -147,7 +151,8 @@ Moat & MRR validation is considered done when:
 - ✅ **Desirability signal confirmed** (at least 3 tests passed)
 - ✅ **Retention thesis defined** (habit/frequency driver)
 - ✅ **Monetization wedge defined** (first paid moment, expansion revenue, value metric)
-- ✅ **Moat map completed** (2+ types with implementation plan)
+- ✅ **Data Moat Thesis completed** (proprietary data, compounding mechanism, 10× value, feedback loop)
+- ✅ **Moat map completed** (2+ types with implementation plan, Data Moat strongly recommended)
 - ✅ **Lifecycle state machine designed**
 - ✅ **Activation → habit → expansion plan created**
 - ✅ **Churn-prevention triggers defined**
@@ -164,9 +169,10 @@ Moat & MRR validation is considered done when:
 Each step must pass quality gates before proceeding:
 - **Insight Brief**: Validated, durability scored, recurring job + budgeted buyer confirmed
 - **Desirability Signal**: At least 3 tests passed, emotional attachment validated
+- **Data Moat Thesis**: Proprietary data, compounding mechanism, 10× value, feedback loop defined
 - **Retention Thesis**: Clear habit/frequency driver
 - **Monetization Wedge**: First paid moment, expansion revenue, value metric defined
-- **Moat Map**: At least 2 moat types with implementation plan
+- **Moat Map**: At least 2 moat types with implementation plan (Data Moat strongly recommended)
 - **Lifecycle State Machine**: Complete with all states and transitions
 - **Gate Decision**: Clear and justified
 

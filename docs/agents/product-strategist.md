@@ -26,6 +26,7 @@ Greg's playbook emphasizes demand validation and value story before building. Th
 - Must validate desirability before buildability
 - Must produce Value Story and Why Now
 - Must include Lo-Fi Validation Plan
+- **Data Moat Thesis is REQUIRED** (proprietary data, compounding mechanism, 10× value, feedback loop)
 - JTBD framing required
 - Acceptance criteria in bullet form
 - Risks + mitigations documented
@@ -248,7 +249,102 @@ Output: /docs/product/PRD-<feature>.md
 - Pricing strategy prevents "free audience, no business"
 - Monetization wedge designed (not just community growth)
 
-### 10. Durability Filter
+### 10. Data Moat Thesis (REQUIRED)
+
+**CRITICAL**: In 2025, data moats are the only durable moats for small SaaS. Every niche product should have a structured way to collect proprietary data, a mechanism to use that data to generate increasing value, and a feedback loop that improves retention.
+
+#### What Proprietary Data Will We Capture?
+
+**Required**: Define the proprietary data that will be unique to your product.
+
+- **Data types**: [What specific data will be captured?]
+- **Data sources**: [Where does this data come from?]
+- **Data uniqueness**: [Why is this data proprietary? Why can't competitors get it?]
+- **Data collection mechanism**: [How is data collected? (user actions, workflows, integrations, etc.)]
+- **Data volume**: [How much data will be collected over time?]
+- **Data structure**: [How is data structured/stored?]
+
+**Examples**:
+- User behavior patterns (how users actually use the product)
+- Workflow data (how users complete tasks)
+- Integration data (how users connect tools)
+- Community data (how users interact)
+- Outcome data (what results users achieve)
+
+#### How Does It Get Better as Users Grow?
+
+**Required**: Define how the data moat compounds with more users.
+
+- **Network effects**: [How does more data from more users make the product better?]
+- **Learning effects**: [How does the product learn from usage patterns?]
+- **Compounding value**: [How does value increase exponentially with data?]
+- **Data accumulation**: [How does data accumulate over time?]
+- **Data quality**: [How does data quality improve with scale?]
+
+**Examples**:
+- More users → more usage patterns → better recommendations
+- More users → more integrations → better workflow insights
+- More users → more outcomes → better benchmarks
+- More users → more community data → better matching
+
+#### How Does That Unlock 10× Better UX, Insights, Automation, or Recommendations?
+
+**Required**: Define how proprietary data creates 10× better value.
+
+- **UX improvements**: [How does data enable 10× better user experience?]
+- **Insights**: [What insights can only your product provide?]
+- **Automation**: [What automation is enabled by proprietary data?]
+- **Recommendations**: [What recommendations are uniquely valuable?]
+- **Personalization**: [How does data enable personalization?]
+- **Predictive capabilities**: [What can you predict that others can't?]
+
+**Examples**:
+- **10× Better UX**: Product learns user preferences → personalized interface
+- **10× Better Insights**: Proprietary data → unique benchmarks and trends
+- **10× Better Automation**: Usage patterns → intelligent automation
+- **10× Better Recommendations**: Data from all users → hyper-relevant recommendations
+
+#### Feedback Loop That Improves Retention
+
+**Required**: Define how the data moat creates a retention feedback loop.
+
+- **Retention mechanism**: [How does data improve retention?]
+- **Feedback loop**: [What's the data → value → retention → more data loop?]
+- **Switching costs**: [How does accumulated data create switching costs?]
+- **Habit formation**: [How does data-driven features create habits?]
+- **Value accumulation**: [How does value accumulate over time?]
+
+**Examples**:
+- More data → better recommendations → more usage → more data (positive loop)
+- More data → better automation → time saved → higher retention
+- More data → better insights → better outcomes → higher retention
+- More data → personalized experience → habit formation → higher retention
+
+#### Data Moat Implementation Plan
+
+- **Phase 1** (Months 1-3): [What data collection infrastructure?]
+- **Phase 2** (Months 4-6): [What data-driven features?]
+- **Phase 3** (Months 7-12): [What compounding value features?]
+
+#### Data Moat Metrics
+
+- **Data volume**: [How much data collected?]
+- **Data quality**: [How to measure data quality?]
+- **Data utilization**: [How much data is used in features?]
+- **Value from data**: [How to measure value created from data?]
+- **Retention impact**: [How does data impact retention?]
+
+#### Quality Gate
+
+- Proprietary data must be clearly defined
+- Data compounding mechanism must be explained
+- 10× value proposition must be clear
+- Feedback loop must be designed
+- Implementation plan must be created
+
+**Critical Rule**: Every niche product should have a Data Moat Thesis. This turns every product into a compounding dataset → defensible advantage.
+
+### 11. Durability Filter
 
 **CRITICAL**: Some niches are trend-spikes, not durable markets. Isenberg is great at catching waves, but defensive moat + enduring MRR requires filtering for structural vs. cyclical pain, recurring workflow vs. novelty, budgeted spend vs. hobby spend.
 
@@ -321,7 +417,7 @@ Based on durability score:
 
 **Critical Rule**: If a niche fails durability, still build — but treat it like a cash-flow micro-bet, not a compounding SaaS asset.
 
-### 11. Retention Thesis (REQUIRED)
+### 12. Retention Thesis (REQUIRED)
 
 **CRITICAL**: MRR durability = retention architecture. Many niche products die from "strong launch, weak week-8 retention." Retention must be designed in, not patched later. This section is **REQUIRED** in all PRDs.
 
@@ -366,7 +462,7 @@ Based on durability score:
 - Habit loop/ritual must be designed
 - Retention mechanics must be designed in (not patched later)
 
-### 12. 10 High-Velocity Tests
+### 13. 10 High-Velocity Tests
 - **Test 1**: [Name] - [Method] - [Success criteria] - [Timeline]
 - **Test 2**: [Name] - [Method] - [Success criteria] - [Timeline]
 - **Test 3**: [Name] - [Method] - [Success criteria] - [Timeline]
@@ -380,7 +476,7 @@ Based on durability score:
 
 **Note**: High-velocity tests are fast, low-cost ways to validate demand before building.
 
-### 13. Lo-Fi Validation Plan
+### 14. Lo-Fi Validation Plan
 - **Email validation**: [How to test via email]
 - **Landing page**: [What landing page tests demand?]
 - **Loom demo**: [How to use Loom to validate interest?]
@@ -389,28 +485,28 @@ Based on durability score:
 - **Timeline**: [When to run each validation?]
 - **Success criteria**: [What indicates validation?]
 
-### 14. Success Metrics (leading/lagging)
+### 15. Success Metrics (leading/lagging)
 - **Leading indicators**: Predictive metrics (engagement, time to value, word-of-mouth)
 - **Lagging indicators**: Outcome metrics (conversion, retention, revenue)
 - **Baseline metrics**: Current state
 - **Target metrics**: Desired state
 - **Measurement plan**: How to measure
 
-### 15. Risks + Mitigations
+### 16. Risks + Mitigations
 - **Desirability risks**: What if users don't want this?
 - **Buildability risks**: What if we can't build this?
 - **Distribution risks**: What if we can't reach users?
 - **Timing risks**: What if timing is wrong?
 - **Mitigation strategies**: How to mitigate each risk
 
-### 16. Rollout Plan with Feature Flags
+### 17. Rollout Plan with Feature Flags
 - **Feature flag name**: [Name]
 - **Rollout stages**: 0% → 10% → 50% → 100%
 - **Success criteria for each stage**: [Criteria]
 - **Rollback plan**: [How to rollback]
 - **Monitoring plan**: [What to monitor]
 
-### 17. Analytics Events Schema
+### 18. Analytics Events Schema
 - **Event names**: [List]
 - **Event properties**: [Properties for each event]
 - **When events fire**: [Triggers]
@@ -427,15 +523,16 @@ Based on durability score:
 8. Answer "If users love this, what will they tell friends?"
 9. Plan distribution from Day 1
 10. **Define Monetization Wedge** (first paid moment, expansion revenue, value metric)
-11. **Score Durability Filter** (frequency, budget, independent of hype, upset if disappeared, switching costs)
-12. **Assess Durability** (Durable Market | Cash-Flow Micro-Bet | Low Durability)
-13. **Define Retention Thesis** (recurring job, frequency driver, habit loop)
-14. Design 10 High-Velocity Tests
-15. Create Lo-Fi Validation Plan
-16. Define success metrics (leading/lagging)
-17. Identify risks and mitigations
-18. Create rollout plan with feature flags
-19. Define analytics events schema
+11. **Define Data Moat Thesis** (proprietary data, compounding mechanism, 10× value, feedback loop)
+12. **Score Durability Filter** (frequency, budget, independent of hype, upset if disappeared, switching costs)
+13. **Assess Durability** (Durable Market | Cash-Flow Micro-Bet | Low Durability)
+14. **Define Retention Thesis** (recurring job, frequency driver, habit loop)
+15. Design 10 High-Velocity Tests
+16. Create Lo-Fi Validation Plan
+17. Define success metrics (leading/lagging)
+18. Identify risks and mitigations
+19. Create rollout plan with feature flags
+20. Define analytics events schema
 16. Create PRD document
 17. Get stakeholder alignment
 
