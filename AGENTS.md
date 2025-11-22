@@ -25,7 +25,8 @@ See `docs/agents/*.md` for full prompts.
 
 ## Default Workflows
 
-- **New feature**: `.cursor/rules/210-playbook-new-feature.mdc`
+- **Pre-build validation**: `.cursor/rules/000-playbook-pre-build-validation.mdc` (must pass before new feature)
+- **New feature**: `.cursor/rules/210-playbook-new-feature.mdc` (requires pre-build validation)
 - **Bugfix**: `.cursor/rules/220-playbook-bugfix.mdc`
 - **Refactor**: `.cursor/rules/230-playbook-refactor.mdc`
 
@@ -51,8 +52,9 @@ Always active. Precise conventions for Next.js, tRPC, Drizzle, Stripe, Vercel.
 - `150-vercel-platform.mdc` - Vercel runtime and services
 - `160-feature-flags.mdc` - Feature flag usage
 
-### Layer C: Playbooks (200-299)
+### Layer C: Playbooks (000-299)
 Invoked when needed. Detailed "how to do X" guides.
+- `000-playbook-pre-build-validation.mdc` - Pre-build validation (Isenberg Edition) - **Must pass before new feature**
 - `210-playbook-new-feature.mdc` - Feature development workflow
 - `220-playbook-bugfix.mdc` - Bug fix process
 - `230-playbook-refactor.mdc` - Refactoring process

@@ -1,5 +1,16 @@
 # Playbook: New Feature
 
+## Prerequisites
+**CRITICAL**: This playbook assumes pre-build validation is complete. See `.cursor/rules/000-playbook-pre-build-validation.mdc`.
+
+**Required before starting**:
+- ✅ At least 3 demand-validation tests passed
+- ✅ Unfair Insight Brief validated
+- ✅ Community Heat Map identifies high-heat community
+- ✅ Decision to PROCEED (not PIVOT or KILL)
+
+**Rule**: No feature enters engineering without passing at least 3 demand-validation tests.
+
 ## Step Sequence
 
 ```
