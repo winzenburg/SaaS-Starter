@@ -3,12 +3,12 @@
 ## Step Sequence
 
 ```
-PRD → flows → ADR → tests → build → a11y → verify
+PRD → flows/edge cases (parallel OK) → ADR + schema + router plan → test plan + stubs → build (small diffs) → a11y audit + fix loop → test verify → PRD acceptance check
 ```
 
-## Step-by-Step Process
+## Steps
 
-### 1. PRD (Product Strategist)
+### 1. Product Strategist PRD
 **Input**: Feature request or user need  
 **Output**: Product Requirements Document
 
@@ -24,54 +24,59 @@ PRD → flows → ADR → tests → build → a11y → verify
 - Edge cases and failure modes documented
 - Stakeholder alignment obtained
 
-### 2. Flows (IA/Interaction + UX Researcher)
+### 2. IA Designer flows/edge cases (parallel OK)
 **Input**: PRD  
 **Output**: Information architecture and user flows
 
 **Required Artifacts**:
 - User flow diagrams in `docs/flows/<feature-name>/`
+- Edge case documentation
 - Wireframes or mockups
 - IA documentation
 
 **Deliverables**:
 - Information architecture designed
 - User flows created and validated
+- Edge cases documented
 - Interaction patterns defined
-- User research validation completed
 
-### 3. ADR (Engineering Architect)
+**Note**: Can run in parallel with PRD refinement
+
+### 3. Engineering Architect ADR + schema + router plan
 **Input**: PRD, flows  
-**Output**: Architecture Decision Record
+**Output**: Architecture Decision Record, schema design, router plan
 
 **Required Artifacts**:
 - ADR document in `docs/adr/<number>-<feature-name>.md`
+- Schema design in `drizzle/schema.ts` (or feature-specific schema)
+- Router plan in `src/features/<feature>/data/router.ts` (structure)
 - Technical design document
-- Feature structure plan
 
 **Deliverables**:
 - ADR created with decision rationale
-- Technical approach designed
-- Feature module structure planned
-- Patterns and conventions defined
+- Database schema designed
+- tRPC router structure planned
+- Feature module structure defined
+- Patterns and conventions documented
 
-### 4. Tests (Test Engineer)
-**Input**: ADR  
-**Output**: Test suite
+### 4. Test Engineer test plan + stubs
+**Input**: ADR, schema, router plan  
+**Output**: Test plan and test stubs
 
 **Required Artifacts**:
-- Unit tests in `src/features/<feature>/domain/*.test.ts`
-- Integration tests in `src/features/<feature>/data/*.test.ts`
-- E2E tests in `e2e/<feature>/*.spec.ts`
+- Test plan document
+- Unit test stubs in `src/features/<feature>/domain/*.test.ts`
+- Integration test stubs in `src/features/<feature>/data/*.test.ts`
+- E2E test stubs in `e2e/<feature>/*.spec.ts`
 
 **Deliverables**:
-- Tests that define correctness
-- Unit tests for domain logic
-- Integration tests for server actions
-- E2E tests for critical flows
-- **All tests must pass before implementation**
+- Test plan covering all scenarios
+- Test stubs with clear descriptions
+- Edge case test scenarios defined
+- **Tests must be written before implementation**
 
-### 5. Build (Implementer)
-**Input**: ADR, passing tests  
+### 5. Implementer build (small diffs)
+**Input**: ADR, schema, router plan, test stubs  
 **Output**: Implemented feature
 
 **Required Artifacts**:
@@ -88,9 +93,15 @@ PRD → flows → ADR → tests → build → a11y → verify
 - Domain logic implemented
 - Server actions and tRPC procedures created
 - UI components with all states (loading/empty/error/success)
+- Observability events added (success/failure)
 - Integration with existing systems
 
-### 6. A11y (Accessibility)
+**Rules**:
+- Keep diffs small (one concern at a time)
+- Run tests after each change
+- Commit frequently with logical units
+
+### 6. Accessibility audit + fix loop
 **Input**: Implemented feature  
 **Output**: Accessibility fixes
 
@@ -106,47 +117,45 @@ PRD → flows → ADR → tests → build → a11y → verify
 - Color contrast checked
 - All accessibility issues fixed
 
-### 7. Verify (Test Engineer + Accessibility)
-**Input**: Complete feature  
-**Output**: Verified, ready to merge
+**Process**:
+- Audit → Fix → Re-audit → Fix (loop until all issues resolved)
+
+### 7. Test verify
+**Input**: Complete feature with a11y fixes  
+**Output**: Verified test results
 
 **Deliverables**:
-- Full test suite passing (must be green)
-- Final accessibility check completed
-- Code review passed
-- All quality gates passed
+- All unit tests passing
+- All integration tests passing
+- All E2E tests passing
+- No regressions introduced
+- Test coverage verified
 
-## Parallel Agent Execution
+### 8. PRD acceptance check
+**Input**: Complete feature, test results  
+**Output**: PRD acceptance confirmation
 
-### Sequential Dependencies
-- PRD must complete before flows
-- Flows must complete before ADR
-- ADR must complete before tests
-- Tests must pass before build
-- Build must complete before a11y
-- A11y must complete before verify
+**Deliverables**:
+- Feature matches PRD requirements
+- Acceptance criteria met
+- Success metrics baseline established
+- Stakeholder sign-off obtained
 
-### Parallel Opportunities
-- **Market Scanner** can research while **Product Strategist** writes PRD
-- **UX Researcher** can validate while **IA/Interaction** designs flows
-- **Test Engineer** can write tests while **Engineering Architect** creates ADR (after ADR structure is defined)
-- **Accessibility** can audit while **Implementer** builds (with coordination on component completion)
-
-## Definition of Done
+## Definition of Done Checklist
 
 A feature is considered done when:
 
 - ✅ PRD approved by stakeholders
 - ✅ User flows validated
 - ✅ ADR created and reviewed
-- ✅ All tests written and passing
-- ✅ Feature implemented following ADR
-- ✅ All UI states implemented (loading/empty/error/success)
-- ✅ WCAG 2.2 AA compliance verified
-- ✅ All tests passing (unit + integration + e2e)
-- ✅ Code review completed
+- ✅ All tests written and passing (green)
+- ✅ Observability events added (success/failure)
+- ✅ All UI states exist (loading/empty/error/success)
 - ✅ Documentation updated
+- ✅ WCAG 2.2 AA compliance verified (a11y pass)
+- ✅ Code review completed
 - ✅ No linting or type errors
+- ✅ PRD acceptance check passed
 - ✅ Ready for merge
 
 ## Quality Gates
@@ -155,7 +164,8 @@ Each step must pass quality gates before proceeding:
 - **PRD**: Stakeholder approval
 - **Flows**: User validation
 - **ADR**: Technical review
-- **Tests**: All tests passing
-- **Build**: Code review, linting, type checking
+- **Test Plan**: Coverage verified
+- **Build**: Tests passing, code review, linting, type checking
 - **A11y**: WCAG 2.2 AA compliance
-- **Verify**: All quality gates passed
+- **Test Verify**: All tests green
+- **PRD Acceptance**: Requirements met
