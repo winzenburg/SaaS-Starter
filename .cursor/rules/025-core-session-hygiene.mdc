@@ -10,3 +10,8 @@ Goal: Stop agents from making giant messy diffs.
 - Commit logical units separately
 - Review existing patterns before introducing new abstractions
 - Prefer incremental changes over large refactors
+
+## Cursor 2.x Notes
+
+- **Glob-scoped rules**: Currently flaky in Cursor 2.0+; prefer explicit rule files
+- **Parallel agents**: Use git worktrees; merge intentionally and avoid accepting changes blindly

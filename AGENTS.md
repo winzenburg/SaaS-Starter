@@ -71,6 +71,14 @@ Agent packs extend base agents with domain-specific workflows and patterns.
 
 **Usage**: Invoke Product Strategist or Engineering Architect with "Use the AI-SaaS agent pack" to apply domain-specific patterns.
 
+## Cursor 2.x Gotchas
+
+### Glob-Scoped Rules
+Glob-scoped rules are currently flaky in Cursor 2.0+; prefer explicit rule files for now.
+
+### Parallel Agents
+Parallel agents use git worktrees; merge intentionally and avoid accepting changes blindly.
+
 ## See Also
 
 - `.cursor/rules/` - Project guardrails and playbooks
