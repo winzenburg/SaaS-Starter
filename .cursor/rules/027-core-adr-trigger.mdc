@@ -1,3 +1,16 @@
 # Core ADR Trigger
 
-- If a change alters boundaries, data model, runtime, auth, billing, or tenancy → write ADR before coding
+Goal: Force explicit decisions on high-risk changes.
+
+- Write ADR before coding if change affects:
+  - architecture boundaries
+  - data model
+  - runtime (node/edge)
+  - auth/RBAC
+  - billing/entitlements
+  - multi-tenancy isolation
+  - data export/delete
+- ADR must list: decision, options, tradeoffs, consequences
+- Use template: `docs/adr/0001-template.md`
+- ADR number format: `NNNN-<short-name>.md` (sequential)
+- Document rejected alternatives and why
