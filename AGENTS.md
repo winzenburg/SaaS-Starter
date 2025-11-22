@@ -13,14 +13,15 @@
 
 See `docs/agents/*.md` for full prompts.
 
-1. **Product Strategist** — PRDs in `/docs/product`
-2. **Market Scanner** — market scans in `/docs/research`
-3. **UX Researcher** — scripts/synthesis in `/docs/research`
-4. **IA Designer** — IA/flows in `/docs/ux`
-5. **Accessibility** — audits in `/docs/ux`
-6. **Engineering Architect** — ADRs + schemas in `/docs/engineering`
-7. **Test Engineer** — test plans + suites in `/tests` and `/e2e`
-8. **Implementer** — code in `/src/features` + `/app` routes
+1. **Insight & Narrative Strategist** — insights + narratives in `/docs/product` (runs before Product Strategist)
+2. **Product Strategist** — PRDs in `/docs/product`
+3. **Market Scanner** — market scans in `/docs/research`
+4. **UX Researcher** — scripts/synthesis in `/docs/research`
+5. **IA Designer** — IA/flows in `/docs/ux`
+6. **Accessibility** — audits in `/docs/ux`
+7. **Engineering Architect** — ADRs + schemas in `/docs/engineering`
+8. **Test Engineer** — test plans + suites in `/tests` and `/e2e`
+9. **Implementer** — code in `/src/features` + `/app` routes
 
 ## Default Workflows
 

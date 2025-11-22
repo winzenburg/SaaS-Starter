@@ -3,12 +3,37 @@
 ## Step Sequence
 
 ```
-PRD → flows/edge cases (parallel OK) → ADR + schema + router plan → test plan + stubs → build (small diffs) → a11y audit + fix loop → test verify → PRD acceptance check
+Insight + Narrative → PRD → flows/edge cases (parallel OK) → ADR + schema + router plan → test plan + stubs → build (small diffs) → a11y audit + fix loop → test verify → PRD acceptance check
 ```
 
 ## Steps
 
-### 1. Product Strategist PRD
+### 1. Insight & Narrative Strategist
+**Input**: Raw product/feature idea  
+**Output**: Unfair Insight + Narrative document
+
+**Required Artifacts**:
+- Insight document in `docs/product/INSIGHT-<product>.md`
+- Unfair insight (what do we know that others don't?)
+- Narrative (emotional hook + transformation story)
+- Target community identification
+- Early signals definition
+- 5 demand-validation tests (no-code/human first)
+- Distribution wedge
+- Recommendation (proceed, pivot, or kill)
+
+**Deliverables**:
+- Unfair insight documented
+- Narrative crafted with emotional hook
+- Target community identified
+- Early signals defined
+- Demand-validation tests designed
+- Distribution wedge identified
+- Clear recommendation (proceed/pivot/kill)
+
+**Note**: Only proceed to PRD if recommendation is PROCEED. This prevents waste by ensuring signal before building.
+
+### 2. Product Strategist PRD
 **Input**: Feature request or user need  
 **Output**: Product Requirements Document
 
