@@ -6,206 +6,221 @@ This document describes how to use Cursor 2.1 multi-agents for parallel developm
 
 Cursor 2.1 supports up to 8 parallel agents, each running in an isolated worktree. Use agents to:
 - Work on multiple features simultaneously
-- Parallelize testing and refactoring
+- Parallelize research, design, and implementation
 - Speed up development cycles
-- Maintain code quality across features
+- Maintain code quality and accessibility across features
 
-## Agent Roster
+## Operating Principles
 
-### 🏗️ Architecture Agent
-**Purpose**: Design and implement architectural changes
-- Creates ADRs for significant decisions
-- Refactors across feature boundaries
-- Updates architecture documentation
-- Reviews and improves code structure
+All agents must adhere to these core principles:
 
-**When to use**: Major refactors, new patterns, architectural decisions
+- **Boring, evolutionary code** - Prefer simple, maintainable solutions over clever abstractions
+- **Tests define correctness** - Write tests that describe expected behavior
+- **Small diffs** - Make incremental, verifiable changes
+- **WCAG 2.2 AA** - All UI must meet accessibility standards
 
-### 🧪 Testing Agent
-**Purpose**: Write and maintain tests
+## Agents
+
+### 1. Product Strategist
+**Purpose**: Define product requirements and strategy
+- Creates PRDs (Product Requirements Documents)
+- Defines user problems and JTBD (Jobs To Be Done)
+- Identifies success metrics and risks
+- Documents edge cases and failure modes
+- Updates personas and user research
+
+**When to use**: New features, product decisions, requirement gathering
+
+### 2. Market Scanner
+**Purpose**: Research market and competitive landscape
+- Analyzes competitor features
+- Researches best practices and patterns
+- Identifies industry standards
+- Reviews relevant case studies
+- Provides market context for decisions
+
+**When to use**: New feature planning, competitive analysis, technology selection
+
+### 3. UX Researcher
+**Purpose**: Understand users and validate designs
+- Conducts user research
+- Creates user personas
+- Validates user flows
+- Tests prototypes and designs
+- Gathers user feedback
+
+**When to use**: Feature discovery, user validation, usability testing
+
+### 4. IA/Interaction
+**Purpose**: Design information architecture and interactions
+- Creates information architecture
+- Designs user flows and wireframes
+- Defines interaction patterns
+- Plans navigation and content structure
+- Ensures consistent UX patterns
+
+**When to use**: New features, major redesigns, flow improvements
+
+### 5. Accessibility
+**Purpose**: Ensure WCAG 2.2 AA compliance
+- Audits UI for accessibility issues
+- Tests with screen readers
+- Verifies keyboard navigation
+- Checks color contrast and visual accessibility
+- Ensures semantic HTML and ARIA usage
+
+**When to use**: UI implementation, accessibility reviews, compliance checks
+
+### 6. Engineering Architect
+**Purpose**: Design technical architecture and patterns
+- Creates ADRs (Architecture Decision Records)
+- Designs system architecture
+- Defines patterns and conventions
+- Reviews code structure
+- Plans refactoring and improvements
+
+**When to use**: New features, architectural decisions, major refactors
+
+### 7. Test Engineer
+**Purpose**: Write and maintain comprehensive tests
 - Creates unit tests for domain logic
 - Writes integration tests for server actions
 - Sets up E2E tests for critical flows
 - Ensures test coverage requirements
+- Maintains test infrastructure
 
-**When to use**: New features, refactoring, bug fixes
+**When to use**: New features, refactoring, bug fixes, test maintenance
 
-### 🎨 UI/UX Agent
-**Purpose**: Build accessible, polished interfaces
-- Implements UI components with all states (loading/empty/error/success)
-- Ensures WCAG 2.2 AA compliance
-- Creates responsive, accessible designs
-- Follows design system patterns
+### 8. Implementer
+**Purpose**: Build features and implement code
+- Implements features following architecture
+- Writes server actions and tRPC procedures
+- Creates UI components with all states
+- Integrates with external services
+- Follows all project rules and patterns
 
-**When to use**: New features, UI improvements, accessibility fixes
+**When to use**: Feature implementation, bug fixes, improvements
 
-### 🔌 Integration Agent
-**Purpose**: Connect features and external services
-- Sets up tRPC procedures
-- Configures API routes
-- Integrates third-party services (Stripe, etc.)
-- Handles webhook setup
+## Standard Workflow
 
-**When to use**: New integrations, API work, external service setup
+The standard workflow for feature development follows this sequence:
 
-### 🗄️ Database Agent
-**Purpose**: Manage database schema and migrations
-- Creates Drizzle schemas
-- Writes migrations
-- Optimizes queries
-- Handles data transformations
+```
+PRD → IA/flows → ADR → tests → build → a11y audit → verify
+```
 
-**When to use**: Schema changes, migrations, query optimization
+### Step-by-Step Process
 
-### 📚 Documentation Agent
-**Purpose**: Maintain project documentation
-- Updates README and architecture docs
-- Creates feature documentation
-- Writes ADRs
-- Maintains API documentation
+1. **PRD** (Product Strategist)
+   - Define requirements, user problems, success metrics
+   - Document edge cases and failure modes
+   - Get stakeholder alignment
 
-**When to use**: New features, architectural changes, onboarding
+2. **IA/flows** (IA/Interaction + UX Researcher)
+   - Design information architecture
+   - Create user flows and wireframes
+   - Validate with user research
 
-### 🔒 Security Agent
-**Purpose**: Ensure security best practices
-- Reviews authentication/authorization
-- Verifies webhook signatures
-- Checks for PII in logs
-- Audits dependencies
+3. **ADR** (Engineering Architect)
+   - Create Architecture Decision Record
+   - Design technical approach
+   - Define patterns and conventions
 
-**When to use**: Security reviews, new auth features, compliance
+4. **Tests** (Test Engineer)
+   - Write tests that define correctness
+   - Create unit, integration, and E2E tests
+   - Ensure tests pass before implementation
 
-### 🚀 Performance Agent
-**Purpose**: Optimize performance and observability
-- Adds observability events
-- Optimizes bundle size
-- Improves query performance
-- Sets up monitoring
+5. **Build** (Implementer)
+   - Implement feature following architecture
+   - Follow all project rules
+   - Create small, verifiable diffs
 
-**When to use**: Performance issues, optimization work, monitoring setup
+6. **A11y Audit** (Accessibility)
+   - Audit UI for WCAG 2.2 AA compliance
+   - Test with assistive technologies
+   - Fix accessibility issues
 
-## Workflows
+7. **Verify** (Test Engineer + Accessibility)
+   - Run all tests (must be green)
+   - Final accessibility check
+   - Code review and quality gates
 
-### Feature Development Workflow
+## Parallel Workflows
 
-1. **Architecture Agent**: Design feature structure and create ADR if needed
-2. **Database Agent**: Create schema and migrations
-3. **UI/UX Agent**: Build UI components with all states
-4. **Integration Agent**: Set up tRPC procedures and API routes
-5. **Testing Agent**: Write comprehensive tests (unit + integration + e2e)
-6. **Documentation Agent**: Update feature documentation
+While the standard workflow is sequential, some steps can run in parallel:
 
-**Parallel execution**: Steps 3-5 can run in parallel after step 2
+### Parallel Execution Opportunities
 
-### Refactoring Workflow
+- **Market Scanner** can research while **Product Strategist** writes PRD
+- **UX Researcher** can validate while **IA/Interaction** designs flows
+- **Test Engineer** can write tests while **Engineering Architect** creates ADR
+- **Accessibility** can audit while **Implementer** builds (with coordination)
 
-1. **Architecture Agent**: Plan refactor and create ADR
-2. **Testing Agent**: Ensure all tests are green
-3. **Architecture Agent**: Perform refactor
-4. **Testing Agent**: Verify tests still pass
-5. **Documentation Agent**: Update documentation
+### Coordination Rules
 
-**Rule**: Tests must be green before further refactors
-
-### Bug Fix Workflow
-
-1. **Testing Agent**: Write failing test that reproduces bug
-2. **Appropriate Agent**: Fix the bug
-3. **Testing Agent**: Verify test passes
-4. **Documentation Agent**: Document the fix if significant
-
-### Security Review Workflow
-
-1. **Security Agent**: Review code for security issues
-2. **Integration Agent**: Fix webhook/API security issues
-3. **Database Agent**: Review data access patterns
-4. **Security Agent**: Final security audit
+- **Sequential dependencies**: PRD → IA/flows → ADR → tests → build
+- **Parallel safe**: Market research, user research, documentation
+- **Final gates**: Tests and accessibility must pass before merge
 
 ## Best Practices
 
 ### Agent Coordination
 
-- **One feature per agent** - Don't have multiple agents work on the same feature simultaneously
-- **Clear boundaries** - Use feature module boundaries to isolate work
-- **Communication** - Use commit messages and PRs to communicate between agents
-- **Sequential dependencies** - Ensure dependencies are resolved before parallel work
+- **Clear handoffs** - Each agent should clearly document outputs for next agent
+- **Small increments** - Break work into small, verifiable pieces
+- **Communication** - Use commit messages, PRs, and documentation to communicate
+- **Follow principles** - All agents must adhere to operating principles
 
 ### Worktree Management
 
 - Each agent runs in an isolated worktree
 - Agents can work on different branches simultaneously
-- Merge conflicts are handled at integration time
+- Merge conflicts handled at integration time
 - Use feature flags to test parallel work safely
 
 ### Quality Gates
 
 - All agents must follow `.cursor/rules/*` guidelines
-- Tests must pass before merging agent work
+- Tests must be green before merging
 - Code must pass linting and type checking
+- WCAG 2.2 AA compliance required
 - Documentation must be updated
 
-## Agent Prompts
+## Example: Feature Development
 
-### Starting an Agent
+### Starting a New Feature
 
-When starting an agent, provide:
-1. **Clear objective** - What needs to be done
-2. **Context** - Relevant files and dependencies
-3. **Constraints** - Any limitations or requirements
-4. **Success criteria** - How to know it's done
-
-### Example: Starting UI/UX Agent
-
-```
-Build the login form feature with:
-- Form in src/features/auth/ui/LoginForm.tsx
-- Use schema from src/features/auth/domain/schemas.ts
-- Include loading/empty/error/success states
-- WCAG 2.2 AA compliant
-- Responsive design
-```
-
-### Example: Starting Testing Agent
-
-```
-Write tests for the auth feature:
-- Unit tests for domain logic
-- Integration tests for loginAction
-- E2E test for login flow
-- All tests must pass
-```
+1. **Product Strategist**: "Create PRD for user authentication feature"
+2. **Market Scanner**: "Research authentication best practices and patterns"
+3. **UX Researcher**: "Validate authentication flows with users"
+4. **IA/Interaction**: "Design login/signup flows and wireframes"
+5. **Engineering Architect**: "Create ADR for auth architecture (NextAuth vs custom)"
+6. **Test Engineer**: "Write tests for auth domain logic and flows"
+7. **Implementer**: "Build auth feature following ADR and tests"
+8. **Accessibility**: "Audit auth UI for WCAG 2.2 AA compliance"
+9. **Test Engineer**: "Run full test suite and verify"
+10. **Accessibility**: "Final a11y check and sign-off"
 
 ## Troubleshooting
 
-### Merge Conflicts
+### Workflow Blockers
 
-- Resolve conflicts in main branch
-- Coordinate with other agents if needed
-- Use feature flags to isolate conflicting work
+- **Missing PRD**: Product Strategist must complete before IA/Interaction
+- **No ADR**: Engineering Architect must create ADR before implementation
+- **Failing tests**: Test Engineer must fix before Implementer continues
+- **A11y issues**: Accessibility must resolve before merge
 
-### Agent Stuck
+### Agent Coordination Issues
 
-- Check if agent is waiting on dependencies
-- Verify worktree is clean
-- Review agent's progress in sidebar
-
-### Quality Issues
-
-- Review `.cursor/rules/*` compliance
-- Run tests and linting
-- Check documentation updates
-
-## Advanced: Custom Agents
-
-For complex workflows, you can create custom agent configurations in `/docs/agents/*`:
-
-- `feature-development.md` - Detailed feature dev workflow
-- `security-audit.md` - Security review checklist
-- `performance-optimization.md` - Performance tuning guide
+- Review handoff documentation
+- Check for missing dependencies
+- Verify worktree state
+- Coordinate through PRs and commits
 
 ## See Also
 
 - `.cursor/rules/` - Project guardrails
 - `docs/ARCHITECTURE.md` - Architecture patterns
 - `docs/CONTRIBUTING.md` - Development guidelines
-
+- `docs/adr/` - Architecture Decision Records
