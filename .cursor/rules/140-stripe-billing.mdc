@@ -1,5 +1,15 @@
-# Stripe Billing
+# Stripe Billing Conventions
 
-- Subscription states: trial → active → past_due → churned
-- Webhooks verify signature and are idempotent
-- Entitlements enforced in API + UI
+Goal: Prevent path/layout disagreements between agents.
+
+- Subscription states: `trial` → `active` → `past_due` → `churned`
+- Webhooks:
+  - verify signature
+  - idempotent processing
+  - record raw event for replay
+- Entitlements:
+  - defined in `/infra/billing/entitlements.ts`
+  - enforced in API + UI
+- Billing changes require feature flag rollout unless trivial
+- Webhook handler: `/app/api/webhooks/stripe/route.ts`
+- Use Stripe SDK from `src/lib/stripe.ts`
