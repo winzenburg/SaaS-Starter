@@ -1,0 +1,5 @@
+# Core Session Hygiene
+
+- Plan before implementing
+- Keep diffs small; avoid simultaneous cross-cutting changes
+- If unsure about paths/conventions, search the codebase first

@@ -1,0 +1,3 @@
+# Core ADR Trigger
+
+- If a change alters boundaries, data model, runtime, auth, billing, or tenancy → write ADR before coding
