@@ -1,0 +1,115 @@
+# Stack Rule: Data Moat
+
+**Goal**: Ensure every product includes a Data Moat Thesis and implements data capture at feature boundaries.
+
+## Rule
+
+**Every product must include a Data Moat Thesis before engineering.**
+
+## Required: Data Moat Thesis
+
+Every product must answer 5 questions:
+
+### 1. What Proprietary Data Is Collected?
+- **Data types**: [What specific data will be captured?]
+- **Data sources**: [Where does this data come from?]
+- **Data uniqueness**: [Why is this data proprietary? Why can't competitors get it?]
+- **Data collection mechanism**: [How is data collected?]
+- **Data volume**: [How much data will be collected over time?]
+
+### 2. How Does Data Quality Improve With Usage?
+- **Network effects**: [How does more data from more users make the product better?]
+- **Learning effects**: [How does the product learn from usage patterns?]
+- **Data quality**: [How does data quality improve with scale?]
+- **Data accumulation**: [How does data accumulate over time?]
+
+### 3. How Does This Create Compounding Value?
+- **UX improvements**: [How does data enable 10× better user experience?]
+- **Insights**: [What insights can only your product provide?]
+- **Automation**: [What automation is enabled by proprietary data?]
+- **Recommendations**: [What recommendations are uniquely valuable?]
+- **Compounding mechanism**: [How does value increase exponentially with data?]
+
+### 4. How Does This Increase Retention or Switching Costs?
+- **Retention mechanism**: [How does data improve retention?]
+- **Switching costs**: [How does accumulated data create switching costs?]
+- **Feedback loop**: [What's the data → value → retention → more data loop?]
+- **Lock-in effect**: [How does data create lock-in?]
+
+### 5. How Will Insights Be Surfaced to Users?
+- **Insight types**: [What types of insights will be surfaced?]
+- **Surfacing mechanism**: [How are insights surfaced? (dashboards, reports, alerts, recommendations)]
+- **Insight frequency**: [How often are insights surfaced?]
+- **Insight value**: [What value do insights provide?]
+
+## Implementation Requirement
+
+**Implementer must instrument data capture at feature boundaries.**
+
+### Data Capture Instrumentation
+
+#### Feature Boundaries
+- **User actions**: Capture user actions at feature boundaries
+- **Workflow data**: Capture workflow data at feature boundaries
+- **Integration data**: Capture integration data at feature boundaries
+- **Outcome data**: Capture outcome data at feature boundaries
+
+#### Data Capture Points
+- **Entry points**: Capture data when users enter features
+- **Exit points**: Capture data when users exit features
+- **State changes**: Capture data when feature state changes
+- **Value delivery**: Capture data when value is delivered
+
+#### Data Storage
+- **Schema design**: Design schema to support data moat thesis
+- **Data retention**: Define data retention policy
+- **Data privacy**: Ensure data privacy compliance
+- **Data access**: Define data access controls
+
+#### Data Processing
+- **Aggregation**: Aggregate data for insights
+- **Analysis**: Analyze data for patterns
+- **Machine learning**: Use ML to extract insights (if applicable)
+- **Real-time processing**: Process data in real-time (if applicable)
+
+## Quality Gate
+
+**Data Moat Thesis must be complete before engineering.**
+
+### Data Moat Checklist
+
+Before any feature enters engineering, verify:
+
+- [ ] Data Moat Thesis is complete (all 5 questions answered)
+- [ ] Proprietary data is identified
+- [ ] Data quality improvement mechanism is defined
+- [ ] Compounding value mechanism is defined
+- [ ] Retention/switching cost mechanism is defined
+- [ ] Insight surfacing mechanism is defined
+- [ ] Data capture instrumentation plan is created
+
+If Data Moat Thesis is incomplete → do not proceed to engineering. Complete Data Moat Thesis first.
+
+## Rules
+
+- **Data Moat Thesis is mandatory**: Every product must include a Data Moat Thesis
+- **All 5 questions required**: All 5 questions must be answered
+- **Data capture required**: Implementer must instrument data capture at feature boundaries
+- **Insight surfacing required**: Insights must be surfaced to users
+
+## Integration
+
+This rule integrates with:
+- `.cursor/rules/003-core-data-moat-planning.mdc` - Core data moat planning (Layer A)
+- `.cursor/rules/027-core-desirability-first.mdc` - Desirability first (Data Moat Thesis is part of Moat-MRR Strategist gate)
+- `.cursor/rules/205-playbook-moat-mrr-validation.mdc` - Moat & MRR validation (includes Data Moat Thesis)
+- `docs/agents/moat-mrr-strategist.md` - Moat & MRR Strategist (creates Data Moat Thesis)
+- `docs/agents/implementer.md` - Implementer (instruments data capture)
+
+## Mental Model
+
+**In 2025, data moats are the only durable moats for small SaaS.**
+
+Every niche product should have a structured way to collect proprietary data, a mechanism to use that data to generate increasing value, and a feedback loop that improves retention. This turns every product into a compounding dataset → defensible advantage.
+
+Data capture at feature boundaries ensures data is collected systematically and can be used to create compounding value and retention.
