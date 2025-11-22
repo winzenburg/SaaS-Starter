@@ -1,9 +1,14 @@
 # Core Security
 
-- Always verify webhook signatures
-- Never log PII (credit cards, SSNs, passwords, sensitive data)
-- Use identifiers or hashed values in logs
-- Follow data privacy regulations (GDPR, CCPA, etc.)
-- Validate all inputs with Zod schemas
-- Use type guards for parsing unknown data
-- Handle errors gracefully, no unhandled promises
+Goal: Avoid common SaaS security footguns.
+
+- Never log secrets or PII
+- All server actions/tRPC procedures enforce auth + RBAC
+- Tenant scoping required on any org data; no "naked" table reads
+- Use parameterized DB queries only
+- Validate input before use
+- If touching auth/billing/tenancy/export → ADR required
+- Webhook signatures must be verified (Stripe, etc.)
+- Rate limiting on public endpoints
+- CSRF protection on state-changing operations
+- Sanitize user input before rendering
