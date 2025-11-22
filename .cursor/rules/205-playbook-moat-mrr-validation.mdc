@@ -81,7 +81,7 @@ Insight/Narrative Brief → Demand Validation (Greg style) → Moat + Retention 
 - **Network Effects or Collaboration Loops** (REQUIRED: at least one collaboration or shared value mechanic)
 - **Moat map** (2+ types selected with implementation plan, Data Moat and Network Effects strongly recommended)
 - **Retention thesis** (habit/frequency driver)
-- **Expansion model** (seat/usage/tier)
+- **Expansion Revenue Strategy** (REQUIRED: at least one expansion revenue lever: usage-based, seats, add-ons, premium automations, AI insights, compliance/integrations, advanced analytics, custom workflows)
 - **Churn risks & counter-features**
 - **Lifecycle state machine**
 - **Activation → habit → expansion plan**
@@ -92,7 +92,7 @@ Insight/Narrative Brief → Demand Validation (Greg style) → Moat + Retention 
 - **Network Effects or Collaboration Loops defined** (at least one collaboration or shared value mechanic selected)
 - At least 2 moat types mapped with implementation plan (Data Moat and Network Effects strongly recommended)
 - Clear retention thesis (habit/frequency driver)
-- Expansion model defined (seat/usage/tier)
+- **Expansion Revenue Strategy completed** (at least one expansion revenue lever selected, expansion path defined, expansion triggers natural, expansion metrics measurable)
 - Churn risks identified with counter-features
 - Lifecycle state machine designed
 - Activation → habit → expansion plan created
@@ -103,7 +103,7 @@ Insight/Narrative Brief → Demand Validation (Greg style) → Moat + Retention 
 - **Network Effects or Collaboration Loops must be defined** (at least one collaboration or shared value mechanic selected)
 - Moat map must include at least 2 moat types (Data Moat and Network Effects strongly recommended)
 - Retention thesis must be clear (habit/frequency driver)
-- Expansion model must align with Monetization Wedge
+- **Expansion Revenue Strategy must be complete** (at least one expansion revenue lever selected, expansion path defined, expansion triggers natural, expansion metrics measurable)
 - Lifecycle state machine must be complete
 - Churn-prevention triggers must be defined
 
@@ -121,6 +121,7 @@ Insight/Narrative Brief → Demand Validation (Greg style) → Moat + Retention 
 - ✅ **Desirability signal confirmed** (at least 3 tests passed)
 - ✅ **Retention thesis defined** (habit/frequency driver)
 - ✅ **Monetization wedge defined** (first paid moment, expansion revenue, value metric)
+- ✅ **Expansion Revenue Strategy completed** (at least one expansion revenue lever selected, expansion path defined)
 - ✅ **Data Moat Thesis completed** (proprietary data, compounding mechanism, 10× value, feedback loop)
 - ✅ **Network Effects or Collaboration Loops defined** (at least one collaboration or shared value mechanic)
 - ✅ **Moat map completed** (2+ types with implementation plan, Data Moat and Network Effects strongly recommended)
@@ -155,6 +156,7 @@ Moat & MRR validation is considered done when:
 - ✅ **Desirability signal confirmed** (at least 3 tests passed)
 - ✅ **Retention thesis defined** (habit/frequency driver)
 - ✅ **Monetization wedge defined** (first paid moment, expansion revenue, value metric)
+- ✅ **Expansion Revenue Strategy completed** (at least one expansion revenue lever selected, expansion path defined)
 - ✅ **Data Moat Thesis completed** (proprietary data, compounding mechanism, 10× value, feedback loop)
 - ✅ **Network Effects or Collaboration Loops defined** (at least one collaboration or shared value mechanic)
 - ✅ **Moat map completed** (2+ types with implementation plan, Data Moat and Network Effects strongly recommended)
@@ -178,6 +180,7 @@ Each step must pass quality gates before proceeding:
 - **Network Effects or Collaboration Loops**: At least one collaboration or shared value mechanic defined
 - **Retention Thesis**: Clear habit/frequency driver
 - **Monetization Wedge**: First paid moment, expansion revenue, value metric defined
+- **Expansion Revenue Strategy**: At least one expansion revenue lever selected, expansion path defined, expansion triggers natural
 - **Moat Map**: At least 2 moat types with implementation plan (Data Moat and Network Effects strongly recommended)
 - **Lifecycle State Machine**: Complete with all states and transitions
 - **Gate Decision**: Clear and justified

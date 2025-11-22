@@ -30,7 +30,7 @@ After validating PMF, you need to convert that validation into a defensible, exp
 - **Network Effects or Collaboration Loops are REQUIRED** (at least one collaboration or shared value mechanic)
 - At least 2 moat types must be selected and mapped (Data Moat and Network Effects strongly recommended)
 - Retention thesis must be clear (habit/frequency driver)
-- Expansion model must be defined (seat/usage/tier)
+- **Expansion Revenue Strategy is REQUIRED** (at least one expansion revenue lever: usage-based, seats, add-ons, premium automations, AI insights, compliance/integrations, advanced analytics, custom workflows)
 - Churn risks must be identified with counter-features
 - Lifecycle state machine must be designed
 - Activation → habit → expansion plan must be clear
@@ -318,37 +318,116 @@ Choose from these 6 moat types:
 - What habit formation is built in?
 - What collaborative dependencies exist?
 
-### 5. Expansion Model (Seat/Usage/Tier)
+### 5. Expansion Revenue Strategy (REQUIRED)
 
-#### Expansion Revenue Path
+**CRITICAL**: MRR is fragile unless pricing grows with value. While monetization wedges define the first paid moment, explicit expansion levers turn a $29/mo tool into a $290/mo business without acquisition cost. Every product must include at least one expansion revenue lever.
 
-##### Seat-Based Expansion
-- How does revenue grow with team size?
-- What triggers seat expansion?
-- What's the natural expansion path?
-- **Example**: User invites team members → more seats → more revenue
+#### Why Expansion Revenue Matters
 
-##### Usage-Based Expansion
-- How does revenue grow with usage volume?
-- What triggers usage expansion?
-- What's the natural expansion path?
-- **Example**: User processes more data → more usage → more revenue
+- **MRR durability**: Expansion revenue increases MRR without new customer acquisition
+- **Customer success alignment**: Expansion happens when customers succeed
+- **Natural growth**: Expansion is organic, not forced
+- **Higher LTV**: Expansion revenue dramatically increases customer lifetime value
+- **Defensibility**: Expansion revenue creates switching costs and deeper integration
 
-##### Tier-Based Expansion
-- How does revenue grow with feature tiers?
-- What triggers tier upgrade?
-- What's the natural expansion path?
-- **Example**: User needs advanced features → upgrade tier → more revenue
+#### Required: At Least One Expansion Revenue Lever
 
-#### Expansion Triggers
-- What triggers expansion? (team growth, usage growth, feature needs)
-- When does expansion happen naturally?
-- What prevents expansion? (barriers to upgrade)
+Choose at least one (or combine multiple):
+
+##### 1. Usage-Based Pricing
+- Revenue grows with usage volume (API calls, data processed, actions taken, etc.)
+- **Expansion trigger**: User's usage naturally increases as they succeed
+- **Natural expansion path**: More usage → more value → more revenue
+- **Example**: User processes 10x more data → 10x more revenue
+- **Implementation**: [How to implement usage-based pricing?]
+
+##### 2. Additional Seats
+- Revenue grows with team size
+- **Expansion trigger**: User invites team members, team grows
+- **Natural expansion path**: More team members → more seats → more revenue
+- **Example**: User starts with 1 seat, grows to 10 seats → 10x revenue
+- **Implementation**: [How to implement seat-based expansion?]
+
+##### 3. Add-Ons
+- Revenue grows with optional add-on products/services
+- **Expansion trigger**: User needs additional functionality or services
+- **Natural expansion path**: User success → need for add-ons → more revenue
+- **Example**: Base product + premium integrations + white-label → 3x revenue
+- **Implementation**: [How to implement add-ons?]
+
+##### 4. Premium Automations
+- Revenue grows with advanced automation features
+- **Expansion trigger**: User needs more sophisticated automation
+- **Natural expansion path**: Basic automation → premium automation → more revenue
+- **Example**: Basic automation $29/mo → Premium automation $99/mo → 3.4x revenue
+- **Implementation**: [How to implement premium automations?]
+
+##### 5. AI Enhanced Insights
+- Revenue grows with AI-powered insights and recommendations
+- **Expansion trigger**: User needs deeper insights, predictions, recommendations
+- **Natural expansion path**: Basic insights → AI insights → more revenue
+- **Example**: Basic analytics $29/mo → AI insights $149/mo → 5.1x revenue
+- **Implementation**: [How to implement AI enhanced insights?]
+
+##### 6. Compliance/Integrations
+- Revenue grows with compliance features and integrations
+- **Expansion trigger**: User needs compliance (SOC2, GDPR, HIPAA) or integrations
+- **Natural expansion path**: Base product → compliance/integrations → more revenue
+- **Example**: Base product $29/mo → Compliance add-on $99/mo → 4.4x revenue
+- **Implementation**: [How to implement compliance/integrations?]
+
+##### 7. Advanced Analytics
+- Revenue grows with advanced analytics and reporting
+- **Expansion trigger**: User needs deeper analytics, custom reports, dashboards
+- **Natural expansion path**: Basic analytics → advanced analytics → more revenue
+- **Example**: Basic analytics $29/mo → Advanced analytics $79/mo → 2.7x revenue
+- **Implementation**: [How to implement advanced analytics?]
+
+##### 8. Custom Workflows
+- Revenue grows with custom workflow capabilities
+- **Expansion trigger**: User needs custom workflows, automation, integrations
+- **Natural expansion path**: Standard workflows → custom workflows → more revenue
+- **Example**: Standard workflows $29/mo → Custom workflows $199/mo → 6.9x revenue
+- **Implementation**: [How to implement custom workflows?]
+
+#### Expansion Revenue Strategy
+
+**CRITICAL**: Define how revenue expands from initial paid moment to 10x revenue.
+
+- **Initial revenue**: [What's the starting MRR?]
+- **Expansion path**: [How does revenue grow?]
+- **Target expansion**: [What's the target MRR per customer?]
+- **Expansion timeline**: [How long to reach target expansion?]
+- **Expansion triggers**: [What triggers each expansion?]
+
+**Example Expansion Paths**:
+- **$29/mo → $290/mo (10x)**: Base product → usage growth → premium features → add-ons
+- **$29/mo → $145/mo (5x)**: Base product → team growth → advanced features
+- **$29/mo → $87/mo (3x)**: Base product → usage growth → premium tier
+
+#### Expansion Revenue Metrics
+
+- **Expansion rate**: [What % of customers expand?]
+- **Average expansion**: [What's the average expansion multiple?]
+- **Time to expansion**: [How long until first expansion?]
+- **Expansion frequency**: [How often do customers expand?]
+- **Expansion revenue**: [What % of MRR comes from expansion?]
 
 #### Expansion Revenue Projections
-- **Month 1-3**: [Expected expansion revenue]
-- **Month 4-6**: [Expected expansion revenue]
-- **Month 7-12**: [Expected expansion revenue]
+
+- **Month 1-3**: [Expected expansion revenue, % of customers expanding]
+- **Month 4-6**: [Expected expansion revenue, % of customers expanding]
+- **Month 7-12**: [Expected expansion revenue, % of customers expanding]
+
+#### Quality Gate
+
+- At least one expansion revenue lever must be selected
+- Expansion path must be clear (how to get from initial to 10x)
+- Expansion triggers must be natural (aligned with customer success)
+- Expansion revenue projections must be realistic
+- Expansion metrics must be measurable
+
+**Critical Rule**: MRR is fragile unless pricing grows with value. Every product must include at least one expansion revenue lever. This is how you turn a $29/mo tool into a $290/mo business without acquisition cost.
 
 ### 6. Churn Risks & Counter-Features
 
@@ -508,12 +587,12 @@ Choose from these 6 moat types:
 - **Network Effects or Collaboration Loops are defined** (at least one collaboration or shared value mechanic selected)
 - At least 2 moat types selected with implementation plan (Data Moat and Network Effects strongly recommended)
 - Retention thesis is clear (habit/frequency driver)
-- Expansion model is defined (seat/usage/tier)
+- **Expansion Revenue Strategy is complete** (at least one expansion revenue lever selected, expansion path defined, expansion triggers natural, expansion metrics measurable)
 - Churn risks identified with counter-features
 - Lifecycle state machine is complete
 - Activation → habit → expansion plan is clear
 - Churn-prevention triggers are defined
-- Strategy converts PMD into defensibility + expansion revenue
+- Strategy converts PMF into defensibility + expansion revenue
 
 ## Rules
 - Must reference validated PMF (insight validation must be complete)
