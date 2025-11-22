@@ -1,14 +1,10 @@
 # Cursor Multi-Agent Orchestration
 
-This document describes how to use Cursor 2.1 multi-agents for parallel development workflows.
+> Machine-readable README for Cursor 2.x multi-agent system
 
-## Overview
+## System Overview
 
-Cursor 2.1 supports up to 8 parallel agents, each running in an isolated worktree. Use agents to:
-- Work on multiple features simultaneously
-- Parallelize research, design, and implementation
-- Speed up development cycles
-- Maintain code quality and accessibility across features
+Cursor 2.1 supports up to 8 parallel agents, each running in an isolated worktree. This document defines the agent system, roles, and workflows.
 
 ## Operating Principles
 
@@ -19,208 +15,128 @@ All agents must adhere to these core principles:
 - **Small diffs** - Make incremental, verifiable changes
 - **WCAG 2.2 AA** - All UI must meet accessibility standards
 
-## Agents
+## Agent Roster
 
 ### 1. Product Strategist
-**Purpose**: Define product requirements and strategy
-- Creates PRDs (Product Requirements Documents)
-- Defines user problems and JTBD (Jobs To Be Done)
-- Identifies success metrics and risks
-- Documents edge cases and failure modes
-- Updates personas and user research
-
+**Role**: Define product requirements and strategy
+**Prompt**: `.cursor/agents/product-strategist.mdc`
 **When to use**: New features, product decisions, requirement gathering
 
 ### 2. Market Scanner
-**Purpose**: Research market and competitive landscape
-- Analyzes competitor features
-- Researches best practices and patterns
-- Identifies industry standards
-- Reviews relevant case studies
-- Provides market context for decisions
-
+**Role**: Research market and competitive landscape
 **When to use**: New feature planning, competitive analysis, technology selection
 
 ### 3. UX Researcher
-**Purpose**: Understand users and validate designs
-- Conducts user research
-- Creates user personas
-- Validates user flows
-- Tests prototypes and designs
-- Gathers user feedback
-
+**Role**: Understand users and validate designs
 **When to use**: Feature discovery, user validation, usability testing
 
 ### 4. IA/Interaction
-**Purpose**: Design information architecture and interactions
-- Creates information architecture
-- Designs user flows and wireframes
-- Defines interaction patterns
-- Plans navigation and content structure
-- Ensures consistent UX patterns
-
+**Role**: Design information architecture and interactions
 **When to use**: New features, major redesigns, flow improvements
 
 ### 5. Accessibility
-**Purpose**: Ensure WCAG 2.2 AA compliance
-- Audits UI for accessibility issues
-- Tests with screen readers
-- Verifies keyboard navigation
-- Checks color contrast and visual accessibility
-- Ensures semantic HTML and ARIA usage
-
+**Role**: Ensure WCAG 2.2 AA compliance
+**Prompt**: `.cursor/agents/accessibility.mdc`
 **When to use**: UI implementation, accessibility reviews, compliance checks
 
 ### 6. Engineering Architect
-**Purpose**: Design technical architecture and patterns
-- Creates ADRs (Architecture Decision Records)
-- Designs system architecture
-- Defines patterns and conventions
-- Reviews code structure
-- Plans refactoring and improvements
-
+**Role**: Design technical architecture and patterns
+**Prompt**: `.cursor/agents/engineering-architect.mdc`
 **When to use**: New features, architectural decisions, major refactors
 
 ### 7. Test Engineer
-**Purpose**: Write and maintain comprehensive tests
-- Creates unit tests for domain logic
-- Writes integration tests for server actions
-- Sets up E2E tests for critical flows
-- Ensures test coverage requirements
-- Maintains test infrastructure
-
+**Role**: Write and maintain comprehensive tests
+**Prompt**: `.cursor/agents/test-engineer.mdc`
 **When to use**: New features, refactoring, bug fixes, test maintenance
 
 ### 8. Implementer
-**Purpose**: Build features and implement code
-- Implements features following architecture
-- Writes server actions and tRPC procedures
-- Creates UI components with all states
-- Integrates with external services
-- Follows all project rules and patterns
-
+**Role**: Build features and implement code
+**Prompt**: `.cursor/agents/implementer.mdc`
 **When to use**: Feature implementation, bug fixes, improvements
 
 ## Standard Workflow
 
-The standard workflow for feature development follows this sequence:
+The standard workflow for feature development:
 
 ```
 PRD → IA/flows → ADR → tests → build → a11y audit → verify
 ```
 
-### Step-by-Step Process
+**Playbook**: `.cursor/playbooks/10-feature-development.mdc`
 
-1. **PRD** (Product Strategist)
-   - Define requirements, user problems, success metrics
-   - Document edge cases and failure modes
-   - Get stakeholder alignment
+## File Structure
 
-2. **IA/flows** (IA/Interaction + UX Researcher)
-   - Design information architecture
-   - Create user flows and wireframes
-   - Validate with user research
+```
+.cursor/
+├── rules/           # Guardrails (constraints, what NOT to do)
+│   ├── 00-meta.mdc  # Memory & session hygiene
+│   ├── 10-architecture.mdc
+│   ├── 20-testing.mdc
+│   ├── 30-ux-a11y.mdc
+│   └── 40-platform-ops.mdc
+├── playbooks/       # Workflows (how to do things)
+│   ├── 10-feature-development.mdc
+│   └── 20-refactoring.mdc
+└── agents/          # Role prompts (agent-specific instructions)
+    ├── product-strategist.mdc
+    ├── engineering-architect.mdc
+    ├── test-engineer.mdc
+    ├── implementer.mdc
+    └── accessibility.mdc
+```
 
-3. **ADR** (Engineering Architect)
-   - Create Architecture Decision Record
-   - Design technical approach
-   - Define patterns and conventions
+## Rule Types
 
-4. **Tests** (Test Engineer)
-   - Write tests that define correctness
-   - Create unit, integration, and E2E tests
-   - Ensure tests pass before implementation
+### Guardrails (`.cursor/rules/*.mdc`)
+**Purpose**: Define constraints and what NOT to do
+- Architecture constraints
+- Testing requirements
+- Accessibility standards
+- Platform operations rules
 
-5. **Build** (Implementer)
-   - Implement feature following architecture
-   - Follow all project rules
-   - Create small, verifiable diffs
+### Playbooks (`.cursor/playbooks/*.mdc`)
+**Purpose**: Define workflows and how to do things
+- Feature development process
+- Refactoring workflows
+- Quality gates and checkpoints
 
-6. **A11y Audit** (Accessibility)
-   - Audit UI for WCAG 2.2 AA compliance
-   - Test with assistive technologies
-   - Fix accessibility issues
+### Role Prompts (`.cursor/agents/*.mdc`)
+**Purpose**: Agent-specific instructions and responsibilities
+- Agent role definition
+- Workflow for that agent
+- Quality criteria
+- Output expectations
 
-7. **Verify** (Test Engineer + Accessibility)
-   - Run all tests (must be green)
-   - Final accessibility check
-   - Code review and quality gates
+### Meta Rules (`.cursor/rules/00-meta.mdc`)
+**Purpose**: Memory and session hygiene
+- When to create memories
+- Session management
+- Context preservation
+- Error recovery
 
 ## Parallel Workflows
 
 While the standard workflow is sequential, some steps can run in parallel:
-
-### Parallel Execution Opportunities
 
 - **Market Scanner** can research while **Product Strategist** writes PRD
 - **UX Researcher** can validate while **IA/Interaction** designs flows
 - **Test Engineer** can write tests while **Engineering Architect** creates ADR
 - **Accessibility** can audit while **Implementer** builds (with coordination)
 
-### Coordination Rules
+## Quality Gates
 
-- **Sequential dependencies**: PRD → IA/flows → ADR → tests → build
-- **Parallel safe**: Market research, user research, documentation
-- **Final gates**: Tests and accessibility must pass before merge
-
-## Best Practices
-
-### Agent Coordination
-
-- **Clear handoffs** - Each agent should clearly document outputs for next agent
-- **Small increments** - Break work into small, verifiable pieces
-- **Communication** - Use commit messages, PRs, and documentation to communicate
-- **Follow principles** - All agents must adhere to operating principles
-
-### Worktree Management
-
-- Each agent runs in an isolated worktree
-- Agents can work on different branches simultaneously
-- Merge conflicts handled at integration time
-- Use feature flags to test parallel work safely
-
-### Quality Gates
-
-- All agents must follow `.cursor/rules/*` guidelines
+All agents must pass quality gates:
+- Follow `.cursor/rules/*` guardrails
+- Use `.cursor/playbooks/*` workflows
 - Tests must be green before merging
-- Code must pass linting and type checking
 - WCAG 2.2 AA compliance required
-- Documentation must be updated
-
-## Example: Feature Development
-
-### Starting a New Feature
-
-1. **Product Strategist**: "Create PRD for user authentication feature"
-2. **Market Scanner**: "Research authentication best practices and patterns"
-3. **UX Researcher**: "Validate authentication flows with users"
-4. **IA/Interaction**: "Design login/signup flows and wireframes"
-5. **Engineering Architect**: "Create ADR for auth architecture (NextAuth vs custom)"
-6. **Test Engineer**: "Write tests for auth domain logic and flows"
-7. **Implementer**: "Build auth feature following ADR and tests"
-8. **Accessibility**: "Audit auth UI for WCAG 2.2 AA compliance"
-9. **Test Engineer**: "Run full test suite and verify"
-10. **Accessibility**: "Final a11y check and sign-off"
-
-## Troubleshooting
-
-### Workflow Blockers
-
-- **Missing PRD**: Product Strategist must complete before IA/Interaction
-- **No ADR**: Engineering Architect must create ADR before implementation
-- **Failing tests**: Test Engineer must fix before Implementer continues
-- **A11y issues**: Accessibility must resolve before merge
-
-### Agent Coordination Issues
-
-- Review handoff documentation
-- Check for missing dependencies
-- Verify worktree state
-- Coordinate through PRs and commits
+- Code must pass linting and type checking
 
 ## See Also
 
 - `.cursor/rules/` - Project guardrails
+- `.cursor/playbooks/` - Workflow playbooks
+- `.cursor/agents/` - Agent role prompts
 - `docs/ARCHITECTURE.md` - Architecture patterns
 - `docs/CONTRIBUTING.md` - Development guidelines
 - `docs/adr/` - Architecture Decision Records

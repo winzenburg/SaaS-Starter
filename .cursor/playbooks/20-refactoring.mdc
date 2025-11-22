@@ -1,0 +1,68 @@
+# Refactoring Playbook
+
+## Prerequisites
+
+- **Tests must be green** - All existing tests must pass before refactoring
+- **ADR required** - Significant refactors need an ADR
+- **Clear objective** - Know what you're refactoring and why
+
+## Refactoring Workflow
+
+### 1. Assess Current State
+- Run all tests and verify they pass
+- Document current behavior
+- Identify refactoring scope
+- Check for dependencies
+
+### 2. Create ADR (if needed)
+- Document why refactoring is needed
+- Define target architecture
+- Identify risks and mitigation
+- Get approval if significant
+
+### 3. Write Tests (if missing)
+- Ensure comprehensive test coverage
+- Tests must pass before refactoring
+- Add tests for edge cases
+
+### 4. Refactor Incrementally
+- Make small, verifiable changes
+- Run tests after each change
+- Keep tests green throughout
+- Commit frequently
+
+### 5. Verify
+- All tests pass
+- No regressions introduced
+- Code follows project rules
+- Documentation updated
+
+## Rules
+
+- **Tests must be green before further refactors** - Never refactor with failing tests
+- **Small increments** - Make one change at a time
+- **Verify after each step** - Run tests frequently
+- **Update documentation** - Keep docs in sync with code
+
+## Common Refactoring Patterns
+
+### Feature Module Refactoring
+1. Create new feature module structure
+2. Move code incrementally
+3. Update imports
+4. Remove old code
+5. Verify tests pass
+
+### Database Refactoring
+1. Create migration
+2. Test migration on copy of production data
+3. Apply migration
+4. Update code to use new schema
+5. Verify all tests pass
+
+### API Refactoring
+1. Create new API version
+2. Migrate clients incrementally
+3. Deprecate old API
+4. Remove old API after migration
+5. Update documentation

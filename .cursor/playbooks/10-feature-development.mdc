@@ -1,0 +1,122 @@
+# Feature Development Playbook
+
+## Standard Workflow
+
+```
+PRD → IA/flows → ADR → tests → build → a11y audit → verify
+```
+
+## Step-by-Step Process
+
+### 1. PRD (Product Strategist)
+**Input**: Feature request or user need
+**Output**: Product Requirements Document
+
+- Define user problems and JTBD (Jobs To Be Done)
+- Identify success metrics and risks
+- Document edge cases and failure modes
+- Get stakeholder alignment
+
+**Deliverables**:
+- PRD document in `docs/prd/`
+- User stories and acceptance criteria
+- Success metrics definition
+
+### 2. IA/flows (IA/Interaction + UX Researcher)
+**Input**: PRD
+**Output**: Information architecture and user flows
+
+- Design information architecture
+- Create user flows and wireframes
+- Validate with user research
+- Define interaction patterns
+
+**Deliverables**:
+- User flow diagrams
+- Wireframes or mockups
+- IA documentation
+
+### 3. ADR (Engineering Architect)
+**Input**: PRD, IA/flows
+**Output**: Architecture Decision Record
+
+- Create ADR in `docs/adr/`
+- Design technical approach
+- Define patterns and conventions
+- Plan feature module structure
+
+**Deliverables**:
+- ADR document
+- Technical design
+- Feature structure plan
+
+### 4. Tests (Test Engineer)
+**Input**: ADR
+**Output**: Test suite
+
+- Write tests that define correctness
+- Create unit tests for domain logic
+- Write integration tests for server actions
+- Set up E2E tests for critical flows
+- **Tests must pass before implementation**
+
+**Deliverables**:
+- Unit tests in `src/features/<feature>/domain/*.test.ts`
+- Integration tests in `src/features/<feature>/data/*.test.ts`
+- E2E tests in `e2e/<feature>/*.spec.ts`
+
+### 5. Build (Implementer)
+**Input**: ADR, passing tests
+**Output**: Implemented feature
+
+- Create feature module structure
+- Implement domain logic
+- Create server actions and tRPC procedures
+- Build UI components with all states
+- Follow all project rules
+
+**Deliverables**:
+- Feature module in `src/features/<feature>/`
+- All states implemented (loading/empty/error/success)
+- Integration with existing systems
+
+### 6. A11y Audit (Accessibility)
+**Input**: Implemented feature
+**Output**: Accessibility fixes
+
+- Audit UI for WCAG 2.2 AA compliance
+- Test with screen readers
+- Verify keyboard navigation
+- Check color contrast
+- Fix accessibility issues
+
+**Deliverables**:
+- Accessibility audit report
+- Fixed accessibility issues
+- WCAG 2.2 AA compliance
+
+### 7. Verify (Test Engineer + Accessibility)
+**Input**: Complete feature
+**Output**: Verified, ready to merge
+
+- Run full test suite (must be green)
+- Final accessibility check
+- Code review
+- Quality gates passed
+
+**Deliverables**:
+- All tests passing
+- Accessibility verified
+- Code review complete
+- Ready for merge
+
+## Quality Gates
+
+Each step must pass quality gates before proceeding:
+- **PRD**: Stakeholder approval
+- **IA/flows**: User validation
+- **ADR**: Technical review
+- **Tests**: All tests passing
+- **Build**: Code review, linting, type checking
+- **A11y Audit**: WCAG 2.2 AA compliance
+- **Verify**: All quality gates passed
