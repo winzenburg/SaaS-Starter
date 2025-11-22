@@ -10,10 +10,19 @@
 ## User Experience
 
 ### States
+- **Every screen has loading/empty/error/success states** - All screens must handle all four states
 - **Loading states** - Show loading indicators for async operations
+  - Use skeletons, spinners, or progress indicators
+  - Provide context about what is loading
 - **Empty states** - Provide helpful empty state messages
+  - Explain why the screen is empty
+  - Provide actionable next steps when appropriate
 - **Error states** - Clear, actionable error messages
+  - Explain what went wrong
+  - Provide recovery options when possible
 - **Success states** - Confirm successful actions
+  - Provide clear feedback for completed actions
+  - Guide users to next steps when appropriate
 
 ### Interactions
 - **Feedback** - Provide immediate feedback for user actions
@@ -29,8 +38,13 @@
 
 ## Accessibility (WCAG 2.2 AA)
 
+- **WCAG 2.2 AA baseline** - All features must meet WCAG 2.2 AA standards
+- This is the minimum accessibility requirement for all UI components
+
 ### Semantic HTML
-- **Semantic HTML first** - Use proper HTML elements before ARIA
+- **Semantic HTML first, ARIA only if needed** - Use proper HTML elements before ARIA
+- Prefer native HTML elements and attributes over ARIA
+- Only add ARIA when semantic HTML cannot express the meaning
 - **Proper heading hierarchy** - Use h1-h6 in order
 - **Landmark regions** - Use nav, main, aside, etc.
 - **Form labels** - All inputs must have associated labels
