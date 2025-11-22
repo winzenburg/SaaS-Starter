@@ -13,7 +13,7 @@ export type ExampleActionState =
  * Compatible with React 19 useFormState API
  */
 export async function exampleAction(
-  prevState: ExampleActionState,
+  _prevState: ExampleActionState,
   formData: FormData,
 ): Promise<ExampleActionState> {
   const validated = exampleSchema.safeParse({
