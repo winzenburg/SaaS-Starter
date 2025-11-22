@@ -1,6 +1,12 @@
 # tRPC Conventions
 
-- tRPC handler at `/app/api/trpc/[trpc]/route.ts`
-- Root router in `src/lib/trpc/server.ts`
-- Feature routers in `src/features/<feature>/data/router.ts`
-- Zod validation on inputs/outputs
+Goal: Prevent path/layout disagreements between agents.
+
+- tRPC route handler: `/app/api/trpc/[trpc]/route.ts`
+- Root router + createCaller: `src/lib/trpc/server.ts`
+- React Query client: `src/lib/trpc/client.ts`
+- Feature routers: `src/features/<feature>/data/router.ts`
+- Use Zod schemas from `domain/schemas.ts`
+- Protected procedures use shared auth middleware
+- Input/output validation with Zod on all procedures
+- Error handling via tRPC error types
