@@ -1,44 +1,116 @@
 # Playbook: Refactor
 
-## Prerequisites
-- Tests must be green before refactoring
-- ADR required for significant refactors
-- Clear objective and scope
+## Step Sequence
 
-## Workflow
-Assess → ADR (if needed) → Tests → Refactor → Verify
+```
+Confirm tests/coverage first → Refactor in small checkpoints with green tests between → Update ADR only if boundaries change
+```
+
+## Prerequisites
+
+- Tests must be green before refactoring
+- Clear objective and scope defined
+- No behavior change unless separate PRD/ADR
 
 ## Steps
 
-1. **Assess**
-   - Run all tests and verify they pass
-   - Document current behavior
-   - Identify refactoring scope
-   - Check for dependencies
+### 1. Confirm tests/coverage first
+**Input**: Refactoring request or need  
+**Output**: Test coverage confirmation
 
-2. **ADR** (if needed)
-   - Document why refactoring is needed
-   - Define target architecture
-   - Identify risks and mitigation
+**Required Artifacts**:
+- All existing tests passing (green)
+- Test coverage report
+- Coverage gaps identified and documented
 
-3. **Tests**
-   - Ensure comprehensive test coverage
-   - Tests must pass before refactoring
-   - Add tests for edge cases if missing
+**Deliverables**:
+- All tests passing
+- Test coverage verified
+- Coverage gaps documented (if any)
+- Baseline established for comparison
 
-4. **Refactor**
-   - Make small, verifiable changes
-   - Run tests after each change
-   - Keep tests green throughout
-   - Commit frequently
+**Rules**:
+- **Tests must be green before refactoring**
+- Coverage must be adequate for refactoring safety
+- Add tests for uncovered areas if needed
 
-5. **Verify**
-   - All tests pass
-   - No regressions introduced
-   - Code follows project rules
-   - Documentation updated
+### 2. Refactor in small checkpoints with green tests between
+**Input**: Test coverage confirmation  
+**Output**: Refactored code
 
-## Rules
-- Tests must be green before further refactors
-- Small increments
-- Verify after each step
+**Required Artifacts**:
+- Small, incremental changes
+- Tests passing after each checkpoint
+- Commits for each logical checkpoint
+
+**Deliverables**:
+- Code refactored incrementally
+- Tests passing after each change
+- No behavior changes (unless separate PRD/ADR)
+- Code follows project rules
+
+**Process**:
+1. Make small change
+2. Run tests (must be green)
+3. Commit checkpoint
+4. Repeat until refactoring complete
+
+**Rules**:
+- **No behavior change unless separate PRD/ADR**
+- Small increments only
+- Tests must be green between checkpoints
+- Commit frequently with logical units
+- Don't mix refactoring with feature work
+
+### 3. Update ADR only if boundaries change
+**Input**: Refactored code  
+**Output**: Updated ADR (if needed)
+
+**Required Artifacts**:
+- ADR update in `docs/adr/<number>-<name>.md` (if boundaries changed)
+- Documentation of what changed and why
+
+**Deliverables**:
+- ADR updated (only if architecture boundaries changed)
+- Changes documented
+- Rationale explained
+
+**Rules**:
+- **Update ADR only if boundaries change**
+- Internal refactoring (same boundaries) doesn't require ADR update
+- Boundary changes include:
+  - Architecture boundaries
+  - Data model changes
+  - Runtime changes (node/edge)
+  - Auth/RBAC changes
+  - Billing/entitlements changes
+  - Multi-tenancy isolation changes
+
+## Definition of Done Checklist
+
+A refactor is considered done when:
+
+- ✅ Tests confirmed green and coverage verified
+- ✅ Refactoring completed in small checkpoints
+- ✅ All tests passing after each checkpoint
+- ✅ No behavior changes (unless separate PRD/ADR)
+- ✅ ADR updated (if boundaries changed)
+- ✅ Code review completed
+- ✅ Documentation updated
+- ✅ No regressions introduced
+- ✅ Ready for merge
+
+## Quality Gates
+
+Each step must pass quality gates before proceeding:
+- **Confirm Tests**: All tests green, coverage adequate
+- **Refactor**: Tests green after each checkpoint
+- **Update ADR**: Only if boundaries changed
+
+## Anti-Patterns to Avoid
+
+- ❌ Refactoring without green tests first
+- ❌ Large refactoring in single commit
+- ❌ Mixing refactoring with feature work
+- ❌ Changing behavior without PRD/ADR
+- ❌ Skipping ADR update when boundaries change
