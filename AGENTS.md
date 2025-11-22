@@ -93,12 +93,16 @@ PRD → IA/flows → ADR → tests → build → a11y audit → verify
 │       ├── 240-playbook-a11y-audit.mdc
 │       ├── 250-playbook-billing-change.mdc
 │       └── 260-playbook-multi-tenancy.mdc
-└── agents/          # Role prompts (agent-specific instructions)
-    ├── product-strategist.mdc
-    ├── engineering-architect.mdc
-    ├── test-engineer.mdc
-    ├── implementer.mdc
-    └── accessibility.mdc
+docs/
+└── agents/          # Role prompts (agent-specific instructions, .md for fast iteration)
+    ├── product-strategist.md
+    ├── market-scanner.md
+    ├── ux-researcher.md
+    ├── ia-designer.md
+    ├── accessibility.md
+    ├── engineering-architect.md
+    ├── test-engineer.md
+    └── implementer.md
 ```
 
 ## Rule Layers
@@ -130,12 +134,13 @@ PRD → IA/flows → ADR → tests → build → a11y audit → verify
 - 250-playbook-billing-change: Billing change process
 - 260-playbook-multi-tenancy: Multi-tenancy implementation
 
-### Role Prompts (`.cursor/agents/*.mdc`)
+### Role Prompts (`docs/agents/*.md`)
 **Purpose**: Agent-specific instructions and responsibilities
 - Agent role definition
 - Workflow for that agent
 - Quality criteria
 - Output expectations
+- **Note**: Use `.md` format (not `.mdc`) for fast iteration without affecting rule system
 
 ## Parallel Workflows
 
@@ -150,16 +155,15 @@ While the standard workflow is sequential, some steps can run in parallel:
 
 All agents must pass quality gates:
 - Follow `.cursor/rules/*` guardrails
-- Use `.cursor/playbooks/*` workflows
+- Use `.cursor/rules/200-299/*` playbooks
 - Tests must be green before merging
 - WCAG 2.2 AA compliance required
 - Code must pass linting and type checking
 
 ## See Also
 
-- `.cursor/rules/` - Project guardrails
-- `.cursor/playbooks/` - Workflow playbooks
-- `.cursor/agents/` - Agent role prompts
+- `.cursor/rules/` - Project guardrails and playbooks
+- `docs/agents/` - Agent role prompts
 - `docs/ARCHITECTURE.md` - Architecture patterns
 - `docs/CONTRIBUTING.md` - Development guidelines
 - `docs/adr/` - Architecture Decision Records
