@@ -65,6 +65,41 @@ Implement (MVP-first - smallest surface area):
 Make all tests pass.
 ```
 
+## Pre-Implementation Checklist (Don't Gold-Plate)
+
+Before starting implementation, verify:
+
+### 1. Essential to Transformation Story?
+- [ ] Does this feature directly support the transformation story from PRD?
+- [ ] Is this required for the emotional peak or aha moment?
+- [ ] Does this enable the story resolution?
+- [ ] If removed, would the transformation story still work?
+
+**If not essential → Consider removing or deferring**
+
+### 2. Could We Test This Manually Before Coding?
+- [ ] Can we deliver value manually (concierge/MVP)?
+- [ ] Have we validated demand with manual service?
+- [ ] Is automation necessary now, or can it wait?
+
+**If can test manually → Consider manual concierge first**
+
+### 3. Is There a No-Code Version?
+- [ ] Can we use existing tools/platforms?
+- [ ] Can we use Zapier/Make/other no-code tools?
+- [ ] Can we use spreadsheets/email/manual process?
+- [ ] Is custom code necessary, or is there a simpler path?
+
+**If no-code version exists → Use it first, code later**
+
+### 4. MVP-First: Smallest Surface Area
+- [ ] What's the absolute minimum to validate the narrative?
+- [ ] What's the smallest surface area that enables the transformation?
+- [ ] What can we defer to v2/v3?
+- [ ] Are we building more than needed to validate?
+
+**Build only what's needed to validate or expand the narrative**
+
 ## Implementation Structure
 
 ### 1. Schema Implementation (`/drizzle/schema.ts`)
