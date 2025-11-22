@@ -32,8 +32,9 @@ See `docs/agents/*.md` for full prompts.
 
 ## Rule System
 
-### Layer A: Core Guardrails (001-099)
+### Layer A: Core Guardrails (000-099)
 Always active. Short, enforceable constraints.
+- `000-core-idea-criteria.mdc` - Isenberg's filters (identity-level pain, recurring need, distribution wedge, insight+community match)
 - `001-core-architecture.mdc` - Architecture principles, feature modules
 - `005-core-testing.mdc` - Test requirements
 - `010-core-ux-a11y.mdc` - UX and accessibility baseline

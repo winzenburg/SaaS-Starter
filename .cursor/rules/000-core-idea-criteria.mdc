@@ -1,0 +1,23 @@
+# Core Idea Criteria
+
+Goal: Avoid building "feature factories" and align with Greg's "only build what has heat."
+
+A product must have:
+
+- **Identity-level pain**: The problem is tied to how users see themselves or their role
+- **Ongoing, recurring need**: Not a one-time problem; users need this repeatedly
+- **Distribution wedge baked in**: Product naturally spreads through communities/networks
+- **Match between insight + community**: Unfair insight aligns with high-heat community
+
+If not: pivot or kill.
+
+## Validation
+
+Before pre-build validation (`.cursor/rules/000-playbook-pre-build-validation.mdc`), verify:
+
+- [ ] Identity-level pain identified (not just functional pain)
+- [ ] Ongoing, recurring need confirmed (not one-time)
+- [ ] Distribution wedge identified (how it spreads naturally)
+- [ ] Insight matches community (unfair insight + high-heat community align)
+
+If any criteria missing → pivot idea or kill it. Do not proceed to validation.

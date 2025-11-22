@@ -17,6 +17,14 @@ Unfair Insight Brief → Narrative 1-pager → Community Heat Map → 10 Lo-Fi T
 - Initial market context
 - Willingness to validate before building
 
+**CRITICAL**: Before starting validation, verify idea meets core criteria (`.cursor/rules/000-core-idea-criteria.mdc`):
+- Identity-level pain
+- Ongoing, recurring need
+- Distribution wedge baked in
+- Match between insight + community
+
+If criteria not met → pivot or kill. Do not proceed to validation.
+
 ## Steps
 
 ### 1. Unfair Insight Brief
