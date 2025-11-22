@@ -2,13 +2,7 @@
 
 > Machine-readable README for Cursor 2.x multi-agent system
 
-## System Overview
-
-Cursor 2.1 supports up to 8 parallel agents, each running in an isolated worktree. This document defines the agent system, roles, and workflows.
-
 ## Operating Principles
-
-All agents must adhere to these core principles:
 
 - **Boring, evolutionary code** - Prefer simple, maintainable solutions over clever abstractions
 - **Tests define correctness** - Write tests that describe expected behavior
@@ -17,49 +11,18 @@ All agents must adhere to these core principles:
 
 ## Agent Roster
 
-### 1. Product Strategist
-**Role**: Define product requirements and strategy
-**Prompt**: `docs/agents/product-strategist.md`
-**When to use**: New features, product decisions, requirement gathering
-
-### 2. Market Scanner
-**Role**: Research market and competitive landscape
-**Prompt**: `docs/agents/market-scanner.md`
-**When to use**: New feature planning, competitive analysis, technology selection
-
-### 3. UX Researcher
-**Role**: Understand users and validate designs
-**Prompt**: `docs/agents/ux-researcher.md`
-**When to use**: Feature discovery, user validation, usability testing
-
-### 4. IA/Interaction
-**Role**: Design information architecture and interactions
-**Prompt**: `docs/agents/ia-designer.md`
-**When to use**: New features, major redesigns, flow improvements
-
-### 5. Accessibility
-**Role**: Ensure WCAG 2.2 AA compliance
-**Prompt**: `docs/agents/accessibility.md`
-**When to use**: UI implementation, accessibility reviews, compliance checks
-
-### 6. Engineering Architect
-**Role**: Design technical architecture and patterns
-**Prompt**: `docs/agents/engineering-architect.md`
-**When to use**: New features, architectural decisions, major refactors
-
-### 7. Test Engineer
-**Role**: Write and maintain comprehensive tests
-**Prompt**: `docs/agents/test-engineer.md`
-**When to use**: New features, refactoring, bug fixes, test maintenance
-
-### 8. Implementer
-**Role**: Build features and implement code
-**Prompt**: `docs/agents/implementer.md`
-**When to use**: Feature implementation, bug fixes, improvements
+| Agent | Role | Prompt | When to Use |
+|-------|------|--------|-------------|
+| **Product Strategist** | Define product requirements and strategy | `docs/agents/product-strategist.md` | New features, product decisions, requirement gathering |
+| **Market Scanner** | Research market and competitive landscape | `docs/agents/market-scanner.md` | New feature planning, competitive analysis, technology selection |
+| **UX Researcher** | Understand users and validate designs | `docs/agents/ux-researcher.md` | Feature discovery, user validation, usability testing |
+| **IA/Interaction** | Design information architecture and interactions | `docs/agents/ia-designer.md` | New features, major redesigns, flow improvements |
+| **Accessibility** | Ensure WCAG 2.2 AA compliance | `docs/agents/accessibility.md` | UI implementation, accessibility reviews, compliance checks |
+| **Engineering Architect** | Design technical architecture and patterns | `docs/agents/engineering-architect.md` | New features, architectural decisions, major refactors |
+| **Test Engineer** | Write and maintain comprehensive tests | `docs/agents/test-engineer.md` | New features, refactoring, bug fixes, test maintenance |
+| **Implementer** | Build features and implement code | `docs/agents/implementer.md` | Feature implementation, bug fixes, improvements |
 
 ## Standard Workflow
-
-The standard workflow for feature development:
 
 ```
 PRD → IA/flows → ADR → tests → build → a11y audit → verify
@@ -67,84 +30,38 @@ PRD → IA/flows → ADR → tests → build → a11y audit → verify
 
 **Playbook**: `.cursor/rules/210-playbook-new-feature.mdc`
 
-## File Structure
-
-```
-.cursor/
-├── rules/           # Three-layer rule system
-│   ├── 001-099/     # Layer A: Core Guardrails (always on)
-│   │   ├── 001-core-architecture.mdc
-│   │   ├── 005-core-testing.mdc
-│   │   ├── 010-core-ux-a11y.mdc
-│   │   ├── 015-core-security.mdc
-│   │   ├── 020-core-observability.mdc
-│   │   └── 030-core-style.mdc
-│   ├── 100-199/     # Layer B: Stack/Integration Rules (always on)
-│   │   ├── 110-next-app-router.mdc
-│   │   ├── 120-trpc-conventions.mdc
-│   │   ├── 130-drizzle-postgres.mdc
-│   │   ├── 140-stripe-billing.mdc
-│   │   ├── 150-vercel-platform.mdc
-│   │   └── 160-feature-flags.mdc
-│   └── 200-299/     # Layer C: Playbooks/Workflows (invoked when needed)
-│       ├── 210-playbook-new-feature.mdc
-│       ├── 220-playbook-bugfix.mdc
-│       ├── 230-playbook-refactor.mdc
-│       ├── 240-playbook-a11y-audit.mdc
-│       ├── 250-playbook-billing-change.mdc
-│       └── 260-playbook-multi-tenancy.mdc
-docs/
-└── agents/          # Role prompts (agent-specific instructions, .md for fast iteration)
-    ├── product-strategist.md
-    ├── market-scanner.md
-    ├── ux-researcher.md
-    ├── ia-designer.md
-    ├── accessibility.md
-    ├── engineering-architect.md
-    ├── test-engineer.md
-    └── implementer.md
-```
-
-## Rule Layers
+## Rule System
 
 ### Layer A: Core Guardrails (001-099)
-**Purpose**: Short, enforceable constraints. Always active.
-- 001-core-architecture: Core principles, feature modules, type safety
-- 005-core-testing: Test coverage requirements
-- 010-core-ux-a11y: UX patterns and accessibility baseline
-- 015-core-security: Security fundamentals
-- 020-core-observability: Observability requirements
-- 030-core-style: Code style and formatting
+Always active. Short, enforceable constraints.
+- `001-core-architecture.mdc` - Architecture principles, feature modules
+- `005-core-testing.mdc` - Test requirements
+- `010-core-ux-a11y.mdc` - UX and accessibility baseline
+- `015-core-security.mdc` - Security fundamentals
+- `020-core-observability.mdc` - Observability requirements
+- `025-core-session-hygiene.mdc` - Planning and diff management
+- `027-core-adr-trigger.mdc` - When to write ADRs
+- `030-core-style.mdc` - Code style
 
 ### Layer B: Stack/Integration Rules (100-199)
-**Purpose**: Precise conventions for Next.js, tRPC, Drizzle, Stripe, Vercel. Always active.
-- 110-next-app-router: App Router conventions
-- 120-trpc-conventions: tRPC procedure and router patterns
-- 130-drizzle-postgres: Drizzle schema and query conventions
-- 140-stripe-billing: Webhook security and integration
-- 150-vercel-platform: Runtime, deployment, observability
-- 160-feature-flags: Feature flag usage
+Always active. Precise conventions for Next.js, tRPC, Drizzle, Stripe, Vercel.
+- `110-next-app-router.mdc` - App Router conventions
+- `120-trpc-conventions.mdc` - tRPC patterns
+- `130-drizzle-postgres.mdc` - Drizzle schema and queries
+- `140-stripe-billing.mdc` - Stripe webhooks and billing
+- `150-vercel-platform.mdc` - Vercel runtime and services
+- `160-feature-flags.mdc` - Feature flag usage
 
-### Layer C: Playbooks/Workflows (200-299)
-**Purpose**: Longer "how to do X" guides. Invoked when needed.
-- 210-playbook-new-feature: Complete feature development workflow
-- 220-playbook-bugfix: Bug fix process
-- 230-playbook-refactor: Refactoring process and patterns
-- 240-playbook-a11y-audit: Accessibility audit process
-- 250-playbook-billing-change: Billing change process
-- 260-playbook-multi-tenancy: Multi-tenancy implementation
-
-### Role Prompts (`docs/agents/*.md`)
-**Purpose**: Agent-specific instructions and responsibilities
-- Agent role definition
-- Workflow for that agent
-- Quality criteria
-- Output expectations
-- **Note**: Use `.md` format (not `.mdc`) for fast iteration without affecting rule system
+### Layer C: Playbooks (200-299)
+Invoked when needed. Detailed "how to do X" guides.
+- `210-playbook-new-feature.mdc` - Feature development workflow
+- `220-playbook-bugfix.mdc` - Bug fix process
+- `230-playbook-refactor.mdc` - Refactoring process
+- `240-playbook-a11y-audit.mdc` - Accessibility audit
+- `250-playbook-billing-change.mdc` - Billing changes
+- `260-playbook-multi-tenancy.mdc` - Multi-tenancy implementation
 
 ## Parallel Workflows
-
-While the standard workflow is sequential, some steps can run in parallel:
 
 - **Market Scanner** can research while **Product Strategist** writes PRD
 - **UX Researcher** can validate while **IA/Interaction** designs flows
@@ -153,9 +70,8 @@ While the standard workflow is sequential, some steps can run in parallel:
 
 ## Quality Gates
 
-All agents must pass quality gates:
 - Follow `.cursor/rules/*` guardrails
-- Use `.cursor/rules/200-299/*` playbooks
+- Use `.cursor/rules/200-299/*` playbooks when needed
 - Tests must be green before merging
 - WCAG 2.2 AA compliance required
 - Code must pass linting and type checking
