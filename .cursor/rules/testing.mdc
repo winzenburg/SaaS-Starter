@@ -1,0 +1,38 @@
+# Testing Rules
+
+## Test Coverage Requirements
+
+- **Domain logic** - All business logic must have unit tests
+- **Server actions** - All server actions must have integration tests
+- **tRPC procedures** - All procedures must have tests
+- **Critical flows** - E2E tests for user-critical paths (auth, payments, etc.)
+
+## Test Organization
+
+- Unit tests: `src/**/*.test.ts` (co-located with code)
+- Integration tests: `src/**/*.test.ts` (test server actions, API routes)
+- E2E tests: `e2e/**/*.spec.ts` (Playwright)
+- Test utilities: `src/test/`
+
+## Testing Best Practices
+
+- **Tests define correctness** - Write tests that describe expected behavior
+- **Test behavior, not implementation** - Focus on what, not how
+- **Isolate tests** - Each test should be independent
+- **Use fixtures** - Create reusable test data
+- **Mock external services** - Don't hit real APIs in tests
+- **Clean up** - Reset state between tests
+
+## Test Commands
+
+- `pnpm test` - Run unit/integration tests (Vitest)
+- `pnpm test:ui` - Run tests with UI
+- `pnpm test:e2e` - Run E2E tests (Playwright)
+- `pnpm test:e2e:ui` - Run E2E tests with UI
+
+## Test Requirements
+
+- All tests must pass before merging
+- New features must include tests
+- Refactors must maintain or improve test coverage
+- Tests should be fast and reliable
