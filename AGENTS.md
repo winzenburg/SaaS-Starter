@@ -37,11 +37,12 @@ See `docs/agents/*.md` for full prompts.
 
 ## Default Workflows
 
-- **Insight validation** (Heat Filter): `.cursor/rules/200-playbook-insight-validation.mdc` (must pass before moat/MRR validation)
+- **Portfolio management**: `.cursor/rules/207-playbook-portfolio-management.mdc` (manage multiple product bets, prioritize by expected value, kill fast)
+- **Insight validation** (Heat Filter): `.cursor/rules/200-playbook-insight-validation.mdc` (must pass before moat/MRR validation, requires portfolio scoring)
   - **Mental Model**: "Do a tribe of real humans urgently want this?" (Proof: waitlists, DMs, preorders, repeat usage)
 - **Moat & MRR validation** (Durability Filter): `.cursor/rules/205-playbook-moat-mrr-validation.mdc` (must pass before new feature)
   - **Mental Model**: "Will this still matter and keep paying 12–36 months from now?" (Proof: recurring job, budgeted buyer, retention loop, moat map)
-- **New feature**: `.cursor/rules/210-playbook-new-feature.mdc` (requires insight validation + moat/MRR validation)
+- **New feature**: `.cursor/rules/210-playbook-new-feature.mdc` (requires portfolio prioritization + insight validation + moat/MRR validation)
 - **Bugfix**: `.cursor/rules/220-playbook-bugfix.mdc`
 - **Refactor**: `.cursor/rules/230-playbook-refactor.mdc`
 
@@ -76,7 +77,8 @@ Always active. Precise conventions for Next.js, tRPC, Drizzle, Stripe, Vercel.
 Invoked when needed. Detailed "how to do X" guides.
 - `200-playbook-insight-validation.mdc` - Greg's pre-build validation process (Isenberg Edition) - **Must pass before moat/MRR validation**
 - `205-playbook-moat-mrr-validation.mdc` - Moat & MRR validation (defensibility + monetization) - **Must pass before new feature**
-- `210-playbook-new-feature.mdc` - Feature development workflow (requires insight validation + moat/MRR validation)
+- `207-playbook-portfolio-management.mdc` - Portfolio management (multiple bets, prioritization, kill fast) - **Must score before validation, must prioritize before engineering**
+- `210-playbook-new-feature.mdc` - Feature development workflow (requires portfolio prioritization + insight validation + moat/MRR validation)
 - `220-playbook-bugfix.mdc` - Bug fix process
 - `230-playbook-refactor.mdc` - Refactoring process
 - `240-playbook-a11y-audit.mdc` - Accessibility audit
