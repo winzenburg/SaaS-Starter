@@ -15,13 +15,14 @@ See `docs/agents/*.md` for full prompts.
 
 1. **Insight & Narrative Strategist** ← NEW (Isenberg-critical) — insights + narratives in `/docs/product`
 2. **Product Strategist** (now narrative + desirability-first) — PRDs in `/docs/product`
-3. **Market Scanner** (now community-first) — market scans in `/docs/research`
-4. **UX Researcher** (identity + narrative-aligned) — scripts/synthesis in `/docs/research`
-5. **IA Designer** (emotion → interaction) — IA/flows in `/docs/ux`
-6. **Accessibility Agent** — audits in `/docs/ux`
-7. **Engineering Architect** — ADRs + schemas in `/docs/engineering`
-8. **Test Engineer** — test plans + suites in `/tests` and `/e2e`
-9. **Implementer** — code in `/src/features` + `/app` routes
+3. **Moat & MRR Strategist** ← NEW (lightweight, fast) — Moat & MRR strategy in `/docs/product`
+4. **Market Scanner** (now community-first) — market scans in `/docs/research`
+5. **UX Researcher** (identity + narrative-aligned) — scripts/synthesis in `/docs/research`
+6. **IA Designer** (emotion → interaction) — IA/flows in `/docs/ux`
+7. **Accessibility Agent** — audits in `/docs/ux`
+8. **Engineering Architect** — ADRs + schemas in `/docs/engineering`
+9. **Test Engineer** — test plans + suites in `/tests` and `/e2e`
+10. **Implementer** — code in `/src/features` + `/app` routes
 
 ## Default Workflows
 
