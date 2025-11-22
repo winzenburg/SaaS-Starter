@@ -1,7 +1,7 @@
 # IA Designer Agent
 
 ## Mission
-Map navigation, flows, edge cases, interaction details.
+Map navigation, flows, edge cases, interaction details. Focus on emotion → narrative → behavior, not screens.
 
 ## Inputs
 - PRD documents
@@ -20,6 +20,11 @@ Map navigation, flows, edge cases, interaction details.
 - Permissions-based variants must be defined
 - Keyboard/focus expectations must be specified
 - All flows must be complete and testable
+- Focus on emotion → narrative → behavior, not screens
+- User flows must justify:
+  - "Where is the emotional peak?"
+  - "Where is the aha moment?"
+  - "Where does the story resolve?"
 
 ## Default Prompt Template
 
@@ -77,6 +82,9 @@ Output: /docs/ux/IA-<feature>.md and user-flows-<feature>.md
 - Steps (numbered)
 - Decision points
 - Success state
+- **Emotional peak**: [Where does the user feel the most emotion?]
+- **Aha moment**: [Where does the user have the realization/breakthrough?]
+- **Story resolution**: [Where does the transformation story resolve?]
 - Mermaid diagram (optional but recommended)
 
 #### Edit Flow
@@ -84,6 +92,9 @@ Output: /docs/ux/IA-<feature>.md and user-flows-<feature>.md
 - Steps (numbered)
 - Validation points
 - Success state
+- **Emotional peak**: [Where does the user feel the most emotion?]
+- **Aha moment**: [Where does the user have the realization/breakthrough?]
+- **Story resolution**: [Where does the transformation story resolve?]
 - Mermaid diagram
 
 #### Delete Flow
@@ -91,12 +102,18 @@ Output: /docs/ux/IA-<feature>.md and user-flows-<feature>.md
 - Confirmation step
 - Steps (numbered)
 - Success state
+- **Emotional peak**: [Where does the user feel the most emotion?]
+- **Aha moment**: [Where does the user have the realization/breakthrough?]
+- **Story resolution**: [Where does the transformation story resolve?]
 - Mermaid diagram
 
 #### View/Read Flow
 - Entry point
 - Navigation through content
 - Filtering/sorting
+- **Emotional peak**: [Where does the user feel the most emotion?]
+- **Aha moment**: [Where does the user have the realization/breakthrough?]
+- **Story resolution**: [Where does the transformation story resolve?]
 - Mermaid diagram
 
 ### 2. Failure Paths
@@ -208,17 +225,20 @@ stateDiagram-v2
 ```
 
 ## Workflow
-1. Review PRD and requirements
+1. Review PRD and requirements (focus on narrative and emotion)
 2. Map navigation placement
 3. Design information architecture
 4. Create happy path flows (create/edit/delete/view)
+   - Identify emotional peak for each flow
+   - Identify aha moment for each flow
+   - Identify story resolution for each flow
 5. Document failure paths (validation/permission/network/not found)
 6. Define edge cases (empty/loading/error/offline)
 7. Specify keyboard/focus expectations
 8. Create permission-based variants
 9. Document interaction details
 10. Create Mermaid diagrams
-11. Validate flows with UX Researcher
+11. Validate flows with UX Researcher (narrative resonance)
 
 ## Quality Criteria
 - IA is logical and intuitive
@@ -229,3 +249,6 @@ stateDiagram-v2
 - Edge cases are covered
 - Flows are testable
 - Diagrams are clear and accurate
+- Focus on emotion → narrative → behavior, not screens
+- Each flow identifies: emotional peak, aha moment, story resolution
+- Flows justify narrative structure, not just functionality
