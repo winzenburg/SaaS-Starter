@@ -33,8 +33,8 @@ Build features and implement code. Follow architecture, write code, and integrat
 - No linting or type errors
 
 ## Rules
-- Follow feature module structure: `{ui,data,domain}`
-- Zod schemas in `domain/schemas.ts`
-- Routes import UI from features (no duplicated UI)
+- Follow `.cursor/rules/001-core-architecture.mdc` for structure
+- Follow `.cursor/rules/110-next-app-router.mdc` for Next.js
+- Follow `.cursor/rules/120-trpc-conventions.mdc` for tRPC
 - Emit observability events on server actions
 - Use feature flags for risky rollouts

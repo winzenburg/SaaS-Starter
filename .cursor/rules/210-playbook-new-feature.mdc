@@ -1,0 +1,55 @@
+# Playbook: New Feature
+
+## Workflow
+PRD → IA/flows → ADR → tests → build → a11y audit → verify
+
+## Steps
+
+1. **PRD** (Product Strategist)
+   - Define user problems and JTBD
+   - Identify success metrics and risks
+   - Document edge cases and failure modes
+   - Deliverable: PRD in `docs/prd/`
+
+2. **IA/flows** (IA/Interaction + UX Researcher)
+   - Design information architecture
+   - Create user flows and wireframes
+   - Validate with user research
+   - Deliverable: User flow diagrams, wireframes
+
+3. **ADR** (Engineering Architect)
+   - Create ADR in `docs/adr/`
+   - Design technical approach
+   - Plan feature module structure
+   - Deliverable: ADR document
+
+4. **Tests** (Test Engineer)
+   - Write tests that define correctness
+   - Unit tests for domain logic
+   - Integration tests for server actions
+   - E2E tests for critical flows
+   - **Tests must pass before implementation**
+   - Deliverable: Test suite
+
+5. **Build** (Implementer)
+   - Create feature module structure
+   - Implement domain logic
+   - Create server actions and tRPC procedures
+   - Build UI components with all states
+   - Deliverable: Feature module in `src/features/<feature>/`
+
+6. **A11y Audit** (Accessibility)
+   - Audit UI for WCAG 2.2 AA compliance
+   - Test with screen readers
+   - Verify keyboard navigation
+   - Fix accessibility issues
+   - Deliverable: WCAG 2.2 AA compliance
+
+7. **Verify** (Test Engineer + Accessibility)
+   - Run full test suite (must be green)
+   - Final accessibility check
+   - Code review
+   - Deliverable: Ready for merge
+
+## Quality Gates
+Each step must pass quality gates before proceeding.

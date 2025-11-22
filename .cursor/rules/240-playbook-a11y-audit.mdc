@@ -1,0 +1,41 @@
+# Playbook: Accessibility Audit
+
+## Workflow
+Audit → Test → Fix → Verify
+
+## Steps
+
+1. **Audit**
+   - Review UI for WCAG 2.2 AA compliance
+   - Check semantic HTML usage
+   - Verify ARIA usage (only if needed)
+   - Check color contrast
+   - Review keyboard navigation
+
+2. **Test**
+   - Test with screen readers (NVDA, JAWS, VoiceOver)
+   - Verify keyboard navigation
+   - Test with keyboard only
+   - Check focus management
+
+3. **Fix**
+   - Fix semantic HTML issues
+   - Add ARIA only when semantic HTML insufficient
+   - Fix color contrast issues
+   - Improve keyboard navigation
+   - Fix focus management
+
+4. **Verify**
+   - Re-test with screen readers
+   - Verify keyboard navigation works
+   - Check color contrast meets standards
+   - Final WCAG 2.2 AA compliance check
+
+## Checklist
+- Semantic HTML used correctly
+- ARIA only when needed
+- Keyboard navigation works
+- Screen reader compatible
+- Color contrast meets WCAG 2.2 AA
+- Focus indicators visible
+- Focus management correct

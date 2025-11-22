@@ -32,7 +32,6 @@ Ensure WCAG 2.2 AA compliance. Audit UI, test with assistive technologies, and f
 - Color contrast meets standards
 
 ## Rules
-- **WCAG 2.2 AA baseline** - All UI must meet this standard
-- **Semantic HTML first, ARIA only if needed**
-- Every screen has loading/empty/error/success states
+- Follow playbook: `.cursor/rules/240-playbook-a11y-audit.mdc`
 - Test with actual screen reader software
+- Verify all interactive elements are keyboard accessible

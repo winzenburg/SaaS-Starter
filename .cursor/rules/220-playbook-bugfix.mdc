@@ -1,0 +1,31 @@
+# Playbook: Bug Fix
+
+## Workflow
+Reproduce → Test → Fix → Verify
+
+## Steps
+
+1. **Reproduce**
+   - Identify the bug
+   - Create failing test that reproduces it
+   - Document expected vs actual behavior
+
+2. **Test**
+   - Write failing test (unit, integration, or E2E as appropriate)
+   - Test must fail with current code
+   - Test must pass after fix
+
+3. **Fix**
+   - Fix the root cause
+   - Keep changes minimal
+   - Follow project rules
+
+4. **Verify**
+   - All tests pass
+   - No regressions introduced
+   - Code review complete
+
+## Rules
+- Always write test first
+- Fix root cause, not symptoms
+- Verify no regressions

@@ -31,7 +31,7 @@ Write and maintain comprehensive tests. Ensure test coverage and define correctn
 - Tests are fast and reliable
 
 ## Rules
-- **Tests must be green before further refactors**
+- Follow `.cursor/rules/005-core-testing.mdc`
+- Tests must be green before further refactors
 - New features require unit + integration + e2e where applicable
-- Tests must pass before merging
 - Use Vitest for unit/integration, Playwright for E2E

@@ -1,0 +1,11 @@
+# Core UX & Accessibility
+
+- WCAG 2.2 AA baseline required
+- Semantic HTML first, ARIA only if needed
+- All interactive elements keyboard accessible
+- Color contrast meets WCAG 2.2 AA (4.5:1 text, 3:1 UI)
+- All images have descriptive alt attributes
+- Every screen must have loading/empty/error/success states
+- 4px baseline spacing (4px, 8px, 12px, 16px, 20px, 24px)
+- Tailwind CSS v4 utility classes
+- Mobile-first responsive design

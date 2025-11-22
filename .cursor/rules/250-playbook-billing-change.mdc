@@ -1,0 +1,39 @@
+# Playbook: Billing Change
+
+## Workflow
+Plan → Test → Implement → Verify
+
+## Steps
+
+1. **Plan**
+   - Review Stripe documentation
+   - Plan webhook event handling
+   - Design database schema changes
+   - Plan feature flag usage
+
+2. **Test**
+   - Test with Stripe test mode
+   - Write tests for webhook handlers
+   - Test subscription lifecycle
+   - Test payment failures
+
+3. **Implement**
+   - Update Stripe webhook handler
+   - Verify webhook signatures
+   - Update database schema if needed
+   - Implement feature flag
+   - Add observability events
+
+4. **Verify**
+   - Test webhook signature verification
+   - Verify no PII in logs
+   - Test error handling
+   - Verify observability events
+   - Test with Stripe test mode
+
+## Security Checklist
+- Webhook signatures verified
+- No PII in logs
+- Error handling robust
+- Observability events emitted
+- Feature flag used for rollout

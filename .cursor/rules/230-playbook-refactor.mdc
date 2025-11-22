@@ -1,0 +1,44 @@
+# Playbook: Refactor
+
+## Prerequisites
+- Tests must be green before refactoring
+- ADR required for significant refactors
+- Clear objective and scope
+
+## Workflow
+Assess → ADR (if needed) → Tests → Refactor → Verify
+
+## Steps
+
+1. **Assess**
+   - Run all tests and verify they pass
+   - Document current behavior
+   - Identify refactoring scope
+   - Check for dependencies
+
+2. **ADR** (if needed)
+   - Document why refactoring is needed
+   - Define target architecture
+   - Identify risks and mitigation
+
+3. **Tests**
+   - Ensure comprehensive test coverage
+   - Tests must pass before refactoring
+   - Add tests for edge cases if missing
+
+4. **Refactor**
+   - Make small, verifiable changes
+   - Run tests after each change
+   - Keep tests green throughout
+   - Commit frequently
+
+5. **Verify**
+   - All tests pass
+   - No regressions introduced
+   - Code follows project rules
+   - Documentation updated
+
+## Rules
+- Tests must be green before further refactors
+- Small increments
+- Verify after each step

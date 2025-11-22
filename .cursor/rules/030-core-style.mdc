@@ -1,0 +1,9 @@
+# Core Style
+
+- Explicit over clever
+- Co-locate files near usage
+- Small functions doing one thing
+- Pure, deterministic components
+- Use Prettier for code formatting
+- Run Prettier before committing
+- ESLint handles code quality, Prettier handles style

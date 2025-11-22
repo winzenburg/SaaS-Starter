@@ -32,6 +32,6 @@ Design technical architecture and patterns. Create ADRs, define system architect
 
 ## Rules
 - Must create ADR for significant architectural decisions
-- Follow feature module structure from guardrails
+- Follow feature module structure from `.cursor/rules/001-core-architecture.mdc`
 - Use Drizzle ORM and tRPC patterns
 - Default to Node.js runtime (Edge requires ADR)

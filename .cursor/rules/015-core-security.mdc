@@ -1,0 +1,9 @@
+# Core Security
+
+- Always verify webhook signatures
+- Never log PII (credit cards, SSNs, passwords, sensitive data)
+- Use identifiers or hashed values in logs
+- Follow data privacy regulations (GDPR, CCPA, etc.)
+- Validate all inputs with Zod schemas
+- Use type guards for parsing unknown data
+- Handle errors gracefully, no unhandled promises

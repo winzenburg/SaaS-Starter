@@ -1,0 +1,9 @@
+# Feature Flags
+
+- Use Vercel Feature Flags for risky rollouts
+- New features that could impact users
+- Performance-sensitive changes
+- Breaking changes or migrations
+- Use `isFeatureEnabled` from `@/lib/feature-flags`
+- Default to false for new features
+- Document feature flag usage in code

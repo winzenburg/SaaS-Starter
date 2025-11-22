@@ -1,24 +1,13 @@
-# tRPC Rules
+# tRPC Conventions
 
-## Procedure Definition
 - Define procedures in feature modules under `data/` directory
 - Use `publicProcedure` from `@/lib/trpc/init`
 - Always validate inputs with Zod schemas from `domain/schemas.ts`
 - Return typed responses
-
-## Router Organization
 - Group related procedures in feature routers
 - Export feature routers from feature's `index.ts`
 - Compose feature routers in `src/lib/trpc/router.ts`
-
-## Error Handling
 - Use tRPC error formatting (already configured)
-- Return user-friendly error messages
-- Log errors with context
-- Use discriminated unions for error states
-
-## Client Usage
 - Use `trpc` hook from `@/lib/trpc/client` in components
 - Prefer queries for reads, mutations for writes
 - Handle loading and error states
-- Use optimistic updates when appropriate

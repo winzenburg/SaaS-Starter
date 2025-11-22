@@ -1,0 +1,36 @@
+# Playbook: Multi-Tenancy
+
+## Workflow
+Design → Schema → Queries → Verify
+
+## Steps
+
+1. **Design**
+   - Define tenant isolation strategy
+   - Plan tenant identification
+   - Design data access patterns
+   - Create ADR for multi-tenancy approach
+
+2. **Schema**
+   - Add tenant_id to relevant tables
+   - Create indexes on tenant_id
+   - Plan migration strategy
+   - Update Drizzle schemas
+
+3. **Queries**
+   - Always filter by tenant_id
+   - Use transactions for tenant-scoped operations
+   - Verify tenant isolation in queries
+   - Add tenant context to tRPC procedures
+
+4. **Verify**
+   - Test tenant isolation
+   - Verify no cross-tenant data access
+   - Test tenant switching
+   - Performance test with multiple tenants
+
+## Rules
+- Always filter by tenant_id
+- Never allow cross-tenant access
+- Use transactions for tenant operations
+- Test tenant isolation thoroughly
