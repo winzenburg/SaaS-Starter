@@ -97,9 +97,9 @@ If green-light → Architecture Phase:
 
 **Quality Gate**: PRD must validate desirability before buildability. Value Story and Why Now are required.
 
-### 3. Market-Scanner → Community Heat + Moat
+### 3. Market-Scanner → Community Heat + Moat Design
 **Input**: Insight Brief, PRD  
-**Output**: Community Heat Analysis + Social Moat assessment
+**Output**: Community Heat Analysis + Moat Design
 
 **Agent**: Market Scanner
 
@@ -109,19 +109,32 @@ If green-light → Architecture Phase:
 - "Which community has the most pain + activation energy?" answered
 - "What niche internet tribe desperately wants this?" answered
 - "What micro-community can we win first?" answered
-- Social Moat potential assessed
 - "Where does this product naturally spread? Why?" answered
+- **Moat Design** (at least 2 moat types selected):
+  - Data moat (proprietary usage data → better outcomes)
+  - Workflow lock-in (deep integration into daily ops)
+  - Network effects (value increases with more users)
+  - Ecosystem moat (plugins, integrations, templates)
+  - Switching costs (migration pain, saved state, team habits)
+  - Brand/identity moat (community + narrative)
+- **Moat implementation plan** (how to build each selected moat over time)
 - Top 3 direct competitors (secondary)
 - Switching costs + lock-in analysis
 
 **Deliverables**:
 - High-heat communities identified
-- Social Moat potential assessed
+- **At least 2 moat types selected and justified**
+- **Moat implementation plan for each selected moat**
+- **How moats will be built over time (not just community)**
 - Natural distribution patterns identified
 - Community entry points defined
 - Competitor analysis (secondary to community)
 
-**Quality Gate**: At least one high-heat community identified. Social Moat potential assessed.
+**Quality Gate**: 
+- At least one high-heat community identified
+- **At least 2 moat types selected**
+- **Moat implementation plan created**
+- **Moat design goes beyond community (structural defensibility)**
 
 ### 4. Run Validation Tests (emails, DMs, landing page)
 **Input**: PRD, Community Heat Map, Lo-Fi Validation Plan  

@@ -69,9 +69,9 @@ Unfair Insight Brief → Narrative 1-pager → Community Heat Map → 10 Lo-Fi T
 
 **Quality Gate**: Narrative must have clear emotional hook and transformation story
 
-### 3. Community Heat Map
+### 3. Community Heat Map + Moat Design
 **Input**: Unfair Insight Brief, Narrative  
-**Output**: Community Heat Analysis
+**Output**: Community Heat Analysis + Moat Design
 
 **Agent**: Market Scanner
 
@@ -81,14 +81,28 @@ Unfair Insight Brief → Narrative 1-pager → Community Heat Map → 10 Lo-Fi T
 - Micro-communities to win first
 - Pain + activation energy assessment
 - Community Heat Map (high/medium/low heat)
+- **Moat Design** (at least 2 moat types selected):
+  - Data moat (proprietary usage data → better outcomes)
+  - Workflow lock-in (deep integration into daily ops)
+  - Network effects (value increases with more users)
+  - Ecosystem moat (plugins, integrations, templates)
+  - Switching costs (migration pain, saved state, team habits)
+  - Brand/identity moat (community + narrative)
+- Moat implementation plan (how to build each selected moat)
 
 **Deliverables**:
 - Communities identified and ranked by heat
 - "Which community has the most pain + activation energy?" answered
 - "What niche internet tribe desperately wants this?" answered
 - "What micro-community can we win first?" answered
+- **At least 2 moat types selected and justified**
+- **Moat implementation plan for each selected moat**
+- **How moats will be built over time (not just community)**
 
-**Quality Gate**: At least one high-heat community identified
+**Quality Gate**: 
+- At least one high-heat community identified
+- At least 2 moat types selected
+- Moat implementation plan created
 
 ### 4. 10 Lo-Fi Tests
 **Input**: Insight Brief, Narrative, Community Heat Map  
@@ -204,6 +218,7 @@ Unfair Insight Brief → Narrative 1-pager → Community Heat Map → 10 Lo-Fi T
 - ✅ Landing page shows signup interest
 - ✅ Manual concierge shows willingness to pay
 - ✅ Community Heat Map shows high-heat community
+- ✅ **At least 2 moat types selected and planned**
 - ✅ Unfair insight is validated
 - ✅ Narrative resonates
 
@@ -227,6 +242,7 @@ Insight validation is considered done when:
 - ✅ Unfair Insight Brief created and validated
 - ✅ Narrative 1-pager created with emotional hook
 - ✅ Community Heat Map identifies high-heat communities
+- ✅ **Moat Design completed (at least 2 moat types selected)**
 - ✅ 10 Lo-Fi Tests designed and documented
 - ✅ "Would you be upset?" test executed (30%+ would be upset)
 - ✅ Landing page + waitlist test executed (50+ signups or 5%+ conversion)
@@ -244,6 +260,7 @@ Each step must pass quality gates before proceeding:
 - **Unfair Insight**: Unique and defensible
 - **Narrative**: Clear emotional hook and transformation
 - **Community Heat Map**: High-heat community identified
+- **Moat Design**: At least 2 moat types selected with implementation plan
 - **10 Lo-Fi Tests**: All actionable and low-cost
 - **"Would you be upset?"**: 30%+ would be upset
 - **Landing page**: 50+ signups or 5%+ conversion
