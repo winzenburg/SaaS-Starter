@@ -4,11 +4,9 @@
 /node_modules
 /.pnp
 .pnp.js
-.yarn/install-state.gz
 
 # testing
 /coverage
-/.playwright
 
 # next.js
 /.next/
@@ -37,6 +35,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# drizzle
-/drizzle
-
+# Hub-specific
+/projects/*.json
+!/projects/.gitkeep

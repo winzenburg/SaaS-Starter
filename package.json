@@ -17,7 +17,9 @@
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "create-project": "tsx scripts/create-project.ts",
+    "manage-projects": "tsx scripts/manage-projects.ts"
   },
   "dependencies": {
     "next": "^15.1.0",

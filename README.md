@@ -1,6 +1,48 @@
-# SaaS Starter
+# SaaS Starter Hub
 
-A modern, production-ready SaaS starter template built with Next.js (App Router), React, TypeScript, and best-in-class engineering practices.
+> A meta-project that spins up new SaaS projects using a 12-agent product creation engine
+
+**SaaS Starter Hub** is both:
+1. **A project generator** - Create new SaaS projects with one command
+2. **A portfolio management system** - Track and manage multiple SaaS bets
+3. **A complete product creation engine** - 12 specialized AI agents for validation, design, and development
+
+## 🎯 What Makes This Different?
+
+This isn't just a starter template—it's a **systematized product creation engine** that combines:
+- **Greg Isenberg's desirability-first methodology** (community heat, identity-level pain)
+- **Durability & defensibility filters** (moat design, retention architecture, expansion revenue)
+- **Portfolio theory** (multiple bets, expected value modeling, kill-fast diagnostics)
+- **Production-ready infrastructure** (Next.js, tRPC, Drizzle, Stripe, Vercel)
+
+## 🚀 Quick Start
+
+### Create Your First Project
+
+```bash
+npm run create-project "My Awesome SaaS"
+```
+
+This generates a complete SaaS project with all infrastructure pre-configured.
+
+### Manage Your Portfolio
+
+```bash
+# List all projects
+npm run manage-projects list
+
+# Check project status
+npm run manage-projects status my-awesome-saas
+```
+
+### Follow the Validation Workflow
+
+1. **Portfolio Scoring** → Score ideas using `@Portfolio-Prioritizer`
+2. **Insight Validation** → Validate desirability using `@Insight-Strategist`
+3. **Moat & MRR Validation** → Design defensibility using `@Moat-MRR-Strategist`
+4. **Build** → Follow the feature development playbook
+
+See [docs/HUB.md](./docs/HUB.md) for complete hub documentation.
 
 ## 🏗️ Architecture
 
@@ -27,87 +69,17 @@ src/
 - **Strong typing** - TypeScript strict mode + Zod validation at boundaries
 - **Domain-driven structure** - Features are self-contained modules
 
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Node.js 20+ 
-- PostgreSQL (or your preferred database)
-- npm or yarn
-
-### Installation
-
-1. Clone and install dependencies:
-
-```bash
-npm install
-```
-
-2. Set up environment variables:
-
-```bash
-cp .env.example .env
-# Edit .env with your values
-```
-
-3. Set up the database:
-
-```bash
-npm run db:generate
-npm run db:push
-```
-
-4. Run the development server:
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) to see the app.
-
-## 🧪 Testing
-
-- **Unit/Integration tests**: `npm run test` (Vitest)
-- **E2E tests**: `npm run test:e2e` (Playwright)
-- **Type checking**: `npm run type-check`
-
 ## 📦 Tech Stack
 
 - **Framework**: Next.js 15 (App Router)
 - **Language**: TypeScript (strict mode)
 - **Styling**: Tailwind CSS v4
-- **Database**: Prisma (PostgreSQL)
+- **Database**: Drizzle ORM + PostgreSQL
+- **API**: tRPC
 - **Validation**: Zod
 - **Payments**: Stripe
 - **Deployment**: Vercel
 - **Testing**: Vitest, Playwright
-
-## 🏛️ Project Structure
-
-### Feature Modules
-
-Each feature is self-contained:
-
-```typescript
-// src/features/auth/index.ts
-export { LoginForm } from "./ui/LoginForm";
-export { loginAction } from "./data/loginAction";
-export { loginSchema } from "./domain/loginSchema";
-```
-
-### Shared Utilities
-
-Common utilities live in `src/lib`:
-
-- `db.ts` - Prisma client instance
-- `validation.ts` - Shared Zod schemas
-- Additional utilities as needed
-
-## 🔒 Type Safety
-
-- **Strict TypeScript** - All code is strictly typed
-- **Zod validation** - All inputs validated at boundaries
-- **Type guards** - Safe parsing of unknown data
 
 ## 🎨 Design System
 
@@ -115,60 +87,14 @@ Common utilities live in `src/lib`:
 - **Tailwind CSS v4** - Modern utility-first styling
 - **Accessibility** - WCAG 2.2 AA compliant
 
-## 📝 Development Guidelines
-
-### Adding a Feature
-
-1. Create feature module in `src/features/<feature>/`
-2. Organize into `ui/`, `data/`, `domain/` subdirectories
-3. Export public API via `index.ts`
-4. Write tests alongside implementation
-5. Update documentation
-
-### Server Actions
-
-Prefer server actions over client mutations:
-
-```typescript
-// src/features/auth/data/loginAction.ts
-"use server";
-
-import { loginSchema } from "../domain/loginSchema";
-
-export async function loginAction(formData: FormData) {
-  const validated = loginSchema.safeParse({
-    email: formData.get("email"),
-    password: formData.get("password"),
-  });
-
-  if (!validated.success) {
-    return { error: "Invalid input" };
-  }
-
-  // Implementation...
-}
-```
-
-### Testing
-
-- **Unit tests** for domain logic
-- **Integration tests** for server actions
-- **E2E tests** for critical user flows
-
-## 🚢 Deployment
-
-This project is optimized for Vercel:
-
-- Automatic deployments from Git
-- Edge runtime support (when needed)
-- Built-in analytics and observability
-- Feature flags support
-
 ## 📚 Documentation
 
-- [Architecture Decision Records (ADRs)](./docs/adr/) - Design decisions
-- [Feature Documentation](./docs/features/) - Feature-specific docs
-- [API Documentation](./docs/api/) - API contracts
+- **[Hub Documentation](./docs/HUB.md)** - How to use the hub to create and manage projects
+- **[Agent System](./AGENTS.md)** - Complete 12-agent product creation engine
+- **[Getting Started](./docs/GETTING_STARTED.md)** - Validation workflow guide
+- **[Systems Framework](./docs/SYSTEMS.md)** - The Four Systems for building a SaaS empire
+- **[Architecture](./docs/ARCHITECTURE.md)** - Technical architecture details
+- **[Portfolio Management](./.cursor/rules/207-playbook-portfolio-management.mdc)** - Portfolio theory playbook
 
 ## 🤝 Contributing
 
@@ -180,4 +106,3 @@ This project is optimized for Vercel:
 ## 📄 License
 
 MIT
-
