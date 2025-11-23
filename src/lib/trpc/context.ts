@@ -1,11 +1,11 @@
-import { db } from "@/lib/db";
+import { getDb } from "@/lib/db";
 
 /**
  * Create tRPC context
  */
 export async function createContext() {
   return {
-    db,
+    db: getDb(),
   };
 }
 

@@ -2,5 +2,5 @@
  * Database exports
  * Re-export from the new Drizzle setup
  */
-export { db } from "./db/index";
+export { db, getDb } from "./db/index";
 export * from "./db/schema";
