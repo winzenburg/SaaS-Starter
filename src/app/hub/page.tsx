@@ -93,6 +93,10 @@ export default function HubPage() {
         }
         const data = await response.json();
         setProjects(data.projects || []);
+        // If there's a message, it means projects are local-only
+        if (data.message && data.projects.length === 0) {
+          setError(data.message);
+        }
       } catch (err) {
         setError(err instanceof Error ? err.message : "Unknown error");
       } finally {
@@ -116,14 +120,32 @@ export default function HubPage() {
     );
   }
 
-  if (error) {
+  if (error && projects.length === 0) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <p className="text-red-600 mb-4">Error: {error}</p>
-          <p className="text-gray-600 text-sm">
-            Make sure you&apos;re running this from the hub directory
-          </p>
+      <div className="min-h-screen bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="bg-white rounded-lg shadow p-8 text-center">
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">
+              Hub Dashboard
+            </h2>
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
+              <p className="text-blue-800 mb-2">
+                <strong>Note:</strong> Projects registry is local-only
+              </p>
+              <p className="text-blue-700 text-sm">
+                {error}
+              </p>
+            </div>
+            <p className="text-gray-600 mb-6">
+              To view your projects, run locally:
+            </p>
+            <code className="block bg-gray-100 rounded-lg p-4 text-sm max-w-md mx-auto mb-6">
+              npm run manage-projects list
+            </code>
+            <p className="text-gray-600 text-sm">
+              The dashboard will show projects when running locally, or when projects are stored in a database.
+            </p>
+          </div>
         </div>
       </div>
     );

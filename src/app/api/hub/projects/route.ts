@@ -25,9 +25,22 @@ export async function GET() {
     // Check if projects directory exists
     let files: string[] = [];
     try {
-      files = readdirSync(projectsDir).filter((f) => f.endsWith(".json"));
+      files = readdirSync(projectsDir).filter((f) => f.endsWith(".json") && f !== ".gitkeep");
     } catch {
-      return NextResponse.json({ projects: [] });
+      // Projects directory doesn't exist or can't be read (e.g., on Vercel)
+      // Return empty array - this is expected for deployed hub
+      console.log("Projects directory not accessible (this is normal on Vercel)");
+      return NextResponse.json({ 
+        projects: [],
+        message: "Projects registry is local-only. Use 'npm run manage-projects list' locally to view projects."
+      });
+    }
+
+    if (files.length === 0) {
+      return NextResponse.json({ 
+        projects: [],
+        message: "No projects found. Create one with 'npm run create-project \"Project Name\"'"
+      });
     }
 
     const projects: ProjectRegistry[] = files.map((file) => {
@@ -54,7 +67,11 @@ export async function GET() {
   } catch (error) {
     console.error("Error reading projects:", error);
     return NextResponse.json(
-      { error: "Failed to load projects" },
+      { 
+        projects: [],
+        error: "Failed to load projects",
+        message: "Projects registry is local-only. Use 'npm run manage-projects list' locally to view projects."
+      },
       { status: 500 }
     );
   }
