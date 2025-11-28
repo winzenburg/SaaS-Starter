@@ -1,2 +1,195 @@
 @import "tailwindcss";
 
+@theme {
+  /* shadcn/ui CSS Variables - Dark Mode */
+  --background: 222.2 47.4% 11.2%;
+  --foreground: 210 40% 98%;
+  --card: 222.2 47.4% 11.2%;
+  --card-foreground: 210 40% 98%;
+  --popover: 222.2 47.4% 11.2%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 210 40% 98%;
+  --primary-foreground: 222.2 47.4% 11.2%;
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --accent: 217.2 32.6% 17.5%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --ring: 212.7 26.8% 83.9%;
+  --radius: 0.5rem;
+}
+
+/* Screen reader only class */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.sr-only:focus,
+.sr-only:focus-visible {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: inherit;
+  margin: inherit;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* Enhanced focus indicators for accessibility */
+*:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+}
+
+/* Ensure interactive elements have minimum touch target size */
+button,
+a,
+input[type="button"],
+input[type="submit"],
+input[type="checkbox"],
+input[type="radio"],
+select {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Exception for inline links and small icons */
+a:not([class*="button"]):not([class*="btn"]) {
+  min-height: auto;
+  min-width: auto;
+}
+
+/* Animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.5s ease-out;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.3s ease-out;
+}
+
+/* Smooth transitions for interactive elements */
+.transition-smooth {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hover lift effect */
+.hover-lift {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Glassmorphism utilities - Following NN/g best practices */
+/* https://www.nngroup.com/articles/glassmorphism/ */
+
+/* Base glassmorphic effect - optimized for dark mode */
+.glass {
+  background: rgba(15, 23, 42, 0.4); /* slate-900 with 40% opacity */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(148, 163, 184, 0.1); /* slate-400 with 10% opacity */
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+/* Enhanced glassmorphic effect with more blur for complex backgrounds */
+.glass-strong {
+  background: rgba(15, 23, 42, 0.5); /* 50% opacity */
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+}
+
+/* Subtle glassmorphic effect for lighter elements */
+.glass-subtle {
+  background: rgba(15, 23, 42, 0.3); /* 30% opacity */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(148, 163, 184, 0.08);
+  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Glassmorphic card with gradient border for depth */
+.glass-card {
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  box-shadow: 
+    0 8px 32px 0 rgba(0, 0, 0, 0.37),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.05); /* Subtle inner highlight */
+}
+
+/* Glassmorphic header/navbar */
+.glass-header {
+  background: rgba(15, 23, 42, 0.8); /* Higher opacity for header */
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Glassmorphic modal/dialog */
+.glass-modal {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(50px);
+  -webkit-backdrop-filter: blur(50px);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  box-shadow: 0 12px 48px 0 rgba(0, 0, 0, 0.5);
+}
+

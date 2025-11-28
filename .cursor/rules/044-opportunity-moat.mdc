@@ -1,0 +1,246 @@
+# Rule 044: Opportunity & Moat
+
+> Stage 4 of Product Discovery: Find where your product can earn a defensive moat in the niche
+
+## Core Principle
+
+**Every product idea must have a complete opportunity & moat analysis before validation planning. Opportunity Score must be ≥ 8.0/10 to proceed.**
+
+### Stage Gate
+
+**No product idea proceeds to Validation Phase without completing Stage 4 (Opportunity & Moat) and achieving Opportunity Score ≥ 8.0/10.**
+
+## Agent: Opportunity-Moat-Agent
+
+**Purpose**: Find where your product can earn a defensive moat in the niche
+
+## Inputs
+
+### Required Inputs
+
+1. **Competitor Gaps from Manus** (REQUIRED)
+   - Competitor gap analysis from Manus
+   - Positioning gaps
+   - Feature gaps
+   - Unmet needs
+   - Differentiation opportunities
+
+2. **Pain Signals Doc** (REQUIRED)
+   - `/docs/discovery/PAIN-SIGNALS-<idea-slug>.md`
+   - Pain clusters and scores
+   - MAAP (moment of acute pain)
+   - Expensive problems
+   - Workflow embedding potential
+
+3. **JTBD Doc** (REQUIRED)
+   - `/docs/discovery/JTBD-<idea-slug>.md`
+   - Main job, related jobs, emotional jobs
+   - Triggers and success metrics
+   - Recurring vs non-recurring jobs
+
+## Tasks
+
+### 1. Identify High-Leverage Opportunities
+
+**What to Identify**:
+
+#### Underserved Segments
+- What segments are underserved by competitors?
+- What are the characteristics of underserved segments?
+- How large are underserved segments?
+- What needs do underserved segments have?
+- What opportunities exist in underserved segments?
+
+#### High Switching Costs
+- What creates switching costs?
+- How strong are switching costs? (Low/Medium/High)
+- Data migration costs
+- Workflow integration costs
+- Training costs
+- Relationship costs
+- Switching cost potential
+
+#### Unowned Workflows
+- What workflows are not owned by competitors?
+- Where can the product integrate into workflows?
+- What workflows depend on solving this problem?
+- How can the product create workflow lock-in?
+- Workflow embedding opportunities
+
+#### Data Moat Potential
+- What data does the product naturally generate?
+- What insights can be derived from the data?
+- What can be tracked that competitors can't?
+- What data is unique to this product?
+- How does data compound value?
+- How does data create 10× value?
+- Feedback loop potential
+
+#### Insight Moat Potential
+- What insights can be derived from usage?
+- What patterns can be identified?
+- What recommendations can be made?
+- How do insights improve over time?
+- How do insights create competitive advantage?
+- Insight compounding mechanism
+
+#### Network Effect Nodes
+- Does the product benefit from network effects?
+- What creates network effects?
+- How strong are network effects? (Low/Medium/High)
+- Platform effects potential
+- Winner-take-most dynamics
+- Network effect nodes
+
+**Output**: Included in opportunity document
+
+### 2. Propose 3–5 "Moat-Ready" Concepts
+
+**What to Propose**:
+
+For each concept:
+- **Concept Name**: Clear, descriptive name
+- **Moat Type**: Underserved segment / Switching costs / Workflow / Data moat / Insight moat / Network effects
+- **Moat Strength**: How strong is the moat? (Low/Medium/High)
+- **Implementation Strategy**: How to build this moat?
+- **Competitive Advantage**: What competitive advantage does this create?
+- **Time to Moat**: How long to build this moat?
+- **Moat Durability**: How durable is this moat? (1-5 years / 5-10 years / 10+ years)
+
+**Output**: Included in opportunity document
+
+### 3. Provide Midjourney/Canva Prompts for Concept Mockups
+
+**What to Provide** (Rule 080):
+
+#### Future Vision Mockups (2-3 variants required)
+- **Style**: Explicit style description
+- **Lighting**: Explicit lighting description
+- **Medium**: Explicit medium description
+- **Mood**: Explicit mood description
+- **Content**: Future product concept visualization
+
+#### Conceptual Diagrams (2-3 variants required)
+- **Style**: Explicit style description
+- **Lighting**: Explicit lighting description
+- **Medium**: Explicit medium description
+- **Mood**: Explicit mood description
+- **Content**: Opportunity structure, moat visualization
+
+#### Social Ad Concepts (2-3 variants required)
+- **Style**: Explicit style description
+- **Lighting**: Explicit lighting description
+- **Medium**: Explicit medium description
+- **Mood**: Explicit mood description
+- **Content**: Positioning ads, value proposition ads
+
+**All prompts must be explicit in style, lighting, medium, mood (2-3 variants minimum)**
+
+**Output**: Included in opportunity document
+
+### 4. Produce Opportunity Score (0–10)
+
+**What to Calculate** (Rule 301):
+
+#### Opportunity Score Components
+
+1. **Niche Viability** (0-2.5 points)
+   - Niche size and growth potential
+   - Entry points and trust signals
+   - Community engagement
+
+2. **Pain Intensity** (0-2.5 points)
+   - Top pain signal scores (average of top 3)
+   - MAAP intensity
+   - Monetization potential
+
+3. **Persona Clarity** (0-1.5 points)
+   - Persona narrative completeness
+   - JTBD frequency and clarity
+   - Emotional driver strength
+
+4. **Moat Potential** (0-3.5 points)
+   - Winner-take-most dynamics
+   - Switching cost potential
+   - Data moat strength
+   - Workflow embedding potential
+   - Blue ocean opportunity size
+
+**Total**: 10.0 points maximum
+
+**Threshold**: ≥ 8.0/10 required to proceed
+
+**Output**: Included in opportunity document
+
+## Output
+
+**Output**: `/docs/discovery/OPPORTUNITY-<idea-slug>.md`
+
+**Required Sections**:
+1. High-Leverage Opportunities
+   - Underserved Segments
+   - High Switching Costs
+   - Unowned Workflows
+   - Data Moat Potential
+   - Insight Moat Potential
+   - Network Effect Nodes
+2. Moat-Ready Concepts (3-5 concepts)
+3. Midjourney/Canva Prompts (future vision mockups, conceptual diagrams, social ad concepts - 2-3 variants each)
+4. Opportunity Score (0-10, must be ≥ 8.0/10 to proceed)
+5. Recommendations (proceed to validation / pivot / kill)
+
+## Quality Gates
+
+**All opportunity & moat outputs must pass quality gates**:
+
+- ✅ **High-leverage opportunities identified** (all 6 opportunity types analyzed)
+- ✅ **3-5 moat-ready concepts proposed** (each with moat type, strength, strategy, advantage)
+- ✅ **Midjourney/Canva prompts provided** (2-3 variants, explicit in style/lighting/medium/mood)
+- ✅ **Opportunity Score calculated** (0-10, must be ≥ 8.0/10 to proceed)
+- ✅ **Recommendations provided** (proceed / pivot / kill based on score)
+
+## Integration with Other Rules
+
+- **Rule 300 (Discovery Master)**: Discovery master rule
+- **Rule 301 (Discovery Overview)**: Discovery overview and gates (Opportunity Score)
+- **Rule 302 (Discovery Workflow)**: Complete 8-step workflow
+- **Rule 080 (Midjourney/Canva)**: Visual prompt requirements
+- **Rule 042 (Pain Signal Analysis)**: Previous stage (required input)
+- **Rule 043 (Persona & JTBD)**: Previous stage (required input)
+- **Rule 040 (Demand Validation)**: Next phase (if Opportunity Score ≥ 8.0/10)
+
+## Enforcement
+
+### Pre-Validation Checks
+
+**Before starting Validation Phase**:
+1. ✅ Opportunity document must exist
+2. ✅ All 4 tasks must be complete
+3. ✅ Opportunity Score must be ≥ 8.0/10
+4. ✅ All quality gates must pass
+
+### Pre-Engineering Checks
+
+**Before starting Engineering**:
+1. ✅ Opportunity Score must be ≥ 8.0/10
+2. ✅ Validation must have passed
+3. ✅ Opportunity document must exist
+
+### Agent Requirements
+
+**@Opportunity-Moat-Agent must**:
+1. Read competitor gaps, pain signals doc, JTBD doc
+2. Complete all 4 tasks
+3. Calculate Opportunity Score
+4. Produce structured opportunity document
+5. Ensure all quality gates pass
+
+## Summary
+
+1. **Inputs**: Competitor gaps from Manus (required), Pain Signals doc (required), JTBD doc (required)
+2. **Tasks**: Identify high-leverage opportunities, propose 3-5 moat-ready concepts, provide Midjourney/Canva prompts, produce Opportunity Score
+3. **Output**: `/docs/discovery/OPPORTUNITY-<idea-slug>.md`
+4. **Opportunity Score Gate**: Must be ≥ 8.0/10 to proceed to validation
+5. **Stage Gate**: Cannot proceed to Validation Phase without completing Stage 4
+
+**Opportunity & Moat Analysis is required before Validation. Opportunity Score must be ≥ 8.0/10 to proceed.**

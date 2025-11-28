@@ -1,0 +1,203 @@
+# AI Quality Control
+
+> Quality gates and validation for AI tool outputs
+
+## Rule
+
+All AI tool outputs must pass quality gates before being used in workflows.
+
+## Quality Criteria by Tool
+
+### Manus.im Outputs
+
+**Narrative Quality**:
+- ✅ Connects identity-level pain to solution
+- ✅ Emotionally compelling and memorable
+- ✅ Clear value proposition
+- ✅ Ready for validation testing
+- ✅ **All claims backed by cited sources** (required)
+- ✅ **Proper citation format** (`[^number]` footnotes)
+- ✅ **Source URLs included** when available
+
+**Competitor Analysis Quality**:
+- ✅ Identifies clear differentiation opportunities
+- ✅ Analyzes competitor positioning accurately
+- ✅ Provides actionable insights
+- ✅ **All competitor data cited** with sources
+- ✅ **Pricing information sourced** from real data
+
+**Persona Quality**:
+- ✅ Reflects real identity-level motivations
+- ✅ Based on actual user research
+- ✅ Actionable for product design
+- ✅ **Persona insights backed by research** (citations required)
+- ✅ **Emotional drivers sourced** from real data
+
+**Discovery Pack Quality**:
+- ✅ Complete discovery pack (all 7 sections present)
+- ✅ Proper markdown format with sections
+- ✅ References section with all sources
+- ✅ Citations properly formatted (`[number]` in text, `[^number]` in footnotes)
+- ✅ Source URLs accessible and valid
+- ✅ All claims traceable to sources
+
+### ChatGPT Outputs
+
+**Reasoning Quality**:
+- ✅ Step-by-step logic is clear
+- ✅ Conclusions are well-supported
+- ✅ Addresses all aspects of problem
+- ✅ Actionable recommendations
+
+**Refinement Quality**:
+- ✅ Addresses identified weaknesses
+- ✅ Maintains original intent
+- ✅ Improves on original idea
+- ✅ Meets constraints
+
+**Ideation Quality**:
+- ✅ Diverse set of ideas
+- ✅ Ideas are actionable
+- ✅ Ideas meet constraints
+- ✅ Ideas are ranked by quality
+
+### ElevenLabs Outputs
+
+**Voice Quality**:
+- ✅ Voice matches product tone
+- ✅ Narration is clear and natural
+- ✅ Audio quality is professional
+- ✅ Script is well-optimized
+
+### Visual Asset Outputs
+
+**Visual Quality**:
+- ✅ Communicates product concept clearly
+- ✅ Style is consistent with brand
+- ✅ Assets are optimized for use
+- ✅ Accessibility requirements met
+
+## Quality Gates
+
+### Gate 1: Initial Review
+
+**Automated Checks**:
+- Output format is correct (JSON or markdown)
+- Required fields are present
+- No obvious errors or artifacts
+- **Citations present** (for Manus outputs)
+- **Sources section included** (for discovery packs)
+
+**Manual Review**:
+- Content makes sense
+- Quality meets minimum threshold
+- Ready for next step
+- **Citations are valid** and sources are accessible
+- **All claims are backed by sources** (no unsupported claims)
+
+### Gate 2: Validation
+
+**Before Using in Workflow**:
+- ✅ Output validated against requirements
+- ✅ Quality score above threshold
+- ✅ Stakeholder approval (if needed)
+
+### Gate 3: Integration
+
+**Before Final Use**:
+- ✅ Output integrated correctly
+- ✅ No conflicts with existing content
+- ✅ Performance is acceptable
+
+## Quality Scoring
+
+### Narrative Quality Score (1-10)
+
+- **Identity Connection** (0-3): How well it connects to identity-level pain
+- **Emotional Resonance** (0-3): How compelling and memorable
+- **Clarity** (0-2): How clear the value proposition
+- **Actionability** (0-2): How ready for validation
+
+**Threshold**: 7/10 minimum
+
+### Reasoning Quality Score (1-10)
+
+- **Logic** (0-3): How clear and sound the reasoning
+- **Completeness** (0-3): How well it addresses the problem
+- **Actionability** (0-2): How actionable the recommendations
+- **Support** (0-2): How well-supported the conclusions
+
+**Threshold**: 7/10 minimum
+
+### Voice Quality Score (1-10)
+
+- **Clarity** (0-3): How clear the narration
+- **Naturalness** (0-3): How natural-sounding
+- **Tone Match** (0-2): How well voice matches product tone
+- **Professionalism** (0-2): How professional the quality
+
+**Threshold**: 7/10 minimum
+
+### Visual Quality Score (1-10)
+
+- **Concept Communication** (0-3): How well it communicates concept
+- **Style Consistency** (0-3): How consistent with brand
+- **Technical Quality** (0-2): How high the technical quality
+- **Accessibility** (0-2): How accessible the visual
+
+**Threshold**: 7/10 minimum
+
+## Quality Improvement
+
+### If Quality Below Threshold
+
+1. **Refine Prompt**: Make prompt more specific
+2. **Add Constraints**: Provide more constraints
+3. **Iterate**: Generate multiple variations, select best
+4. **Use Better Model**: Upgrade to higher-quality model
+5. **Manual Review**: Human review and editing
+
+### Iteration Pattern
+
+```
+1. Generate initial output
+2. Score quality
+3. If score < threshold:
+   - Identify weaknesses
+   - Refine prompt/constraints
+   - Regenerate
+   - Repeat until threshold met
+4. If still below after 3 iterations:
+   - Use manual process
+   - Or accept and improve manually
+```
+
+## Quality Logging
+
+Log for each output:
+
+```typescript
+{
+  tool: "manus|chatgpt|elevenlabs|visual",
+  outputId: "unique-id",
+  qualityScore: 8.5,
+  scores: {
+    criteria1: 3,
+    criteria2: 3,
+    criteria3: 2,
+    criteria4: 0.5
+  },
+  reviewer: "agent-name",
+  timestamp: "2025-01-XX",
+  approved: true
+}
+```
+
+## Best Practices
+
+1. **Set Clear Thresholds** - Know minimum quality before starting
+2. **Score Consistently** - Use same criteria for all outputs
+3. **Log Everything** - Track quality over time
+4. **Improve Prompts** - Better prompts = better outputs
+5. **Iterate When Needed** - Don't accept low-quality outputs
+6. **Manual Review for Critical** - Human review for high-stakes outputs

@@ -1,0 +1,200 @@
+# API: Endpoint Patterns for Workflows
+
+**Goal**: Standardize API endpoint patterns for workflow operations.
+
+## Route Structure
+
+### Individual Resource
+
+```
+GET    /api/workflows/[id]     - Get workflow by ID
+PUT    /api/workflows/[id]     - Update workflow (future)
+DELETE /api/workflows/[id]     - Delete workflow (future)
+```
+
+### Collection
+
+```
+GET    /api/workflows          - List all workflows
+POST   /api/workflows          - Create workflow (future)
+```
+
+### Phase-Specific
+
+```
+POST   /api/workflows/discovery    - Create discovery workflow
+POST   /api/workflows/validation   - Create validation workflow
+GET    /api/workflows/discovery    - Get discovery workflow by ID
+```
+
+## Standard Response Format
+
+### Success
+
+```typescript
+{
+  success: true,
+  workflow: Workflow,
+  message?: string
+}
+```
+
+### Error
+
+```typescript
+{
+  success: false,
+  error: string,
+  message?: string
+}
+```
+
+## Implementation Pattern
+
+```typescript
+// src/app/api/workflows/[id]/route.ts
+import { NextRequest, NextResponse } from "next/server";
+import { loadWorkflow } from "@/lib/workflows/db";
+
+export async function GET(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  try {
+    // 1. Validate input
+    const workflowId = params.id;
+    if (!workflowId) {
+      return NextResponse.json(
+        { success: false, error: "Workflow ID is required" },
+        { status: 400 }
+      );
+    }
+
+    // 2. Check database availability
+    if (!process.env.DATABASE_URL) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: "Database not configured",
+          message: "DATABASE_URL is not set",
+        },
+        { status: 500 }
+      );
+    }
+
+    // 3. Load data
+    const workflow = await loadWorkflow(workflowId);
+
+    // 4. Handle not found
+    if (!workflow) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: "Workflow not found",
+        },
+        { status: 404 }
+      );
+    }
+
+    // 5. Return success
+    return NextResponse.json({
+      success: true,
+      workflow,
+    });
+  } catch (error) {
+    // 6. Handle errors
+    console.error("Error loading workflow:", error);
+    return NextResponse.json(
+      {
+        success: false,
+        error: error instanceof Error ? error.message : "Unknown error",
+      },
+      { status: 500 }
+    );
+  }
+}
+```
+
+## Client-Side Usage
+
+```typescript
+// In React component
+useEffect(() => {
+  async function loadWorkflow() {
+    try {
+      const response = await fetch(`/api/workflows/${workflowId}`);
+      if (!response.ok) {
+        if (response.status === 404) {
+          setWorkflow(null);
+          return;
+        }
+        throw new Error("Failed to load workflow");
+      }
+      const data = await response.json();
+      if (data.success && data.workflow) {
+        setWorkflow(data.workflow);
+      }
+    } catch (error) {
+      console.error("Error loading workflow:", error);
+      setWorkflow(null);
+    }
+  }
+  loadWorkflow();
+}, [workflowId]);
+```
+
+## Rules
+
+1. **Always check `DATABASE_URL`** before database operations
+2. **Return consistent response format** (`success`, `error`, `message`)
+3. **Handle 404 gracefully** (not found is not an error)
+4. **Log errors** but don't expose internal details to client
+5. **Use proper HTTP status codes** (400, 404, 500)
+6. **Validate input** before processing
+7. **Type params correctly** (`{ params: { id: string } }`)
+
+## Error Handling
+
+### Database Not Configured
+
+```typescript
+if (!process.env.DATABASE_URL) {
+  return NextResponse.json(
+    {
+      success: false,
+      error: "Database not configured",
+      message: "DATABASE_URL is not set",
+    },
+    { status: 500 }
+  );
+}
+```
+
+### Resource Not Found
+
+```typescript
+if (!workflow) {
+  return NextResponse.json(
+    {
+      success: false,
+      error: "Workflow not found",
+    },
+    { status: 404 }
+  );
+}
+```
+
+### Generic Error
+
+```typescript
+catch (error) {
+  console.error("Error loading workflow:", error);
+  return NextResponse.json(
+    {
+      success: false,
+      error: error instanceof Error ? error.message : "Unknown error",
+    },
+    { status: 500 }
+  );
+}
+```

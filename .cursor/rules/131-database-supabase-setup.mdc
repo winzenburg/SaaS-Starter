@@ -1,0 +1,133 @@
+# Database: Supabase Setup & Configuration
+
+**Goal**: Standardize Supabase database connection patterns and avoid SSL/connection issues.
+
+## Connection String Configuration
+
+### Environment Variables
+
+Supabase requires **two** connection strings:
+
+```bash
+# Connection pooling (for app runtime) - Transaction mode
+DATABASE_URL="postgresql://postgres.[PROJECT-REF]:[PASSWORD]@aws-[N]-[REGION].pooler.supabase.com:6543/postgres?pgbouncer=true"
+
+# Direct connection (for migrations) - Session mode
+DIRECT_URL="postgresql://postgres.[PROJECT-REF]:[PASSWORD]@aws-[N]-[REGION].pooler.supabase.com:5432/postgres"
+```
+
+**Rules**:
+- Use `DATABASE_URL` for application runtime (connection pooling)
+- Use `DIRECT_URL` for migrations (`drizzle-kit push`, `drizzle-kit migrate`)
+- Always URL-encode special characters in passwords (e.g., `*` → `%2A`, `/` → `%2F`)
+- Get connection strings from Supabase Dashboard → Settings → Database → Connection string
+
+### Drizzle Config
+
+`drizzle.config.ts` must:
+1. Load `.env.local` using `dotenv`
+2. Use `DIRECT_URL` for migrations (fallback to `DATABASE_URL`)
+
+```typescript
+import { defineConfig } from "drizzle-kit";
+import { config } from "dotenv";
+import { resolve } from "path";
+
+// Load .env.local
+config({ path: resolve(process.cwd(), ".env.local") });
+
+export default defineConfig({
+  schema: "./src/lib/db/schema.ts",
+  out: "./drizzle",
+  dialect: "postgresql",
+  dbCredentials: {
+    // Use DIRECT_URL for migrations (no connection pooling)
+    url: process.env.DIRECT_URL || process.env.DATABASE_URL!,
+  },
+});
+```
+
+## SSL Configuration
+
+### Application Connection (`src/lib/db/index.ts`)
+
+Supabase requires SSL connections. Configure `pg.Pool` with SSL:
+
+```typescript
+import { Pool } from "pg";
+
+const isSupabase = url.hostname.includes("supabase.com") || 
+                   url.hostname.includes("pooler.supabase.com");
+
+poolInstance = new Pool({
+  connectionString,
+  // Supabase requires SSL but may use self-signed certificates
+  ssl: isSupabase ? { rejectUnauthorized: false } : undefined,
+  connectionTimeoutMillis: 10000,
+  query_timeout: 10000,
+});
+```
+
+**Rules**:
+- Always detect Supabase connections by hostname
+- Set `rejectUnauthorized: false` for Supabase (they use valid certs, but Node.js may not trust them)
+- For other providers, use stricter SSL validation
+
+## UUID Generation
+
+### Database Schema
+
+All primary keys should use UUIDs:
+
+```typescript
+import { uuid } from "drizzle-orm/pg-core";
+
+export const workflows = pgTable("workflows", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  // ...
+});
+```
+
+### Application Code
+
+When creating records that need UUIDs:
+
+```typescript
+import { randomUUID } from "crypto";
+
+const workflowId = randomUUID(); // NOT: `discovery-${slug}-${Date.now()}`
+```
+
+**Rules**:
+- Never generate custom IDs (e.g., `discovery-slug-timestamp`)
+- Always use `randomUUID()` from Node.js `crypto` module
+- Database schema should use `uuid().defaultRandom()` for auto-generation
+
+## Migration Workflow
+
+1. **Update schema** in `src/lib/db/schema.ts`
+2. **Run migration**: `npm run db:push` (uses `DIRECT_URL`)
+3. **Verify in Supabase**: Table Editor → Check tables exist
+4. **Test connection**: Run app → Check database queries work
+
+## Troubleshooting
+
+### "self-signed certificate in certificate chain"
+- **Fix**: Add SSL config with `rejectUnauthorized: false` for Supabase
+
+### "invalid input syntax for type uuid"
+- **Fix**: Use `randomUUID()` instead of custom ID generation
+
+### "Tenant or user not found"
+- **Fix**: Check connection string format (should include project ref in username)
+- **Fix**: Verify password is URL-encoded
+
+### "Connection refused" or "ENOTFOUND"
+- **Fix**: Check hostname format (should be `aws-[N]-[REGION].pooler.supabase.com`)
+- **Fix**: Verify region matches your Supabase project region
+
+## References
+
+- Supabase Connection Strings: https://supabase.com/docs/guides/database/connecting-to-postgres
+- Drizzle Kit Config: https://orm.drizzle.team/docs/kit-docs/conf
+- Node.js pg SSL: https://node-postgres.com/features/ssl

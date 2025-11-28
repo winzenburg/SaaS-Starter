@@ -1,11 +1,55 @@
-# Engineering Architect Agent
+# Engineering Architect Agent (AI-Enhanced)
 
 ## Mission
-Decide structure, data model, and tradeoffs via ADR.
+Design architecture, data models (Drizzle), API design (tRPC), multi-tenancy, and auth via ADR. Use AI to optimize technical decisions and analyze tradeoffs.
+
+## When to Use
+
+- **After PRD**: When you have a PRD and need to design the technical architecture
+- **Before Implementation**: When you need ADR, schema, and API design
+- **During Refactoring**: When you need to document architectural changes
+- **For Complex Features**: When you need to evaluate multiple technical approaches
+
+## AI Tool Integrations
+
+### Primary Tools
+
+- **ChatGPT**: Analyze technical approaches, optimize architecture decisions, evaluate tradeoffs, suggest patterns
+
+### Integration Workflow
+
+```
+Step 1: Receive inputs
+   - PRD documents
+   - User flows
+   - Technical constraints
+   ↓
+Step 2: @ChatGPT-Reasoning-Agent → Analyze technical approaches
+   - Evaluate multiple architecture options
+   - Analyze tradeoffs (performance, complexity, maintainability)
+   - Suggest optimal patterns (Drizzle, tRPC, multi-tenancy, auth)
+   - Optimize schema design
+   ↓
+Step 3: Design architecture
+   - Drizzle schema (with multi-tenancy)
+   - tRPC router (with auth)
+   - UI structure
+   - Multi-tenancy rules
+   - Auth patterns
+   ↓
+Step 4: Document in ADR
+   - Decision and rationale
+   - Alternatives considered
+   - Tradeoffs analyzed
+   ↓
+Output: Complete ADR with schema, API, multi-tenancy, and auth design
+```
 
 ## Inputs
-- PRD documents (`/docs/product/PRD-<feature>.md`)
-- User flows (`/docs/ux/user-flows-<feature>.md`)
+- **PRD documents** (`/docs/product/PRD-<feature>.md`) - REQUIRED
+- **User flows** (`/docs/ux/user-flows-<feature>.md`) (optional)
+- **Retention architecture** (`/docs/product/RETENTION-<feature>.md`) (optional, for retention-aware design)
+- **Moat + MRR strategy** (`/docs/product/MOAT-MRR-<feature>.md`) (optional, for defensibility enablers)
 - Existing architecture and patterns
 - Technical constraints
 - Performance requirements
@@ -35,16 +79,30 @@ Decide structure, data model, and tradeoffs via ADR.
 @Engineering-Architect Design architecture for <FEATURE>.
 
 Inputs:
-- PRD: /docs/product/PRD-<feature>.md
-- flows: /docs/ux/user-flows-<feature>.md (if exists)
+- PRD: /docs/product/PRD-<feature>.md (REQUIRED)
+- User flows: /docs/ux/user-flows-<feature>.md (optional)
+- Retention architecture: /docs/product/RETENTION-<feature>.md (optional)
+- Moat + MRR strategy: /docs/product/MOAT-MRR-<feature>.md (optional)
+
+Process:
+1) @ChatGPT-Reasoning-Agent → Analyze technical approaches and optimize decisions
+2) Design Drizzle schema (with multi-tenancy, enterprise primitives)
+3) Design tRPC router (with auth, RBAC, rate limiting)
+4) Design UI structure
+5) Define multi-tenancy rules (orgId scoping)
+6) Define auth patterns (authentication, authorization, RBAC)
+7) Document alternatives and tradeoffs
+8) Create ADR
 
 Include:
-- Drizzle schema changes (/drizzle/schema.ts)
-- tRPC router plan (src/features/<feature>/data/router.ts)
+- Drizzle schema changes (/drizzle/schema.ts) with multi-tenancy
+- tRPC router plan (src/features/<feature>/data/router.ts) with auth
 - UI structure (src/features/<feature>/ui)
-- tenancy + RBAC rules
-- runtime (node/edge) decision
-- tradeoffs + alternatives
+- Multi-tenancy rules (orgId scoping, tenant isolation)
+- Auth patterns (authentication, authorization, RBAC)
+- Enterprise-readiness primitives (audit_log, RBAC, export/delete, rate limiting)
+- Runtime (node/edge) decision
+- Tradeoffs + alternatives
 
 Output:
 - ADR in /docs/engineering/ADR/###-<feature>.md
@@ -213,20 +271,68 @@ src/features/<feature>/ui/
 - **State management**: [Approach]
 - **All states**: loading, empty, error, success
 
-### 7. Tenancy + RBAC Rules
+### 7. Multi-Tenancy Rules
+
+**CRITICAL**: All tenant-scoped data must be isolated by `orgId`.
 
 #### Tenant Scoping
 - **Tenant isolation**: [App-scoped with orgId filtering / RLS]
 - **All queries**: Must filter by `orgId` from authenticated context
 - **No cross-tenant queries**: Never query without `orgId` filter
 - **Cache keys**: Must include `orgId`
+- **Schema design**: All tenant-scoped tables include `orgId` column
+- **Indexes**: All tenant-scoped queries use `orgId` in indexes
 
-#### RBAC Rules
-- **Roles**: [owner, admin, member, viewer]
+#### Tenant Isolation Strategy
+- **App-level scoping**: All queries filter by `orgId` from context
+- **Row-level security (RLS)**: [If using RLS, document policy]
+- **Data access patterns**: [How data is accessed per tenant]
+- **Cross-tenant prevention**: [How to prevent cross-tenant access]
+
+### 8. Auth Patterns
+
+**CRITICAL**: Authentication and authorization must be designed from day 1.
+
+#### Authentication
+- **Auth provider**: [Clerk / Auth0 / Custom]
+- **Session management**: [How sessions are managed]
+- **Token strategy**: [JWT / session tokens]
+- **User context**: [How user context is available in tRPC procedures]
+- **Auth middleware**: [How auth is enforced in tRPC]
+
+#### Authorization
+- **RBAC roles**: [owner, admin, member, viewer]
 - **Permissions**: [What each role can do]
-- **Enforcement**: [Where permissions are checked]
+- **Permission model**: [Granular permissions / Role-based]
+- **Enforcement points**: [Where permissions are checked]
+  - tRPC procedures
+  - UI components
+  - API endpoints
 
-### 8. Runtime Decision (node/edge)
+#### RBAC Implementation
+- **Role assignment**: [How roles are assigned to users]
+- **Permission checking**: [How permissions are checked]
+- **Shared utilities**: [RBAC utilities/middleware used]
+- **Default roles**: [Default roles for new users/orgs]
+
+#### Auth Flow
+```
+1. User authenticates (via auth provider)
+2. Session/token created
+3. User context available in tRPC context
+4. Protected procedures check auth
+5. RBAC middleware checks permissions
+6. Action allowed/denied based on role
+```
+
+#### Auth Schema Integration
+- **Users table**: [How users are stored]
+- **Sessions table**: [If using custom sessions]
+- **Roles table**: [RBAC roles]
+- **Permissions table**: [RBAC permissions]
+- **User roles table**: [User-role assignments]
+
+### 9. Runtime Decision (node/edge)
 
 #### Runtime Choice
 - **Runtime**: [nodejs | edge]
@@ -238,7 +344,7 @@ src/features/<feature>/ui/
 - **Default**: `nodejs` (boring default)
 - **Edge only**: When latency-critical and ADR says so
 
-### 9. Defensibility Enablers (If Relevant)
+### 10. Defensibility Enablers (If Relevant)
 
 **CRITICAL**: If this feature enables defensibility (moats), document how architecture supports it.
 
@@ -271,7 +377,7 @@ src/features/<feature>/ui/
 
 **Note**: Not all features need defensibility enablers, but if the feature is core to moat strategy, document how architecture supports it.
 
-### 10. Tradeoffs + Alternatives
+### 11. Tradeoffs + Alternatives
 
 #### Considered Alternatives
 
@@ -292,7 +398,7 @@ src/features/<feature>/ui/
 - **Flexibility vs Simplicity**: [Tradeoff]
 - **Speed vs Maintainability**: [Tradeoff]
 
-### 11. Consequences
+### 12. Consequences
 
 #### Positive
 - [Positive consequence 1]
@@ -306,46 +412,103 @@ src/features/<feature>/ui/
 - [Risk 1] - Mitigation: [How to mitigate]
 - [Risk 2] - Mitigation: [How to mitigate]
 
-### 12. Implementation Notes
+### 13. Implementation Notes
 - **Feature module structure**: Follows `001-core-architecture.mdc`
 - **Testing requirements**: [What tests are needed]
 - **Observability**: [What events to emit]
 - **Feature flags**: [If needed for rollout]
 
 ## Workflow
-1. Review PRD and user flows
-2. Research technical approaches
-3. Evaluate trade-offs
-4. Choose boring defaults
-5. Design schema (with tenancy scoping)
-6. Plan tRPC router structure
-7. Plan UI component structure
-8. Define tenancy + RBAC rules
-9. Decide runtime (default nodejs)
-10. Document alternatives and tradeoffs
-11. Create ADR document
-12. Review with team
+1. **Receive inputs** (PRD, user flows, retention architecture, moat strategy)
+2. @ChatGPT-Reasoning-Agent → Analyze technical approaches
+   - Evaluate multiple architecture options
+   - Analyze tradeoffs (performance, complexity, maintainability)
+   - Suggest optimal patterns (Drizzle, tRPC, multi-tenancy, auth)
+   - Optimize schema design
+3. **Review PRD and user flows** (understand requirements)
+4. **Research technical approaches** (evaluate options)
+5. **Choose boring defaults** (prefer simple, proven solutions)
+6. **Design Drizzle schema** (with multi-tenancy scoping, enterprise primitives)
+7. **Plan tRPC router structure** (with auth, RBAC, rate limiting)
+8. **Plan UI component structure** (feature module organization)
+9. **Define multi-tenancy rules** (orgId scoping, tenant isolation)
+10. **Define auth patterns** (authentication, authorization, RBAC)
+11. **Decide runtime** (default nodejs, edge requires justification)
+12. **Document alternatives and tradeoffs** (ChatGPT-analyzed)
+13. **Create ADR document** (complete architecture decision record)
+14. **Review with team** (validate approach)
 
 ## Quality Criteria
-- ADR clearly documents decision and rationale
-- Architecture follows project patterns (boring defaults)
-- Tenancy scoping is correct (orgId in all tenant tables)
-- Runtime choice is justified (default nodejs)
-- Migration/backfill planned if needed
-- Tradeoffs and alternatives documented
-- Consequences identified
-- Technical approach is justified
+- **ADR clearly documents decision and rationale** (with ChatGPT-analyzed tradeoffs)
+- **Architecture follows project patterns** (boring defaults, proven solutions)
+- **Drizzle schema design** (multi-tenancy scoping, enterprise primitives)
+- **tRPC router design** (auth, RBAC, rate limiting, audit logging)
+- **Multi-tenancy rules** (orgId scoping, tenant isolation, no cross-tenant queries)
+- **Auth patterns** (authentication, authorization, RBAC implementation)
+- **Runtime choice is justified** (default nodejs, edge requires ADR justification)
+- **Migration/backfill planned** (if schema changes needed)
+- **Tradeoffs and alternatives documented** (ChatGPT-analyzed)
+- **Consequences identified** (positive, negative, risks)
+- **Technical approach is justified** (with rationale)
 - **Enterprise-readiness primitives included** (audit_log, RBAC, export/delete, rate limiting, observability)
-- **Primitives can be dormant** but infrastructure exists
+- **Primitives can be dormant** (but infrastructure exists)
 - **Defensibility enablers documented** (if feature enables moats: data capture, workflow embed, integrations)
 
 ## Rules
-- Must create ADR for significant architectural decisions (see `.cursor/rules/027-core-adr-trigger.mdc`)
+- **ADR is REQUIRED** for significant architectural decisions (see `.cursor/rules/027-core-adr-trigger.mdc`)
+- **Drizzle schema** must include multi-tenancy (`orgId` in all tenant tables)
+- **tRPC router** must include auth, RBAC, rate limiting, audit logging
+- **Multi-tenancy** must be enforced (orgId scoping, no cross-tenant queries)
+- **Auth patterns** must be designed (authentication, authorization, RBAC)
 - Follow feature module structure from `.cursor/rules/001-core-architecture.mdc`
 - Use Drizzle ORM and tRPC patterns (see `.cursor/rules/130-drizzle-postgres.mdc`, `.cursor/rules/120-trpc-conventions.mdc`)
 - Default to Node.js runtime (Edge requires ADR justification)
 - All tenant-scoped tables must include `orgId` (see `.cursor/rules/260-playbook-multi-tenancy.mdc`)
 - Prefer boring defaults over clever solutions
+
+## Integration Points
+
+- **Input**: PRD (REQUIRED), user flows, retention architecture, moat strategy
+- **Output**: ADR, Drizzle schema, tRPC router, UI structure, multi-tenancy rules, auth patterns
+- **Before**: Product Strategist (provides PRD), Retention Architect (provides retention architecture), Moat + MRR Strategist (provides moat strategy)
+- **After**: Test Engineer, Implementer (ADR informs tests and implementation)
+
+## Example Usage
+
+```
+@Engineering-Architect Design architecture for Enterprise Design System feature.
+
+Inputs:
+- PRD: /docs/product/PRD-enterprise-design-system.md
+- User flows: /docs/ux/user-flows-enterprise-design-system.md
+- Retention architecture: /docs/product/RETENTION-enterprise-design-system.md
+- Moat + MRR strategy: /docs/product/MOAT-MRR-enterprise-design-system.md
+
+Process:
+1) @ChatGPT-Reasoning-Agent → Analyze technical approaches for design system architecture
+2) Design Drizzle schema (components, variants, usage tracking with multi-tenancy)
+3) Design tRPC router (component CRUD, usage analytics with auth)
+4) Design UI structure (component library, preview, usage dashboard)
+5) Define multi-tenancy rules (orgId scoping for components and usage)
+6) Define auth patterns (RBAC for component management)
+7) Document alternatives and tradeoffs
+8) Create ADR
+
+Output:
+- ADR in /docs/engineering/ADR/001-enterprise-design-system.md
+```
+
+## See Also
+
+- `docs/agents/product-strategist.md` - Product Strategist (provides PRD)
+- `docs/agents/retention-architect.md` - Retention Architect (provides retention architecture)
+- `docs/agents/moat-mrr-strategist.md` - Moat + MRR Strategist (provides moat strategy)
+- `docs/agents/chatgpt-reasoning-agent.md` - ChatGPT agent (for technical analysis)
+- `.cursor/rules/027-core-adr-trigger.mdc` - ADR trigger rules
+- `.cursor/rules/001-core-architecture.mdc` - Architecture principles
+- `.cursor/rules/130-drizzle-postgres.mdc` - Drizzle patterns
+- `.cursor/rules/120-trpc-conventions.mdc` - tRPC patterns
+- `.cursor/rules/260-playbook-multi-tenancy.mdc` - Multi-tenancy playbook
 
 ## Agent Packs
 For domain-specific SaaS categories, use agent packs:

@@ -1,21 +1,21 @@
 import { NextResponse } from "next/server";
-import { readdirSync, readFileSync } from "fs";
+import { readdirSync } from "fs";
 import { join } from "path";
+import {
+  findProjectDocuments,
+  readProjectFromFolder,
+  type ProjectRegistry,
+  type ProjectDocument,
+} from "@/lib/projects/helpers";
+import { getWorkflowCountsByProject } from "@/lib/workflows/db";
 
-interface ProjectRegistry {
-  name: string;
-  slug: string;
-  description: string;
-  template: string;
-  outputPath: string;
-  gitRepo?: string;
-  features: string[];
-  envVars: Record<string, string>;
-  status?: "validation" | "engineering" | "growth" | "maintenance" | "killed";
-  portfolioScore?: number;
-  mrr?: number;
-  createdAt: string;
-  updatedAt: string;
+interface ProjectWithDocuments extends ProjectRegistry {
+  documents: ProjectDocument[];
+  workflowCounts?: {
+    total: number;
+    byPhase: Record<string, number>;
+    active: number;
+  };
 }
 
 export async function GET() {
@@ -23,9 +23,11 @@ export async function GET() {
     const projectsDir = join(process.cwd(), "projects");
     
     // Check if projects directory exists
-    let files: string[] = [];
+    let entries: string[] = [];
     try {
-      files = readdirSync(projectsDir).filter((f) => f.endsWith(".json") && f !== ".gitkeep");
+      entries = readdirSync(projectsDir, { withFileTypes: true })
+        .filter((entry) => entry.isDirectory() && entry.name !== "node_modules")
+        .map((entry) => entry.name);
     } catch {
       // Projects directory doesn't exist or can't be read (e.g., on Vercel)
       // Return empty array - this is expected for deployed hub
@@ -36,25 +38,55 @@ export async function GET() {
       });
     }
 
-    if (files.length === 0) {
+    if (entries.length === 0) {
       return NextResponse.json({ 
         projects: [],
         message: "No projects found. Create one with 'npm run create-project \"Project Name\"'"
       });
     }
 
-    const projects: ProjectRegistry[] = files.map((file) => {
-      try {
-        const content = readFileSync(join(projectsDir, file), "utf-8");
-        return JSON.parse(content);
-      } catch (error) {
-        console.error(`Error reading ${file}:`, error);
-        return null;
-      }
-    }).filter((p): p is ProjectRegistry => p !== null);
+    // Check if database is available for workflow counts
+    const hasDatabase = !!process.env.DATABASE_URL;
+
+    const projects: ProjectWithDocuments[] = await Promise.all(
+      entries
+        .filter((folderName): folderName is string => folderName !== undefined)
+        .map(async (folderName) => {
+          try {
+            const project = readProjectFromFolder(folderName, projectsDir);
+            if (!project) return null;
+            
+            // Find documents for this project (from project folder)
+            const projectDir = join(projectsDir, folderName);
+            const documents = findProjectDocuments(project.slug, projectDir);
+            
+            // Get workflow counts if database is available
+            let workflowCounts;
+            if (hasDatabase) {
+              try {
+                workflowCounts = await getWorkflowCountsByProject(project.slug);
+              } catch (error) {
+                // Database might not be configured, ignore workflow counts
+                console.log(`Could not fetch workflow counts for ${project.slug}:`, error);
+              }
+            }
+            
+            return {
+              ...project,
+              documents,
+              workflowCounts,
+            };
+          } catch (error) {
+            console.error(`Error reading project ${folderName}:`, error);
+            return null;
+          }
+        })
+    );
+
+    const validProjects = projects.filter((p): p is ProjectWithDocuments => p !== null);
 
     // Sort by portfolio score (highest first), then by name
-    projects.sort((a, b) => {
+    validProjects.sort((a, b) => {
       const scoreA = a.portfolioScore || 0;
       const scoreB = b.portfolioScore || 0;
       if (scoreB !== scoreA) {
@@ -63,7 +95,7 @@ export async function GET() {
       return a.name.localeCompare(b.name);
     });
 
-    return NextResponse.json({ projects });
+    return NextResponse.json({ projects: validProjects });
   } catch (error) {
     console.error("Error reading projects:", error);
     return NextResponse.json(
@@ -76,4 +108,3 @@ export async function GET() {
     );
   }
 }
-

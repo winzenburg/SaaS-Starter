@@ -1,0 +1,299 @@
+# Rule 302: Discovery Workflow
+
+> 9-step AI-powered discovery process (8 steps + optional red-team)
+
+## Core Principle
+
+**Discovery is a systematic 9-step process (8 core steps + optional red-team) that must be completed in order. Each step builds on the previous step's outputs.**
+
+## Workflow Steps
+
+**Note**: Step 7 (Red-Team) is optional but highly recommended for ideas with Opportunity Score ≥ 7.5 or high-stakes decisions.
+
+### Step 1: Manus → Niche Narrative + Pain Language + JTBD + Competitors
+
+**Tool**: Manus.im  
+**Agent**: `@Manus-Narrative-Agent`  
+**Rule**: See Rule 310 (Manus in Discovery)
+
+**Input**: Raw product idea
+
+**Outputs**:
+- Niche narrative (culture, vocabulary, identity, geography, income, communities, trends)
+- Pain language dictionary (direct quotes, frustration statements, "I wish..." statements)
+- JTBD extraction (main job, related jobs, emotional jobs, triggers, success criteria)
+- Competitor analysis (positioning, narratives, gaps, differentiation opportunities)
+
+**Duration**: 1-2 hours
+
+**Next Step**: Step 2
+
+---
+
+### Step 2: ChatGPT → Refinement Packet
+
+**Tool**: ChatGPT  
+**Agent**: `@ChatGPT-Reasoning-Agent`  
+**Rule**: See Rule 320 (ChatGPT Refinement)
+
+**Input**: Manus outputs from Step 1
+
+**Tasks**:
+- Cluster pain points by frequency, severity, urgency
+- Synthesize JTBD (main job, related jobs, emotional jobs)
+- Extract opportunity vectors
+- Validate competitor assumptions
+
+**Output**: Refined insights packet ready for Cursor agents
+
+**Duration**: 30-60 minutes
+
+**Next Step**: Step 3
+
+---
+
+### Step 3: @Niche-Intelligence-Agent → Niche Map
+
+**Tool**: Cursor + Manus + ChatGPT  
+**Agent**: `@Niche-Intelligence-Agent`  
+**Rule**: See Rule 041 (Niche Intelligence)
+
+**Input**: 
+- Manus niche narrative (from Step 1)
+- ChatGPT refinement (from Step 2)
+
+**Tasks**:
+1. Map niche size, psychographics, and subcultures
+2. Extract language patterns, identity signals, status markers
+3. Identify communities (Reddit, Slack, Discord, Facebook groups, LinkedIn clusters)
+4. Define entry points (how founders earn trust)
+5. Document niche worldview and cultural tensions
+
+**Output**: `/docs/discovery/NICHE-INTEL-<idea-slug>.md`
+
+**Duration**: 1-2 hours
+
+**Next Step**: Step 4
+
+---
+
+### Step 4: @Pain-Signal-Agent → Pain Prioritization
+
+**Tool**: Cursor + Manus + ChatGPT  
+**Agent**: `@Pain-Signal-Agent`  
+**Rule**: See Rule 042 (Pain Signal Analysis)
+
+**Input**:
+- Manus pain language dictionary (from Step 1)
+- ChatGPT clustered pains (from Step 2)
+- Competitor gap analysis (from Step 1)
+
+**Tasks**:
+1. Cluster pains using frequency, severity, urgency
+2. Identify "moment of acute pain" (MAAP)
+3. Map pain → cost (time, money, emotional)
+4. Score each pain (1–10) based on:
+   - Frequency
+   - Emotional intensity
+   - Financial impact
+   - Workaround difficulty
+   - Monetization potential
+
+**Output**: `/docs/discovery/PAIN-SIGNALS-<idea-slug>.md`
+
+**Duration**: 1-2 hours
+
+**Next Step**: Step 5
+
+---
+
+### Step 5: @JTBD-Agent → Persona + Jobs Map + Voice Script
+
+**Tool**: Cursor + Manus + ChatGPT + ElevenLabs  
+**Agent**: `@JTBD-Agent`  
+**Rule**: See Rule 043 (Persona & JTBD), Rule 330 (ElevenLabs Voice)
+
+**Input**:
+- Manus persona narrative (from Step 1)
+- Manus emotional drivers (from Step 1)
+- Manus JTBD extraction (from Step 1)
+- ChatGPT JTBD synthesis (from Step 2)
+
+**Tasks**:
+1. Produce deep persona narrative (identity, beliefs, fears, aspirations)
+2. JTBD main job + related jobs + emotional jobs
+3. Identify ongoing vs discrete jobs
+4. Map triggers, success criteria, and barriers
+5. Provide ElevenLabs interview script (30-60 seconds, 2 tones: casual + professional)
+
+**Output**: `/docs/discovery/JTBD-<idea-slug>.md`
+
+**Duration**: 2-3 hours
+
+**Next Step**: Step 6
+
+---
+
+### Step 6: @Opportunity-Moat-Agent → Moat Strategy + Vision Prompts
+
+**Tool**: Cursor + Manus + ChatGPT + Midjourney/Canva  
+**Agent**: `@Opportunity-Moat-Agent`  
+**Rule**: See Rule 044 (Opportunity & Moat), Rule 340 (Midjourney Visuals)
+
+**Input**:
+- Manus competitor gaps (from Step 1)
+- JTBD analysis (from Step 5)
+- Pain signals (from Step 4)
+- ChatGPT opportunity frameworks (from Step 2)
+
+**Tasks**:
+1. Identify winner-take-most dynamics
+2. Analyze switching cost potential
+3. Identify data moats (data exhaust, insights, tracking)
+4. Analyze workflow embedding opportunities
+5. Identify underserved segments (blue ocean pockets)
+6. Provide Midjourney/Canva prompts for "future vision" mockups
+
+**Output**: `/docs/discovery/OPPORTUNITY-<idea-slug>.md`
+
+**Duration**: 2-3 hours
+
+**Next Step**: Step 7
+
+---
+
+### Step 7: @Red-Team-Strategist → Critical Analysis
+
+**Tool**: Cursor + Claude  
+**Agent**: `@Red-Team-Strategist`  
+**Rule**: See Rule 002 (Model Routing - Claude for critique)
+
+**Input**:
+- All discovery documents (NICHE-INTEL, PAIN-SIGNALS, JTBD, OPPORTUNITY)
+- Opportunity Score (if available)
+
+**Tasks**:
+1. Identify false assumptions (market, pain, persona, competitive, timing)
+2. Find competitor "why now" risks (competitive response, market timing, moat vulnerability)
+3. Stress test moat (switching costs, data moat, network effects, workflow embedding)
+4. Point out pricing/channel fragility (sustainability, defensibility, unit economics)
+5. Suggest pivots (alternative approaches, risk mitigation, kill criteria)
+
+**Output**: `/docs/discovery/REDTEAM-<idea-slug>.md`
+
+**Duration**: 1-2 hours
+
+**Next Step**: Step 8
+
+---
+
+### Step 8: Score the Idea (0-10)
+
+**Tool**: Cursor  
+**Agent**: `@Opportunity-Moat-Agent` (calculates score)
+
+**Input**: All discovery outputs from Steps 3-6
+
+**Opportunity Score Calculation**:
+
+1. **Niche Viability** (0-2.5 points)
+   - Niche size and growth potential
+   - Entry points and trust signals
+   - Community engagement
+
+2. **Pain Intensity** (0-2.5 points)
+   - Top pain signal scores (average of top 3)
+   - MAAP intensity
+   - Monetization potential
+
+3. **Persona Clarity** (0-1.5 points)
+   - Persona narrative completeness
+   - JTBD frequency and clarity
+   - Emotional driver strength
+
+4. **Moat Potential** (0-3.5 points)
+   - Winner-take-most dynamics
+   - Switching cost potential
+   - Data moat strength
+   - Workflow embedding potential
+   - Blue ocean opportunity size
+
+**Total**: 10.0 points maximum
+
+**Output**: Opportunity Score documented in `/docs/discovery/OPPORTUNITY-<idea-slug>.md`
+
+**Duration**: 30 minutes
+
+**Next Step**: Step 9
+
+---
+
+### Step 9: If Score ≥ 8 → Move to Demand-Validation Agents
+
+**Gate**: Opportunity Score ≥ 8.0/10
+
+**Decision**:
+- **YES (Score ≥ 8.0/10)**: Proceed to Validation Phase
+  - `@Demand-Validator` → Validation plan
+  - `@Landing-Builder` → Landing page
+  - `@Distribution-Operator` → Distribution map
+  - `@Pricing-Tester` → Pricing tests
+- **NO (Score < 8.0/10)**: Pivot or Kill
+
+**Output**: Decision documented in `/docs/discovery/OPPORTUNITY-<idea-slug>.md`
+
+**Duration**: Decision time (immediate)
+
+---
+
+## Workflow Characteristics
+
+- **Defensible**: Systematic, documented, validated, scored
+- **Repeatable**: Standardized 8 steps, clear gates, consistent outputs
+- **AI-Powered**: Manus, ChatGPT, ElevenLabs, Midjourney/Canva integrated
+
+## Quality Gates
+
+**All discovery outputs must pass quality gates**:
+
+- ✅ **Niche Intelligence complete** (all sections documented)
+- ✅ **Pain Signals complete** (all pains scored and prioritized)
+- ✅ **JTBD Analysis complete** (persona narrative, all jobs mapped)
+- ✅ **Opportunity & Moat Report complete** (all moat types analyzed)
+- ✅ **Red-Team Analysis complete** (optional but recommended for ideas ≥ 7.5)
+- ✅ **Opportunity Score calculated** (≥ 8.0/10 to proceed)
+
+## Total Discovery Time
+
+**Estimated**: 7-11 hours (simulated/manual execution)
+
+**Breakdown**:
+- Step 1 (Manus): 1-2 hours
+- Step 2 (ChatGPT): 30-60 minutes
+- Step 3 (Niche Intelligence): 1-2 hours
+- Step 4 (Pain Signals): 1-2 hours
+- Step 5 (JTBD): 2-3 hours
+- Step 6 (Opportunity & Moat): 2-3 hours
+- Step 7 (Red-Team): 1-2 hours (optional but recommended)
+- Step 8 (Scoring): 30 minutes
+- Step 9 (Decision): Immediate
+
+## Integration
+
+- **Before**: Raw product idea
+- **After**: Complete discovery package with Opportunity Score
+- **Next Phase**: Validation (if Score ≥ 8.0/10)
+
+## See Also
+
+- Rule 300: Discovery Master
+- Rule 301: Discovery Overview
+- Rule 310: Manus in Discovery
+- Rule 320: ChatGPT Refinement
+- Rule 330: ElevenLabs Voice
+- Rule 340: Midjourney Visuals
+- Rule 041: Niche Intelligence
+- Rule 042: Pain Signal Analysis
+- Rule 043: Persona & JTBD
+- Rule 044: Opportunity & Moat
+- `docs/DISCOVERY-WORKFLOW.md` - Complete workflow documentation

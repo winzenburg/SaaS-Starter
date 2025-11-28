@@ -12,3 +12,8 @@ Goal: Prevent path/layout disagreements between agents.
 - Metadata in `layout.tsx` or `page.tsx`
 - Route handlers in `/app/api/**/route.ts`
 - Server Actions in `"use server"` files
+
+## Related Rules
+
+- **137-nextjs-server-client-separation.mdc** - Server/Client component separation patterns (prevents "createMotionComponent from server" errors)
+- **136-document-viewer-patterns.mdc** - Document organization and rendering patterns

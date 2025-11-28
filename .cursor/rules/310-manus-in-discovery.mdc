@@ -1,0 +1,268 @@
+# Rule 310: Manus in Discovery
+
+> Mandate how Manus outputs must be used in the discovery pipeline
+
+## Core Principle
+
+**Manus outputs are the source-of-truth for narrative, persona, and emotional insights. All discovery agents must extract and use Manus outputs for specific discovery tasks.**
+
+## Purpose
+
+Establish mandatory usage patterns for Manus outputs across all discovery stages, ensuring consistent narrative foundation and emotional insight extraction.
+
+## Mandatory Manus Usage
+
+### Manus Outputs MUST Be Used For:
+
+#### 1. Niche Worldview Shaping
+
+**Required For**: Stage 1 (Niche Intelligence)
+
+**Manus Outputs Used**:
+- Niche narrative and cultural insights
+- Identity signals and status markers
+- Core beliefs and values
+- Cultural tensions and taboos
+
+**Agent**: `@Niche-Intelligence-Agent`  
+**Extraction**: From Manus niche narrative
+
+**Output**: Included in `/docs/discovery/NICHE-INTEL-<idea-slug>.md`
+
+#### 2. Persona Creation
+
+**Required For**: Stage 3 (Persona & JTBD)
+
+**Manus Outputs Used**:
+- Persona narrative and identity language
+- Identity-level motivations
+- Emotional drivers
+- Beliefs, fears, aspirations
+- Psychographics
+
+**Agent**: `@JTBD-Agent`  
+**Extraction**: From Manus persona narrative and emotional drivers
+
+**Output**: Included in `/docs/discovery/JTBD-<idea-slug>.md`
+
+#### 3. Emotional Driver Mapping
+
+**Required For**: Stage 3 (Persona & JTBD)
+
+**Manus Outputs Used**:
+- Emotional motivations
+- Identity-level drivers
+- Aspirations and fears
+- Emotional jobs (how persona wants to feel)
+
+**Agent**: `@JTBD-Agent`  
+**Extraction**: From Manus emotional drivers
+
+**Output**: Included in `/docs/discovery/JTBD-<idea-slug>.md`
+
+#### 4. Competitor Gaps
+
+**Required For**: Stage 1 (Niche Intelligence), Stage 4 (Opportunity & Moat)
+
+**Manus Outputs Used**:
+- Competitor positioning and narratives
+- Positioning gaps
+- Feature gaps
+- Messaging gaps
+- Differentiation opportunities
+
+**Agent**: `@Niche-Intelligence-Agent`, `@Opportunity-Moat-Agent`  
+**Extraction**: From Manus competitor analysis
+
+**Output**: Included in `/docs/discovery/NICHE-INTEL-<idea-slug>.md` and `/docs/discovery/OPPORTUNITY-<idea-slug>.md`
+
+#### 5. Pricing Expectations
+
+**Required For**: Stage 4 (Opportunity & Moat)
+
+**Manus Outputs Used**:
+- Pricing signals from niche
+- Value anchors
+- Willingness to pay indicators
+- Pricing expectations
+
+**Agent**: `@Opportunity-Moat-Agent`  
+**Extraction**: From Manus pricing analysis
+
+**Output**: Included in `/docs/discovery/OPPORTUNITY-<idea-slug>.md`
+
+#### 6. Pain Language Dictionary
+
+**Required For**: Stage 2 (Pain Signal Analysis)
+
+**Manus Outputs Used**:
+- Direct quotes of pain language
+- Frustration statements
+- "I wish..." statements
+- Problem descriptions
+- Identity-level pain points
+
+**Agent**: `@Pain-Signal-Agent`  
+**Extraction**: From Manus pain language extraction
+
+**Output**: Included in `/docs/discovery/PAIN-SIGNALS-<idea-slug>.md`
+
+## Required Agent Extractions
+
+### Agents MUST Extract:
+
+#### 1. Identity Signals
+
+**Extraction From**: Manus persona narrative, niche narrative
+
+**What to Extract**:
+- How niche members signal their identity
+- Visual identity signals
+- Behavioral identity signals
+- Language identity signals
+- Status markers
+
+**Used By**:
+- `@Niche-Intelligence-Agent` → Language patterns, identity signals, status markers
+- `@JTBD-Agent` → Persona identity narrative
+
+**Output**: Included in NICHE-INTEL-*.md and JTBD-*.md
+
+#### 2. Frustrations and Desires
+
+**Extraction From**: Manus pain language, persona narrative
+
+**What to Extract**:
+- Specific frustrations and pain points
+- "I wish..." statements
+- Desired outcomes
+- Aspirations
+- Unmet needs
+
+**Used By**:
+- `@Pain-Signal-Agent` → Pain language dictionary, frustration statements
+- `@JTBD-Agent` → Persona frustrations and aspirations
+
+**Output**: Included in PAIN-SIGNALS-*.md and JTBD-*.md
+
+#### 3. Transformation Narratives
+
+**Extraction From**: Manus narrative variations, value proposition
+
+**What to Extract**:
+- Before/after narratives
+- Transformation stories
+- Value propositions
+- Emotional resonance
+- Identity connection
+
+**Used By**:
+- `@Niche-Intelligence-Agent` → Niche worldview
+- `@Opportunity-Moat-Agent` → Opportunity framing
+
+**Output**: Included in NICHE-INTEL-*.md and OPPORTUNITY-*.md
+
+## Extraction Workflow
+
+```
+Manus Outputs
+  ↓
+@Manus-Narrative-Agent → Generate outputs
+  ↓
+Discovery Agents Extract:
+  - Identity signals
+  - Frustrations and desires
+  - Transformation narratives
+  ↓
+ChatGPT Refines:
+  - Synthesizes extracted insights
+  - Clusters and analyzes
+  ↓
+Cursor Agents Structure:
+  - Produces structured documents
+  - Ensures Manus outputs are used
+```
+
+## Quality Gates
+
+**Manus extraction must pass all quality gates**:
+
+- ✅ **Niche worldview shaped** (using Manus niche narrative)
+- ✅ **Persona created** (using Manus persona narrative)
+- ✅ **Emotional drivers mapped** (using Manus emotional drivers)
+- ✅ **Competitor gaps identified** (using Manus competitor analysis)
+- ✅ **Pricing expectations documented** (using Manus pricing signals)
+- ✅ **Pain language dictionary created** (using Manus pain language)
+- ✅ **Identity signals extracted** (from Manus outputs)
+- ✅ **Frustrations and desires extracted** (from Manus outputs)
+- ✅ **Transformation narratives extracted** (from Manus outputs)
+
+## Integration with Discovery Stages
+
+### Stage 1: Niche Intelligence
+
+**Manus Outputs Required**:
+- Niche narrative → Niche worldview shaping
+- Competitor analysis → Competitor gaps
+- Identity signals → Language patterns, status markers
+
+**Agent**: `@Niche-Intelligence-Agent`
+
+### Stage 2: Pain Signal Analysis
+
+**Manus Outputs Required**:
+- Pain language → Pain language dictionary
+- Frustrations → Frustration statements
+- Desires → "I wish..." statements
+
+**Agent**: `@Pain-Signal-Agent`
+
+### Stage 3: Persona & JTBD
+
+**Manus Outputs Required**:
+- Persona narrative → Persona creation
+- Emotional drivers → Emotional driver mapping
+- Identity signals → Identity narrative
+- Frustrations and desires → Persona frustrations and aspirations
+
+**Agent**: `@JTBD-Agent`
+
+### Stage 4: Opportunity & Moat
+
+**Manus Outputs Required**:
+- Competitor gaps → Positioning opportunities
+- Pricing expectations → Pricing signals
+- Transformation narratives → Opportunity framing
+
+**Agent**: `@Opportunity-Moat-Agent`
+
+## Non-Negotiables
+
+- **Manus outputs required** - Cannot proceed without Manus outputs
+- **Niche worldview must use Manus** - Cannot use other sources for niche worldview
+- **Persona must use Manus** - Cannot create fictional personas
+- **Emotional drivers must use Manus** - Cannot assume emotional drivers
+- **Competitor gaps must use Manus** - Cannot use incomplete competitor analysis
+- **Pricing expectations must use Manus** - Cannot assume pricing
+- **Pain language must use Manus** - Cannot use generic pain language
+- **Identity signals must be extracted** - Required extraction
+- **Frustrations and desires must be extracted** - Required extraction
+- **Transformation narratives must be extracted** - Required extraction
+
+## Integration with Other Rules
+
+- **Rule 050 (Manus Integration)**: General Manus consumption patterns
+- **Rule 191 (Manus Integration)**: Manus.im specific patterns
+- **Rule 301 (Discovery Overview)**: Discovery pipeline structure
+- **Rule 041-044 (Discovery Rules)**: Stage-specific requirements
+
+## Summary
+
+1. **Manus outputs MUST be used for**: Niche worldview, persona creation, emotional driver mapping, competitor gaps, pricing expectations, pain language dictionary
+2. **Agents MUST extract**: Identity signals, frustrations and desires, transformation narratives
+3. **Manus is source-of-truth** - All narrative and emotional insights come from Manus
+4. **No fictional personas** - Personas must be based on Manus outputs
+5. **No assumed insights** - All insights must be extracted from Manus
+6. **Quality gates enforced** - All extractions must pass quality checks
+
+**Manus outputs are not optional. They are required for all discovery stages.**

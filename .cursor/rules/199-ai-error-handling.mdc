@@ -1,0 +1,281 @@
+# AI Error Handling
+
+> Error handling patterns for AI tool failures
+
+## Rule
+
+All AI tool integrations must handle errors gracefully with fallbacks and retries.
+
+## Error Types
+
+### API Errors
+
+**Rate Limiting**:
+- Error: 429 Too Many Requests
+- Response: Retry with exponential backoff
+- Fallback: Queue request, process later
+
+**Authentication**:
+- Error: 401 Unauthorized
+- Response: Check API key, refresh if needed
+- Fallback: Use manual process
+
+**Server Errors**:
+- Error: 500, 502, 503
+- Response: Retry with exponential backoff
+- Fallback: Use alternative tool or manual process
+
+### Quality Errors
+
+**Low Quality Output**:
+- Error: Quality score below threshold
+- Response: Regenerate with refined prompt
+- Fallback: Manual creation
+
+**Inappropriate Content**:
+- Error: Content violates guidelines
+- Response: Regenerate with stricter constraints
+- Fallback: Manual review and editing
+
+**Format Errors**:
+- Error: Output doesn't match expected format
+- Response: Parse and fix format
+- Fallback: Manual formatting
+
+## Error Handling Pattern
+
+### Standard Pattern
+
+```typescript
+async function aiToolCall(params) {
+  const maxRetries = 3;
+  let lastError;
+
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      const result = await callAPI(params);
+      
+      // Validate quality
+      if (!validateQuality(result)) {
+        throw new QualityError("Output quality below threshold");
+      }
+      
+      return { success: true, data: result };
+    } catch (error) {
+      lastError = error;
+      
+      // Don't retry on certain errors
+      if (error instanceof AuthError) {
+        return { success: false, error: "Authentication failed", fallback: "manual" };
+      }
+      
+      // Exponential backoff for retries
+      if (attempt < maxRetries) {
+        await sleep(Math.pow(2, attempt) * 1000);
+        continue;
+      }
+    }
+  }
+  
+  // All retries failed, use fallback
+  return {
+    success: false,
+    error: lastError.message,
+    fallback: await manualProcess(params)
+  };
+}
+```
+
+## Retry Strategies
+
+### Exponential Backoff
+
+```typescript
+async function retryWithBackoff(fn, maxRetries = 3) {
+  for (let i = 0; i < maxRetries; i++) {
+    try {
+      return await fn();
+    } catch (error) {
+      if (i === maxRetries - 1) throw error;
+      await sleep(Math.pow(2, i) * 1000); // 1s, 2s, 4s
+    }
+  }
+}
+```
+
+### Circuit Breaker
+
+```typescript
+class CircuitBreaker {
+  private failures = 0;
+  private state = 'CLOSED'; // CLOSED, OPEN, HALF_OPEN
+  
+  async call(fn) {
+    if (this.state === 'OPEN') {
+      throw new Error('Circuit breaker is OPEN');
+    }
+    
+    try {
+      const result = await fn();
+      this.onSuccess();
+      return result;
+    } catch (error) {
+      this.onFailure();
+      throw error;
+    }
+  }
+  
+  onSuccess() {
+    this.failures = 0;
+    this.state = 'CLOSED';
+  }
+  
+  onFailure() {
+    this.failures++;
+    if (this.failures >= 5) {
+      this.state = 'OPEN';
+      setTimeout(() => this.state = 'HALF_OPEN', 60000);
+    }
+  }
+}
+```
+
+## Fallback Strategies
+
+### Tool Fallback
+
+```typescript
+// Try primary tool, fallback to alternative
+async function generateNarrative(params) {
+  try {
+    return await manus.generateNarrative(params);
+  } catch (error) {
+    // Fallback to ChatGPT
+    return await chatgpt.generateNarrative(params);
+  }
+}
+```
+
+### Manual Fallback
+
+```typescript
+// Try AI tool, fallback to manual process
+async function createNarrative(params) {
+  try {
+    return await aiTool(params);
+  } catch (error) {
+    // Log error and use manual process
+    logError(error);
+    return await manualNarrativeCreation(params);
+  }
+}
+```
+
+### Cached Fallback
+
+```typescript
+// Try AI tool, fallback to cached result
+async function getNarrative(params) {
+  try {
+    const result = await aiTool(params);
+    await cacheResult(params, result);
+    return result;
+  } catch (error) {
+    // Use cached result if available
+    const cached = await getCachedResult(params);
+    if (cached) return cached;
+    throw error;
+  }
+}
+```
+
+## Error Logging
+
+### Log Format
+
+```typescript
+interface ErrorLog {
+  timestamp: Date;
+  tool: string;
+  operation: string;
+  error: {
+    type: string;
+    message: string;
+    stack?: string;
+  };
+  context: {
+    params: any;
+    attempt: number;
+    retries: number;
+  };
+  resolution: {
+    action: 'retry' | 'fallback' | 'manual' | 'failed';
+    result?: any;
+  };
+}
+```
+
+### Logging Implementation
+
+```typescript
+async function logError(error, context) {
+  await logToFile({
+    timestamp: new Date(),
+    tool: context.tool,
+    operation: context.operation,
+    error: {
+      type: error.constructor.name,
+      message: error.message,
+      stack: error.stack
+    },
+    context: context,
+    resolution: context.resolution
+  });
+}
+```
+
+## Error Monitoring
+
+### Alert Thresholds
+
+```typescript
+// Alert on high error rates
+if (errorRate > 0.1) { // 10% error rate
+  alert("High error rate detected");
+}
+
+// Alert on critical errors
+if (error.type === 'AUTH_ERROR') {
+  alert("Authentication error - check API keys");
+}
+```
+
+### Dashboard Metrics
+
+Track:
+- Error rate by tool
+- Error rate by operation
+- Retry success rate
+- Fallback usage rate
+- Average resolution time
+
+## Best Practices
+
+1. **Always Have Fallback** - Never fail completely
+2. **Retry Intelligently** - Exponential backoff, circuit breakers
+3. **Log Everything** - Track errors for analysis
+4. **Monitor Error Rates** - Catch issues early
+5. **Test Error Paths** - Ensure fallbacks work
+6. **Document Fallbacks** - Team knows what happens on failure
+
+## Error Handling Checklist
+
+For each AI tool integration:
+
+- [ ] Retry logic implemented
+- [ ] Exponential backoff configured
+- [ ] Fallback strategy defined
+- [ ] Error logging enabled
+- [ ] Quality validation included
+- [ ] Monitoring alerts set up
+- [ ] Documentation updated

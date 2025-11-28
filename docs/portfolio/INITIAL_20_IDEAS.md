@@ -57,63 +57,98 @@
 - #14: Influencer Media Kit Generator (Sometimes recurring)
 - #19: Micro-SaaS Idea Validator (No budget, no recurring job)
 
-## Next Steps
+## Next Steps: Discovery Workflow
 
-### Step 1: Portfolio Scoring
+### NEW: AI-Powered Discovery Process
 
-Run Portfolio Prioritizer on each idea to get detailed scores:
+**Before** portfolio scoring or validation, run the **Discovery Workflow** on each idea to systematically analyze:
+- Niche intelligence (culture, vocabulary, communities)
+- Pain signals (frequency, severity, urgency, monetization)
+- Persona & JTBD (identity, jobs, emotional drivers)
+- Opportunity & moat potential (defensibility, switching costs, data moats)
 
-```
-@Portfolio-Prioritizer Score and prioritize the idea: [IDEA_NAME]
+**Critical Rule**: No engineering work begins until **Opportunity Score ≥ 8.0/10**
 
-Include:
-1) Desirability signal strength (validation tests).
-2) Niche Durability Score (growth, budgeted buyer, recurring job).
-3) Moat potential (data moat, workflow lock-in, switching costs).
-4) Expansion revenue depth.
-5) JTBD frequency map.
-6) Wave/timing analysis.
-7) Implementation cost + risk.
-8) Expected value (EV) model.
-9) Clear recommendation: kill, pivot, or proceed.
+### Step 1: Run Discovery Workflow
 
-Output: /docs/product/PORTFOLIO-SCORE-[idea-slug].md
-```
+**Option A: Use Workflows UI** (Recommended)
+1. Go to `/workflows`
+2. Click "Create Workflow"
+3. Enter idea name, slug, and select "Discovery" phase
+4. Execute each step sequentially
 
-### Step 2: Start with Top 3-5 Ideas
+**Option B: Use Cursor Agents** (Manual)
+See `docs/portfolio/DISCOVERY-REVIEW-PLAN.md` for complete instructions
 
-Based on initial assessment, prioritize these for detailed scoring:
+**Discovery Workflow (8 Steps)**:
+1. **Manus** → Niche Narrative + Pain Language + JTBD + Competitors
+2. **ChatGPT** → Refinement Packet
+3. **@Niche-Intelligence-Agent** → `/docs/discovery/NICHE-INTEL-<idea-slug>.md`
+4. **@Pain-Signal-Agent** → `/docs/discovery/PAIN-SIGNALS-<idea-slug>.md`
+5. **@JTBD-Agent** → `/docs/discovery/JTBD-<idea-slug>.md`
+6. **@Opportunity-Moat-Agent** → `/docs/discovery/OPPORTUNITY-<idea-slug>.md`
+7. **Calculate Opportunity Score** (0-10)
+8. **Decision Gate**: If Score ≥ 8.0 → Proceed to Validation
 
-1. **Amazon FBA Seller Intelligence** — Strong niche, budgeted buyer, recurring job
-2. **Real Estate Investor & Flipper Platform** — Strong niche, budgeted buyer, recurring job
-3. **AI Meeting Assistant** — Hot market, clear value, budgeted buyer
-4. **AI Code Review & Documentation Tool** — Developer tools, budgeted buyer
-5. **Enterprise Design System for Startups** — Clear buyer, recurring need
+### Step 2: Prioritized Discovery Schedule
 
-### Step 3: Quick Validation
+**Batch 1: Top 5 Ideas** (Week 1)
+1. Amazon FBA Seller Intelligence
+2. Real Estate Investor & Flipper Platform
+3. AI Meeting Assistant
+4. AI Code Review & Documentation Tool
+5. Enterprise Design System for Startups
 
-For your top 3-5 ideas, run quick validation:
+**Batch 2: Remaining Tier 1** (Week 2)
+- Ghost Kitchen Manager, HVAC Service Business Suite, Subcontractor Mgmt for GCs, Wedding Photography Suite, Pool Service Business Platform, AI Proposal & RFP Tool, AI Content Repurposing Engine
 
-1. **Core Criteria Check** (5 min each)
-   - Verify 6 core criteria (see `.cursor/rules/000-core-idea-criteria.mdc`)
+**Batch 3: Tier 2 Ideas** (Week 3)
+- Creator Revenue Dashboard, Freelancer Finance & Tax, Dietitian Nutrition Therapy Platform, Athletic Performance Tracker, Creator Collaboration Marketplace, Freelancer Invoice-to-Tax Platform
 
-2. **Insight Validation** (1-2 hours each)
-   - Run full 7-step validation flow (see `.cursor/rules/200-playbook-insight-validation.mdc`)
+**Batch 4: Tier 3 Ideas** (Week 4)
+- Influencer Media Kit Generator, Micro-SaaS Idea Validator
 
-## Recommended Workflow
+### Step 3: After Discovery
 
-### Week 1: Portfolio Scoring
-- **Day 1-2**: Score top 10 ideas (Tier 1 + Tier 2)
-- **Day 3**: Identify top 3-5 based on scores
-- **Day 4-5**: Core criteria check on top 3-5
+**If Opportunity Score ≥ 8.0/10**:
+- Proceed to **Demand Validation** workflow
+- Run validation agents: `@Demand-Validator`, `@Landing-Builder`, `@Distribution-Operator`, `@Pricing-Tester`
 
-### Week 2-3: Validation
-- **Day 6-10**: Insight validation on top 3-5 ideas
-- **Day 11-14**: Select top 1-2 ideas with strongest validation
+**If Opportunity Score < 8.0/10**:
+- **Pivot**: Adjust niche, pain focus, or value prop
+- **Kill**: Move to next idea
 
-### Week 4+: Build
-- **Week 4-6**: Design & Engineering on top idea
-- **Week 7+**: Launch and measure
+### Complete Discovery Guide
+
+See `docs/portfolio/DISCOVERY-REVIEW-PLAN.md` for:
+- Detailed workflow instructions
+- Agent command templates
+- Time estimates
+- Output checklists
+- Next steps after discovery
+
+## Recommended Workflow (Updated)
+
+### Week 1: Discovery - Batch 1 (Top 5 Ideas)
+- **Day 1-2**: Run discovery workflow on top 5 ideas
+- **Day 3**: Review Opportunity Scores, identify top 3
+- **Day 4-5**: Deep dive on top 3 ideas (refine discovery if needed)
+
+### Week 2: Discovery - Batch 2 (Remaining Tier 1)
+- **Day 6-8**: Run discovery on remaining Tier 1 ideas
+- **Day 9-10**: Review all Tier 1 Opportunity Scores
+
+### Week 3: Discovery - Batch 3 (Tier 2 Ideas)
+- **Day 11-13**: Run discovery on Tier 2 ideas
+- **Day 14**: Review all Opportunity Scores, select top 3-5 overall
+
+### Week 4: Demand Validation (Top 3-5 Ideas)
+- **Day 15-17**: Run demand validation on top 3-5 ideas (Score ≥ 8.0)
+- **Day 18-19**: Review validation results, select top 1-2
+
+### Week 5+: Build
+- **Week 5-7**: Design & Engineering on top idea
+- **Week 8+**: Launch and measure
 
 ## Notes
 
@@ -122,24 +157,38 @@ For your top 3-5 ideas, run quick validation:
 - **AI tools (#16, #17, #18)**: Hot market but competitive. Need strong moat strategy.
 - **SMB tools (#1, #2, #3, #5, #7, #8, #12)**: Strong potential. Budgeted buyers, recurring jobs.
 
-## Quick Start Command
+## Quick Start: Discovery Workflow
 
-To start scoring your first idea:
+### Option 1: Use Workflows UI (Easiest)
 
+1. Go to `/workflows`
+2. Click "Create Workflow"
+3. Enter:
+   - **Idea Name**: Amazon FBA Seller Intelligence
+   - **Idea Slug**: `amazon-fba-seller-intelligence`
+   - **Phase**: Discovery
+4. Click "Create Workflow"
+5. Execute each step in sequence
+
+### Option 2: Manual Cursor Agents
+
+Start with Manus discovery pack, then run:
+
+```bash
+# Step 3: Niche Intelligence
+@Niche-Intelligence-Agent Analyze niche for Amazon FBA Seller Intelligence
+
+# Step 4: Pain Signal Analysis  
+@Pain-Signal-Agent Analyze pain signals for Amazon FBA Seller Intelligence
+
+# Step 5: JTBD Analysis
+@JTBD-Agent Create persona and JTBD map for Amazon FBA Seller Intelligence
+
+# Step 6: Opportunity & Moat
+@Opportunity-Moat-Agent Evaluate opportunity and moat potential for Amazon FBA Seller Intelligence
 ```
-@Portfolio-Prioritizer Score and prioritize the idea: Amazon FBA Seller Intelligence
 
-Include:
-1) Desirability signal strength (validation tests).
-2) Niche Durability Score (growth, budgeted buyer, recurring job).
-3) Moat potential (data moat, workflow lock-in, switching costs).
-4) Expansion revenue depth.
-5) JTBD frequency map.
-6) Wave/timing analysis.
-7) Implementation cost + risk.
-8) Expected value (EV) model.
-9) Clear recommendation: kill, pivot, or proceed.
+**Outputs**: All discovery documents in `/docs/discovery/`
 
-Output: /docs/product/PORTFOLIO-SCORE-amazon-fba-seller-intelligence.md
-```
+**See**: `docs/portfolio/DISCOVERY-REVIEW-PLAN.md` for complete instructions
 

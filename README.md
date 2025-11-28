@@ -90,8 +90,10 @@ src/
 ## 📚 Documentation
 
 - **[Hub Documentation](./docs/HUB.md)** - How to use the hub to create and manage projects
-- **[Agent System](./AGENTS.md)** - Complete 12-agent product creation engine
+- **[Agent System](./AGENTS.md)** - Complete 30-agent product creation engine
 - **[Getting Started](./docs/GETTING_STARTED.md)** - Validation workflow guide
+- **[Environment Variables](./docs/ENVIRONMENT-VARIABLES.md)** - Complete API keys and configuration guide
+- **[AI Integration Guide](./docs/AI-INTEGRATION-GUIDE.md)** - How to use AI tools in workflows
 - **[Systems Framework](./docs/SYSTEMS.md)** - The Four Systems for building a SaaS empire
 - **[Architecture](./docs/ARCHITECTURE.md)** - Technical architecture details
 - **[Portfolio Management](./.cursor/rules/207-playbook-portfolio-management.mdc)** - Portfolio theory playbook

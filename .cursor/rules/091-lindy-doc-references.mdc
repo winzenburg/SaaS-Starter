@@ -1,0 +1,165 @@
+# Rule: Lindy Spec Documentation References
+
+> Every agent that outputs a Lindy spec must include exact paths and references
+
+## Core Principle
+
+**Every time an agent outputs a Lindy spec, it must include exact documentation paths, sheet/tab names, asset folders, and ElevenLabs links. This makes the entire factory predictable and enables automation without manual intervention.**
+
+## Required References
+
+### 1. Exact Doc Path for Thresholds
+
+**Format**: `/docs/validation/VALIDATION-PLAN-<idea>.md`
+
+**Requirements**:
+- Must specify exact file path, not relative or generic
+- Must include full path from repo root
+- Must use actual idea slug (not placeholder)
+
+**Example**:
+- ✅ Correct: `/docs/validation/VALIDATION-PLAN-enterprise-design-system.md`
+- ❌ Incorrect: `validation plan`, `VALIDATION-PLAN.md`, `../validation/VALIDATION-PLAN.md`
+
+### 2. Exact Sheet/Tab Name for Logging
+
+**Format**: `[Sheet Name] - [Tab Name]`
+
+**Requirements**:
+- Must specify exact sheet name
+- Must specify exact tab name
+- Must use format: `Sheet Name - Tab Name`
+
+**Examples**:
+- ✅ Correct: `Validation Metrics - Waitlist Intake`
+- ✅ Correct: `Prospects - Outreach Queue`
+- ❌ Incorrect: `Sheet`, `Log`, `Metrics`, `validation sheet`
+
+### 3. Exact Asset Folder for Creatives
+
+**Format**: `/docs/validation/assets/<idea>/`
+
+**Requirements**:
+- Must specify exact folder path
+- Must include full path from repo root
+- Must use actual idea slug (not placeholder)
+- Must include trailing slash
+
+**Examples**:
+- ✅ Correct: `/docs/validation/assets/enterprise-design-system/`
+- ✅ Correct: `/docs/validation/assets/enterprise-design-system/landing/hero-images/`
+- ❌ Incorrect: `assets/`, `validation/assets`, `assets folder`
+
+### 4. Any ElevenLabs Links
+
+**Format**: Full URL or file path
+
+**Requirements**:
+- Must include complete URL or file path
+- Must not use placeholders or generic links
+- If file path, must be exact path from repo root
+
+**Examples**:
+- ✅ Correct: `https://elevenlabs.io/app/voices/...`
+- ✅ Correct: `/docs/validation/AUDIO-founder-intro-enterprise-design-system.mp3`
+- ❌ Incorrect: `ElevenLabs link`, `audio file`, `<link>`
+
+## Agent Requirements
+
+### Agents That Must Follow This Rule
+
+**All agents that output Lindy specs**:
+- `@Landing-Builder` (Waitlist Intake + Nurture)
+- `@Distribution-Operator` (Outreach Sequencer)
+- `@Demand-Validator` (Validation Logger)
+- `@Pricing-Tester` (WTP Interview Automation - optional)
+
+### Required Sections in Lindy Specs
+
+**Every Lindy spec must include**:
+
+1. **Dependencies Section** with exact paths:
+   - Validation thresholds: `/docs/validation/VALIDATION-PLAN-<idea>.md`
+   - Landing copy: `/docs/validation/LANDING-<idea>.md`
+   - Distribution strategy: `/docs/validation/DISTRIBUTION-<idea>.md`
+   - Pricing test: `/docs/validation/PRICING-TEST-<idea>.md`
+   - Voice assets: Exact ElevenLabs link(s)
+   - Visuals folder: `/docs/validation/assets/<idea>/`
+
+2. **Logging Section** with exact references:
+   - Primary log: Exact sheet/tab name (e.g., `Validation Metrics - Waitlist Intake`)
+   - Repo log file: Exact path (e.g., `/docs/validation/RESULTS-<idea>.md`)
+
+3. **Actions Section** with exact paths:
+   - Any file references must use exact paths
+   - Any sheet references must use exact sheet/tab names
+   - Any asset references must use exact folder paths
+
+## Quality Gates
+
+**All Lindy specs must pass quality gates**:
+
+- ✅ **Exact doc paths provided** (no placeholders, no relative paths)
+- ✅ **Exact sheet/tab names provided** (format: `Sheet Name - Tab Name`)
+- ✅ **Exact asset folder paths provided** (full path from repo root)
+- ✅ **Exact ElevenLabs links provided** (full URL or file path)
+- ✅ **All references are actionable** (can be used directly without manual lookup)
+
+## Why This Matters
+
+1. **Predictability**: Automation can find files without manual intervention
+2. **Consistency**: All specs follow the same pattern
+3. **Error Prevention**: Missing or incorrect paths cause failures early
+4. **Automation Enablement**: Tools can directly access referenced resources
+5. **Maintainability**: Easy to update when paths change
+
+## Examples
+
+### Good Example (Landing-Builder)
+
+```markdown
+## Dependencies
+
+- Validation thresholds: `/docs/validation/VALIDATION-PLAN-enterprise-design-system.md`
+- Landing copy: `/docs/validation/LANDING-enterprise-design-system.md`
+- Voice assets: `https://elevenlabs.io/app/voices/abc123/xyz789`
+- Visuals folder: `/docs/validation/assets/enterprise-design-system/`
+
+## Logging
+
+- Primary log: `Validation Metrics - Waitlist Intake`
+- Repo log file: `/docs/validation/RESULTS-enterprise-design-system.md`
+```
+
+### Bad Example (Missing Exact Paths)
+
+```markdown
+## Dependencies
+
+- Validation thresholds: validation plan
+- Landing copy: landing page doc
+- Voice assets: ElevenLabs link
+- Visuals folder: assets folder
+
+## Logging
+
+- Primary log: Sheet
+- Repo log file: results doc
+```
+
+## Integration with Other Rules
+
+- **Rule 090 (Lindy Integration)**: This rule extends the agent requirements
+- **Rule 040 (Demand Validation)**: Validation plan paths must be exact
+- **Rule 085 (Glif Integration)**: Asset folder paths must be exact
+- **Rule 070 (ElevenLabs Integration)**: Voice asset links must be exact
+
+## Summary
+
+1. **Every Lindy spec must include exact paths** (no placeholders, no generic references)
+2. **Exact doc paths** for thresholds and other documents
+3. **Exact sheet/tab names** for logging (format: `Sheet Name - Tab Name`)
+4. **Exact asset folder paths** for creatives (full path from repo root)
+5. **Exact ElevenLabs links** (full URL or file path)
+
+**This makes the entire factory predictable and enables automation without manual intervention.**

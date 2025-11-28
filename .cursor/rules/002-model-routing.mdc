@@ -1,0 +1,128 @@
+# Rule: Model Routing (ChatGPT vs Claude)
+
+> Use ChatGPT and Claude strategically to avoid overlap and maximize effectiveness
+
+## Core Principle
+
+**ChatGPT and Claude serve different purposes in the factory. Use ChatGPT for breadth and iteration. Use Claude for depth, critique, and editing. Route requests to the appropriate model based on task type.**
+
+## ChatGPT Defaults For
+
+### Rapid Ideation
+- Brainstorming multiple ideas quickly
+- Generating variant options
+- Exploring different angles
+- Fast iteration cycles
+
+### Variant Generation
+- Multiple hook variations
+- Headline variants (A/B testing)
+- Pricing tier options
+- Content variations
+
+### Clustering & Light Synthesis
+- Grouping similar items
+- Basic pattern recognition
+- Lightweight analysis
+- Quick summaries
+
+### Prompt Expansion
+- Expanding prompts for Glif workflows
+- Creating Midjourney prompt variations
+- Generating ElevenLabs script options
+- Building prompt libraries
+
+## Claude Defaults For
+
+### Critique / Red-Teaming
+- Critical review of PRDs
+- Validation plan critique
+- Strategy risk assessment
+- Assumption challenging
+
+### Editorial Polish
+- Landing page copy refinement
+- Email copy editing
+- Long-form content polish
+- Narrative consistency
+
+### Reasoning-Heavy Tradeoffs
+- Moat strategy analysis
+- Positioning risk assessment
+- Technical tradeoff decisions
+- Strategic decision support
+
+### Consistency Audits
+- Cross-document consistency checks
+- Narrative alignment verification
+- Terminology consistency
+- Brand voice consistency
+
+## Agent Requirements
+
+### When Agents Should Request Claude Review
+
+**Mandatory Claude Review**:
+1. **Scoring an idea ≥ 7.5 and considering Proceed**
+   - Before moving to validation phase
+   - Critical decision point
+   - High-stakes evaluation
+
+2. **Finalizing any public-facing copy**
+   - Landing pages
+   - Email campaigns
+   - Social content
+   - Marketing materials
+
+3. **Debating moat/strategy assumptions**
+   - Opportunity & Moat analysis
+   - Competitive positioning
+   - Strategic decisions
+   - Risk assessment
+
+**Optional Claude Review**:
+- PRD finalization (recommended)
+- Validation plan review (recommended)
+- Complex technical decisions (as needed)
+
+### Agent Workflow Integration
+
+**Standard Pattern**:
+```
+Step 1: ChatGPT → Rapid ideation/variant generation
+Step 2: ChatGPT → Clustering and light synthesis
+Step 3: Claude → Critique and polish (if needed)
+Step 4: Cursor → Structured output
+```
+
+**For Critical Decisions**:
+```
+Step 1: ChatGPT → Initial analysis
+Step 2: Claude → Critical review and red-teaming
+Step 3: Cursor → Decision documentation
+```
+
+## Integration with Other Rules
+
+- **Rule 060 (ChatGPT Refinement)**: ChatGPT for refinement and synthesis
+- **Rule 050 (Manus Integration)**: ChatGPT refines Manus outputs
+- **Rule 100 (PRD)**: Claude review recommended for PRD finalization
+- **Rule 044 (Opportunity & Moat)**: Claude review required for moat analysis
+
+## Quality Gates
+
+**Model routing must pass quality gates**:
+
+- ✅ **ChatGPT used for** rapid ideation, variants, clustering, prompt expansion
+- ✅ **Claude used for** critique, polish, reasoning, consistency audits
+- ✅ **Claude review requested** when idea score ≥ 7.5, finalizing public copy, debating strategy
+- ✅ **No overlap** between ChatGPT and Claude tasks
+
+## Summary
+
+1. **ChatGPT for breadth**: Rapid ideation, variants, clustering, prompt expansion
+2. **Claude for depth**: Critique, polish, reasoning, consistency
+3. **Mandatory Claude review**: Ideas ≥ 7.5, public-facing copy, strategy assumptions
+4. **Clear boundaries**: No overlap between model purposes
+
+**Use ChatGPT for speed and iteration. Use Claude for depth and quality. Route requests appropriately.**

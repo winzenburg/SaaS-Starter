@@ -1,0 +1,171 @@
+# AI Workflow Orchestration
+
+> How to orchestrate multiple AI tools in agent workflows
+
+## Rule
+
+When using multiple AI tools in a workflow, follow this orchestration pattern for efficiency and quality.
+
+## Orchestration Patterns
+
+### Sequential (One After Another)
+
+Use when outputs depend on previous outputs:
+
+```
+1. @Manus-Narrative-Agent → Narrative
+2. @ChatGPT-Reasoning-Agent → Refine narrative
+3. @Visual-Asset-Agent → Create visuals based on narrative
+4. @ElevenLabs-Voice-Agent → Generate voice from narrative
+```
+
+### Parallel (Simultaneous)
+
+Use when outputs are independent:
+
+```
+1. @Manus-Narrative-Agent → Narrative (parallel)
+2. @Market-Scanner → Community research (parallel)
+3. @ChatGPT-Reasoning-Agent → Strategic analysis (parallel)
+4. Wait for all, then synthesize
+```
+
+### Conditional (Based on Results)
+
+Use when next step depends on previous results:
+
+```
+1. @Manus-Narrative-Agent → Narrative
+2. If narrative quality < threshold:
+   - @ChatGPT-Reasoning-Agent → Refine
+3. Else:
+   - Proceed to next step
+```
+
+## Workflow Templates
+
+### Validation Workflow
+
+```
+Phase 1: Insight & Narrative
+1. @Insight-Strategist → Raw insight
+2. @Manus-Narrative-Agent → Narrative + Personas (parallel)
+3. @ChatGPT-Reasoning-Agent → Refine insight (parallel)
+4. Synthesize: Best narrative + refined insight
+
+Phase 2: Market Validation
+5. @Market-Scanner → Community research
+6. @ChatGPT-Reasoning-Agent → Analyze market signals
+7. Validate narrative with community
+
+Phase 3: Asset Creation
+8. @Visual-Asset-Agent → Hero images (parallel)
+9. @ElevenLabs-Voice-Agent → Demo narration (parallel)
+10. Combine assets for validation tests
+```
+
+### Build Workflow
+
+```
+Phase 1: Design
+1. @Product-Strategist → PRD
+2. @ChatGPT-Reasoning-Agent → Technical approach analysis
+3. @Visual-Asset-Agent → UI concept visuals
+
+Phase 2: Development
+4. @Engineering-Architect → ADR
+5. @Implementer → Code
+6. @Test-Engineer → Tests
+
+Phase 3: Polish
+7. @ElevenLabs-Voice-Agent → Demo narration
+8. @Visual-Asset-Agent → Final assets
+```
+
+## Error Handling
+
+When AI tool fails:
+
+1. **Retry**: Exponential backoff (3 attempts)
+2. **Fallback**: Use manual process or alternative tool
+3. **Continue**: Skip if optional, fail if required
+4. **Log**: Record error for analysis
+
+```typescript
+try {
+  const result = await aiToolCall();
+  if (!result.success) {
+    // Try fallback
+    return await fallbackProcess();
+  }
+  return result;
+} catch (error) {
+  // Log and continue with manual process
+  logError(error);
+  return manualProcess();
+}
+```
+
+## Cost Optimization
+
+### Batch Requests
+
+```typescript
+// Instead of sequential calls
+const narratives = await Promise.all([
+  generateNarrative(variation1),
+  generateNarrative(variation2),
+  generateNarrative(variation3)
+]);
+```
+
+### Cache Results
+
+```typescript
+// Cache similar requests
+const cacheKey = `narrative-${product}-${niche}`;
+const cached = await getFromCache(cacheKey);
+if (cached) return cached;
+
+const result = await generateNarrative(...);
+await saveToCache(cacheKey, result);
+```
+
+### Use Cheaper Models When Appropriate
+
+```typescript
+// GPT-3.5 for ideation (fast, cheap)
+const ideas = await ideate({ model: "gpt-3.5-turbo" });
+
+// GPT-4 for reasoning (slow, expensive, better quality)
+const analysis = await reason({ model: "gpt-4-turbo" });
+```
+
+## Quality Gates
+
+Before proceeding to next step:
+
+1. ✅ Previous step output meets quality criteria
+2. ✅ Output is actionable and specific
+3. ✅ Cost is within budget
+4. ✅ Error rate is acceptable
+5. ✅ Output aligns with workflow goals
+
+## Monitoring
+
+Track for each workflow:
+
+- **Time**: How long each step takes
+- **Cost**: API costs per step
+- **Quality**: Output quality scores
+- **Errors**: Error rates and types
+- **Success**: Overall workflow success rate
+
+## Best Practices
+
+1. **Start with cheapest tools** - Use GPT-3.5 before GPT-4
+2. **Parallelize independent tasks** - Speed up workflows
+3. **Cache common requests** - Reduce costs
+4. **Set quality thresholds** - Don't proceed with low-quality outputs
+5. **Monitor costs** - Stay within budget
+6. **Log everything** - Learn and improve

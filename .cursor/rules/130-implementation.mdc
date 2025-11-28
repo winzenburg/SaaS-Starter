@@ -1,0 +1,241 @@
+# Rule 130: Implementation Requirements
+
+> The Implementer must follow PRD + ADR, accessibility standards, shadcn/ui components, implement all states, and follow domain-driven feature structure
+
+## Core Principle
+
+**Implementation must follow PRD + ADR, accessibility standards, use shadcn/ui components, implement all states, and follow domain-driven feature structure.**
+
+No shortcuts. No gold-plating. MVP-first with small diffs.
+
+## Implementation Requirements
+
+The Implementer must:
+
+### 1. Follow PRD + ADR
+
+**Purpose**: Ensure implementation aligns with product requirements and architectural decisions
+
+**Required Elements**:
+- **PRD Compliance**: Implementation must match PRD requirements
+- **ADR Compliance**: Implementation must follow ADR architectural decisions
+- **Acceptance Criteria**: All acceptance criteria must be implemented
+- **Scope Adherence**: Stay within defined scope (no scope creep)
+- **Feature Flags**: Implement feature flags as specified in PRD/ADR
+
+**Enforcement**:
+- Code review must verify PRD/ADR alignment
+- Acceptance criteria must be met
+- Scope must not be exceeded
+
+**Agent**: `@Implementer`
+
+### 2. Follow Accessibility Standards
+
+**Purpose**: Ensure WCAG 2.2 AA compliance
+
+**Required Elements**:
+- **WCAG 2.2 AA Compliance**: All UI must meet accessibility standards
+- **Keyboard Navigation**: All interactive elements must be keyboard accessible
+- **Screen Reader Support**: ARIA labels, roles, and descriptions
+- **Color Contrast**: Text must meet contrast requirements
+- **Focus Management**: Focus indicators and logical focus order
+- **Semantic HTML**: Proper HTML semantics
+
+**Enforcement**:
+- Accessibility tests must pass
+- Manual a11y checks required
+- Screen reader testing required
+
+**Agent**: `@Implementer`, `@Accessibility-Agent`
+
+### 3. Use shadcn/ui Components
+
+**Purpose**: Use consistent, accessible UI components
+
+**Required Elements**:
+- **Component Library**: Use shadcn/ui components when available
+- **Custom Components**: Only create custom components when shadcn/ui doesn't have suitable option
+- **Component Patterns**: Follow shadcn/ui patterns and conventions
+- **Styling**: Use Tailwind CSS (v4) for styling
+- **Accessibility**: shadcn/ui components are accessible by default
+
+**Enforcement**:
+- Prefer shadcn/ui components over custom implementations
+- Custom components must match shadcn/ui accessibility standards
+- Styling must use Tailwind CSS (v4)
+
+**Agent**: `@Implementer`
+
+### 4. Implement Loading States, Empty States, Error States
+
+**Purpose**: Ensure all UI states are handled gracefully
+
+**Required Elements**:
+- **Loading States**: Show loading indicators during async operations
+- **Empty States**: Show helpful empty state messages when no data
+- **Error States**: Show clear error messages with recovery options
+- **Success States**: Show confirmation when operations succeed
+- **State Transitions**: Smooth transitions between states
+
+**Enforcement**:
+- All async operations must have loading states
+- All data displays must have empty states
+- All error conditions must have error states
+- All success operations must have success states
+
+**Agent**: `@Implementer`
+
+### 5. Follow Domain-Driven Feature Structure
+
+**Purpose**: Organize code using domain-driven design principles
+
+**Required Structure**:
+```
+src/features/<feature-name>/
+├── domain/
+│   ├── [domain-logic].ts          # Pure domain logic
+│   ├── [domain-logic].test.ts     # Unit tests
+│   └── types.ts                   # Domain types
+├── data/
+│   ├── [data-layer].ts            # Database queries, tRPC procedures
+│   ├── [data-layer].test.ts       # Integration tests
+│   └── schema.ts                  # Drizzle schema (if feature-specific)
+├── ui/
+│   ├── [component].tsx            # React components
+│   ├── [component].test.tsx       # Component tests
+│   └── [component].module.css     # Component styles (if needed)
+└── routes/
+    └── [route]/                    # Next.js route handlers
+        ├── page.tsx                # Page component
+        └── layout.tsx             # Layout (if needed)
+```
+
+**Required Elements**:
+- **Domain Layer**: Pure business logic, no dependencies on UI or data
+- **Data Layer**: Database queries, tRPC procedures, API calls
+- **UI Layer**: React components, pages, layouts
+- **Route Layer**: Next.js App Router routes
+- **Separation of Concerns**: Clear boundaries between layers
+
+**Enforcement**:
+- Code must follow domain-driven structure
+- Domain logic must be pure (no UI or data dependencies)
+- Data layer must handle all database/API operations
+- UI layer must only handle presentation
+
+**Agent**: `@Implementer`
+
+## Implementation Workflow
+
+```
+PRD + ADR Complete
+  ↓
+Test Plan Created
+  ↓
+Implementation Starts
+  ↓
+1. Domain Layer (Pure Logic)
+  ↓
+2. Data Layer (Database/API)
+  ↓
+3. UI Layer (Components)
+  ↓
+4. Route Layer (Pages)
+  ↓
+All Tests Pass
+  ↓
+Accessibility Audit
+  ↓
+Code Review
+  ↓
+Merge
+```
+
+## Implementation Principles
+
+### MVP-First
+
+**Build the smallest surface area that delivers value**:
+- Start with core functionality
+- Defer nice-to-have features
+- Ship incrementally
+- Iterate based on feedback
+
+### Small Diffs
+
+**Incremental changes with frequent commits**:
+- One concern per commit
+- <300 lines per commit (ideal: <100)
+- All tests pass after each change
+- Easy to review and revert
+
+### No Gold-Plating
+
+**Avoid over-engineering**:
+- Don't build features not in PRD
+- Don't optimize prematurely
+- Don't add abstractions unnecessarily
+- Focus on delivering value
+
+## Quality Gates
+
+**All implementations must meet quality criteria:**
+
+- ✅ **PRD + ADR Compliance**: Implementation matches PRD/ADR
+- ✅ **Accessibility**: WCAG 2.2 AA compliance
+- ✅ **shadcn/ui Components**: Using shadcn/ui when available
+- ✅ **All States**: Loading, empty, error, success states implemented
+- ✅ **Domain-Driven Structure**: Code follows feature structure
+- ✅ **All Tests Pass**: Unit, component, integration, E2E, a11y tests
+- ✅ **Small Diffs**: Incremental changes, frequent commits
+
+## Integration with Other Rules
+
+- **Rule 001 (Philosophy)**: MVP-first, small diffs, boring tech
+- **Rule 100 (PRD)**: Must follow PRD requirements
+- **Rule 110 (ADR)**: Must follow ADR architectural decisions
+- **Rule 120 (Test Plan)**: Must pass all tests
+- **Rule 010 (UX A11y)**: Must meet accessibility standards
+- **Rule 030 (Style)**: Code style requirements
+
+## Enforcement
+
+### Pre-Implementation Checks
+
+**Before starting implementation**:
+1. ✅ PRD must exist
+2. ✅ ADR must exist (if architectural changes)
+3. ✅ Test plan must exist
+4. ✅ Acceptance criteria must be testable
+
+### Pre-Code Review Checks
+
+**Before code review**:
+1. ✅ All tests must pass
+2. ✅ Accessibility standards met
+3. ✅ PRD/ADR compliance verified
+4. ✅ All states implemented
+5. ✅ Domain-driven structure followed
+
+### Agent Requirements
+
+**All implementers must**:
+1. Follow PRD + ADR strictly
+2. Meet accessibility standards
+3. Use shadcn/ui components
+4. Implement all UI states
+5. Follow domain-driven feature structure
+6. Write small, incremental diffs
+
+## Summary
+
+1. **Follow PRD + ADR**: Implementation must match product requirements and architectural decisions
+2. **Follow Accessibility Standards**: WCAG 2.2 AA compliance required
+3. **Use shadcn/ui Components**: Prefer shadcn/ui over custom components
+4. **Implement All States**: Loading, empty, error, success states required
+5. **Follow Domain-Driven Structure**: Clear separation of domain, data, UI, routes
+6. **MVP-First**: Build smallest surface area that delivers value
+7. **Small Diffs**: Incremental changes with frequent commits
+
+**Implementation must follow all requirements. No shortcuts. No gold-plating.**

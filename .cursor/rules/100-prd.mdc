@@ -1,0 +1,377 @@
+# Rule 100: PRD Requirements
+
+> PRDs must include problem narrative, success metrics, scope, acceptance criteria, rollout plan, feature flags, and analytics events
+
+## Core Principle
+
+**No feature enters engineering without a complete, validated PRD.**
+
+PRDs must be comprehensive, validated, and include all required sections before any engineering work begins.
+
+## Required PRD Sections
+
+PRDs must include:
+
+### 1. Problem Narrative (from Manus)
+
+**Purpose**: Define the problem using Manus pain language and persona insights
+
+**Required Elements**:
+- **Problem Statement**: Clear problem description using Manus pain language
+- **Pain Language**: Direct quotes from Manus pain language dictionary
+- **Persona Context**: Who experiences this problem (from Manus persona)
+- **Problem Intensity**: How painful/urgent/expensive the problem is
+- **Current Solutions**: What people do today (workarounds, alternatives)
+- **Why Now**: Why this problem matters now (timing, trends, triggers)
+
+**Source**: Manus pain language dictionary, persona narrative, JTBD analysis
+
+**Output Format**:
+```markdown
+## Problem Narrative
+
+### Problem Statement
+[Clear problem description using Manus pain language]
+
+### Pain Language (from Manus)
+- "[Direct quote from Manus pain language]"
+- "[Direct quote from Manus pain language]"
+- "[Direct quote from Manus pain language]"
+
+### Persona Context
+[Who experiences this problem - from Manus persona]
+
+### Problem Intensity
+- **Frequency**: [How often problem occurs]
+- **Severity**: [How severe the problem is]
+- **Urgency**: [How urgent the problem is]
+- **Cost**: [Time/money/emotional cost]
+
+### Current Solutions
+[What people do today - workarounds, alternatives]
+
+### Why Now
+[Why this problem matters now - timing, trends, triggers]
+```
+
+**Agent**: `@Product-Strategist`
+
+### 2. Success Metrics
+
+**Purpose**: Define how success will be measured
+
+**Required Elements**:
+- **Leading Indicators**: Early signals of success (engagement, usage, activation)
+- **Lagging Indicators**: Long-term success metrics (retention, revenue, growth)
+- **Baseline Metrics**: Current state before feature launch
+- **Target Metrics**: Success thresholds for each metric
+- **Measurement Plan**: How metrics will be tracked and reported
+
+**Output Format**:
+```markdown
+## Success Metrics
+
+### Leading Indicators
+- **Metric 1**: [Description]
+  - Baseline: [Current value]
+  - Target: [Target value]
+  - Measurement: [How to measure]
+
+- **Metric 2**: [Description]
+  - Baseline: [Current value]
+  - Target: [Target value]
+  - Measurement: [How to measure]
+
+### Lagging Indicators
+- **Metric 1**: [Description]
+  - Baseline: [Current value]
+  - Target: [Target value]
+  - Measurement: [How to measure]
+
+### Measurement Plan
+[How metrics will be tracked, reported, and reviewed]
+```
+
+**Agent**: `@Product-Strategist`
+
+### 3. Scope
+
+**Purpose**: Define what's included and excluded from this feature
+
+**Required Elements**:
+- **In Scope**: What's included in this feature
+- **Out of Scope**: What's explicitly excluded (future work)
+- **MVP Scope**: Minimum viable version (what ships first)
+- **Future Scope**: What comes next (post-MVP)
+- **Dependencies**: What this feature depends on
+- **Constraints**: Technical, business, or resource constraints
+
+**Output Format**:
+```markdown
+## Scope
+
+### In Scope
+- [Feature/functionality 1]
+- [Feature/functionality 2]
+- [Feature/functionality 3]
+
+### Out of Scope
+- [Feature/functionality explicitly excluded]
+- [Future work not in this release]
+
+### MVP Scope
+[Minimum viable version - what ships first]
+
+### Future Scope
+[What comes next - post-MVP roadmap]
+
+### Dependencies
+- [Dependency 1]
+- [Dependency 2]
+
+### Constraints
+- [Constraint 1]
+- [Constraint 2]
+```
+
+**Agent**: `@Product-Strategist`
+
+### 4. Acceptance Criteria
+
+**Purpose**: Define what "done" means for this feature
+
+**Required Elements**:
+- **User Stories**: Feature broken down into user stories
+- **Acceptance Criteria**: Specific, testable criteria for each story
+- **Definition of Done**: Overall criteria for feature completion
+- **Edge Cases**: Important edge cases to handle
+- **Error States**: Error handling requirements
+
+**Output Format**:
+```markdown
+## Acceptance Criteria
+
+### User Story 1: [Story Title]
+**As a** [user type]
+**I want** [goal]
+**So that** [benefit]
+
+**Acceptance Criteria**:
+- [ ] [Specific, testable criterion 1]
+- [ ] [Specific, testable criterion 2]
+- [ ] [Specific, testable criterion 3]
+
+### User Story 2: [Story Title]
+[Same structure]
+
+### Definition of Done
+- [ ] All acceptance criteria met
+- [ ] All tests passing
+- [ ] Code reviewed
+- [ ] Documentation updated
+- [ ] Feature flagged
+- [ ] Analytics events implemented
+
+### Edge Cases
+- [Edge case 1]: [How to handle]
+- [Edge case 2]: [How to handle]
+
+### Error States
+- [Error state 1]: [How to handle]
+- [Error state 2]: [How to handle]
+```
+
+**Agent**: `@Product-Strategist`
+
+### 5. Rollout Plan
+
+**Purpose**: Define how the feature will be rolled out
+
+**Required Elements**:
+- **Rollout Phases**: Phased rollout plan (internal → beta → public)
+- **Feature Flags**: Which feature flags control rollout
+- **Rollout Criteria**: Criteria for advancing to next phase
+- **Rollback Plan**: How to rollback if issues arise
+- **Timeline**: Expected timeline for each phase
+- **Success Criteria**: What success looks like at each phase
+
+**Output Format**:
+```markdown
+## Rollout Plan
+
+### Phase 1: Internal Testing
+- **Feature Flag**: [Flag name]
+- **Audience**: Internal team only
+- **Timeline**: [Duration]
+- **Success Criteria**: [What success looks like]
+- **Rollout Criteria**: [Criteria to advance to Phase 2]
+
+### Phase 2: Beta Testing
+- **Feature Flag**: [Flag name]
+- **Audience**: Beta users (X% of users)
+- **Timeline**: [Duration]
+- **Success Criteria**: [What success looks like]
+- **Rollout Criteria**: [Criteria to advance to Phase 3]
+
+### Phase 3: Public Launch
+- **Feature Flag**: [Flag name]
+- **Audience**: All users
+- **Timeline**: [Duration]
+- **Success Criteria**: [What success looks like]
+
+### Rollback Plan
+[How to rollback if issues arise - feature flag off, data migration, etc.]
+```
+
+**Agent**: `@Product-Strategist`
+
+### 6. Feature Flags
+
+**Purpose**: Define feature flags for controlled rollout
+
+**Required Elements**:
+- **Feature Flag Name**: Unique identifier for the flag
+- **Flag Type**: Boolean, percentage, or user-based
+- **Default State**: Initial state (enabled/disabled)
+- **Rollout Control**: How flag controls feature visibility
+- **Flag Management**: Who controls the flag, how to toggle
+- **Flag Lifecycle**: When flag is created, used, removed
+
+**Output Format**:
+```markdown
+## Feature Flags
+
+### Feature Flag: [Flag Name]
+- **Type**: [Boolean/Percentage/User-based]
+- **Default State**: [Enabled/Disabled]
+- **Rollout Control**: [How flag controls feature]
+- **Management**: [Who controls, how to toggle]
+- **Lifecycle**: [When created, used, removed]
+
+### Feature Flag: [Flag Name 2]
+[Same structure]
+```
+
+**Agent**: `@Product-Strategist`, `@Engineering-Architect`
+
+### 7. Analytics Events
+
+**Purpose**: Define analytics events for tracking feature usage
+
+**Required Elements**:
+- **Event Schema**: Structured event definitions
+- **Event Names**: Unique event identifiers
+- **Event Properties**: Data captured with each event
+- **Event Triggers**: When events fire
+- **Event Tracking**: How events are tracked and stored
+- **Event Analysis**: How events will be analyzed
+
+**Output Format**:
+```markdown
+## Analytics Events
+
+### Event: [Event Name]
+- **Trigger**: [When event fires]
+- **Properties**:
+  - `property1`: [Type] - [Description]
+  - `property2`: [Type] - [Description]
+  - `property3`: [Type] - [Description]
+- **Tracking**: [How event is tracked]
+- **Analysis**: [How event will be analyzed]
+
+### Event: [Event Name 2]
+[Same structure]
+
+### Event Schema
+```typescript
+interface [EventName]Event {
+  property1: string;
+  property2: number;
+  property3: boolean;
+  // ... additional properties
+}
+```
+```
+
+**Agent**: `@Product-Strategist`, `@Engineering-Architect`
+
+## PRD Output
+
+**Output**: `/docs/product/PRD-<feature-slug>.md`
+
+**Required Sections** (in order):
+1. Problem Narrative (from Manus)
+2. Success Metrics
+3. Scope
+4. Acceptance Criteria
+5. Rollout Plan
+6. Feature Flags
+7. Analytics Events
+
+## Pre-PRD Requirements
+
+**Before creating PRD**:
+1. ✅ Discovery complete (Opportunity Score ≥ 8.0/10)
+2. ✅ Validation passed (all thresholds met)
+3. ✅ Manus outputs available (pain language, persona, JTBD)
+4. ✅ Distribution plan exists
+
+## Quality Gates
+
+**All PRD sections must meet quality criteria:**
+
+- ✅ **Problem Narrative**: Uses Manus pain language, clear problem statement, persona context
+- ✅ **Success Metrics**: Leading and lagging indicators defined, baselines and targets set
+- ✅ **Scope**: Clear in/out of scope, MVP defined, dependencies identified
+- ✅ **Acceptance Criteria**: Specific, testable criteria for all user stories
+- ✅ **Rollout Plan**: Phased rollout with feature flags, rollback plan
+- ✅ **Feature Flags**: Flag names, types, default states, management defined
+- ✅ **Analytics Events**: Event schema, properties, triggers, tracking defined
+
+## Integration with Other Rules
+
+- **Rule 001 (Philosophy)**: Validation-first development, PRD required before engineering
+- **Rule 300 (Discovery Master)**: Opportunity Score ≥ 8.0/10 required
+- **Rule 040 (Demand Validation)**: Validation must pass before PRD
+- **Rule 050 (Manus Integration)**: Problem narrative must use Manus outputs
+- **Rule 110 (ADR)**: ADR required after PRD for architecture decisions
+- **Rule 120 (Test Plan)**: Tests must map to acceptance criteria
+
+## Enforcement
+
+### Pre-Engineering Checks
+
+**Before starting engineering**:
+1. ✅ PRD must exist
+2. ✅ All 7 required sections must be complete
+3. ✅ All quality gates must pass
+4. ✅ Acceptance criteria must be testable
+
+### Pre-ADR Checks
+
+**Before creating ADR**:
+1. ✅ PRD must exist
+2. ✅ Scope must be defined
+3. ✅ Feature flags must be planned
+
+### Agent Requirements
+
+**All relevant agents must**:
+1. Create PRDs with all 7 required sections
+2. Use Manus outputs for problem narrative
+3. Define testable acceptance criteria
+4. Plan feature flags and rollout
+5. Define analytics events
+
+## Summary
+
+1. **PRDs must include**: Problem narrative (from Manus), success metrics, scope, acceptance criteria, rollout plan, feature flags, analytics events
+2. **Problem narrative**: Must use Manus pain language and persona insights
+3. **Success metrics**: Leading and lagging indicators with baselines and targets
+4. **Scope**: Clear in/out of scope, MVP defined, dependencies identified
+5. **Acceptance criteria**: Specific, testable criteria for all user stories
+6. **Rollout plan**: Phased rollout with feature flags and rollback plan
+7. **Feature flags**: Flag names, types, default states, management defined
+8. **Analytics events**: Event schema, properties, triggers, tracking defined
+
+**PRDs are not optional. They're required before any engineering work begins.**

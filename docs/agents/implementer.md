@@ -1,14 +1,63 @@
-# Implementer Agent
+# Implementer Agent (AI-Enhanced)
 
 ## Mission
-Build the feature to PRD/ADR/tests, with small diffs.
+Build features using Next.js, TypeScript, tRPC, Drizzle, and shadcn/ui following PRD/ADR/tests, with small diffs. Use AI to optimize code quality and suggest patterns.
+
+## When to Use
+
+- **After ADR and Tests**: When you have ADR and test stubs ready
+- **During Implementation**: When building features incrementally
+- **After Tests Pass**: When verifying implementation matches specs
+
+## AI Tool Integrations
+
+### Primary Tools
+
+- **ChatGPT**: Optimize code patterns, suggest implementations, review code quality, identify edge cases
+
+### Integration Workflow
+
+```
+Step 1: Receive inputs
+   - PRD with requirements
+   - ADR with architecture
+   - Test stubs from Test Engineer
+   ↓
+Step 2: Pre-implementation check (Don't gold-plate)
+   - Is feature essential?
+   - Can we test manually?
+   - Is there a no-code version?
+   - What's the MVP?
+   ↓
+Step 3: @ChatGPT-Reasoning-Agent → Optimize implementation
+   - Suggest Next.js patterns
+   - Optimize TypeScript types
+   - Review tRPC procedures
+   - Optimize Drizzle queries
+   - Suggest shadcn/ui components
+   ↓
+Step 4: Implement (MVP-first)
+   - Schema (Drizzle)
+   - Domain layer (TypeScript, Zod)
+   - Data layer (tRPC, Drizzle)
+   - UI layer (Next.js, shadcn/ui)
+   - Route shells (Next.js App Router)
+   ↓
+Step 5: Verify
+   - All tests pass
+   - Code quality verified
+   - Observability events emitted
+   ↓
+Output: Complete feature implementation
+```
 
 ## Inputs
-- PRD documents (`/docs/product/PRD-<feature>.md`)
-- ADR documents (`/docs/engineering/ADR/###-<feature>.md`)
-- Test plan from Test Engineer
-- Passing tests (test stubs for new features)
-- Schema and router plans
+- **PRD documents** (`/docs/product/PRD-<feature>.md`) - REQUIRED
+- **ADR documents** (`/docs/engineering/ADR/###-<feature>.md`) - REQUIRED
+- **Test plan** from Test Engineer (test stubs for new features)
+- **User flows** (`/docs/ux/user-flows-<feature>.md`) (optional, for UI implementation)
+- **Keyboard flows** (`/docs/ux/keyboard-flows-<feature>.md`) (optional, for accessibility)
+- Schema and router plans (from ADR)
 - Existing codebase patterns
 
 ## Outputs
@@ -41,26 +90,47 @@ Build the feature to PRD/ADR/tests, with small diffs.
 ## Default Prompt Template
 
 ```
-@Implementer Build <FEATURE> following PRD and ADR.
+@Implementer Build <FEATURE> using Next.js, TypeScript, tRPC, Drizzle, and shadcn/ui.
 
-Follow:
-- PRD: /docs/product/PRD-<feature>.md
-- ADR: /docs/engineering/ADR/###-<feature>.md
-- Test plan from Test Engineer
+Inputs:
+- PRD: /docs/product/PRD-<feature>.md (REQUIRED)
+- ADR: /docs/engineering/ADR/###-<feature>.md (REQUIRED)
+- Test plan: From Test Engineer (test stubs)
+- User flows: /docs/ux/user-flows-<feature>.md (optional)
+- Keyboard flows: /docs/ux/keyboard-flows-<feature>.md (optional)
 
-Before implementing, check (Don't gold-plate):
-- Is the feature essential to the transformation story?
-- Could we test this manually before coding?
-- Is there a no-code version?
+Process:
+1) Pre-implementation check (Don't gold-plate):
+   - Is feature essential to transformation story?
+   - Could we test this manually before coding?
+   - Is there a no-code version?
+   - What's the MVP (smallest surface area)?
+2) @ChatGPT-Reasoning-Agent → Optimize implementation patterns
+   - Suggest Next.js App Router patterns
+   - Optimize TypeScript types and interfaces
+   - Review tRPC procedure structure
+   - Optimize Drizzle queries
+   - Suggest shadcn/ui components
+3) Implement (MVP-first, small diffs):
+   - Schema: /drizzle/schema.ts (Drizzle)
+   - Domain: src/features/<feature>/domain/ (TypeScript, Zod)
+   - Data: src/features/<feature>/data/ (tRPC, Drizzle)
+   - UI: src/features/<feature>/ui/ (Next.js, shadcn/ui)
+   - Routes: /app/(app)/<feature>/ (Next.js App Router)
+   - All states: loading/empty/error/success
+   - Observability events
+   - Feature flag gates where specified
+4) Verify:
+   - All tests pass
+   - Code quality verified
+   - Observability events emitted
 
-Implement (MVP-first - smallest surface area):
-- schema in /drizzle/schema.ts
-- router in src/features/<feature>/data/router.ts
-- UI in src/features/<feature>/ui
-- route shell in /app/(app)/<feature>
-- loading/empty/error/success states
-- observability events
-- feature flag gates where specified
+Technologies:
+- Next.js (App Router, Server Components, Server Actions)
+- TypeScript (strict types, interfaces, generics)
+- tRPC (procedures, middleware, validation)
+- Drizzle (schema, queries, migrations)
+- shadcn/ui (components, styling, accessibility)
 
 Make all tests pass.
 ```
@@ -271,7 +341,9 @@ export async function createFeatureAction(
 - Use Zod schemas from domain layer
 - Protected procedures use shared auth middleware
 
-### 4. UI Layer (`src/features/<feature>/ui/`)
+### 4. UI Layer (`src/features/<feature>/ui/`) - Next.js + shadcn/ui
+
+**CRITICAL**: Use Next.js App Router patterns and shadcn/ui components.
 
 #### Component Structure
 ```
@@ -280,23 +352,42 @@ src/features/<feature>/ui/
 ├── FeatureItem.tsx
 ├── FeatureForm.tsx
 ├── FeatureModal.tsx
-└── FeatureEmptyState.tsx
+├── FeatureEmptyState.tsx
+├── FeatureLoadingState.tsx
+└── FeatureErrorState.tsx
 ```
 
-#### Component Example with All States
+#### Next.js App Router Patterns
+
+**Server Components (Default)**:
+```typescript
+// Server component (default, no "use client")
+import { FeatureList } from "./FeatureList";
+
+export async function FeaturePage() {
+  // Can use async/await, direct DB access
+  const data = await getFeatureData();
+  
+  return <FeatureList initialData={data} />;
+}
+```
+
+**Client Components (When Needed)**:
 ```typescript
 "use client";
 
-import { useState } from "react";
-import { useFeatureFlag } from "@/lib/feature-flags";
+import { useState, useEffect } from "react";
+import { api } from "@/lib/trpc/client";
+import { Button } from "@/components/ui/button"; // shadcn/ui
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"; // shadcn/ui
 import { FeatureEmptyState } from "./FeatureEmptyState";
 import { FeatureLoadingState } from "./FeatureLoadingState";
 import { FeatureErrorState } from "./FeatureErrorState";
 
-export function FeatureList() {
-  const [isLoading, setIsLoading] = useState(true);
+export function FeatureList({ initialData }: { initialData: Feature[] }) {
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
-  const [items, setItems] = useState<Feature[]>([]);
+  const [items, setItems] = useState<Feature[]>(initialData);
   
   // Feature flag gate
   const isEnabled = useFeatureFlag("feature-name");
@@ -319,43 +410,187 @@ export function FeatureList() {
   
   // Success state
   return (
-    <div>
+    <div className="space-y-4">
       {items.map((item) => (
-        <FeatureItem key={item.id} item={item} />
+        <Card key={item.id}>
+          <CardHeader>
+            <CardTitle>{item.name}</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <FeatureItem item={item} />
+          </CardContent>
+        </Card>
       ))}
     </div>
   );
 }
 ```
 
-#### Rules
-- All states: loading, empty, error, success
-- Feature flag gates where specified in PRD
-- Server components by default
-- Client components only when necessary (`"use client"`)
-- Semantic HTML
-- Keyboard accessible
+#### shadcn/ui Components
 
-### 5. Route Shell (`/app/(app)/<feature>/page.tsx`)
+**Available Components** (use from `@/components/ui/`):
+- `Button`, `Card`, `Dialog`, `Form`, `Input`, `Select`, `Table`, `Toast`, etc.
+- All components are accessible (WCAG 2.2 AA)
+- All components support keyboard navigation
+- All components are customizable via Tailwind CSS
 
+**Example with shadcn/ui**:
 ```typescript
-import { FeatureList } from "@/features/feature/ui/FeatureList";
+"use client";
 
-export default function FeaturePage() {
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { createFeatureSchema } from "../domain/schemas";
+
+export function FeatureForm() {
+  const form = useForm({
+    resolver: zodResolver(createFeatureSchema),
+  });
+  
   return (
-    <div>
-      <h1>Feature</h1>
-      <FeatureList />
+    <Card>
+      <CardHeader>
+        <CardTitle>Create Feature</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+          <div className="space-y-4">
+            <div>
+              <Label htmlFor="name">Name</Label>
+              <Input
+                id="name"
+                {...form.register("name")}
+                aria-invalid={form.formState.errors.name ? "true" : "false"}
+              />
+              {form.formState.errors.name && (
+                <p className="text-sm text-destructive" role="alert">
+                  {form.formState.errors.name.message}
+                </p>
+              )}
+            </div>
+            <Button type="submit" disabled={form.formState.isSubmitting}>
+              {form.formState.isSubmitting ? "Creating..." : "Create"}
+            </Button>
+          </div>
+        </form>
+      </CardContent>
+    </Card>
+  );
+}
+```
+
+#### Rules
+- **Next.js App Router**: Server components by default, client components only when necessary
+- **shadcn/ui**: Use components from `@/components/ui/` for consistent, accessible UI
+- **All states**: loading, empty, error, success
+- **Feature flag gates**: Where specified in PRD
+- **Semantic HTML**: Proper HTML elements, ARIA attributes
+- **Keyboard accessible**: Tab order, focus management, keyboard shortcuts
+- **TypeScript**: Strict types, proper interfaces
+- **Tailwind CSS**: Use Tailwind for styling (shadcn/ui components use Tailwind)
+
+### 5. Route Shell (`/app/(app)/<feature>/page.tsx`) - Next.js App Router
+
+**CRITICAL**: Use Next.js App Router patterns (Server Components, Server Actions, Route Groups).
+
+#### Route Structure
+```
+/app/(app)/<feature>/
+├── page.tsx (list page)
+├── [id]/
+│   ├── page.tsx (detail page)
+│   └── edit/
+│       └── page.tsx (edit page)
+└── new/
+    └── page.tsx (create page)
+```
+
+#### Route Examples
+
+**List Page (Server Component)**:
+```typescript
+// /app/(app)/feature/page.tsx
+import { FeatureList } from "@/features/feature/ui/FeatureList";
+import { api } from "@/lib/trpc/server";
+import { requireAuth } from "@/lib/auth";
+
+export default async function FeaturePage() {
+  await requireAuth();
+  
+  // Server component can use async/await
+  const initialData = await api.feature.list();
+  
+  return (
+    <div className="container mx-auto py-8">
+      <h1 className="text-3xl font-bold mb-6">Features</h1>
+      <FeatureList initialData={initialData} />
+    </div>
+  );
+}
+```
+
+**Detail Page (Server Component)**:
+```typescript
+// /app/(app)/feature/[id]/page.tsx
+import { FeatureDetail } from "@/features/feature/ui/FeatureDetail";
+import { api } from "@/lib/trpc/server";
+import { notFound } from "next/navigation";
+
+export default async function FeatureDetailPage({
+  params,
+}: {
+  params: { id: string };
+}) {
+  const feature = await api.feature.getById({ id: params.id });
+  
+  if (!feature) {
+    notFound();
+  }
+  
+  return (
+    <div className="container mx-auto py-8">
+      <FeatureDetail feature={feature} />
+    </div>
+  );
+}
+```
+
+**Create Page (Server Component with Server Action)**:
+```typescript
+// /app/(app)/feature/new/page.tsx
+import { FeatureForm } from "@/features/feature/ui/FeatureForm";
+import { createFeatureAction } from "@/features/feature/data/actions";
+import { redirect } from "next/navigation";
+
+export default async function CreateFeaturePage() {
+  async function handleCreate(formData: FormData) {
+    "use server";
+    const result = await createFeatureAction(null, formData);
+    if (result.success) {
+      redirect(`/feature/${result.data.id}`);
+    }
+  }
+  
+  return (
+    <div className="container mx-auto py-8">
+      <h1 className="text-3xl font-bold mb-6">Create Feature</h1>
+      <FeatureForm action={handleCreate} />
     </div>
   );
 }
 ```
 
 #### Rules
-- Route shells only (import UI from features)
-- No duplicate UI under `/app`
-- Use route group `(app)` for authenticated routes
-- Server components by default
+- **Next.js App Router**: Use App Router patterns (Server Components, Server Actions, Route Groups)
+- **Route shells only**: Import UI from features, no duplicate UI under `/app`
+- **Route group `(app)`**: For authenticated routes
+- **Server components by default**: Use async/await, direct DB access
+- **Server Actions**: For form submissions, mutations
+- **TypeScript**: Proper types for params, searchParams
 
 ### 6. Observability Events
 
@@ -404,44 +639,111 @@ await requireFlag("feature-name");
 - Default to `false` for new features
 
 ## Workflow
-1. Review PRD, ADR, and test plan
+1. **Receive inputs** (PRD, ADR, test plan, user flows, keyboard flows)
 2. **Pre-Implementation Check** (Don't gold-plate):
    - Is feature essential to transformation story?
    - Could we test this manually before coding?
    - Is there a no-code version?
    - What's the MVP (smallest surface area)?
-3. Implement schema (following ADR plan, MVP-first)
-4. Implement domain layer (schemas, types, pure logic, MVP-first)
-5. Implement data layer (router, actions) with observability (MVP-first)
-6. Implement UI layer (all states) with feature flags (MVP-first)
-7. Create route shell
-8. Run tests after each change (must be green)
-9. Commit frequently with small diffs
-10. Verify all tests pass
-11. Verify observability events emitted
-12. Verify feature flags work
-13. Verify MVP validates narrative (not gold-plated)
+3. @ChatGPT-Reasoning-Agent → Optimize implementation patterns
+   - Suggest Next.js App Router patterns
+   - Optimize TypeScript types and interfaces
+   - Review tRPC procedure structure
+   - Optimize Drizzle queries
+   - Suggest shadcn/ui components
+4. **Implement schema** (Drizzle, following ADR plan, MVP-first)
+5. **Implement domain layer** (TypeScript, Zod schemas, pure logic, MVP-first)
+6. **Implement data layer** (tRPC procedures, Drizzle queries, Server Actions, observability, MVP-first)
+7. **Implement UI layer** (Next.js Server/Client Components, shadcn/ui, all states, feature flags, MVP-first)
+8. **Create route shells** (Next.js App Router, Server Components, Server Actions)
+9. **Run tests after each change** (must be green)
+10. **Commit frequently** (small diffs, one concern at a time)
+11. **Verify all tests pass** (unit, integration, E2E)
+12. **Verify observability events emitted** (success/failure on server actions)
+13. **Verify feature flags work** (gates where specified)
+14. **Verify MVP validates narrative** (not gold-plated)
+15. **Verify code quality** (TypeScript strict, no linting errors, follows patterns)
 
 ## Quality Criteria
-- Code follows PRD requirements
-- Code follows ADR architecture
+- **Code follows PRD requirements** (all acceptance criteria met)
+- **Code follows ADR architecture** (schema, router, UI structure as specified)
+- **Next.js App Router patterns** (Server Components, Server Actions, Route Groups)
+- **TypeScript strict types** (no `any`, proper interfaces, generics)
+- **tRPC procedures** (proper validation, error handling, multi-tenancy)
+- **Drizzle queries** (optimized queries, proper indexes, tenant scoping)
+- **shadcn/ui components** (accessible, keyboard navigable, consistent styling)
 - **MVP-first**: Smallest surface area to validate narrative
 - **Don't gold-plate**: Feature is essential, can't test manually, no no-code version
-- All tests pass
-- UI has all states (loading/empty/error/success)
-- Observability events emitted on server actions
-- Feature flags implemented where specified
-- Code follows project rules
-- No linting or type errors
-- Small, incremental diffs
-- Feature validates or expands the transformation story
+- **All tests pass** (unit, integration, E2E)
+- **UI has all states** (loading/empty/error/success)
+- **Observability events emitted** (success/failure on server actions)
+- **Feature flags implemented** (where specified in PRD)
+- **Code follows project rules** (architecture, conventions, patterns)
+- **No linting or type errors** (TypeScript strict, ESLint clean)
+- **Small, incremental diffs** (one concern at a time, commit frequently)
+- **Feature validates or expands the transformation story** (not gold-plated)
 
 ## Rules
-- Follow `.cursor/rules/001-core-architecture.mdc` for structure
-- Follow `.cursor/rules/110-next-app-router.mdc` for Next.js
-- Follow `.cursor/rules/120-trpc-conventions.mdc` for tRPC
-- Follow `.cursor/rules/130-drizzle-postgres.mdc` for Drizzle
-- Follow `.cursor/rules/020-core-observability.mdc` for events
-- Follow `.cursor/rules/160-feature-flags.mdc` for flags
-- Follow `.cursor/rules/025-core-session-hygiene.mdc` for diff management
-- Follow `.cursor/rules/260-playbook-multi-tenancy.mdc` for tenancy
+- **PRD and ADR are REQUIRED** (must follow requirements and architecture)
+- **Next.js App Router**: Follow `.cursor/rules/110-next-app-router.mdc` (Server Components, Server Actions, Route Groups)
+- **TypeScript**: Strict types, no `any`, proper interfaces, generics
+- **tRPC**: Follow `.cursor/rules/120-trpc-conventions.mdc` (procedures, middleware, validation)
+- **Drizzle**: Follow `.cursor/rules/130-drizzle-postgres.mdc` (schema, queries, migrations)
+- **shadcn/ui**: Use components from `@/components/ui/` (accessible, keyboard navigable)
+- **Architecture**: Follow `.cursor/rules/001-core-architecture.mdc` (feature module structure)
+- **Observability**: Follow `.cursor/rules/020-core-observability.mdc` (events on server actions)
+- **Feature flags**: Follow `.cursor/rules/160-feature-flags.mdc` (gates where specified)
+- **Diff management**: Follow `.cursor/rules/025-core-session-hygiene.mdc` (small diffs, commit frequently)
+- **Multi-tenancy**: Follow `.cursor/rules/260-playbook-multi-tenancy.mdc` (orgId scoping, tenant isolation)
+- **MVP-first**: Build smallest surface area to validate narrative
+- **Don't gold-plate**: Feature must be essential, can't test manually, no no-code version
+
+## Integration Points
+
+- **Input**: PRD (REQUIRED), ADR (REQUIRED), test plan, user flows, keyboard flows
+- **Output**: Complete feature implementation (schema, domain, data, UI, routes)
+- **Before**: Engineering Architect (provides ADR), Test Engineer (provides test stubs)
+- **After**: Test Engineer (verifies tests pass), Accessibility Agent (verifies a11y)
+
+## Example Usage
+
+```
+@Implementer Build Enterprise Design System feature using Next.js, TypeScript, tRPC, Drizzle, and shadcn/ui.
+
+Inputs:
+- PRD: /docs/product/PRD-enterprise-design-system.md
+- ADR: /docs/engineering/ADR/001-enterprise-design-system.md
+- Test plan: From Test Engineer
+- User flows: /docs/ux/user-flows-enterprise-design-system.md
+- Keyboard flows: /docs/ux/keyboard-flows-enterprise-design-system.md
+
+Process:
+1) Pre-implementation check (Don't gold-plate)
+2) @ChatGPT-Reasoning-Agent → Optimize implementation patterns
+3) Implement (MVP-first, small diffs):
+   - Schema: /drizzle/schema.ts (components, variants, usage tracking)
+   - Domain: src/features/design-system/domain/ (TypeScript, Zod)
+   - Data: src/features/design-system/data/ (tRPC, Drizzle)
+   - UI: src/features/design-system/ui/ (Next.js, shadcn/ui)
+   - Routes: /app/(app)/design-system/ (Next.js App Router)
+4) Verify: All tests pass, code quality, observability, feature flags
+
+Technologies:
+- Next.js (App Router, Server Components, Server Actions)
+- TypeScript (strict types, interfaces)
+- tRPC (procedures, validation)
+- Drizzle (schema, queries)
+- shadcn/ui (components, accessibility)
+
+Make all tests pass.
+```
+
+## See Also
+
+- `docs/agents/engineering-architect.md` - Engineering Architect (provides ADR)
+- `docs/agents/test-engineer.md` - Test Engineer (provides test stubs)
+- `docs/agents/chatgpt-reasoning-agent.md` - ChatGPT agent (for code optimization)
+- `.cursor/rules/110-next-app-router.mdc` - Next.js App Router rules
+- `.cursor/rules/120-trpc-conventions.mdc` - tRPC conventions
+- `.cursor/rules/130-drizzle-postgres.mdc` - Drizzle patterns
+- `.cursor/rules/001-core-architecture.mdc` - Architecture structure

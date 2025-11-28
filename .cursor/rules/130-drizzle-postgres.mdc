@@ -2,11 +2,19 @@
 
 Goal: Prevent path/layout disagreements between agents.
 
-- Canonical schema path: `/drizzle/schema.ts`
+- Canonical schema path: `src/lib/db/schema.ts` (NOT `/drizzle/schema.ts`)
 - Migrations in `/drizzle/migrations`
-- Drizzle client in `src/lib/db.ts`
+- Drizzle client in `src/lib/db/index.ts`
 - Tenant scoping rule: any org table includes `orgId` and is always filtered by `orgId` in queries
 - Use `pg` driver (Postgres)
 - All queries use parameterized statements (Drizzle handles this)
 - Transactions for multi-step operations
 - Index foreign keys and frequently queried columns
+
+## Related Rules
+
+- **131-database-supabase-setup.mdc** - Supabase connection patterns, SSL config, UUID generation
+- **132-workflow-import-patterns.mdc** - Importing existing documents as workflows
+- **133-hub-workflows-relationship.mdc** - Linking Projects and Workflows
+- **134-ui-text-wrapping.mdc** - Preventing text wrapping in UI
+- **135-api-endpoint-patterns.mdc** - Standard API endpoint patterns

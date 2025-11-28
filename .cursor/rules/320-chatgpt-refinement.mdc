@@ -1,0 +1,253 @@
+# Rule 320: ChatGPT Refinement
+
+> Mandate how ChatGPT refines Manus outputs in the discovery pipeline
+
+## Core Principle
+
+**ChatGPT refines Manus outputs by clustering, synthesizing, extracting, and validating. Cursor agents must request ChatGPT refinements where clarity is needed.**
+
+## Purpose
+
+Establish mandatory ChatGPT refinement patterns for Manus outputs, ensuring insights are properly clustered, synthesized, and validated before being used in structured documents.
+
+## ChatGPT Refinement Tasks
+
+### 1. Clustering Pain Points
+
+**Required For**: Stage 2 (Pain Signal Analysis)
+
+**ChatGPT Refinement**:
+- Cluster pains by frequency (Daily/Weekly/Monthly/Quarterly/Event-driven/Rare)
+- Cluster pains by severity (Mild/Moderate/Severe/Critical)
+- Cluster pains by urgency (Low/Medium/High/Critical)
+- Identify pain patterns across clusters
+- Group related pains together
+
+**Input**: Manus pain language dictionary  
+**Agent**: `@ChatGPT-Reasoning-Agent`  
+**Output**: Pain clusters for `@Pain-Signal-Agent`
+
+**Quality Criteria**:
+- ✅ All pains clustered by frequency, severity, urgency
+- ✅ Pain patterns identified
+- ✅ Related pains grouped together
+
+### 2. Synthesizing JTBD
+
+**Required For**: Stage 3 (Persona & JTBD)
+
+**ChatGPT Refinement**:
+- Synthesize main job from Manus JTBD extraction
+- Synthesize related jobs that support main job
+- Synthesize emotional jobs (how persona wants to feel)
+- Identify job relationships and hierarchy
+- Classify jobs as ongoing vs discrete
+
+**Input**: Manus JTBD extraction, persona narrative  
+**Agent**: `@ChatGPT-Reasoning-Agent`  
+**Output**: Structured JTBD for `@JTBD-Agent`
+
+**Quality Criteria**:
+- ✅ Main job clearly synthesized
+- ✅ Related jobs identified and synthesized
+- ✅ Emotional jobs synthesized
+- ✅ Job relationships mapped
+- ✅ Ongoing vs discrete jobs classified
+
+### 3. Extracting Opportunity Vectors
+
+**Required For**: Stage 4 (Opportunity & Moat)
+
+**ChatGPT Refinement**:
+- Extract winner-take-most dynamics
+- Extract switching cost potential
+- Extract data moat opportunities
+- Extract workflow embedding opportunities
+- Extract underserved segments (blue ocean pockets)
+
+**Input**: Manus competitor gaps, JTBD, pain signals  
+**Agent**: `@ChatGPT-Reasoning-Agent`  
+**Output**: Opportunity vectors for `@Opportunity-Moat-Agent`
+
+**Quality Criteria**:
+- ✅ Winner-take-most dynamics extracted
+- ✅ Switching cost potential analyzed
+- ✅ Data moat opportunities identified
+- ✅ Workflow embedding opportunities identified
+- ✅ Underserved segments identified
+
+### 4. Validating Competitor Assumptions
+
+**Required For**: Stage 1 (Niche Intelligence), Stage 4 (Opportunity & Moat)
+
+**ChatGPT Refinement**:
+- Validate competitor positioning claims
+- Validate competitor gap assumptions
+- Cross-check competitor narratives
+- Validate differentiation opportunities
+- Validate market positioning assumptions
+
+**Input**: Manus competitor analysis  
+**Agent**: `@ChatGPT-Reasoning-Agent`  
+**Output**: Validated competitor insights for `@Niche-Intelligence-Agent` and `@Opportunity-Moat-Agent`
+
+**Quality Criteria**:
+- ✅ Competitor positioning validated
+- ✅ Competitor gaps validated
+- ✅ Differentiation opportunities validated
+- ✅ Market positioning assumptions validated
+
+## Cursor Refinement Requests
+
+### When Cursor Must Request ChatGPT Refinement
+
+**Cursor agents MUST request ChatGPT refinement when**:
+
+1. **Clarity is needed**:
+   - Manus output is ambiguous or unclear
+   - Multiple interpretations possible
+   - Context is missing
+   - Details are incomplete
+
+2. **Synthesis is needed**:
+   - Multiple Manus outputs need to be combined
+   - Patterns need to be identified
+   - Relationships need to be mapped
+   - Hierarchy needs to be established
+
+3. **Validation is needed**:
+   - Assumptions need to be checked
+   - Claims need to be validated
+   - Gaps need to be confirmed
+   - Opportunities need to be verified
+
+4. **Clustering is needed**:
+   - Items need to be grouped
+   - Patterns need to be identified
+   - Categories need to be established
+   - Priorities need to be determined
+
+### Refinement Request Format
+
+**Cursor agents must use this format**:
+
+```
+@ChatGPT-Reasoning-Agent Refine Manus output for <TASK>.
+
+Input:
+- Manus output: [Specific Manus output]
+- Context: [Additional context needed]
+- Clarity needed: [What needs clarification]
+
+Refinement Task:
+- [Clustering pain points / Synthesizing JTBD / Extracting opportunity vectors / Validating competitor assumptions]
+
+Expected Output:
+- [What refined output should look like]
+
+Use Case:
+- [How refined output will be used]
+```
+
+## Refinement Workflow
+
+```
+Manus Output
+  ↓
+Cursor Agent Identifies Need for Refinement
+  ↓
+@ChatGPT-Reasoning-Agent → Refinement Request
+  ↓
+ChatGPT Refines:
+  - Clusters pain points
+  - Synthesizes JTBD
+  - Extracts opportunity vectors
+  - Validates competitor assumptions
+  ↓
+Refined Output
+  ↓
+Cursor Agent Uses Refined Output
+  ↓
+Structured Document
+```
+
+## Stage-by-Stage Refinement
+
+### Stage 1: Niche Intelligence
+
+**ChatGPT Refinements Required**:
+- Validate competitor assumptions
+- Synthesize niche insights
+- Cross-check niche narrative
+
+**Agent**: `@Niche-Intelligence-Agent`  
+**ChatGPT Agent**: `@ChatGPT-Reasoning-Agent`
+
+### Stage 2: Pain Signal Analysis
+
+**ChatGPT Refinements Required**:
+- Cluster pain points (frequency, severity, urgency)
+- Synthesize pain patterns
+- Validate pain intensity assumptions
+
+**Agent**: `@Pain-Signal-Agent`  
+**ChatGPT Agent**: `@ChatGPT-Reasoning-Agent`
+
+### Stage 3: Persona & JTBD
+
+**ChatGPT Refinements Required**:
+- Synthesize JTBD (main job, related jobs, emotional jobs)
+- Classify ongoing vs discrete jobs
+- Map triggers, success criteria, barriers
+
+**Agent**: `@JTBD-Agent`  
+**ChatGPT Agent**: `@ChatGPT-Reasoning-Agent`
+
+### Stage 4: Opportunity & Moat
+
+**ChatGPT Refinements Required**:
+- Extract opportunity vectors
+- Validate competitor assumptions
+- Synthesize moat opportunities
+
+**Agent**: `@Opportunity-Moat-Agent`  
+**ChatGPT Agent**: `@ChatGPT-Reasoning-Agent`
+
+## Quality Gates
+
+**ChatGPT refinement must pass all quality gates**:
+
+- ✅ **Pain points clustered** (by frequency, severity, urgency)
+- ✅ **JTBD synthesized** (main job, related jobs, emotional jobs)
+- ✅ **Opportunity vectors extracted** (all opportunity types identified)
+- ✅ **Competitor assumptions validated** (all assumptions checked)
+- ✅ **Clarity achieved** (ambiguous outputs clarified)
+- ✅ **Synthesis complete** (multiple outputs combined)
+- ✅ **Validation complete** (assumptions verified)
+
+## Non-Negotiables
+
+- **ChatGPT refinement required** - Cannot skip refinement when clarity is needed
+- **Clustering required** - Pain points must be clustered
+- **Synthesis required** - JTBD must be synthesized
+- **Extraction required** - Opportunity vectors must be extracted
+- **Validation required** - Competitor assumptions must be validated
+- **Cursor must request** - Cursor agents must request refinement when clarity is needed
+- **Refinement format required** - Must use specified refinement request format
+
+## Integration with Other Rules
+
+- **Rule 192 (ChatGPT Integration)**: General ChatGPT usage patterns
+- **Rule 301 (Discovery Overview)**: Discovery pipeline structure
+- **Rule 310 (Manus in Discovery)**: Manus output usage
+- **Rule 041-044 (Discovery Rules)**: Stage-specific requirements
+
+## Summary
+
+1. **ChatGPT refines Manus output by**: Clustering pain points, synthesizing JTBD, extracting opportunity vectors, validating competitor assumptions
+2. **Cursor must request refinement** - When clarity is needed, Cursor agents must request ChatGPT refinement
+3. **Refinement is mandatory** - Cannot skip refinement when needed
+4. **Quality gates enforced** - All refinements must pass quality checks
+5. **Stage-specific refinements** - Each discovery stage has specific refinement requirements
+
+**ChatGPT refinement is not optional. It's required to ensure clarity, synthesis, and validation of Manus outputs.**

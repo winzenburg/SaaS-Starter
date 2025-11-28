@@ -1,0 +1,144 @@
+# Next.js: Server/Client Component Separation
+
+**Goal**: Prevent "Attempted to call client function from server" errors by properly separating server and client components.
+
+## The Problem
+
+Next.js App Router has two types of components:
+- **Server Components**: Run on server, can use Node.js APIs (fs, etc.)
+- **Client Components**: Run in browser, can use browser APIs and hooks
+
+**Error**: "Attempted to call createMotionComponent() from the server"
+- Happens when using Framer Motion (`motion.div`) in a server component
+- Framer Motion requires client-side JavaScript
+
+## Solution Pattern
+
+### Split Components by Responsibility
+
+**Server Component** (`page.tsx`):
+- File system operations (`readdirSync`, `readFileSync`)
+- Database queries
+- API calls
+- Data fetching and preparation
+
+**Client Component** (`*-list.tsx`, `*-viewer.tsx`):
+- Animations (Framer Motion)
+- Interactivity (useState, useEffect)
+- Browser APIs (localStorage, etc.)
+- Event handlers
+
+### Example: Document Listing
+
+```tsx
+// ✅ Server Component (page.tsx)
+import { readdirSync } from "fs";
+import { DocumentList } from "./document-list";
+
+export default function DocumentsPage() {
+  // Server-side: Read files
+  const files = readdirSync("./docs")
+    .filter(f => f.endsWith(".md"));
+  
+  // Pass to client component
+  return <DocumentList files={files} />;
+}
+
+// ✅ Client Component (document-list.tsx)
+"use client";
+import { motion } from "framer-motion";
+
+export function DocumentList({ files }) {
+  // Client-side: Animations
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+    >
+      {/* UI */}
+    </motion.div>
+  );
+}
+```
+
+## Rules
+
+1. **File system operations** → Server component only
+2. **Framer Motion** → Client component only (requires `"use client"`)
+3. **Data fetching** → Server component
+4. **Animations/Interactivity** → Client component
+5. **Pass data as props** from server to client components
+
+## Common Patterns
+
+### Pattern 1: Listing Page
+
+```tsx
+// Server: page.tsx
+export default async function ListPage() {
+  const data = await fetchData();
+  return <ListComponent data={data} />;
+}
+
+// Client: list-component.tsx
+"use client";
+export function ListComponent({ data }) {
+  return <motion.div>{/* animated list */}</motion.div>;
+}
+```
+
+### Pattern 2: Detail Page
+
+```tsx
+// Server: page.tsx
+export default async function DetailPage({ params }) {
+  const content = readFileSync(`./docs/${params.id}.md`);
+  return <DetailViewer content={content} />;
+}
+
+// Client: detail-viewer.tsx
+"use client";
+export function DetailViewer({ content }) {
+  return <motion.div>{/* animated viewer */}</motion.div>;
+}
+```
+
+## When to Use "use client"
+
+**Always add `"use client"` when**:
+- Using Framer Motion (`motion.*`)
+- Using React hooks (`useState`, `useEffect`, etc.)
+- Using browser APIs (`localStorage`, `window`, etc.)
+- Handling events (`onClick`, `onChange`, etc.)
+- Using context providers
+
+**Never add `"use client"` when**:
+- Only reading files (`readFileSync`, `readdirSync`)
+- Only querying database
+- Only fetching data
+- Only rendering static content
+
+## Error Prevention Checklist
+
+Before using Framer Motion or hooks:
+- [ ] Is this component doing file system operations? → Keep as server component
+- [ ] Do I need animations/interactivity? → Extract to client component
+- [ ] Can I pass data as props? → Yes, server → client is fine
+- [ ] Did I add `"use client"`? → Required for client components
+
+## Troubleshooting
+
+### Error: "createMotionComponent from server"
+**Fix**: Move `motion.*` usage to a client component with `"use client"`
+
+### Error: "useState is not defined"
+**Fix**: Add `"use client"` directive at top of file
+
+### Error: "readdirSync is not a function"
+**Fix**: You're in a client component - move file operations to server component
+
+## References
+
+- Next.js Server Components: https://nextjs.org/docs/app/building-your-application/rendering/server-components
+- Framer Motion: https://www.framer.com/motion/
+- React Server Components: https://react.dev/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components

@@ -1,0 +1,90 @@
+# UI: Preventing Text Wrapping
+
+**Goal**: Ensure UI elements (badges, links, buttons) don't break across lines unexpectedly.
+
+## Problem
+
+Text in badges, links, and buttons can wrap to multiple lines, breaking layout and readability.
+
+## Solution: `whitespace-nowrap`
+
+### Badges
+
+```tsx
+<span className={`px-3 py-1.5 rounded-md text-sm font-bold whitespace-nowrap ${statusColor}`}>
+  {status.replace("_", " ").toUpperCase()}
+</span>
+```
+
+### Links
+
+```tsx
+<Link
+  href="/workflows/123"
+  className="text-sm font-semibold text-blue-400 hover:text-blue-300 whitespace-nowrap"
+>
+  View Details →
+</Link>
+```
+
+### Buttons with Icons
+
+```tsx
+<Button className="whitespace-nowrap">
+  <Icon className="w-4 h-4 mr-2" />
+  Action Text
+</Button>
+```
+
+## Rules
+
+1. **Always add `whitespace-nowrap`** to:
+   - Status/phase badges
+   - Navigation links
+   - Button text
+   - Any text that should stay on one line
+
+2. **Use `flex-wrap` on containers** if you want items to wrap as whole units:
+   ```tsx
+   <div className="flex items-center gap-2 flex-wrap">
+     <Badge className="whitespace-nowrap">Status</Badge>
+     <Badge className="whitespace-nowrap">Phase</Badge>
+   </div>
+   ```
+
+3. **Test responsive behavior** - ensure wrapping works on mobile when needed
+
+## Common Patterns
+
+### Badge Groups
+
+```tsx
+<div className="flex items-center gap-2 mb-3 flex-wrap">
+  <span className="px-3 py-1.5 rounded-md text-sm font-bold whitespace-nowrap bg-blue-500/20">
+    DISCOVERY
+  </span>
+  <span className="px-3 py-1.5 rounded-md text-sm font-bold whitespace-nowrap bg-green-500/20">
+    IN PROGRESS
+  </span>
+</div>
+```
+
+### Footer Links
+
+```tsx
+<footer className="flex justify-between items-center">
+  <time className="text-sm text-gray-500">Created: 2024-01-01</time>
+  <Link
+    href="/workflows/123"
+    className="text-sm font-semibold text-blue-400 whitespace-nowrap"
+  >
+    View Details →
+  </Link>
+</footer>
+```
+
+## Accessibility
+
+- `whitespace-nowrap` doesn't affect screen readers
+- Ensure text is still readable if it must wrap (use `break-words` if needed)
+- Test with long text to ensure layout doesn't break

@@ -1,0 +1,263 @@
+# Rule 301: Discovery Overview
+
+> Establish a structured discovery pipeline using Manus, ChatGPT, ElevenLabs, Midjourney, and Cursor agents
+
+## Core Principle
+
+**No engineering work begins until the Opportunity Score is ≥ 8.0/10. All discovery outputs must be complete and validated before proceeding to validation planning or engineering.**
+
+## Purpose
+
+Establish a structured discovery pipeline that systematically analyzes niche, pain signals, personas, and opportunities using AI-enhanced tools before any engineering work begins.
+
+## Mandates
+
+### 1. Opportunity Score Gate
+
+**CRITICAL**: No engineering work begins until Opportunity Score is ≥ 8.0/10.
+
+**Opportunity Score Calculation**:
+- Based on comprehensive analysis of:
+  - Niche viability and size
+  - Pain signal intensity and monetization potential
+  - Persona clarity and JTBD frequency
+  - Moat potential and defensibility
+- Score must be calculated and documented in Opportunity & Moat Report
+- Score < 8.0/10 requires pivot or kill decision
+
+**Enforcement**:
+- Engineering agents must check Opportunity Score before starting work
+- PRD cannot be created without Opportunity Score ≥ 8.0/10
+- ADR cannot be created without Opportunity Score ≥ 8.0/10
+
+### 2. Required Discovery Outputs
+
+**All discovery outputs must be complete before proceeding**:
+
+1. **Niche Intelligence** (`/docs/discovery/NICHE-INTEL-<idea-slug>.md`)
+   - Niche size, psychographics, subcultures
+   - Language patterns, identity signals, status markers
+   - Communities (Reddit, Slack, Discord, Facebook groups, LinkedIn clusters)
+   - Entry points (how founders earn trust)
+   - Niche worldview and cultural tensions
+
+2. **Pain Signals** (`/docs/discovery/PAIN-SIGNALS-<idea-slug>.md`)
+   - Pain clusters (frequency, severity, urgency)
+   - Top pain signals (ranked by total score)
+   - Moment of Acute Pain (MAAP) analysis
+   - Pain cost analysis (time, money, emotional)
+   - Pain scores (all 5 dimensions, total out of 50)
+
+3. **JTBD Analysis** (`/docs/discovery/JTBD-<idea-slug>.md`)
+   - Deep persona narrative (identity, beliefs, fears, aspirations)
+   - Main job + related jobs + emotional jobs
+   - Ongoing vs discrete jobs
+   - Triggers, success criteria, barriers
+   - ElevenLabs interview script (optional)
+
+4. **Opportunity & Moat Report** (`/docs/discovery/OPPORTUNITY-<idea-slug>.md`)
+   - Winner-take-most dynamics
+   - Switching cost potential
+   - Data moats (data exhaust, insights, tracking)
+   - Workflow embedding opportunities
+   - Underserved segments (blue ocean pockets)
+   - Midjourney/Canva prompts for "future vision" mockups
+   - **Opportunity Score** (must be ≥ 8.0/10)
+
+### 3. AI Tool Roles
+
+#### Manus: Source-of-Truth Narrative Engine
+
+**Role**: Primary narrative and insight generation
+
+**Responsibilities**:
+- Generate niche narrative and competitive scans
+- Extract pain language, complaints, unmet needs
+- Create persona narrative and identity language
+- Extract emotional drivers and JTBD
+- Analyze competitor landscape and gaps
+
+**Outputs Used By**:
+- All discovery agents
+- ChatGPT for refinement
+- Cursor agents for structured documents
+
+#### ChatGPT: Refinement, Clustering, Analysis
+
+**Role**: Synthesize, refine, cluster, and analyze insights
+
+**Responsibilities**:
+- Synthesize and cross-check Manus outputs
+- Cluster pains by frequency, severity, urgency
+- Structure JTBD (main job, related jobs, emotional jobs)
+- Identify winner-take-most dynamics
+- Analyze switching cost potential
+- Identify data moats and workflow embedding opportunities
+- Identify underserved segments
+
+**Outputs Used By**:
+- Cursor agents for structured documents
+- Visual Asset Agent for mockup prompts
+
+#### Cursor Agents: Structured Document Production
+
+**Role**: Produce all structured discovery documents
+
+**Agents**:
+- `@Niche-Intelligence-Agent` → `/docs/discovery/NICHE-INTEL-<idea-slug>.md`
+- `@Pain-Signal-Agent` → `/docs/discovery/PAIN-SIGNALS-<idea-slug>.md`
+- `@JTBD-Agent` → `/docs/discovery/JTBD-<idea-slug>.md`
+- `@Opportunity-Moat-Agent` → `/docs/discovery/OPPORTUNITY-<idea-slug>.md`
+
+**Responsibilities**:
+- Structure all discovery outputs
+- Ensure quality gates are met
+- Calculate Opportunity Score
+- Produce final discovery documents
+
+#### ElevenLabs: Persona Voice Interviews
+
+**Role**: Produce persona voice interviews for validation
+
+**Responsibilities**:
+- Generate interview scripts based on persona narrative
+- Create voice content for persona validation
+- Produce audio files for interviews (optional)
+
+**Outputs**:
+- Interview scripts in JTBD documents
+- Optional audio files for persona validation
+
+#### Midjourney/Canva: Conceptual Opportunity Visualization
+
+**Role**: Visualize conceptual opportunities and future vision
+
+**Responsibilities**:
+- Generate prompts for "future vision" mockups
+- Create visual representations of opportunities
+- Produce conceptual mockups for validation
+
+**Outputs**:
+- Midjourney prompts in Opportunity & Moat Report
+- Canva template recommendations
+- Visual style recommendations
+
+## Discovery Pipeline
+
+**See Rule 302 (Discovery Workflow) for complete 8-step process.**
+
+Quick reference:
+1. Manus → Niche Narrative + Pain Language + JTBD + Competitors
+2. ChatGPT → Refinement Packet
+3. @Niche-Intelligence-Agent → Niche Map
+4. @Pain-Signal-Agent → Pain Prioritization
+5. @JTBD-Agent → Persona + Jobs Map + Voice Script
+6. @Opportunity-Moat-Agent → Moat Strategy + Vision Prompts
+7. Score the Idea (0-10)
+8. If Score ≥ 8 → Move to Demand-Validation Agents
+
+## Opportunity Score Calculation
+
+**Opportunity Score** is calculated based on:
+
+1. **Niche Viability** (0-2.5 points)
+   - Niche size and growth potential
+   - Entry points and trust signals
+   - Community engagement
+
+2. **Pain Intensity** (0-2.5 points)
+   - Top pain signal scores (average of top 3)
+   - MAAP intensity
+   - Monetization potential
+
+3. **Persona Clarity** (0-1.5 points)
+   - Persona narrative completeness
+   - JTBD frequency and clarity
+   - Emotional driver strength
+
+4. **Moat Potential** (0-3.5 points)
+   - Winner-take-most dynamics
+   - Switching cost potential
+   - Data moat strength
+   - Workflow embedding potential
+   - Blue ocean opportunity size
+
+**Total**: 10.0 points maximum
+
+**Threshold**: ≥ 8.0/10 required to proceed
+
+## Quality Gates
+
+**All discovery outputs must pass quality gates**:
+
+- ✅ **Niche Intelligence complete** (all sections documented)
+- ✅ **Pain Signals complete** (all pains scored and prioritized)
+- ✅ **JTBD Analysis complete** (persona narrative, all jobs mapped)
+- ✅ **Opportunity & Moat Report complete** (all moat types analyzed)
+- ✅ **Opportunity Score calculated** (≥ 8.0/10 to proceed)
+
+## Integration with Other Rules
+
+- **Rule 300 (Discovery Master)**: Master discovery rule
+- **Rule 302 (Discovery Workflow)**: Complete 8-step workflow
+- **Rule 001 (Philosophy)**: Validation-first development
+- **Rule 027 (Desirability First)**: No build until validated
+- **Rule 041-044 (Discovery Rules)**: Detailed discovery stage requirements
+- **Rule 050 (Manus Integration)**: Manus output consumption patterns
+- **Rule 060 (ElevenLabs Integration)**: Voice content requirements
+- **Rule 070 (Midjourney/Canva)**: Visual asset requirements
+- **Rule 100 (PRD)**: PRD requires Opportunity Score ≥ 8.0/10
+- **Rule 110 (ADR)**: ADR requires Opportunity Score ≥ 8.0/10
+
+## Enforcement
+
+### Pre-Engineering Checks
+
+**Before any engineering work**:
+1. Check for `/docs/discovery/OPPORTUNITY-<idea-slug>.md`
+2. Verify Opportunity Score is documented
+3. Verify Opportunity Score ≥ 8.0/10
+4. If score < 8.0/10, require pivot or kill decision
+
+### Pre-PRD Checks
+
+**Before creating PRD**:
+1. All discovery outputs must exist
+2. Opportunity Score must be ≥ 8.0/10
+3. All quality gates must pass
+
+### Pre-ADR Checks
+
+**Before creating ADR**:
+1. PRD must exist (which requires Opportunity Score ≥ 8.0/10)
+2. Opportunity Score must be ≥ 8.0/10
+
+## Summary
+
+1. **No engineering until Opportunity Score ≥ 8.0/10**
+2. **All discovery outputs required**: Niche Intelligence, Pain Signals, JTBD Analysis, Opportunity & Moat Report
+3. **All discovery outputs go to `/docs/discovery/` with consistent `<idea-slug>` naming** (see Rule 003)
+4. **Manus is source-of-truth narrative engine**
+5. **ChatGPT refines, clusters, analyzes insights**
+6. **Cursor agents produce all structured documents**
+7. **ElevenLabs produces persona voice interviews**
+8. **Midjourney/Canva visualize conceptual opportunities**
+9. **Opportunity Score calculated from all discovery outputs**
+10. **Gate enforced**: Score < 8.0/10 requires pivot or kill
+
+**Discovery is not optional. It's required before any engineering work begins.**
+
+## See Also
+
+- Rule 300: Discovery Master
+- Rule 302: Discovery Workflow (complete 8-step process)
+- Rule 310: Manus in Discovery
+- Rule 320: ChatGPT Refinement
+- Rule 330: ElevenLabs Voice
+- Rule 340: Midjourney Visuals
+- Rule 041: Niche Intelligence
+- Rule 042: Pain Signal Analysis
+- Rule 043: Persona & JTBD
+- Rule 044: Opportunity & Moat
+- `docs/DISCOVERY-WORKFLOW.md` - Complete workflow documentation
+- `docs/HUB-AND-SPOKE.md` - Hub-and-spoke architecture

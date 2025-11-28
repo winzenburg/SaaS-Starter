@@ -1,0 +1,112 @@
+# Rule: Global Orchestration (Single Factory Pipeline)
+
+> Provide a single, repeatable, non-redundant pipeline for every SaaS idea: Discovery → Demand Validation → Build → Scale
+
+## GOAL
+
+Provide a single, repeatable, non-redundant pipeline for every SaaS idea:
+
+```
+Discovery → Demand Validation → Build → Scale
+```
+
+## SYSTEM OF RECORD
+
+- **Cursor is canonical** for docs, code, decisions, and checklists.
+- **All outputs must be written to `/docs` and committed.**
+
+## TOOL LANES (NO OVERLAP)
+
+- **Manus** = niche narrative, pains, JTBD seeds, competitors, pricing expectations, hooks.
+- **ChatGPT** = breadth/variants/fast clustering/prompt expansion.
+- **Claude** = depth/critique/red-team/editorial polish.
+- **Cursor agents** = structured docs + code.
+- **Lindy AI** = outreach, nurture, scheduling, logging, daily briefs.
+- **Glif** = creative batching (drafts, variants, micro-tools).
+- **Midjourney/Canva/Leonardo** = polish visuals.
+- **ElevenLabs** = founder + persona voice + demo narration.
+- **Clerk** = auth, sessions, orgs/roles, onboarding gates.
+- **Supabase** = app Postgres, RLS, storage, edge functions, webhooks.
+- **PostHog** = events, funnels, retention, feature flags, experiments.
+
+## GLOBAL GATES
+
+- **No demand validation** unless Discovery Score ≥ 8.0.
+- **No build** unless Validation Thresholds pass.
+- **Every build ships** behind PostHog feature flags.
+- **Multi-tenancy enforced** via Clerk roles + Supabase RLS.
+
+## MANDATORY DISCOVERY OUTPUTS PER IDEA
+
+1. **NICHE-INTEL-<idea-slug>.md** (`/docs/discovery/`)
+2. **PAIN-SIGNALS-<idea-slug>.md** (`/docs/discovery/`)
+3. **JTBD-<idea-slug>.md** (`/docs/discovery/`)
+4. **OPPORTUNITY-<idea-slug>.md** (`/docs/discovery/`) - Must include Opportunity Score
+5. **REDTEAM-<idea-slug>.md** (`/docs/discovery/`) - Optional but recommended
+
+**All discovery outputs must be complete before proceeding to validation.**
+
+## MANDATORY VALIDATION OUTPUTS PER IDEA
+
+1. **VALIDATION-PLAN-<idea-slug>.md** (`/docs/validation/`) - Tests + thresholds
+2. **LANDING-<idea-slug>.md** (`/docs/validation/`)
+3. **DISTRIBUTION-<idea-slug>.md** (`/docs/validation/`)
+4. **PRICING-TEST-<idea-slug>.md** (`/docs/validation/`)
+5. **CREATIVE-BATCH-<idea-slug>.md** (`/docs/validation/`)
+6. **RESULTS-<idea-slug>.md** (`/docs/validation/`) - Daily log
+7. **LINDY SPECS** (`/docs/automation/lindy/`) - Waitlist nurture, outreach sequencer, daily brief
+
+**All validation outputs must be complete before proceeding to build.**
+
+## MANDATORY BUILD OUTPUTS PER FEATURE
+
+1. **PRD-<feature-slug>.md** (`/docs/product/`)
+2. **ADR-<feature-slug>.md** (`/docs/adr/`)
+3. **PostHog EVENTS + FUNNEL + FLAG plan** (`/docs/analytics/`)
+4. **Supabase DATA MODEL + RLS + EDGE plan** (`/docs/engineering/`)
+5. **Clerk AUTH + ONBOARDING plan** (`/docs/engineering/`)
+6. **Test plan** (`/docs/engineering/`)
+7. **Implementation + a11y audit** (code in `/src/`, audit in `/docs/ux/`)
+
+**All build outputs must be complete before feature is considered "done".**
+
+## ORCHESTRATION BEHAVIOR
+
+**A single Orchestrator agent must:**
+
+- **Run steps in order** (Discovery → Validation → Build)
+- **Call specialist agents** (Niche-Intelligence, Pain-Signal, JTBD, Opportunity-Moat, Demand-Validator, Landing-Builder, etc.)
+- **Enforce gates** (Discovery Score ≥ 8.0, Validation Thresholds pass, Feature Flags required, Multi-tenancy enforced)
+- **Produce a final Proceed/Pivot/Kill decision** at each phase
+- **Maintain a single checklist file per idea** (`/docs/discovery/CHECKLIST-<idea-slug>.md`, `/docs/validation/CHECKLIST-<idea-slug>.md`, `/docs/engineering/CHECKLIST-<feature-slug>.md`)
+
+## INTEGRATION WITH OTHER RULES
+
+**This rule orchestrates all other rules:**
+
+- **Rule 001**: Philosophy (validation-first, AI-enhanced)
+- **Rule 002**: Model Routing (ChatGPT vs Claude)
+- **Rule 003**: Document Organization (one idea = one full doc set)
+- **Rule 040**: Demand Validation (validation requirements)
+- **Rule 041-044**: Discovery stage rules
+- **Rule 095-097**: Platform integration rules (PostHog, Supabase, Clerk)
+- **Rule 100-130**: Build phase rules (PRD, ADR, Tests, Implementation)
+- **Rule 200**: Validation Playbook
+- **Rule 210**: New Feature Playbook
+- **Rule 300-302**: Discovery workflow rules
+
+## SUMMARY
+
+**Single Factory Pipeline**: Discovery → Demand Validation → Build → Scale
+
+**System of Record**: Cursor (all docs, code, decisions, checklists)
+
+**Tool Lanes**: No overlap, single purpose per tool
+
+**Global Gates**: Discovery Score ≥ 8.0, Validation Thresholds pass, Feature Flags required, Multi-tenancy enforced
+
+**Mandatory Outputs**: 5 discovery docs, 7 validation docs, 7 build docs per idea/feature
+
+**Orchestration**: Single Orchestrator agent runs steps in order, calls specialist agents, enforces gates, produces decisions, maintains checklists
+
+**This creates a predictable, repeatable factory for building SaaS products.**

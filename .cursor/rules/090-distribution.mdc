@@ -1,0 +1,359 @@
+# Rule 090: Distribution
+
+> Every idea must include comprehensive distribution plans for discovery and validation
+
+## Core Principle
+
+**Distribution must lead all validation activity.**
+
+Distribution strategy is not optional—it's required before validation begins. Every idea must have a complete distribution plan.
+
+## Required Distribution Components
+
+Every idea must include:
+
+### 1. Discovery Distribution Plan
+
+**When**: Discovery phase
+
+**Purpose**: Distribute discovery content to validate niche, pain signals, and opportunities
+
+**Required Elements**:
+- **Communities**: Top 15 communities for discovery validation
+- **Content Types**: Discovery questions, pain signal validation, niche intelligence gathering
+- **Posting Strategy**: How to engage communities during discovery
+- **Engagement Goals**: What signals to look for (pain language, willingness to pay, urgency)
+
+**Output**: Included in discovery documents
+
+**Agent**: `@Niche-Intelligence-Agent`, `@Pain-Signal-Agent`, `@Distribution-Operator`
+
+### 2. Validation Distribution Plan
+
+**When**: Validation phase
+
+**Purpose**: Distribute validation content to test demand and willingness to pay
+
+**Required Elements**:
+- **Communities**: Top 15 communities for validation
+- **Content Types**: Landing page shares, DM outreach, social posts, validation tests
+- **Posting Strategy**: 7-14 day posting calendar
+- **Engagement Goals**: Conversion targets, DM reply rates, willingness-to-pay signals
+
+**Output**: `/docs/validation/DISTRIBUTION-<idea-slug>.md`
+
+**Agent**: `@Distribution-Operator`
+
+### 3. Top 15 Communities List
+
+**When**: Discovery and validation phases
+
+**Purpose**: Identify and prioritize communities for distribution
+
+**Required Elements**:
+- **Community Name**: Exact name of community
+- **Platform**: Reddit, Slack, Discord, Facebook, LinkedIn, X/Twitter, TikTok
+- **Size**: Member count or engagement level
+- **Relevance**: Why this community is relevant
+- **Entry Requirements**: How to join or participate
+- **Engagement Style**: How to engage authentically
+- **Trust Signals**: How to earn trust in this community
+- **Optimal Posting Times**: When to post for maximum engagement
+
+**Output Format**:
+```markdown
+## Top 15 Communities
+
+### 1. [Community Name]
+- **Platform**: [Platform]
+- **Size**: [Member count]
+- **Relevance**: [Why relevant]
+- **Entry Requirements**: [How to join]
+- **Engagement Style**: [How to engage]
+- **Trust Signals**: [How to earn trust]
+- **Optimal Posting Times**: [When to post]
+
+[Repeat for all 15 communities]
+```
+
+**Agent**: `@Distribution-Operator`, `@Niche-Intelligence-Agent`
+
+### 4. 7–14 Day Posting Calendar
+
+**When**: Validation phase
+
+**Purpose**: Structured content schedule for validation period
+
+**Required Elements**:
+- **Day-by-Day Schedule**: Specific posts for each day
+- **Platform Assignment**: Which platform for each post
+- **Content Type**: Post type (question, story, value prop, CTA)
+- **Timing**: Specific posting times
+- **Goals**: What each post is testing or validating
+- **Follow-up**: How to follow up on engagement
+
+**Output Format**:
+```markdown
+## 7-14 Day Posting Calendar
+
+### Day 1: [Date]
+- **Platform**: [Platform]
+- **Time**: [Specific time]
+- **Content Type**: [Post type]
+- **Content**: [Post content]
+- **Goal**: [What this post tests]
+- **Follow-up**: [How to follow up]
+
+[Repeat for all days]
+```
+
+**Agent**: `@Distribution-Operator`
+
+### 5. 20 DM Scripts for Cold Outreach
+
+**When**: Validation phase
+
+**Purpose**: Personalized outreach scripts for direct engagement
+
+**Required Elements**:
+- **20 Distinct Variants**: Different approaches, angles, and hooks
+- **Personalization**: How to personalize each script
+- **Platform-Specific**: Scripts for different platforms (LinkedIn, X/Twitter, etc.)
+- **Tone Variants**: Casual, professional, value-focused
+- **CTA Variants**: Different call-to-action approaches
+- **Follow-up Sequences**: How to follow up if no response
+
+**Output Format**:
+```markdown
+## 20 DM Outreach Scripts
+
+### Script 1: [Angle/Hook]
+**Platform**: [Platform]
+**Tone**: [Tone]
+**Personalization**: [How to personalize]
+
+**Script**:
+[Complete DM script]
+
+**CTA**: [Call to action]
+**Follow-up**: [Follow-up sequence]
+
+[Repeat for all 20 scripts]
+```
+
+**Agent**: `@Distribution-Operator`
+
+### 6. Hooks, Angles, Story Arcs
+
+**When**: Discovery and validation phases
+
+**Purpose**: Compelling content hooks that grab attention and drive engagement
+
+**Required Elements**:
+- **Hooks**: Attention-grabbing opening lines
+- **Angles**: Different perspectives and approaches
+- **Story Arcs**: Narrative structures for content
+- **Emotional Triggers**: What emotions to appeal to
+- **Value Propositions**: How to communicate value
+- **Transformation Narratives**: Before/after stories
+
+**Output Format**:
+```markdown
+## Hooks, Angles, Story Arcs
+
+### Hooks
+1. [Hook 1]: [Description]
+2. [Hook 2]: [Description]
+[Continue...]
+
+### Angles
+1. [Angle 1]: [Description]
+2. [Angle 2]: [Description]
+[Continue...]
+
+### Story Arcs
+1. [Story Arc 1]: [Structure]
+2. [Story Arc 2]: [Structure]
+[Continue...]
+```
+
+**Agent**: `@Distribution-Operator`, `@Landing-Builder`
+
+### 7. Platform-Specific Content Variants
+
+**When**: Validation phase
+
+**Purpose**: Content optimized for each platform's unique format and audience
+
+**Required Platforms**:
+- **X/Twitter**: Thread format, character limits, engagement patterns
+- **LinkedIn**: Professional tone, article format, B2B focus
+- **Reddit**: Community rules, authentic engagement, value-first
+- **TikTok**: Short-form video, trending formats, entertainment value
+
+**Output Format**:
+```markdown
+## Platform-Specific Content Variants
+
+### X/Twitter
+**Format**: Thread (5-10 tweets)
+**Character Limit**: 280 per tweet
+**Tone**: Conversational, value-focused
+**Engagement Pattern**: Questions, polls, threads
+
+**Variant 1**: [Content]
+**Variant 2**: [Content]
+**Variant 3**: [Content]
+
+### LinkedIn
+**Format**: Article or post
+**Character Limit**: 3000 for posts
+**Tone**: Professional, thought leadership
+**Engagement Pattern**: Long-form content, comments, shares
+
+**Variant 1**: [Content]
+**Variant 2**: [Content]
+**Variant 3**: [Content]
+
+### Reddit
+**Format**: Post or comment
+**Character Limit**: Varies by subreddit
+**Tone**: Authentic, value-first, community-focused
+**Engagement Pattern**: Questions, discussions, AMAs
+
+**Variant 1**: [Content]
+**Variant 2**: [Content]
+**Variant 3**: [Content]
+
+### TikTok
+**Format**: Short-form video (15-60 seconds)
+**Character Limit**: N/A (video)
+**Tone**: Entertaining, educational, authentic
+**Engagement Pattern**: Trends, challenges, tutorials
+
+**Variant 1**: [Content concept]
+**Variant 2**: [Content concept]
+**Variant 3**: [Content concept]
+```
+
+**Agent**: `@Distribution-Operator`
+
+## Distribution Must Lead Validation
+
+**CRITICAL**: Distribution strategy must be created before validation begins.
+
+### Pre-Validation Requirements
+
+**Before starting validation**:
+1. ✅ Discovery distribution plan must exist
+2. ✅ Validation distribution plan must exist
+3. ✅ Top 15 communities must be identified
+4. ✅ 7-14 day posting calendar must be created
+5. ✅ 20 DM scripts must be ready
+6. ✅ Hooks, angles, story arcs must be defined
+7. ✅ Platform-specific content variants must be created
+
+### Validation Workflow with Distribution
+
+```
+Validation Planning
+  ↓
+Distribution Strategy Created (MUST BE FIRST)
+  ↓
+Top 15 Communities Identified
+  ↓
+7-14 Day Posting Calendar Created
+  ↓
+20 DM Scripts Prepared
+  ↓
+Hooks, Angles, Story Arcs Defined
+  ↓
+Platform-Specific Content Created
+  ↓
+Validation Execution (Distribution Leads)
+  ↓
+Results Tracking
+```
+
+## Integration Points
+
+### Discovery Phase
+
+**Required in**: Discovery documents (NICHE-INTEL, PAIN-SIGNALS, JTBD, OPPORTUNITY)
+
+**Required Elements**:
+- Discovery distribution plan
+- Top 15 communities for discovery
+- Community engagement strategy
+
+**Agents**: `@Niche-Intelligence-Agent`, `@Pain-Signal-Agent`, `@Distribution-Operator`
+
+### Validation Phase
+
+**Required in**: `/docs/validation/DISTRIBUTION-<idea-slug>.md`
+
+**Required Elements**:
+- Validation distribution plan
+- Top 15 communities for validation
+- 7-14 day posting calendar
+- 20 DM scripts
+- Hooks, angles, story arcs
+- Platform-specific content variants
+
+**Agent**: `@Distribution-Operator`
+
+## Quality Gates
+
+**All distribution components must meet quality criteria:**
+
+- ✅ **Discovery distribution plan**: Communities identified, engagement strategy defined
+- ✅ **Validation distribution plan**: Complete strategy for validation period
+- ✅ **Top 15 communities**: All communities relevant, entry requirements clear, engagement style defined
+- ✅ **7-14 day posting calendar**: Day-by-day schedule, platform assignments, timing, goals
+- ✅ **20 DM scripts**: Distinct variants, personalization guidance, platform-specific, tone variants
+- ✅ **Hooks, angles, story arcs**: Compelling hooks, diverse angles, clear story arcs
+- ✅ **Platform-specific content**: Content optimized for each platform's format and audience
+
+## Enforcement
+
+### Pre-Validation Checks
+
+**Before starting validation**:
+1. ✅ Distribution strategy must exist
+2. ✅ All 7 distribution components must be complete
+3. ✅ Distribution plan must lead validation activity
+
+### Pre-Landing Page Checks
+
+**Before creating landing page**:
+1. ✅ Distribution plan must exist
+2. ✅ Top 15 communities must be identified
+3. ✅ Platform-specific content must be ready
+
+### Agent Requirements
+
+**All relevant agents must**:
+1. Create distribution plans as part of standard outputs
+2. Include all 7 required distribution components
+3. Ensure distribution leads validation activity
+4. Create platform-specific content variants
+
+## Integration with Other Rules
+
+- **Rule 001 (Philosophy)**: Validation-first development, distribution required
+- **Rule 040 (Demand Validation)**: Distribution must be part of validation plan
+- **Rule 050 (Manus Integration)**: Use Manus hooks and DM scripts in distribution
+- **Rule 080 (Midjourney/Canva)**: Visual assets for social ad content
+- **Rule 300 (Discovery Master)**: Distribution in discovery phase
+
+## Summary
+
+1. **Distribution must lead validation** - Distribution strategy created before validation begins
+2. **7 Required Components**: Discovery plan, validation plan, top 15 communities, posting calendar, DM scripts, hooks/angles/story arcs, platform-specific content
+3. **Top 15 Communities**: Relevant communities with entry requirements and engagement strategies
+4. **7-14 Day Posting Calendar**: Structured content schedule for validation period
+5. **20 DM Scripts**: Distinct variants with personalization and platform-specific guidance
+6. **Platform-Specific Content**: Content optimized for X, LinkedIn, Reddit, TikTok
+7. **Quality Gates**: All components must meet quality criteria
+
+**Distribution is not optional. It must lead all validation activity.**

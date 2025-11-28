@@ -16,12 +16,19 @@ Greg Isenberg's approach validates demand before building. This playbook extends
 
 ```
 1. @Insight-Strategist → Unfair Insight Brief
-2. @Market-Scanner → Community Heat & Niche Durability
-3. @Product-Strategist → Narrative PRD + Desirability Tests
-4. @Retention-Architect → Weekly/Monthly Value Design
-5. @Moat-MRR-Strategist → Moat Map + Expansion Plan
-6. @Portfolio-Prioritizer → Kill/Pivot/Proceed
-7. Only if Proceed → handoff to 210-playbook-new-feature
+2. @Manus-Narrative-Agent → Narrative + Personas (parallel)
+3. @Market-Scanner → Community Heat & Niche Durability
+4. @Demand-Validator → Validation Plan (8-12 tests, thresholds, sprint)
+5. @Red-Team-Strategist → Validation Red-Team (critique validation plan, pricing/channel fragility)
+6. @Landing-Builder → Landing Page (copy, visuals, audio, optional code)
+7. @Creative-Batch-Operator → Creative Batch (Glif workflows for landing, social, ads)
+8. @Distribution-Operator → Distribution Strategy (communities, calendar, DM scripts)
+9. @Pricing-Tester → Pricing Test Strategy (bands, features, fake-door, WTP)
+10. @Product-Strategist → Narrative PRD + Desirability Tests
+11. @Retention-Architect → Weekly/Monthly Value Design
+12. @Moat-MRR-Strategist → Moat Map + Expansion Plan
+13. @Portfolio-Prioritizer → Kill/Pivot/Proceed
+14. Only if Proceed → handoff to 210-playbook-new-feature
 ```
 
 ## Steps
@@ -73,34 +80,255 @@ Greg Isenberg's approach validates demand before building. This playbook extends
 
 **Quality Gate**: Community heat must be high, niche durability must be strong
 
-### 3. @Product-Strategist → Narrative PRD + Desirability Tests
+### 3. @Manus-Narrative-Agent → Narrative + Personas
 
-**Input**: Unfair Insight Brief, Community Heat Map  
+**Input**: Unfair Insight Brief  
+**Output**: Narrative, Personas, Competitor Analysis  
+**Agent**: Manus Narrative Agent
+
+**Required Artifacts**:
+- Narrative in `docs/product/NARRATIVE-<product>.md`
+- Personas in `docs/research/PERSONA-<product>.md`
+- Competitor analysis in `docs/research/COMPETITORS-<product>.md`
+
+**Deliverables**:
+- Compelling narrative (5 variations, select best)
+- Detailed personas with identity-level motivations
+- Competitor positioning analysis
+
+**Quality Gate**: Narrative must connect identity-level pain to solution, personas must reflect real motivations
+
+**Note**: This step can run in parallel with Market Scanner
+
+### 4. @Demand-Validator → Validation Plan
+
+**Input**: Manus Narrative, Personas, Competitor Analysis  
+**Output**: Complete validation plan  
+**Agent**: Demand-Validator (AI-enhanced)
+
+**Required Artifacts**:
+- Validation plan in `docs/validation/VALIDATION-PLAN-<product>.md`
+- Extracted JTBD, persona language, frustrations, emotional drivers from Manus output
+- 8-12 validation tests:
+  - Social narrative tests
+  - Fake door tests
+  - Landing/waitlist test
+  - DM outreach test
+  - Concierge MVP test
+  - Prepayment/preorder test
+  - Additional tests as needed
+- Test thresholds (success, kill, pivot, proceed) for each test
+- Kill/pivot/proceed rules
+- 7-14 day sprint plan
+
+**AI Integration**:
+- Extracts elements from Manus.im narrative and persona outputs
+- Uses ChatGPT Reasoning Agent to design optimal test sequence
+- Synthesizes into actionable validation plan
+
+**Deliverables**:
+- Complete validation plan ready for execution
+- Clear thresholds for decision-making
+- Sprint plan with daily check-ins
+
+**Quality Gate**: All required test types must be included, thresholds must be specific and actionable
+
+### 5. @Red-Team-Strategist → Validation Red-Team
+
+**Input**: Validation Plan, Landing (if available), Distribution (if available), Pricing Test (if available)  
+**Output**: Validation Red-Team document  
+**Agent**: Red-Team Strategist (Claude-first)
+
+**Required Artifacts**:
+- Red-team document in `docs/validation/REDTEAM-<product>.md`
+- Validation plan critique
+- Pricing/channel fragility analysis
+- Pivot recommendations
+- Recommended next move
+
+**AI Integration**:
+- Uses Claude as primary reasoning model for deep critique
+- Identifies false assumptions in validation plan
+- Finds competitor "why now" risks
+- Stress tests moat assumptions
+- Points out pricing/channel fragility
+- Suggests pivots
+
+**Deliverables**:
+- Critical analysis of validation strategy
+- Risk assessment
+- Pivot suggestions
+- Recommended next move (Proceed / Pivot / Kill)
+
+**Quality Gate**: Must identify at least 3 potential weaknesses or risks
+
+**Note**: This step is optional but highly recommended before executing validation tests.
+
+### 6. @Landing-Builder → Landing Page
+
+**Input**: Manus Narrative, Value Proposition, Validation Plan  
+**Output**: Landing page copy, visuals, audio, optional Next.js code  
+**Agent**: Landing-Builder (AI-enhanced)
+
+**Required Artifacts**:
+- Landing page documentation in `docs/validation/LANDING-<product>.md`
+- Hero section (5 variants: direct value, problem-solution, identity, transformation, social proof)
+- Offer framing (value stack, transformation promise, urgency, risk reversal, social proof)
+- Transformation narrative (before → transformation → after)
+- A/B headline variants (3+ variants testing different angles)
+- Visual prompts for Midjourney (3-5 hero image prompts)
+- Canva template recommendations (templates, brand specs, layout)
+- ElevenLabs founder intro script and audio
+- Optional: Next.js landing page at `/app/(marketing)/<idea>/page.tsx`
+
+**AI Integration**:
+- Uses Manus.im to generate all copy (hero, offer, narrative, headlines)
+- Uses Visual Asset Agent to create Midjourney prompts and Canva recommendations
+- Uses ElevenLabs Voice Agent to generate founder intro audio
+- Optionally uses Cursor to generate Next.js landing page code
+
+**Deliverables**:
+- Complete landing page documentation
+- Visual asset specifications
+- Audio content
+- Optional: Next.js landing page code
+
+**Quality Gate**: 5 hero variants created, all elements align with Manus narrative, landing page ready for validation tests
+
+### 7. @Distribution-Operator → Distribution Strategy
+
+**Input**: Manus Social Hooks, Persona Insights, Landing Page Copy  
+**Output**: Distribution strategy with communities, calendar, DM scripts  
+**Agent**: Distribution-Operator (AI-enhanced)
+
+**Required Artifacts**:
+- Distribution strategy in `docs/validation/DISTRIBUTION-<product>.md`
+- Top 15 community list (with platform, size, engagement, persona fit, access, strategy)
+- 7-day posting calendar (platform, content type, hook, time, goal, expected outcome)
+- 20 DM outreach variants (4 categories: problem-solution, value-first, social proof, direct ask)
+- Content formats for LinkedIn, X, Reddit, TikTok
+- Paid channel recommendations (platform, audience, budget, test duration, success criteria)
+
+**AI Integration**:
+- Uses ChatGPT Reasoning Agent to identify communities and create posting calendar
+- Uses Manus Narrative Agent to generate social hooks and DM scripts
+- Uses ChatGPT Reasoning Agent to create content formats and recommend paid channels
+
+**Deliverables**:
+- Complete distribution strategy
+- Actionable posting calendar
+- Personalized DM scripts
+- Platform-specific content formats
+- Paid channel test recommendations
+
+**Quality Gate**: Top 15 communities identified, 7-day calendar actionable, 20 DM variants cover different approaches, content formats ready for all platforms
+
+### 8. @Creative-Batch-Operator → Creative Batch
+
+**Input**: Landing copy, Distribution plan, Validation plan  
+**Output**: Creative batch workflows  
+**Agent**: Creative Batch Operator (Glif)
+
+**Required Artifacts**:
+- Creative batch document in `docs/validation/CREATIVE-BATCH-<product>.md`
+- 3 Glif workflow designs:
+  - Landing hero + UI mock batch
+  - Social card/carousel batch
+  - Ad creative batch (3 angles × 3 variants)
+- Glif block plans for each workflow
+- Exact prompts + variables
+- Output mapping instructions
+
+**Deliverables**:
+- Glif workflows ready for execution
+- Prompts and variables defined
+- Output mapping documented
+
+**Quality Gate**: All workflows must be modular and single-purpose
+
+### 9. @Pricing-Tester → Pricing Test Strategy
+
+**Input**: Manus Pricing Expectations, Competitive Landscape, Value Proposition  
+**Output**: Pricing test strategy with bands, features, fake-door experiments, WTP questions  
+**Agent**: Pricing-Tester (AI-enhanced)
+
+**Required Artifacts**:
+- Pricing test strategy in `docs/validation/PRICING-TEST-<product>.md`
+- 3-5 pricing bands (with target persona, value prop, price rationale, expected conversion)
+- Feature differentiation per tier (core features, limitations, upgrade triggers)
+- Fake-door experiments (price point testing, tier structure testing, feature differentiation testing, anchoring testing)
+- WTP interview questions (price discovery, value perception, decision-making - 15 questions total)
+- Premium anchor variant (purpose, target, features, positioning, anchor effect)
+
+**AI Integration**:
+- Uses Manus Narrative Agent to generate price expectations and WTP interview questions
+- Uses ChatGPT Reasoning Agent to analyze competitive pricing, design pricing bands, create fake-door experiments, and design premium anchor
+
+**Deliverables**:
+- Complete pricing test strategy
+- Actionable pricing bands with feature differentiation
+- Fake-door experiments ready for execution
+- WTP interview questions ready for interviews
+- Premium anchor variant for value contrast
+
+**Quality Gate**: 3-5 pricing bands defined, feature differentiation creates upgrade path, fake-door experiments test key hypotheses, WTP questions cover all areas, premium anchor creates value contrast
+
+### 10. @Product-Strategist → Narrative PRD + Desirability Tests
+
+**Input**: Unfair Insight Brief, Community Heat Map, **Manus Persona + JTBD** (REQUIRED)  
 **Output**: Narrative PRD + Desirability Validation  
-**Agent**: Product Strategist
+**Agent**: Product Strategist (AI-enhanced)
+
+**Required Inputs**:
+- Manus Persona (`/docs/research/PERSONA-<product>.md`) - REQUIRED
+- Manus JTBD (extracted from Manus narrative or persona docs) - REQUIRED
+- Unfair Insight Brief
+- Community Heat Map
+- Landing Page Copy (optional)
+- Pricing Test Strategy (optional)
 
 **Required Artifacts**:
 - PRD in `docs/product/PRD-<product>.md`
+- **Manus Persona + JTBD integration** (persona language used in user stories, JTBD extracted from Manus)
 - Value Story
 - Why Now
 - Lo-Fi Validation Plan
 - 10 High-Velocity Tests
 - "If users love this, what will they tell friends?"
-- Early adopter profile (community, identity, motivation)
+- Early adopter profile (extracted from Manus persona: community, identity, motivation)
 - Distribution from Day 1
 - Retention Thesis
 - Monetization Wedge
 - First Paid Moment
 - JTBD Frequency Modeling
+- **Success metrics (leading/lagging)** - REQUIRED
+- **Risks + mitigations** - REQUIRED
+- **Rollout plan with feature flags** - REQUIRED
+- **Analytics events schema** - REQUIRED
+
+**AI Integration**:
+- Extracts persona language, identity-level motivations, and JTBD from Manus outputs
+- Uses ChatGPT Reasoning Agent to refine PRD structure and optimize success metrics
+- Uses Manus persona language in user stories and early adopter profile
 
 **Deliverables**:
-- Narrative PRD
+- Narrative PRD (using Manus persona language and JTBD)
 - Desirability validation plan
+- Success metrics (leading/lagging indicators)
+- Risk analysis with mitigations
+- Rollout plan with feature flags
+- Analytics events schema
 - At least 3 demand-validation tests passed
 
-**Quality Gate**: At least 3 demand-validation tests must pass
+**Quality Gate**: 
+- Manus Persona + JTBD must be integrated
+- At least 3 demand-validation tests must pass
+- Success metrics must be defined
+- Risks and mitigations must be documented
+- Feature flags must be planned
+- Analytics events schema must be complete
 
-### 4. @Retention-Architect → Weekly/Monthly Value Design
+### 11. @Retention-Architect → Weekly/Monthly Value Design
 
 **Input**: PRD, Moat & MRR Strategy  
 **Output**: Retention Architecture  
@@ -122,7 +350,7 @@ Greg Isenberg's approach validates demand before building. This playbook extends
 
 **Quality Gate**: Weekly/monthly value drivers must be clear and actionable
 
-### 5. @Moat-MRR-Strategist → Moat Map + Expansion Plan
+### 12. @Moat-MRR-Strategist → Moat Map + Expansion Plan
 
 **Input**: PRD, Retention Architecture  
 **Output**: Moat & MRR Strategy  
@@ -145,7 +373,7 @@ Greg Isenberg's approach validates demand before building. This playbook extends
 
 **Quality Gate**: Moat map must include 2-3 types, Data Moat Thesis must be complete
 
-### 6. @Portfolio-Prioritizer → Kill/Pivot/Proceed
+### 13. @Portfolio-Prioritizer → Kill/Pivot/Proceed
 
 **Input**: All previous artifacts  
 **Output**: Portfolio Scoring + Verdict  
@@ -170,7 +398,7 @@ Greg Isenberg's approach validates demand before building. This playbook extends
 
 **Quality Gate**: Verdict must be clear and justified
 
-### 7. Only if Proceed → Handoff to 210-playbook-new-feature
+### 14. Only if Proceed → Handoff to 210-playbook-new-feature
 
 **Input**: All validation artifacts  
 **Output**: Handoff to engineering  
@@ -200,22 +428,54 @@ Greg Isenberg's approach validates demand before building. This playbook extends
 - [ ] Niche durability is strong
 - [ ] Social moat potential exists
 
-### Gate 3: Desirability Validation
+### Gate 3: Validation Plan
+- [ ] Validation plan includes 8-12 tests
+- [ ] All required test types included
+- [ ] Test thresholds are specific and actionable
+- [ ] Kill/pivot/proceed rules are clear
+- [ ] Sprint plan is executable
+
+### Gate 4: Landing Page
+- [ ] 5 hero section variants created
+- [ ] Offer framing is compelling
+- [ ] Transformation narrative is clear
+- [ ] A/B headline variants ready
+- [ ] Visual prompts created
+- [ ] Founder intro audio generated
+- [ ] Landing page ready for validation tests
+
+### Gate 5: Distribution Strategy
+- [ ] Top 15 communities identified with clear rationale
+- [ ] 7-day posting calendar is actionable
+- [ ] 20 DM variants cover different approaches
+- [ ] Content formats provided for all platforms
+- [ ] Paid channel recommendations are specific
+- [ ] Distribution strategy ready for execution
+
+### Gate 6: Pricing Test Strategy
+- [ ] 3-5 pricing bands defined with clear rationale
+- [ ] Feature differentiation creates natural upgrade path
+- [ ] Fake-door experiments test key pricing hypotheses
+- [ ] WTP interview questions cover all discovery areas
+- [ ] Premium anchor variant creates value contrast
+- [ ] Pricing strategy ready for validation tests
+
+### Gate 7: Desirability Validation
 - [ ] At least 3 demand-validation tests passed
 - [ ] Value Story is clear
 - [ ] Early adopter profile is defined
 
-### Gate 4: Retention Validation
+### Gate 8: Retention Validation
 - [ ] Weekly/monthly value drivers are mapped
 - [ ] Retention architecture is designed
 - [ ] Churn-prevention mechanisms are defined
 
-### Gate 5: Moat & MRR Validation
+### Gate 9: Moat & MRR Validation
 - [ ] Moat map includes 2-3 types
 - [ ] Data Moat Thesis is complete
 - [ ] Expansion revenue model is defined
 
-### Gate 6: Portfolio Validation
+### Gate 10: Portfolio Validation
 - [ ] Portfolio score is calculated
 - [ ] Expected value is modeled
 - [ ] Verdict is clear: Kill, Pivot, or Proceed
@@ -242,7 +502,7 @@ Greg Isenberg's approach validates demand before building. This playbook extends
 ## Rules
 
 - **No build until validated**: Building before validation is forbidden (`.cursor/rules/027-core-desirability-first.mdc`)
-- **All steps required**: All 6 steps must be completed before handoff to engineering
+- **All steps required**: All 12 steps must be completed before handoff to engineering
 - **Quality gates enforced**: Each step has quality gates that must be passed
 - **Verdict required**: Clear Kill/Pivot/Proceed verdict must be made
 
@@ -254,7 +514,12 @@ This playbook integrates with:
 - `.cursor/rules/207-playbook-portfolio-management.mdc` - Portfolio management (prerequisite)
 - `.cursor/rules/210-playbook-new-feature.mdc` - New feature (handoff target)
 - `docs/agents/insight-strategist.md` - Insight & Narrative Strategist
+- `docs/agents/manus-narrative-agent.md` - Manus Narrative Agent
 - `docs/agents/market-scanner.md` - Market Scanner
+- `docs/agents/demand-validator.md` - Demand-Validator (AI-enhanced)
+- `docs/agents/landing-builder.md` - Landing-Builder (AI-enhanced)
+- `docs/agents/distribution-operator.md` - Distribution-Operator (AI-enhanced)
+- `docs/agents/pricing-tester.md` - Pricing-Tester (AI-enhanced)
 - `docs/agents/product-strategist.md` - Product Strategist
 - `docs/agents/retention-architect.md` - Retention Architect
 - `docs/agents/moat-mrr-strategist.md` - Moat & MRR Strategist
@@ -265,7 +530,7 @@ This playbook integrates with:
 **Heat gets you in. Durability makes it a real SaaS business.**
 
 This playbook validates both:
-- **Heat Filter (Isenberg)**: "Do a tribe of real humans urgently want this?" (Steps 1-3)
-- **Durability Filter**: "Will this still matter and keep paying 12–36 months from now?" (Steps 4-6)
+- **Heat Filter (Isenberg)**: "Do a tribe of real humans urgently want this?" (Steps 1-8)
+- **Durability Filter**: "Will this still matter and keep paying 12–36 months from now?" (Steps 9-11)
 
 Only ideas that pass both filters proceed to engineering.

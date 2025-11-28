@@ -15,8 +15,34 @@ function getDbConnection() {
   }
 
   if (!poolInstance) {
+    const connectionString = process.env.DATABASE_URL;
+    if (!connectionString) {
+      return null;
+    }
+
+    // Parse connection string to check if SSL is needed
+    const url = new URL(connectionString);
+    const isSupabase = url.hostname.includes("supabase.com") || url.hostname.includes("pooler.supabase.com");
+    const needsSSL = url.hostname !== "localhost" && url.hostname !== "127.0.0.1";
+    
     poolInstance = new Pool({
-      connectionString: process.env.DATABASE_URL,
+      connectionString,
+      // Add SSL configuration for remote databases
+      // Supabase requires SSL but may use self-signed certificates
+      ...(needsSSL && {
+        ssl: process.env.DATABASE_SSL === "false" ? false : {
+          rejectUnauthorized: isSupabase ? false : (process.env.DATABASE_SSL_REJECT_UNAUTHORIZED !== "false"),
+        },
+      }),
+      // Connection timeout
+      connectionTimeoutMillis: 10000,
+      // Query timeout
+      query_timeout: 10000,
+    });
+
+    // Handle connection errors
+    poolInstance.on("error", (err) => {
+      console.error("Unexpected database pool error:", err);
     });
   }
 

@@ -1,0 +1,234 @@
+# Manus Orchestration Flow
+
+> Proper orchestration of Manus outputs through ChatGPT refinement to Cursor agents
+
+## Core Principle
+
+**Manus outputs must flow through the orchestration pipeline: Manus → ChatGPT → Cursor Agents. Never skip the refinement step.**
+
+## Orchestration Flow
+
+According to Rule 000 (Orchestration), the tool lanes are:
+
+```
+Manus → ChatGPT → Claude → Cursor Agents
+```
+
+**Tool Responsibilities**:
+- **Manus** = niche narrative, pains, JTBD seeds, competitors, pricing expectations, hooks (raw outputs)
+- **ChatGPT** = breadth/variants/fast clustering/prompt expansion (refinement)
+- **Claude** = depth/critique/red-team/editorial polish (optional)
+- **Cursor agents** = structured docs + code (final structured documents)
+
+## Proper Manus Orchestration
+
+### Step 1: Manus Generates Raw Discovery Pack
+
+**Agent**: `@Manus-Narrative-Agent`  
+**Tool**: Manus.im  
+**Output**: Raw discovery pack (markdown format) with:
+- Niche narrative
+- Pain language dictionary
+- Persona narrative
+- JTBD seeds
+- Competitor analysis
+- Pricing expectations
+- Distribution hooks
+- References (all sources)
+
+**Location**: Save raw Manus output to:
+- `/docs/discovery/MANUS-<idea-slug>.md` (raw output, for reference)
+
+**Do NOT create structured documents yet.**
+
+### Step 2: ChatGPT Refines Manus Output
+
+**Agent**: `@ChatGPT-Reasoning-Agent`  
+**Tool**: ChatGPT  
+**Input**: Raw Manus discovery pack  
+**Refinement Tasks**:
+1. **Cluster pain points** (by frequency, severity, urgency)
+2. **Synthesize JTBD** (main job, related jobs, emotional jobs)
+3. **Extract opportunity vectors** (winner-take-most, switching costs, data moats)
+4. **Validate competitor assumptions** (cross-check positioning, gaps)
+
+**Output**: Refined discovery pack with:
+- Clustered pain points
+- Synthesized JTBD structure
+- Opportunity vectors ranked
+- Validated competitor insights
+
+**Location**: Save refined output to:
+- `/docs/discovery/CHATGPT-REFINEMENT-<idea-slug>.md` (refined insights)
+
+**See Rule 320 (ChatGPT Refinement) for detailed refinement requirements.**
+
+### Step 3: Cursor Agents Create Structured Documents
+
+**Agents**: Discovery agents (`@Niche-Intelligence-Agent`, `@Pain-Signal-Agent`, `@JTBD-Agent`, `@Opportunity-Moat-Agent`)  
+**Tool**: Cursor  
+**Input**: 
+- Raw Manus discovery pack (`/docs/discovery/MANUS-<idea-slug>.md`)
+- ChatGPT refinement (`/docs/discovery/CHATGPT-REFINEMENT-<idea-slug>.md`)
+
+**Output**: Structured discovery documents:
+- `/docs/discovery/NICHE-INTEL-<idea-slug>.md` (from Manus niche narrative + ChatGPT refinement)
+- `/docs/discovery/PAIN-SIGNALS-<idea-slug>.md` (from Manus pain language + ChatGPT clustering)
+- `/docs/discovery/JTBD-<idea-slug>.md` (from Manus persona + ChatGPT JTBD synthesis)
+- `/docs/discovery/OPPORTUNITY-<idea-slug>.md` (from Manus competitors + ChatGPT opportunity vectors)
+
+**These are the final structured documents that appear on the Hub.**
+
+## What NOT to Do
+
+### ❌ Do NOT Create Documents Directly from Manus
+
+**Wrong Flow**:
+```
+Manus → NARRATIVE.md, PERSONA.md, COMPETITORS.md (structured documents)
+```
+
+**Why This is Wrong**:
+- Skips ChatGPT refinement step
+- Manus outputs are raw and need clustering/synthesis
+- Violates orchestration rule (tool lanes)
+- Creates intermediate documents that shouldn't exist
+
+### ❌ Do NOT Create Intermediate Validation Documents
+
+**Wrong**: Creating `NARRATIVE-<idea-slug>.md`, `PERSONA-<idea-slug>.md`, `COMPETITORS-<idea-slug>.md` as separate validation documents.
+
+**Why This is Wrong**:
+- These are not validation documents (they're discovery inputs)
+- They duplicate content that should be in discovery documents
+- They create confusion about document organization
+- They violate Rule 003 (Document Organization)
+
+## Correct Flow
+
+### ✅ Correct Discovery Flow
+
+```
+1. Manus → Raw discovery pack
+   Output: /docs/discovery/MANUS-<idea-slug>.md
+
+2. ChatGPT → Refine discovery pack
+   Output: /docs/discovery/CHATGPT-REFINEMENT-<idea-slug>.md
+
+3. Cursor Agents → Create structured discovery documents
+   Outputs:
+   - /docs/discovery/NICHE-INTEL-<idea-slug>.md
+   - /docs/discovery/PAIN-SIGNALS-<idea-slug>.md
+   - /docs/discovery/JTBD-<idea-slug>.md
+   - /docs/discovery/OPPORTUNITY-<idea-slug>.md
+```
+
+### ✅ Validation Documents Come Later
+
+**Validation documents** (NARRATIVE, PERSONA, COMPETITORS for validation phase) are different:
+- They are created by validation agents (`@Landing-Builder`, `@Distribution-Operator`, etc.)
+- They use the discovery documents as inputs
+- They are in `/docs/validation/` or `/projects/<project-slug>/`
+- They are created during the validation phase, not discovery phase
+
+## Document Organization
+
+### Discovery Phase Documents
+
+**Location**: `/docs/discovery/` or `/projects/<project-slug>/`
+
+**Documents**:
+1. `MANUS-<idea-slug>.md` - Raw Manus discovery pack (reference)
+2. `CHATGPT-REFINEMENT-<idea-slug>.md` - Refined insights (reference)
+3. `NICHE-INTEL-<idea-slug>.md` - Final structured document (appears on Hub)
+4. `PAIN-SIGNALS-<idea-slug>.md` - Final structured document (appears on Hub)
+5. `JTBD-<idea-slug>.md` - Final structured document (appears on Hub)
+6. `OPPORTUNITY-<idea-slug>.md` - Final structured document (appears on Hub)
+
+### Validation Phase Documents
+
+**Location**: `/docs/validation/` or `/projects/<project-slug>/`
+
+**Documents** (created later, during validation):
+- `VALIDATION-PLAN-<idea-slug>.md`
+- `LANDING-<idea-slug>.md` (may reference narrative/persona for messaging)
+- `DISTRIBUTION-<idea-slug>.md` (may reference persona for targeting)
+- `PRICING-TEST-<idea-slug>.md` (may reference competitors for pricing)
+
+## Agent Workflow
+
+### @Manus-Narrative-Agent
+
+**Task**: Generate raw discovery pack  
+**Output**: `/docs/discovery/MANUS-<idea-slug>.md`  
+**Next Step**: Pass to `@ChatGPT-Reasoning-Agent` for refinement
+
+### @ChatGPT-Reasoning-Agent
+
+**Task**: Refine Manus discovery pack  
+**Input**: `/docs/discovery/MANUS-<idea-slug>.md`  
+**Output**: `/docs/discovery/CHATGPT-REFINEMENT-<idea-slug>.md`  
+**Next Step**: Pass to discovery agents
+
+### @Niche-Intelligence-Agent
+
+**Task**: Create niche intelligence document  
+**Inputs**: 
+- `/docs/discovery/MANUS-<idea-slug>.md` (niche narrative)
+- `/docs/discovery/CHATGPT-REFINEMENT-<idea-slug>.md` (validated competitor insights)
+**Output**: `/docs/discovery/NICHE-INTEL-<idea-slug>.md`
+
+### @Pain-Signal-Agent
+
+**Task**: Create pain signal analysis  
+**Inputs**:
+- `/docs/discovery/MANUS-<idea-slug>.md` (pain language dictionary)
+- `/docs/discovery/CHATGPT-REFINEMENT-<idea-slug>.md` (clustered pain points)
+**Output**: `/docs/discovery/PAIN-SIGNALS-<idea-slug>.md`
+
+### @JTBD-Agent
+
+**Task**: Create persona and JTBD document  
+**Inputs**:
+- `/docs/discovery/MANUS-<idea-slug>.md` (persona narrative, JTBD seeds)
+- `/docs/discovery/CHATGPT-REFINEMENT-<idea-slug>.md` (synthesized JTBD structure)
+**Output**: `/docs/discovery/JTBD-<idea-slug>.md`
+
+### @Opportunity-Moat-Agent
+
+**Task**: Create opportunity and moat analysis  
+**Inputs**:
+- `/docs/discovery/MANUS-<idea-slug>.md` (competitor analysis, pricing expectations)
+- `/docs/discovery/CHATGPT-REFINEMENT-<idea-slug>.md` (opportunity vectors, validated assumptions)
+**Output**: `/docs/discovery/OPPORTUNITY-<idea-slug>.md`
+
+## Quality Gates
+
+**Manus orchestration must pass all quality gates**:
+
+- ✅ **Manus output generated** - Raw discovery pack exists
+- ✅ **ChatGPT refinement completed** - Refined insights available
+- ✅ **Structured documents created** - All discovery documents complete
+- ✅ **Proper flow followed** - Manus → ChatGPT → Cursor agents
+- ✅ **No intermediate documents** - No NARRATIVE/PERSONA/COMPETITORS in discovery phase
+- ✅ **Documents in correct locations** - Discovery docs in `/docs/discovery/` or project folder
+
+## Integration with Other Rules
+
+- **Rule 000 (Orchestration)**: Tool lanes (Manus → ChatGPT → Cursor)
+- **Rule 003 (Document Organization)**: Document locations and naming
+- **Rule 004 (Document Quality)**: Only real, complete documents
+- **Rule 050 (Manus Integration)**: Manus consumption patterns
+- **Rule 310 (Manus in Discovery)**: Manus usage in discovery
+- **Rule 320 (ChatGPT Refinement)**: ChatGPT refinement requirements
+
+## Summary
+
+1. **Manus generates raw discovery pack** - Save to `/docs/discovery/MANUS-<idea-slug>.md`
+2. **ChatGPT refines discovery pack** - Save to `/docs/discovery/CHATGPT-REFINEMENT-<idea-slug>.md`
+3. **Cursor agents create structured documents** - Final discovery documents in `/docs/discovery/`
+4. **No intermediate documents** - Do not create NARRATIVE/PERSONA/COMPETITORS in discovery phase
+5. **Proper flow required** - Never skip ChatGPT refinement step
+6. **Validation documents come later** - Created during validation phase, not discovery
+
+**Follow the orchestration flow: Manus → ChatGPT → Cursor Agents. Never skip steps.**

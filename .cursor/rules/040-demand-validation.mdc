@@ -1,0 +1,262 @@
+# Rule 040: Demand Validation
+
+> Every idea must undergo Demand Validation before Product Strategy
+
+## Core Principle
+
+**Every idea must undergo Demand Validation before Product Strategy.**
+
+No PRD, no engineering, no product strategy until demand validation passes all thresholds.
+
+## Required Validation Components
+
+### 1. Manus.im Insights (10+ Required)
+
+**Agent**: `@Manus-Narrative-Agent`  
+**Rule**: See Rule 310 (Manus in Discovery)
+
+**Required Outputs** (minimum 10 insights):
+- Pain language dictionary (direct quotes, frustration statements)
+- Persona narrative (identity, beliefs, fears, aspirations)
+- Emotional drivers (what emotions drive actions)
+- JTBD extraction (main job, related jobs, emotional jobs)
+- Competitor landscape and gaps
+- Pricing expectations
+- Value propositions
+- Social hooks
+- DM outreach scripts
+- Transformation narratives
+
+**Output**: Included in discovery documents and validation plan
+
+### 2. Validation Plan
+
+**Agent**: `@Demand-Validator`  
+**Output**: `/docs/validation/VALIDATION-PLAN-<idea-slug>.md`
+
+**Required Sections**:
+- **8-12 Validation Tests**:
+  - Social narrative tests
+  - Fake door tests
+  - Landing/waitlist test
+  - DM outreach test
+  - Concierge MVP test
+  - Prepayment/preorder test
+  - WTP (willingness-to-pay) interviews
+  - Community engagement tests
+- **Test Thresholds**: Clear success/failure criteria for each test
+- **Kill/Pivot/Proceed Rules**: Decision criteria based on results
+- **7-14 Day Sprint Plan**: Timeline for executing tests
+- **Metrics Dashboard**: How to track and measure results
+
+### 3. Landing Page Copy + Visual Prompts
+
+**Agent**: `@Landing-Builder`  
+**Output**: `/docs/validation/LANDING-<idea-slug>.md`
+
+**Required Components**:
+- Hero section (5 variants)
+- Offer framing and transformation narrative
+- A/B headline variants
+- Value proposition statements
+- Visual prompts for Midjourney + Canva
+- ElevenLabs "founder intro" script
+- Optional: Next.js landing page code
+
+### 4. Posting Calendar + DM Outreach
+
+**Agent**: `@Distribution-Operator`  
+**Output**: `/docs/validation/DISTRIBUTION-<idea-slug>.md`
+
+**Required Components**:
+- **Top 15 Community List**: Reddit, Slack, Discord, Facebook groups, LinkedIn clusters
+- **7-Day Posting Calendar**: Content schedule with optimal posting times
+- **20 DM Outreach Variants**: Personalized outreach scripts
+- **Platform-by-Platform Hooks**: LinkedIn, X/Twitter, Reddit, TikTok formats
+- **Content Formats**: Ready-to-post content for each platform
+- **Paid Smoke Test Recommendations**: Channels for paid validation
+
+### 5. Pricing Smoke Test
+
+**Agent**: `@Pricing-Tester`  
+**Output**: `/docs/validation/PRICING-TEST-<idea-slug>.md`
+
+**Required Components**:
+- **3-5 Pricing Bands**: Different price points to test
+- **Feature Differentiation per Tier**: Clear value differentiation
+- **Fake-Door Experiments**: Test willingness-to-pay without building
+- **WTP Interview Questions**: Structured questions for pricing interviews
+- **Premium Anchor Variant**: High-end pricing option for anchoring
+
+### 6. Test Results
+
+**Agent**: `@Demand-Validator` (or manual execution)  
+**Output**: `/docs/validation/RESULTS-<idea-slug>.md`
+
+**Required Sections**:
+- Test execution summary
+- Results for each validation test
+- Metrics dashboard (conversions, engagement, responses)
+- Threshold analysis (pass/fail for each threshold)
+- Kill/Pivot/Proceed recommendation
+- Next steps
+
+## Success Thresholds
+
+**All thresholds must be met to proceed to Product Strategy.**
+
+### Traffic Conversion Thresholds
+
+- **Warm Traffic Conversion**: ≥ 15%
+  - Definition: Traffic from communities, DMs, referrals
+  - Measurement: Signups / Warm Traffic Visitors
+  - Example: 100 warm visitors → 15+ signups
+
+- **Cold Traffic Conversion**: ≥ 3-8%
+  - Definition: Traffic from ads, social posts, cold outreach
+  - Measurement: Signups / Cold Traffic Visitors
+  - Example: 100 cold visitors → 3-8+ signups
+
+### Engagement Thresholds
+
+- **DM Reply Rate**: ≥ 20%
+  - Definition: Responses to DM outreach
+  - Measurement: Replies / DMs Sent
+  - Example: 50 DMs sent → 10+ replies
+
+### Willingness-to-Pay Thresholds
+
+- **Clear Willingness-to-Pay Signals**: Required
+  - Definition: Explicit statements of willingness to pay
+  - Examples:
+    - "I'd pay $X/month for this"
+    - "When can I sign up?"
+    - "Take my money"
+    - "I need this now"
+
+- **Prepayment OR "I'd Pay Now" Commitments**: At least one of:
+  - **Option 1**: At least one prepayment
+    - Definition: Actual money received before product exists
+    - Example: Preorder, prepayment, early access payment
+  - **Option 2**: 3+ "I'd pay now" commitments
+    - Definition: Explicit verbal/written commitment to pay immediately
+    - Example: "I'd pay $X right now if this existed"
+
+## Failure Criteria
+
+**If any threshold is not met → Pivot or Kill.**
+
+### Pivot Triggers
+
+- Moderate interest but wrong pain point
+- Moderate interest but different persona
+- Moderate interest but wrong pricing
+- Moderate interest but wrong positioning
+
+### Kill Triggers
+
+- < 3% cold traffic conversion
+- < 10% warm traffic conversion
+- < 10% DM reply rate
+- 0 willingness-to-pay signals
+- 0 prepayments and 0 "I'd pay now" commitments
+- Clear "we don't need this" feedback
+
+## Enforcement
+
+### Pre-Product Strategy Gates
+
+**Before creating Product Strategy (PRD, Moat Strategy, Retention Architecture)**:
+
+1. ✅ All 6 validation components must exist
+2. ✅ All success thresholds must be met
+3. ✅ Test results documented in RESULTS document
+4. ✅ Clear proceed decision (not pivot or kill)
+
+### Agent Enforcement
+
+**Cursor agents must enforce these thresholds:**
+
+- **@Demand-Validator**: Must check thresholds before recommending proceed
+- **@Product-Strategist**: Must verify validation passed before creating PRD
+- **@Moat-MRR-Strategist**: Must verify validation passed before creating moat strategy
+- **@Retention-Architect**: Must verify validation passed before creating retention architecture
+
+### Automated Checks
+
+**Before proceeding to Product Strategy, verify**:
+
+```typescript
+// Pseudo-code for threshold checks
+const validationPassed = 
+  warmTrafficConversion >= 0.15 &&
+  coldTrafficConversion >= 0.03 &&
+  dmReplyRate >= 0.20 &&
+  hasWillingnessToPaySignals &&
+  (hasPrepayment || "idPayNow"Commitments >= 3);
+
+if (!validationPassed) {
+  throw new Error("Demand validation thresholds not met. Pivot or kill required.");
+}
+```
+
+## Validation Workflow
+
+```
+Raw Idea
+  ↓
+Discovery Complete (Opportunity Score ≥ 8.0/10)
+  ↓
+Step 1: @Manus-Narrative-Agent → 10+ Insights
+  ↓
+Step 2: @Demand-Validator → Validation Plan
+  ↓
+Step 3: @Landing-Builder → Landing Page Copy + Visuals
+  ↓
+Step 4: @Distribution-Operator → Posting Calendar + DM Outreach
+  ↓
+Step 5: @Pricing-Tester → Pricing Smoke Test
+  ↓
+Step 6: Execute Validation Tests (7-14 days)
+  ↓
+Step 7: Document Results → RESULTS-<project-slug>.md
+  ↓
+Step 8: Check Thresholds
+  ↓
+  ├─ All Thresholds Met → Proceed to Product Strategy
+  ├─ Some Thresholds Met → Pivot
+  └─ No Thresholds Met → Kill
+```
+
+## Integration with Other Rules
+
+- **Rule 001 (Philosophy)**: Validation-first development
+- **Rule 300 (Discovery Master)**: Discovery must complete before validation
+- **Rule 301 (Discovery Overview)**: Opportunity Score ≥ 8.0/10 required
+- **Rule 310 (Manus in Discovery)**: Manus insights required
+- **Rule 050 (Manus Integration)**: Manus output consumption
+- **Rule 060 (ElevenLabs Integration)**: Voice content for landing pages
+- **Rule 070 (Midjourney/Canva)**: Visual assets for landing pages
+- **Rule 080 (Distribution)**: Distribution map requirements
+- **Rule 100 (PRD)**: PRD requires validation passed
+
+## Quality Gates
+
+**All validation components must pass quality gates**:
+
+- ✅ **Manus Insights**: 10+ insights documented
+- ✅ **Validation Plan**: 8-12 tests, thresholds, kill/pivot/proceed rules
+- ✅ **Landing Page**: 5 hero variants, visual prompts, ElevenLabs script
+- ✅ **Distribution**: Top 15 communities, 7-day calendar, 20 DM variants
+- ✅ **Pricing Test**: 3-5 pricing bands, fake-door experiments, WTP questions
+- ✅ **Test Results**: All tests executed, metrics documented, thresholds checked
+
+## Summary
+
+1. **Every idea must undergo Demand Validation** before Product Strategy
+2. **6 Required Components**: Manus insights, Validation Plan, Landing Page, Distribution, Pricing Test, Results
+3. **Success Thresholds**: Warm ≥ 15%, Cold ≥ 3-8%, DM ≥ 20%, WTP signals, Prepayment or 3 commitments
+4. **Failure → Pivot or Kill**: Thresholds not met requires pivot or kill decision
+5. **Agent Enforcement**: Cursor agents must enforce thresholds before proceeding
+
+**Demand Validation is not optional. It's required before any Product Strategy work begins.**

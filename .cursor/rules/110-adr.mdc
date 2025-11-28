@@ -1,0 +1,351 @@
+# Rule 110: ADR Requirements
+
+> ADRs must include context, decision, alternatives, consequences, impact on future features, and checklist items
+
+## Core Principle
+
+**No architectural decision is made without an ADR documenting context, decision, alternatives, consequences, and impact.**
+
+ADRs are required before implementing architectural changes that affect data models, APIs, multi-tenancy, auth, or system architecture.
+
+## When to Write an ADR
+
+**Write an ADR when a change affects**:
+- Architecture (system design, patterns, structure)
+- Data model (schema changes, new entities, relationships)
+- Runtime (deployment, infrastructure, scaling)
+- Auth (authentication, authorization, RBAC)
+- Billing (pricing models, payment flows, subscriptions)
+- Multi-tenancy (tenant isolation, data scoping)
+- Data export/delete (GDPR, compliance, user data)
+
+**Do NOT write an ADR for**:
+- Simple feature additions (use PRD)
+- UI-only changes
+- Bug fixes
+- Content updates
+
+## Required ADR Sections
+
+ADRs must include:
+
+### 1. Context
+
+**Purpose**: Explain the situation and constraints that led to this decision
+
+**Required Elements**:
+- **Problem**: What problem are we solving?
+- **Constraints**: Technical, business, or resource constraints
+- **Current State**: How things work today
+- **Requirements**: What must the solution achieve?
+- **Stakeholders**: Who is affected by this decision?
+- **Timeline**: When does this need to be decided/implemented?
+
+**Output Format**:
+```markdown
+## Context
+
+### Problem
+[What problem are we solving?]
+
+### Constraints
+- [Constraint 1]
+- [Constraint 2]
+- [Constraint 3]
+
+### Current State
+[How things work today]
+
+### Requirements
+- [Requirement 1]
+- [Requirement 2]
+- [Requirement 3]
+
+### Stakeholders
+- [Stakeholder 1]: [How affected]
+- [Stakeholder 2]: [How affected]
+
+### Timeline
+[When does this need to be decided/implemented?]
+```
+
+**Agent**: `@Engineering-Architect`
+
+### 2. Decision
+
+**Purpose**: State the architectural decision clearly
+
+**Required Elements**:
+- **Decision Statement**: Clear, concise statement of the decision
+- **Rationale**: Why this decision was made
+- **Key Principles**: What principles guided this decision?
+- **Trade-offs**: What trade-offs were accepted?
+- **Implementation Approach**: High-level approach to implementation
+
+**Output Format**:
+```markdown
+## Decision
+
+### Decision Statement
+[Clear, concise statement of the architectural decision]
+
+### Rationale
+[Why this decision was made]
+
+### Key Principles
+- [Principle 1]: [How it applies]
+- [Principle 2]: [How it applies]
+
+### Trade-offs
+- [Trade-off 1]: [What we're accepting]
+- [Trade-off 2]: [What we're accepting]
+
+### Implementation Approach
+[High-level approach to implementation]
+```
+
+**Agent**: `@Engineering-Architect`
+
+### 3. Alternatives Considered
+
+**Purpose**: Document alternative approaches that were evaluated
+
+**Required Elements**:
+- **Alternative 1**: Description, pros, cons, why not chosen
+- **Alternative 2**: Description, pros, cons, why not chosen
+- **Alternative 3+**: Additional alternatives if applicable
+- **Comparison**: Side-by-side comparison of alternatives
+- **Decision Criteria**: What criteria were used to evaluate alternatives?
+
+**Output Format**:
+```markdown
+## Alternatives Considered
+
+### Alternative 1: [Name]
+**Description**: [What this alternative is]
+
+**Pros**:
+- [Pro 1]
+- [Pro 2]
+
+**Cons**:
+- [Con 1]
+- [Con 2]
+
+**Why Not Chosen**: [Reason for rejection]
+
+### Alternative 2: [Name]
+[Same structure]
+
+### Comparison
+| Criteria | Decision | Alt 1 | Alt 2 |
+|----------|----------|-------|-------|
+| [Criterion 1] | [Score] | [Score] | [Score] |
+| [Criterion 2] | [Score] | [Score] | [Score] |
+
+### Decision Criteria
+- [Criterion 1]: [Weight/importance]
+- [Criterion 2]: [Weight/importance]
+```
+
+**Agent**: `@Engineering-Architect`
+
+### 4. Consequences
+
+**Purpose**: Document the implications of this decision
+
+**Required Elements**:
+- **Positive Consequences**: Benefits and advantages
+- **Negative Consequences**: Costs, risks, limitations
+- **Short-term Impact**: Immediate effects
+- **Long-term Impact**: Future effects
+- **Technical Debt**: Any technical debt created
+- **Migration Impact**: Impact on existing systems/data
+
+**Output Format**:
+```markdown
+## Consequences
+
+### Positive Consequences
+- [Benefit 1]: [Description]
+- [Benefit 2]: [Description]
+
+### Negative Consequences
+- [Cost/Risk 1]: [Description]
+- [Cost/Risk 2]: [Description]
+
+### Short-term Impact
+[Immediate effects of this decision]
+
+### Long-term Impact
+[Future effects of this decision]
+
+### Technical Debt
+[Any technical debt created by this decision]
+
+### Migration Impact
+[Impact on existing systems, data, or users]
+```
+
+**Agent**: `@Engineering-Architect`
+
+### 5. Impact on Future Features
+
+**Purpose**: Document how this decision affects future development
+
+**Required Elements**:
+- **Enabling Features**: What future features does this enable?
+- **Constraining Features**: What future features does this constrain?
+- **Patterns Established**: What patterns does this establish?
+- **Precedents Set**: What precedents does this set?
+- **Future Considerations**: What should future developers consider?
+
+**Output Format**:
+```markdown
+## Impact on Future Features
+
+### Enabling Features
+- [Feature 1]: [How this decision enables it]
+- [Feature 2]: [How this decision enables it]
+
+### Constraining Features
+- [Feature 1]: [How this decision constrains it]
+- [Feature 2]: [How this decision constrains it]
+
+### Patterns Established
+- [Pattern 1]: [Description]
+- [Pattern 2]: [Description]
+
+### Precedents Set
+- [Precedent 1]: [Description]
+- [Precedent 2]: [Description]
+
+### Future Considerations
+[What should future developers consider when building on this decision?]
+```
+
+**Agent**: `@Engineering-Architect`
+
+### 6. Checklist Items
+
+**Purpose**: Actionable checklist for implementing this decision
+
+**Required Elements**:
+- **Implementation Tasks**: Specific tasks to implement the decision
+- **Migration Tasks**: Tasks for migrating existing systems/data
+- **Testing Tasks**: Tasks for testing the implementation
+- **Documentation Tasks**: Tasks for documenting the decision
+- **Rollout Tasks**: Tasks for rolling out the change
+- **Verification Tasks**: Tasks for verifying the implementation
+
+**Output Format**:
+```markdown
+## Checklist Items
+
+### Implementation Tasks
+- [ ] [Task 1]
+- [ ] [Task 2]
+- [ ] [Task 3]
+
+### Migration Tasks
+- [ ] [Task 1]
+- [ ] [Task 2]
+
+### Testing Tasks
+- [ ] [Task 1]
+- [ ] [Task 2]
+
+### Documentation Tasks
+- [ ] [Task 1]
+- [ ] [Task 2]
+
+### Rollout Tasks
+- [ ] [Task 1]
+- [ ] [Task 2]
+
+### Verification Tasks
+- [ ] [Task 1]
+- [ ] [Task 2]
+```
+
+**Agent**: `@Engineering-Architect`
+
+## ADR Output
+
+**Output**: `docs/engineering/ADR/NNNN-<short-name>.md`
+
+**Naming Convention**:
+- **NNNN**: Sequential number (0001, 0002, 0003, etc.)
+- **short-name**: Brief descriptive name (e.g., `0001-multi-tenancy-isolation.md`)
+
+**Required Sections** (in order):
+1. Context
+2. Decision
+3. Alternatives Considered
+4. Consequences
+5. Impact on Future Features
+6. Checklist Items
+
+## Pre-ADR Requirements
+
+**Before creating ADR**:
+1. ✅ PRD must exist (which requires Opportunity Score ≥ 8.0/10)
+2. ✅ Problem must be clearly defined
+3. ✅ Requirements must be understood
+4. ✅ Alternatives must be evaluated
+
+## Quality Gates
+
+**All ADR sections must meet quality criteria:**
+
+- ✅ **Context**: Problem, constraints, current state, requirements clearly defined
+- ✅ **Decision**: Clear decision statement with rationale and trade-offs
+- ✅ **Alternatives**: At least 2 alternatives considered with pros/cons
+- ✅ **Consequences**: Positive and negative consequences documented
+- ✅ **Impact on Future**: Enabling/constraining features identified
+- ✅ **Checklist Items**: Actionable tasks for implementation
+
+## Integration with Other Rules
+
+- **Rule 001 (Philosophy)**: Validation-first development, ADR required for architecture
+- **Rule 100 (PRD)**: PRD must exist before ADR
+- **Rule 120 (Test Plan)**: Tests must align with ADR decisions
+- **Rule 130 (Implementation)**: Implementation must follow ADR
+- **Rule 027 (ADR Trigger)**: When to write ADRs
+
+## Enforcement
+
+### Pre-Implementation Checks
+
+**Before starting implementation**:
+1. ✅ ADR must exist (if architectural change)
+2. ✅ All 6 required sections must be complete
+3. ✅ All quality gates must pass
+4. ✅ Checklist items must be actionable
+
+### Pre-Code Review Checks
+
+**Before code review**:
+1. ✅ ADR must exist (if architectural change)
+2. ✅ Implementation must align with ADR decision
+3. ✅ Checklist items must be completed
+
+### Agent Requirements
+
+**All relevant agents must**:
+1. Create ADRs with all 6 required sections
+2. Document context, decision, alternatives, consequences
+3. Analyze impact on future features
+4. Create actionable checklist items
+
+## Summary
+
+1. **ADRs must include**: Context, decision, alternatives considered, consequences, impact on future features, checklist items
+2. **Context**: Problem, constraints, current state, requirements, stakeholders, timeline
+3. **Decision**: Clear statement with rationale, principles, trade-offs, implementation approach
+4. **Alternatives**: At least 2 alternatives with pros/cons and comparison
+5. **Consequences**: Positive/negative, short-term/long-term, technical debt, migration impact
+6. **Impact on Future**: Enabling/constraining features, patterns, precedents, future considerations
+7. **Checklist Items**: Implementation, migration, testing, documentation, rollout, verification tasks
+
+**ADRs are required for architectural decisions. They document the why, not just the what.**

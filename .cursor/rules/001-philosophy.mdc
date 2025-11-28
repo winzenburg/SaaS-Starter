@@ -1,0 +1,179 @@
+# Rule 001: Core Philosophy
+
+> Core philosophy for product discovery & validation
+
+## Core Principles
+
+### 1. Validation-First Development
+
+**No engineering without validated demand.**
+
+All product ideas must pass through systematic discovery and validation before any engineering work begins.
+
+### 2. AI-Assisted Discovery and Validation (Mandatory)
+
+**AI tools are mandatory for discovery and validation, not optional.**
+
+The discovery and validation process leverages a complete AI stack:
+
+- **Manus.im** → Narrative intelligence + raw insights
+- **ChatGPT** → Refinement, clustering, structuring
+- **Cursor agents** → Structured documents, plans, flows, and code
+- **ElevenLabs** → Persona voice, credibility assets
+- **Midjourney/Canva** → Conceptual visuals
+
+### 3. Required Discovery Documents
+
+**No feature enters development without complete discovery:**
+
+1. **Niche Intelligence Document** (`/docs/discovery/NICHE-INTEL-<idea-slug>.md`)
+   - Niche size, psychographics, subcultures
+   - Language patterns, identity signals, status markers
+   - Communities and entry points
+   - Niche worldview and cultural tensions
+
+2. **Pain Signals Report** (`/docs/discovery/PAIN-SIGNALS-<idea-slug>.md`)
+   - Pain clusters (frequency, severity, urgency)
+   - Top pain signals (ranked by total score)
+   - Moment of Acute Pain (MAAP) analysis
+   - Pain cost analysis (time, money, emotional)
+
+3. **JTBD Persona Document** (`/docs/discovery/JTBD-<idea-slug>.md`)
+   - Deep persona narrative (identity, beliefs, fears, aspirations)
+   - Main job + related jobs + emotional jobs
+   - Ongoing vs discrete jobs
+   - Triggers, success criteria, barriers
+
+4. **Opportunity & Moat Report** (`/docs/discovery/OPPORTUNITY-<idea-slug>.md`)
+   - Winner-take-most dynamics
+   - Switching cost potential
+   - Data moats (data exhaust, insights, tracking)
+   - Workflow embedding opportunities
+   - Underserved segments (blue ocean pockets)
+   - **Opportunity Score** (must be ≥ 8.0/10)
+
+### 4. Prioritization Criteria
+
+**Prioritize ideas with:**
+
+- **High urgency**: Problems that must be solved now, not later
+- **High willingness-to-pay**: Clear budgeted buyers with authority
+- **Recurring jobs**: Daily/weekly frequency, not one-time events
+- **Data moat potential**: Opportunities to build proprietary data advantages
+- **Workflow embedding**: Deep integration into daily operations
+
+### 5. Boring, Inevitable Pain Over Novel Ideas
+
+**Favor boring, inevitable pain over novel "nice-to-have" ideas.**
+
+- **Boring pain**: Problems that exist today and will exist tomorrow
+- **Inevitable pain**: Problems that get worse over time, not better
+- **Novel ideas**: Avoid "nice-to-have" features that solve problems people don't have yet
+
+## Enforcement
+
+### Pre-Engineering Gates
+
+**Before any engineering work**:
+
+1. ✅ All 4 discovery documents must exist
+2. ✅ Opportunity Score must be ≥ 8.0/10
+3. ✅ All quality gates must pass
+4. ✅ Validation plan must exist (if proceeding to validation)
+
+### Pre-PRD Gates
+
+**Before creating PRD**:
+
+1. ✅ All discovery documents complete
+2. ✅ Opportunity Score ≥ 8.0/10
+3. ✅ Pain signals validated (top 3 pains scored ≥ 35/50)
+4. ✅ Persona clarity validated (deep narrative, clear JTBD)
+
+### Pre-ADR Gates
+
+**Before creating ADR**:
+
+1. ✅ PRD must exist (which requires Opportunity Score ≥ 8.0/10)
+2. ✅ Opportunity Score ≥ 8.0/10
+3. ✅ Moat strategy defined
+
+## AI Tool Roles
+
+### Manus.im: Narrative Intelligence Engine
+
+**Role**: Source-of-truth narrative and insight generation
+
+**Outputs**:
+- Niche narrative and competitive scans
+- Pain language dictionary
+- Persona narrative and identity language
+- Emotional drivers and JTBD extraction
+- Competitor landscape and gaps
+
+### ChatGPT: Refinement and Structuring
+
+**Role**: Synthesize, refine, cluster, and structure insights
+
+**Outputs**:
+- Clustered pain points
+- Synthesized JTBD structure
+- Opportunity vectors
+- Validated competitor insights
+
+### Cursor Agents: Structured Document Production
+
+**Role**: Produce all structured discovery and validation documents
+
+**Agents**:
+- `@Niche-Intelligence-Agent` → Niche Intelligence Document
+- `@Pain-Signal-Agent` → Pain Signals Report
+- `@JTBD-Agent` → JTBD Persona Document
+- `@Opportunity-Moat-Agent` → Opportunity & Moat Report
+- `@Demand-Validator` → Validation Plan
+- `@Landing-Builder` → Landing Page
+- `@Distribution-Operator` → Distribution Map
+- `@Pricing-Tester` → Pricing Tests
+
+### ElevenLabs: Persona Voice and Credibility
+
+**Role**: Create persona voice interviews and credibility assets
+
+**Outputs**:
+- Persona interview scripts (30-60 seconds, 2 tones)
+- Founder intro audio
+- Demo narration audio
+- Social voice segments
+
+### Midjourney/Canva: Conceptual Visualization
+
+**Role**: Visualize opportunities and future vision
+
+**Outputs**:
+- Vision mockup prompts
+- Conceptual diagram prompts
+- Social ad concept prompts
+- Visual style recommendations
+
+## Integration with Other Rules
+
+- **Rule 300 (Discovery Master)**: Master discovery rule
+- **Rule 301 (Discovery Overview)**: Discovery pipeline and gates
+- **Rule 302 (Discovery Workflow)**: Complete 8-step workflow
+- **Rule 041-044 (Discovery Stages)**: Detailed stage requirements
+- **Rule 310-340 (AI Tool Integration)**: AI tool usage patterns
+- **Rule 040 (Demand Validation)**: Validation requirements
+- **Rule 100 (PRD)**: PRD requires complete discovery
+- **Rule 110 (ADR)**: ADR requires Opportunity Score ≥ 8.0/10
+
+## Summary
+
+1. **Validation-first development** - No engineering without validated demand
+2. **AI-assisted discovery mandatory** - Manus, ChatGPT, Cursor, ElevenLabs, Midjourney/Canva
+3. **Required discovery documents** - Niche Intelligence, Pain Signals, JTBD, Opportunity & Moat
+4. **Prioritization criteria** - Urgency, willingness-to-pay, recurring jobs, data moats, workflow embedding
+5. **Boring pain over novel ideas** - Favor inevitable pain over nice-to-have features
+6. **Opportunity Score gate** - ≥ 8.0/10 required to proceed
+7. **Quality gates enforced** - All discovery documents must pass quality checks
+
+**This philosophy is non-negotiable. All product ideas must follow this process before engineering begins.**

@@ -1,0 +1,52 @@
+# Rule: Supabase Integration (Database + Storage + Edge Functions)
+
+## GOAL
+
+Use Supabase as the default platform for:
+
+- Postgres DB
+- auth-adjacent data needs (if not using Clerk auth DB)
+- storage (avatars, files)
+- Edge Functions (cron, webhooks, async jobs)
+- RLS for multi-tenancy enforcement
+
+## SUPABASE IS USED FOR
+
+- database schema and migrations
+- multi-tenant data isolation (RLS policies)
+- file storage with signed URLs
+- background tasks via Edge Functions
+- webhook receivers (Stripe, etc.)
+
+## SUPABASE IS NOT USED FOR
+
+- primary authentication if Clerk is active
+- business logic that belongs in app server
+- analytics (PostHog handles that)
+
+## RLS REQUIREMENTS
+
+- All tenant-scoped tables must include `org_id`
+- RLS policies must enforce org membership
+- RLS must be tested with integration tests
+
+## EDGE FUNCTIONS
+
+Use Edge Functions for:
+
+- scheduled tasks (cleanup, digests)
+- third-party webhooks
+- async processing that should not block UI
+
+## DELIVERABLES
+
+- `/docs/engineering/DATA-MODEL-<feature>.md`
+- `/docs/engineering/RLS-<feature>.md`
+- `/docs/engineering/EDGE-FN-<feature>.md`
+- `drizzle/schema.ts` and Supabase migration parity
+
+## QUALITY BAR
+
+- multi-tenant safety before feature launch
+- migrations reproducible in CI
+- storage access least-privilege

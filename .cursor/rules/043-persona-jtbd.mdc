@@ -1,0 +1,244 @@
+# Rule 043: Persona & JTBD
+
+> Stage 3 of Product Discovery: Create a persona that is NOT fictional — based on psychographics + JTBD + emotional drivers
+
+## Core Principle
+
+**Every product idea must have a complete persona & JTBD analysis before opportunity & moat analysis.**
+
+### Stage Gate
+
+**No product idea proceeds to Stage 4 (Opportunity & Moat) without completing Stage 3 (Persona & JTBD).**
+
+## Agent: JTBD-Agent
+
+**Purpose**: Create a deep persona narrative based on psychographics, JTBD, and emotional drivers
+
+## Inputs
+
+### Required Inputs
+
+1. **Manus Persona Narrative** (REQUIRED)
+   - Persona narrative from Manus
+   - Identity language
+   - Psychographics
+   - Core characteristics
+
+2. **Emotional Drivers** (REQUIRED)
+   - Emotional motivations from Manus
+   - Identity-level drivers
+   - Aspirations and fears
+   - Emotional triggers
+
+3. **JTBD (from Manus)** (REQUIRED)
+   - Job-to-be-Done extraction from Manus
+   - Job context
+   - Job triggers
+   - Initial job structure
+
+4. **Pain Signals** (REQUIRED)
+   - Pain signals from Stage 2
+   - Pain language
+   - Pain intensity
+   - MAAP (moment of acute pain)
+
+## Tasks
+
+### 1. Create Deep Persona Narrative
+
+**What to Create**:
+
+#### Identity
+- What identity does persona want to embody?
+- How does persona see themselves?
+- What identity signals does persona use?
+- What identity transformation does persona seek?
+
+#### Worldview
+- What does persona believe? (core beliefs, worldview)
+- What are persona's values?
+- What is persona's perspective on the world?
+- How does persona make sense of things?
+
+#### Fears & Desires
+- **Fears**: What does persona fear? (anxieties, concerns, worries)
+- **Desires**: What does persona desire? (wants, needs, cravings)
+- **Emotional Drivers**: What emotions drive persona's actions?
+- **Motivations**: What motivates persona?
+
+#### Aspirations
+- What does persona aspire to? (goals, dreams, ambitions)
+- What transformation does persona seek?
+- What does persona want to become?
+- What does persona want to achieve?
+
+**Output**: Included in JTBD document
+
+### 2. Define Main Job, Related Jobs, Emotional Jobs, and Struggling Moments
+
+**What to Define**:
+
+#### Main Job
+- What is the primary job the persona is trying to get done?
+- What is the core functional job?
+- What is the job in persona's own words?
+
+#### Related Jobs
+- What are the related jobs that support the main job?
+- What are the sub-jobs?
+- What are the supporting jobs?
+- How do related jobs connect to the main job?
+
+#### Emotional Jobs
+- What are the emotional jobs? (how persona wants to feel)
+- What emotional state does persona seek?
+- What emotions does persona want to avoid?
+- What emotional transformation does persona seek?
+
+#### Struggling Moments
+- When does persona struggle with the job?
+- What makes the job difficult?
+- What barriers prevent job completion?
+- What causes frustration during job execution?
+
+**Output**: Included in JTBD document
+
+### 3. Define Triggers and Success Metrics
+
+**What to Define**:
+
+#### Triggers
+- **Time-based triggers**: When does the job occur? (daily, weekly, monthly, event-driven)
+- **Event-based triggers**: What events trigger the job?
+- **Action-based triggers**: What actions trigger the job?
+- **External triggers**: What external factors trigger the job?
+- **Internal triggers**: What internal factors trigger the job?
+
+#### Success Metrics
+- **Functional success**: How does persona know the job is done functionally?
+- **Emotional success**: How does persona know the job is done emotionally?
+- **Social success**: How does persona know the job is done socially?
+- **Success criteria**: What are the specific success criteria?
+- **Success indicators**: What indicates success?
+
+**Output**: Included in JTBD document
+
+### 4. Map Recurring vs Non-Recurring Jobs
+
+**What to Map**:
+
+#### Recurring Jobs
+- Jobs that are continuous or recurring
+- Characteristics: No clear end point, continuous effort
+- Examples: Maintain design system, monitor performance, stay informed
+- Frequency: Daily, weekly, monthly, ongoing
+
+#### Non-Recurring Jobs
+- Jobs that have a clear beginning and end
+- Characteristics: Clear start and finish, specific outcome
+- Examples: Create new component, fix bug, complete project
+- Frequency: One-time, event-driven, project-based
+
+**For Each Job**:
+- Classify as recurring or non-recurring
+- Document characteristics
+- Identify frequency
+- Identify implications for product design
+
+**Output**: Included in JTBD document
+
+### 5. Produce Interview Script for ElevenLabs Persona Voice
+
+**What to Produce** (Rule 070):
+
+#### 30-60 Second ElevenLabs Script (Required)
+- **Duration**: 30-60 seconds
+- **Content**: Persona introduction, core pain point, desired outcome, emotional driver
+- **Two Tone Variants**: Casual + professional (required)
+
+#### Optional Persona Interview Script (Recommended)
+- **Duration**: 2-5 minutes
+- **Structure**: Interview format with questions and persona responses
+- **Content**: Identity questions, belief questions, fear questions, JTBD questions, emotional questions
+
+**Output**: Included in JTBD document
+
+### 6. Produce Interview Script for Founder/User Conversations
+
+**What to Produce**:
+
+#### Founder/User Conversation Script
+- **Purpose**: Guide founder conversations with potential users
+- **Structure**: Question prompts for validation interviews
+- **Content**: 
+  - Opening questions
+  - Pain point validation questions
+  - JTBD validation questions
+  - Willingness-to-pay questions
+  - Closing questions
+
+**Output**: Included in JTBD document
+
+## Output
+
+**Output**: `/docs/discovery/JTBD-<idea-slug>.md`
+
+**Required Sections**:
+1. Deep Persona Narrative (identity, worldview, fears & desires, aspirations)
+2. Main Job, Related Jobs, Emotional Jobs, Struggling Moments
+3. Triggers and Success Metrics
+4. Recurring vs Non-Recurring Jobs
+5. ElevenLabs Interview Script (30-60 seconds, 2 tones: casual + professional)
+6. Optional: Persona Interview Script (2-5 minutes)
+7. Founder/User Conversation Script
+8. Recommendations
+
+## Quality Gates
+
+**All persona & JTBD outputs must pass quality gates**:
+
+- ✅ **Deep persona narrative complete** (identity, worldview, fears & desires, aspirations)
+- ✅ **Jobs defined** (main job, related jobs, emotional jobs, struggling moments)
+- ✅ **Triggers defined** (time-based, event-based, action-based, external, internal)
+- ✅ **Success metrics defined** (functional, emotional, social success criteria)
+- ✅ **Recurring vs non-recurring jobs mapped** (all jobs classified)
+- ✅ **ElevenLabs scripts provided** (30-60 seconds, 2 tones: casual + professional)
+- ✅ **Founder/user conversation script provided** (validation interview guide)
+- ✅ **Recommendations provided** (persona clarity, next steps)
+
+## Integration with Other Rules
+
+- **Rule 300 (Discovery Master)**: Discovery master rule
+- **Rule 301 (Discovery Overview)**: Discovery overview and gates
+- **Rule 302 (Discovery Workflow)**: Complete 8-step workflow
+- **Rule 310 (Manus in Discovery)**: Manus output usage
+- **Rule 320 (ChatGPT Refinement)**: ChatGPT refinement patterns
+- **Rule 070 (ElevenLabs Integration)**: ElevenLabs script requirements
+- **Rule 042 (Pain Signal Analysis)**: Previous stage (required input)
+- **Rule 044 (Opportunity & Moat)**: Next stage (persona & JTBD inform opportunity)
+
+## Enforcement
+
+### Pre-Opportunity & Moat Checks
+
+**Before starting Opportunity & Moat Analysis**:
+1. ✅ JTBD document must exist
+2. ✅ All 6 tasks must be complete
+3. ✅ All quality gates must pass
+
+### Agent Requirements
+
+**@JTBD-Agent must**:
+1. Read Manus persona narrative, emotional drivers, JTBD, pain signals
+2. Complete all 6 tasks
+3. Produce structured JTBD document
+4. Ensure all quality gates pass
+
+## Summary
+
+1. **Inputs**: Manus persona narrative (required), emotional drivers (required), JTBD from Manus (required), pain signals (required)
+2. **Tasks**: Create deep persona narrative, define jobs and struggling moments, define triggers and success metrics, map recurring vs non-recurring jobs, produce ElevenLabs scripts, produce founder/user conversation script
+3. **Output**: `/docs/discovery/JTBD-<idea-slug>.md`
+4. **Stage Gate**: Cannot proceed to Stage 4 without completing Stage 3
+
+**Persona & JTBD Analysis is required before Opportunity & Moat. It creates the foundation for understanding who we're building for and what jobs they need done.**

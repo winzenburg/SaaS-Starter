@@ -1,0 +1,105 @@
+# Workflow: Import Existing Documents as Workflows
+
+**Goal**: Enable retroactive workflow creation from existing discovery/validation documents.
+
+## Problem
+
+Documents can be created via scripts without creating workflow records, leading to:
+- Documents exist but no workflow tracking
+- No progress visibility
+- No step-by-step status
+- Confusion about what's completed vs pending
+
+## Solution: Import Script Pattern
+
+### Script Location
+
+`scripts/import-discovery-documents-as-workflow.ts`
+
+### Pattern
+
+1. **Scan for documents** in project-specific directories
+2. **Map documents to workflow steps** using naming conventions
+3. **Create workflow record** with steps marked as completed
+4. **Link documents to steps** via metadata
+
+### Document-to-Step Mapping
+
+```typescript
+const DOCUMENT_TO_STEP: Record<string, { name: string; agent?: string; order: number }> = {
+  "MANUS": { name: "Manus Discovery Pack", agent: "Manus-Narrative-Agent", order: 1 },
+  "CHATGPT-REFINEMENT": { name: "ChatGPT Refinement", agent: "ChatGPT-Reasoning-Agent", order: 2 },
+  "REDTEAM": { name: "Claude Red-Team Critique", agent: "Red-Team-Strategist", order: 3 },
+  "NICHE-INTEL": { name: "Niche Intelligence Analysis", agent: "Niche-Intelligence-Agent", order: 4 },
+  "PAIN-SIGNALS": { name: "Pain Signal Analysis", agent: "Pain-Signal-Agent", order: 5 },
+  "JTBD": { name: "Jobs-to-Be-Done Analysis", agent: "JTBD-Agent", order: 6 },
+  "OPPORTUNITY": { name: "Opportunity & Moat Analysis", agent: "Opportunity-Moat-Agent", order: 7 },
+};
+```
+
+### Workflow Creation
+
+```typescript
+// Create workflow with default steps
+const workflow = createDiscoveryWorkflow({
+  ideaSlug: PROJECT_SLUG,
+  ideaName: projectName,
+  phase: "discovery",
+});
+
+// Mark steps as completed based on found documents
+discoveryFiles.forEach((file) => {
+  const docType = Object.keys(DOCUMENT_TO_STEP).find((type) =>
+    file.filename.includes(type)
+  );
+  
+  if (docType) {
+    const step = workflow.steps.find((s) => s.id === stepId);
+    if (step) {
+      step.status = "completed";
+      step.completedAt = file.modified;
+      step.output = `Document: ${file.filename}`;
+      step.metadata = {
+        documentPath: file.path,
+        documentFilename: file.filename,
+      };
+    }
+  }
+});
+
+// Update workflow status
+workflow.status = allCompleted ? "completed" : "in_progress";
+```
+
+## Rules
+
+1. **Always use UUIDs** for workflow IDs (not custom strings)
+2. **Link documents to steps** via metadata for traceability
+3. **Preserve document timestamps** as step completion times
+4. **Update workflow status** based on step completion
+5. **Handle missing documents gracefully** (mark steps as pending)
+
+## Usage
+
+```bash
+npx tsx scripts/import-discovery-documents-as-workflow.ts <project-slug>
+```
+
+## Future: Auto-Create Workflows
+
+**Best Practice**: Orchestration scripts should create workflows when creating documents:
+
+```typescript
+// In orchestration script
+const workflow = createDiscoveryWorkflow({ ideaSlug, ideaName });
+await saveWorkflow(workflow);
+
+// Execute step
+const result = await executeDiscoveryStep(workflow, "step-1");
+await saveWorkflow(result.workflow);
+
+// Step creates document
+writeFileSync(documentPath, documentContent);
+```
+
+This ensures workflows and documents stay in sync.

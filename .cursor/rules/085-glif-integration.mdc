@@ -1,0 +1,44 @@
+# Rule: Glif Integration for Creative Batching
+
+## GOAL
+
+Glif is used as a creative acceleration tool for generating batches of:
+
+- Landing page hero images
+- UI mockups
+- Social content variants
+- Paid ad creatives
+- Narrative-based visuals
+- Simple "micro-tools" for niche validation
+
+## MANDATORY CONDITIONS
+
+- Glif is never a source of truth for system logic.
+- Glif workflows must be modular and single-purpose.
+- All Glif workflows must accept variables for niche, pain, persona, and desired visual style.
+- All content generated must be stored in `/docs/validation/assets/<idea>`.
+
+## AGENT USAGE
+
+The Creative-Batch-Operator agent must:
+
+1. Recommend specific Glif workflows needed based on the idea.
+2. Output workflow designs (blocks, variables, connections).
+3. Output Glif-ready prompts for each workflow.
+4. Output usage instructions for the founder (inputs, outputs, test instructions).
+
+## CONSTRAINTS
+
+- Do not build backend logic in Glif.
+- Do not rely on Glif for deterministic tests.
+- Treat Glif outputs as drafts; refine via ChatGPT or designer pass.
+- Validate all images through Midjourney/Canva if higher polish is required.
+
+## SUCCESS
+
+A Glif workflow is successful if it reduces creative generation time by 80%, enables rapid iteration, and produces assets usable for:
+
+- Landing pages
+- Social content
+- Paid smoke tests
+- Persona storytelling

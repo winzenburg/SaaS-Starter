@@ -1,0 +1,120 @@
+# Hub & Workflows: Relationship Patterns
+
+**Goal**: Ensure clear, consistent relationship between Projects (Hub) and Workflows.
+
+## Core Relationship
+
+```
+Project (Hub)
+├── slug: "enterprise-design-system-startups"
+└── Workflows (Workflows Page)
+    ├── ideaSlug: "enterprise-design-system-startups" (must match)
+    ├── phase: "discovery"
+    ├── phase: "validation"
+    └── phase: "build" (future)
+```
+
+## Data Model Rules
+
+1. **Linking Key**: `workflow.ideaSlug === project.slug` (always)
+2. **One-to-Many**: One project can have multiple workflows (one per phase)
+3. **Name Consistency**: `workflow.ideaName` should match `project.name` (for display)
+
+## API Patterns
+
+### Hub API (`/api/hub/projects`)
+
+Include workflow counts in project data:
+
+```typescript
+import { getWorkflowCountsByProject } from "@/lib/workflows/db";
+
+const project = {
+  ...projectData,
+  workflowCounts: await getWorkflowCountsByProject(project.slug),
+};
+```
+
+### Workflows API (`/api/workflows`)
+
+Group workflows by project:
+
+```typescript
+const workflowsByProject = workflows.reduce((acc, w) => {
+  if (!acc[w.ideaSlug]) acc[w.ideaSlug] = [];
+  acc[w.ideaSlug].push(w);
+  return acc;
+}, {});
+```
+
+## UI Patterns
+
+### Hub Page
+
+**Project Cards Should Show**:
+- Workflow count indicator (if workflows exist)
+- "View Workflows (X)" link (filters by project)
+- "Start Workflow" link (if no workflows exist)
+- Active workflow status (pulsing indicator)
+
+### Workflows Page
+
+**Should Group By Project**:
+- Project header with workflow count
+- "View Project in Hub" link
+- Filter buttons per project
+- "All Projects" option
+
+### Navigation Flow
+
+```
+Hub → Click "View Workflows" → Workflows (filtered by project)
+Workflows → Click "View Project" → Hub (project detail)
+Workflow Detail → "View Project in Hub" → Hub (project detail)
+```
+
+## Helper Functions
+
+### Get Workflow Counts
+
+```typescript
+// src/lib/workflows/db.ts
+export async function getWorkflowCountsByProject(projectSlug: string) {
+  const workflows = await listWorkflowsByProject(projectSlug);
+  return {
+    total: workflows.length,
+    byPhase: groupBy(workflows, 'phase'),
+    active: workflows.filter(w => w.status === 'in_progress' || w.status === 'pending').length,
+  };
+}
+```
+
+### Link Validation
+
+When creating workflows, validate project exists:
+
+```typescript
+// Validate project exists before creating workflow
+const project = await getProjectBySlug(ideaSlug);
+if (!project) {
+  throw new Error(`Project not found: ${ideaSlug}`);
+}
+```
+
+## Rules
+
+1. **Always link workflows to projects** via `ideaSlug === project.slug`
+2. **Show workflow context** in Hub (counts, status)
+3. **Show project context** in Workflows (project name, link to Hub)
+4. **Enable cross-navigation** between Hub and Workflows
+5. **Group workflows by project** on Workflows page
+6. **Filter workflows by project** when navigating from Hub
+
+## Future: Unified Project View
+
+Create `/projects/[slug]` route that shows:
+- Project overview
+- All workflows (all phases)
+- Documents organized by phase
+- Project timeline
+- Quick actions

@@ -1,0 +1,302 @@
+# Rule 120: Test Plan Requirements
+
+> Test plans must include unit tests, component tests, integration tests, E2E tests, accessibility tests, and business-critical path coverage
+
+## Core Principle
+
+**All features must have a complete test plan before implementation.**
+
+Test plans must cover all test types and ensure business-critical paths are fully tested.
+
+## Required Test Types
+
+Test plans must include:
+
+### 1. Unit Tests
+
+**Purpose**: Test individual functions, methods, and utilities in isolation
+
+**Required Elements**:
+- **Coverage**: All domain logic, utilities, helpers
+- **Test Structure**: Arrange, Act, Assert pattern
+- **Test Cases**: Happy path, edge cases, error cases
+- **Mocking**: Mock external dependencies
+- **Isolation**: Tests run independently
+
+**Output Format**:
+```markdown
+## Unit Tests
+
+### [Function/Method Name]
+**File**: `src/domain/[module]/[function].test.ts`
+
+**Test Cases**:
+- ✅ [Test case 1]: [Description]
+- ✅ [Test case 2]: [Description]
+- ✅ [Test case 3]: [Description]
+
+**Coverage**: [Coverage percentage]
+```
+
+**Agent**: `@Test-Engineer`
+
+### 2. Component Tests
+
+**Purpose**: Test React components in isolation
+
+**Required Elements**:
+- **Coverage**: All UI components, pages, layouts
+- **Test Structure**: Component rendering, user interactions, state changes
+- **Test Cases**: Rendering, props, events, state, edge cases
+- **Testing Library**: React Testing Library
+- **Accessibility**: Basic a11y checks in component tests
+
+**Output Format**:
+```markdown
+## Component Tests
+
+### [Component Name]
+**File**: `src/components/[component]/[component].test.tsx`
+
+**Test Cases**:
+- ✅ Renders correctly with required props
+- ✅ Handles user interactions (click, type, etc.)
+- ✅ Updates state correctly
+- ✅ Handles edge cases (empty state, error state, loading state)
+- ✅ Basic accessibility checks
+
+**Coverage**: [Coverage percentage]
+```
+
+**Agent**: `@Test-Engineer`
+
+### 3. Integration Tests
+
+**Purpose**: Test interactions between components, services, and APIs
+
+**Required Elements**:
+- **Coverage**: API endpoints, service integrations, data flows
+- **Test Structure**: End-to-end flows within system boundaries
+- **Test Cases**: API calls, database operations, service interactions
+- **Test Data**: Realistic test data and scenarios
+- **Isolation**: Tests don't affect production data
+
+**Output Format**:
+```markdown
+## Integration Tests
+
+### [Feature/Flow Name]
+**File**: `src/features/[feature]/[feature].integration.test.ts`
+
+**Test Cases**:
+- ✅ [Integration flow 1]: [Description]
+- ✅ [Integration flow 2]: [Description]
+- ✅ [Integration flow 3]: [Description]
+
+**Test Data**: [Test data setup]
+**Coverage**: [Coverage percentage]
+```
+
+**Agent**: `@Test-Engineer`
+
+### 4. E2E Tests
+
+**Purpose**: Test complete user flows from start to finish
+
+**Required Elements**:
+- **Coverage**: Critical user journeys, business-critical paths
+- **Test Structure**: Full browser automation (Playwright)
+- **Test Cases**: Complete user flows, multi-step processes
+- **Test Scenarios**: Realistic user scenarios with test data
+- **Cross-browser**: Test on multiple browsers (Chrome, Firefox, Safari)
+
+**Output Format**:
+```markdown
+## E2E Tests
+
+### [User Journey Name]
+**File**: `e2e/[journey]/[journey].spec.ts`
+
+**Test Cases**:
+- ✅ [E2E flow 1]: [Complete user journey description]
+- ✅ [E2E flow 2]: [Complete user journey description]
+- ✅ [E2E flow 3]: [Complete user journey description]
+
+**Test Scenarios**:
+- [Scenario 1]: [Test data and steps]
+- [Scenario 2]: [Test data and steps]
+
+**Browsers**: Chrome, Firefox, Safari
+**Coverage**: [Coverage percentage]
+```
+
+**Agent**: `@Test-Engineer`
+
+### 5. Accessibility Tests
+
+**Purpose**: Ensure WCAG 2.2 AA compliance
+
+**Required Elements**:
+- **Coverage**: All UI components and pages
+- **Test Structure**: Automated a11y testing + manual checks
+- **Test Cases**: Keyboard navigation, screen reader, ARIA labels, color contrast
+- **Tools**: axe-core, Playwright a11y, manual testing
+- **Compliance**: WCAG 2.2 AA standards
+
+**Output Format**:
+```markdown
+## Accessibility Tests
+
+### [Component/Page Name]
+**File**: `e2e/a11y/[component].a11y.spec.ts`
+
+**Test Cases**:
+- ✅ Keyboard navigation works correctly
+- ✅ Screen reader announces content correctly
+- ✅ ARIA labels are present and correct
+- ✅ Color contrast meets WCAG 2.2 AA
+- ✅ Focus management is correct
+- ✅ No a11y violations (axe-core)
+
+**Manual Checks**:
+- [ ] Screen reader flow tested
+- [ ] Keyboard-only navigation tested
+- [ ] Focus indicators visible
+
+**Compliance**: WCAG 2.2 AA
+```
+
+**Agent**: `@Test-Engineer`, `@Accessibility-Agent`
+
+### 6. Business-Critical Path Coverage
+
+**Purpose**: Ensure all business-critical user journeys are fully tested
+
+**Required Elements**:
+- **Critical Paths**: Identify all business-critical user journeys
+- **Coverage**: 100% coverage of critical paths across all test types
+- **Test Mapping**: Map tests to critical paths
+- **Risk Assessment**: Identify risks if critical paths fail
+- **Priority**: Prioritize critical path tests
+
+**Output Format**:
+```markdown
+## Business-Critical Path Coverage
+
+### Critical Path 1: [Path Name]
+**Description**: [What this path does]
+**Business Impact**: [What happens if this fails]
+
+**Test Coverage**:
+- ✅ Unit tests: [Coverage]
+- ✅ Component tests: [Coverage]
+- ✅ Integration tests: [Coverage]
+- ✅ E2E tests: [Coverage]
+- ✅ Accessibility tests: [Coverage]
+
+**Risk Assessment**: [Risk if path fails]
+
+### Critical Path 2: [Path Name]
+[Same structure]
+
+### Coverage Summary
+- **Total Critical Paths**: [Number]
+- **Paths with 100% Coverage**: [Number]
+- **Paths Needing Coverage**: [Number]
+```
+
+**Agent**: `@Test-Engineer`
+
+## Test Plan Output
+
+**Output**: `/docs/engineering/TEST-PLAN-<feature-slug>.md`
+
+**Required Sections** (in order):
+1. Unit Tests
+2. Component Tests
+3. Integration Tests
+4. E2E Tests
+5. Accessibility Tests
+6. Business-Critical Path Coverage
+
+## Test Coverage Requirements
+
+### Minimum Coverage
+
+- **Unit Tests**: 80%+ coverage of domain logic
+- **Component Tests**: 80%+ coverage of UI components
+- **Integration Tests**: 100% coverage of API endpoints
+- **E2E Tests**: 100% coverage of business-critical paths
+- **Accessibility Tests**: 100% coverage of UI components/pages
+- **Business-Critical Paths**: 100% coverage across all test types
+
+### Priority Levels
+
+1. **P0 (Critical)**: Business-critical paths, payment flows, auth flows
+2. **P1 (High)**: Core features, main user journeys
+3. **P2 (Medium)**: Secondary features, edge cases
+4. **P3 (Low)**: Nice-to-have features, optimizations
+
+## Pre-Test Plan Requirements
+
+**Before creating test plan**:
+1. ✅ PRD must exist (with acceptance criteria)
+2. ✅ ADR must exist (if architectural changes)
+3. ✅ Acceptance criteria must be testable
+4. ✅ Business-critical paths must be identified
+
+## Quality Gates
+
+**All test plans must meet quality criteria:**
+
+- ✅ **Unit Tests**: All domain logic covered, edge cases tested
+- ✅ **Component Tests**: All components tested, interactions covered
+- ✅ **Integration Tests**: All API endpoints tested, data flows covered
+- ✅ **E2E Tests**: All critical paths tested, realistic scenarios
+- ✅ **Accessibility Tests**: WCAG 2.2 AA compliance, keyboard/screen reader tested
+- ✅ **Business-Critical Path Coverage**: 100% coverage of all critical paths
+
+## Integration with Other Rules
+
+- **Rule 001 (Philosophy)**: Tests define correctness
+- **Rule 100 (PRD)**: Tests must map to acceptance criteria
+- **Rule 110 (ADR)**: Tests must align with architectural decisions
+- **Rule 130 (Implementation)**: Implementation must pass all tests
+- **Rule 010 (UX A11y)**: Accessibility tests required
+
+## Enforcement
+
+### Pre-Implementation Checks
+
+**Before starting implementation**:
+1. ✅ Test plan must exist
+2. ✅ All 6 test types must be planned
+3. ✅ Business-critical paths must be identified
+4. ✅ Test coverage requirements must be met
+
+### Pre-Code Review Checks
+
+**Before code review**:
+1. ✅ All tests must pass
+2. ✅ Coverage requirements must be met
+3. ✅ Business-critical paths must be tested
+
+### Agent Requirements
+
+**All relevant agents must**:
+1. Create test plans with all 6 test types
+2. Map tests to acceptance criteria
+3. Ensure business-critical path coverage
+4. Define test coverage requirements
+
+## Summary
+
+1. **Test plans must include**: Unit tests, component tests, integration tests, E2E tests, accessibility tests, business-critical path coverage
+2. **Unit Tests**: Domain logic, utilities, helpers (80%+ coverage)
+3. **Component Tests**: UI components, interactions, state (80%+ coverage)
+4. **Integration Tests**: API endpoints, service integrations (100% coverage)
+5. **E2E Tests**: Complete user journeys, critical paths (100% coverage)
+6. **Accessibility Tests**: WCAG 2.2 AA compliance (100% coverage)
+7. **Business-Critical Path Coverage**: 100% coverage across all test types
+
+**Test plans are required before implementation. All tests must pass before code review.**

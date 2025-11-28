@@ -1,0 +1,256 @@
+# Rule 060: ChatGPT Refinement
+
+> ChatGPT is used to refine, cluster, and structure Manus outputs. See Rule 002 for ChatGPT vs Claude routing.
+
+## Core Principle
+
+**ChatGPT refines Manus outputs by clustering, synthesizing, extracting, and validating. Cursor agents must request ChatGPT refinement when clarity is needed.**
+
+## ChatGPT Refinement Tasks
+
+ChatGPT is used to:
+
+### 1. Cluster Pains into Themes
+
+**Purpose**: Organize pain points into meaningful clusters
+
+**Tasks**:
+- Group related pains together
+- Identify pain themes and patterns
+- Cluster by frequency (Daily/Weekly/Monthly/Event-driven)
+- Cluster by severity (Mild/Moderate/Severe/Critical)
+- Cluster by urgency (Low/Medium/High/Critical)
+- Identify "moment of acute pain" (MAAP) patterns
+
+**Input**: Manus pain language dictionary  
+**Output**: Clustered pain themes for `@Pain-Signal-Agent`
+
+**Agent**: `@ChatGPT-Reasoning-Agent`
+
+### 2. Extract Underlying Patterns and Motivations
+
+**Purpose**: Identify deeper patterns and motivations behind surface-level insights
+
+**Tasks**:
+- Extract underlying motivations from pain language
+- Identify behavioral patterns
+- Extract psychological drivers
+- Identify hidden needs and desires
+- Extract systemic patterns
+
+**Input**: Manus pain language, persona narrative, JTBD extraction  
+**Output**: Pattern analysis for discovery agents
+
+**Agent**: `@ChatGPT-Reasoning-Agent`
+
+### 3. Refine JTBD Structure
+
+**Purpose**: Structure and organize JTBD into clear hierarchy
+
+**Tasks**:
+- Synthesize main job from Manus JTBD extraction
+- Identify related jobs that support main job
+- Synthesize emotional jobs (how persona wants to feel)
+- Classify jobs as ongoing vs discrete
+- Map job relationships and hierarchy
+- Identify triggers, success criteria, and barriers
+
+**Input**: Manus JTBD extraction, persona narrative  
+**Output**: Structured JTBD for `@JTBD-Agent`
+
+**Agent**: `@ChatGPT-Reasoning-Agent`
+
+### 4. Identify Opportunity Vectors
+
+**Purpose**: Extract opportunity vectors from discovery insights
+
+**Tasks**:
+- Identify winner-take-most dynamics
+- Analyze switching cost potential
+- Identify data moat opportunities
+- Analyze workflow embedding opportunities
+- Identify underserved segments (blue ocean pockets)
+- Extract competitive advantages
+
+**Input**: Manus competitor gaps, JTBD, pain signals  
+**Output**: Opportunity vectors for `@Opportunity-Moat-Agent`
+
+**Agent**: `@ChatGPT-Reasoning-Agent`
+
+### 5. Cross-Check Competitor Assumptions
+
+**Purpose**: Validate and verify competitor insights
+
+**Tasks**:
+- Validate competitor positioning claims
+- Cross-check competitor gap assumptions
+- Validate differentiation opportunities
+- Verify market positioning assumptions
+- Validate competitive landscape analysis
+
+**Input**: Manus competitor analysis  
+**Output**: Validated competitor insights for discovery agents
+
+**Agent**: `@ChatGPT-Reasoning-Agent`
+
+### 6. Clean Up Ambiguous Data from Manus
+
+**Purpose**: Clarify and structure ambiguous Manus outputs
+
+**Tasks**:
+- Resolve ambiguous statements
+- Clarify unclear signals
+- Structure unstructured data
+- Fill in missing context
+- Resolve contradictions
+- Standardize terminology
+
+**Input**: Ambiguous Manus outputs  
+**Output**: Cleaned, structured data for discovery agents
+
+**Agent**: `@ChatGPT-Reasoning-Agent`
+
+## When Cursor Agents Must Request ChatGPT Refinement
+
+**Cursor agents MUST request ChatGPT refinement when:**
+
+### 1. Manus Outputs Contain Unclear Signals
+
+**Triggers**:
+- Ambiguous statements in Manus output
+- Multiple possible interpretations
+- Missing context or details
+- Contradictory information
+- Unclear pain language
+- Vague persona descriptions
+
+**Refinement Request**:
+```
+@ChatGPT-Reasoning-Agent Clean up ambiguous Manus output.
+
+Input:
+- Manus output: [Specific ambiguous output]
+- Clarity needed: [What needs clarification]
+- Context: [Additional context]
+
+Expected Output:
+- [What cleaned output should look like]
+```
+
+### 2. Additional Clustering is Needed
+
+**Triggers**:
+- Pain points need to be grouped into themes
+- Patterns need to be identified
+- Categories need to be established
+- Priorities need to be determined
+- Relationships need to be mapped
+
+**Refinement Request**:
+```
+@ChatGPT-Reasoning-Agent Cluster pain points into themes.
+
+Input:
+- Manus pain language: [Pain language dictionary]
+- Clustering needed: [Frequency/Severity/Urgency/Theme]
+
+Expected Output:
+- Clustered pain themes with patterns identified
+```
+
+### 3. Personas Require Deeper Structuring
+
+**Triggers**:
+- Persona narrative needs structuring
+- JTBD needs hierarchy
+- Emotional drivers need organization
+- Motivations need extraction
+- Patterns need identification
+
+**Refinement Request**:
+```
+@ChatGPT-Reasoning-Agent Refine JTBD structure from Manus persona.
+
+Input:
+- Manus persona: [Persona narrative]
+- Manus JTBD: [JTBD extraction]
+- Structuring needed: [Main job/Related jobs/Emotional jobs]
+
+Expected Output:
+- Structured JTBD with clear hierarchy
+```
+
+## Refinement Workflow
+
+```
+Manus Output
+  ↓
+Cursor Agent Identifies Need for Refinement
+  ↓
+@ChatGPT-Reasoning-Agent → Refinement Request
+  ↓
+ChatGPT Refines:
+  - Clusters pains into themes
+  - Extracts underlying patterns
+  - Refines JTBD structure
+  - Identifies opportunity vectors
+  - Cross-checks competitor assumptions
+  - Cleans up ambiguous data
+  ↓
+Refined Output
+  ↓
+Cursor Agent Uses Refined Output
+  ↓
+Structured Document
+```
+
+## Quality Gates
+
+**ChatGPT refinement must pass quality gates:**
+
+- ✅ **Pains clustered** - All pains grouped into meaningful themes
+- ✅ **Patterns extracted** - Underlying patterns and motivations identified
+- ✅ **JTBD structured** - Clear hierarchy with main/related/emotional jobs
+- ✅ **Opportunities identified** - All opportunity vectors extracted
+- ✅ **Assumptions validated** - Competitor assumptions cross-checked
+- ✅ **Data cleaned** - Ambiguous data clarified and structured
+
+## Integration with Other Rules
+
+- **Rule 001 (Philosophy)**: AI-assisted discovery mandatory
+- **Rule 050 (Manus Integration)**: Manus outputs feed ChatGPT refinement
+- **Rule 192 (ChatGPT Integration)**: General ChatGPT usage patterns
+- **Rule 300 (Discovery Master)**: ChatGPT refines Manus outputs in discovery
+- **Rule 301 (Discovery Overview)**: ChatGPT role in discovery pipeline
+- **Rule 320 (ChatGPT Refinement)**: Detailed refinement patterns (discovery-specific)
+
+## Enforcement
+
+### Pre-Discovery Checks
+
+**Before starting discovery**:
+1. ✅ Manus outputs must exist
+2. ✅ ChatGPT refinement must be requested if clarity is needed
+
+### Pre-Validation Checks
+
+**Before starting validation**:
+1. ✅ Pain points must be clustered
+2. ✅ JTBD must be structured
+3. ✅ Competitor assumptions must be validated
+
+### Agent Requirements
+
+**All discovery and validation agents must**:
+1. Request ChatGPT refinement when clarity is needed
+2. Use refined outputs in structured documents
+3. Attribute ChatGPT refinements appropriately
+
+## Summary
+
+1. **ChatGPT refines Manus outputs** - Clustering, pattern extraction, JTBD structuring, opportunity identification, assumption validation, data cleanup
+2. **Cursor agents must request refinement** - When Manus outputs are unclear, clustering is needed, or personas need structuring
+3. **Refinement is mandatory** - Cannot skip refinement when clarity is needed
+4. **Quality gates enforced** - All refinements must pass quality checks
+
+**ChatGPT refinement is required to ensure clarity, synthesis, and validation of Manus outputs before they're used in structured documents.**

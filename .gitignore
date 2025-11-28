@@ -38,3 +38,4 @@ next-env.d.ts
 # Hub-specific
 /projects/*.json
 !/projects/.gitkeep
+.env.local.backup

@@ -1,0 +1,86 @@
+# Rule 300: Discovery Master
+
+> Complete discovery rule set for AI-powered product discovery
+
+## Core Principle
+
+**No engineering work begins until the Opportunity Score is ≥ 8.0/10. All discovery outputs must be complete and validated before proceeding to validation planning or engineering.**
+
+## Discovery Rule Set
+
+This is the master discovery rule that orchestrates all discovery stages. See individual rules for detailed requirements:
+
+- **Rule 301**: Discovery Overview (pipeline, gates, AI tool roles)
+- **Rule 302**: Discovery Workflow (8-step process)
+- **Rule 310**: Manus in Discovery (narrative engine requirements)
+- **Rule 320**: ChatGPT Refinement (synthesis and analysis)
+- **Rule 330**: ElevenLabs Voice (persona interviews)
+- **Rule 340**: Midjourney Visuals (opportunity visualization)
+- **Rule 041**: Niche Intelligence (Stage 1)
+- **Rule 042**: Pain Signal Analysis (Stage 2)
+- **Rule 043**: Persona & JTBD (Stage 3)
+- **Rule 044**: Opportunity & Moat (Stage 4)
+
+## Quick Reference
+
+### Discovery Pipeline
+
+```
+Raw Idea
+  ↓
+Step 1: Manus → Niche Narrative + Pain Language + JTBD + Competitors
+  ↓
+Step 2: ChatGPT → Refinement Packet
+  ↓
+Step 3: @Niche-Intelligence-Agent → Niche Map
+  ↓
+Step 4: @Pain-Signal-Agent → Pain Prioritization
+  ↓
+Step 5: @JTBD-Agent → Persona + Jobs Map + Voice Script
+  ↓
+Step 6: @Opportunity-Moat-Agent → Moat Strategy + Vision Prompts
+  ↓
+Step 7: Score the Idea (0-10)
+  ↓
+Step 8: If Score ≥ 8 → Move to Demand-Validation Agents
+```
+
+### Required Outputs
+
+All outputs go to `/docs/discovery/`:
+
+1. `/docs/discovery/NICHE-INTEL-<idea-slug>.md` - Niche Intelligence
+2. `/docs/discovery/PAIN-SIGNALS-<idea-slug>.md` - Pain Signal Analysis
+3. `/docs/discovery/JTBD-<idea-slug>.md` - Persona & JTBD
+4. `/docs/discovery/OPPORTUNITY-<idea-slug>.md` - Opportunity & Moat (includes Opportunity Score)
+
+### Opportunity Score Gate
+
+**CRITICAL**: Opportunity Score must be ≥ 8.0/10 to proceed.
+
+**Calculation**:
+- Niche Viability: 0-2.5 points
+- Pain Intensity: 0-2.5 points
+- Persona Clarity: 0-1.5 points
+- Moat Potential: 0-3.5 points
+- **Total**: 10.0 points maximum
+
+### AI Tool Roles
+
+- **Manus**: Source-of-truth narrative engine
+- **ChatGPT**: Refinement, clustering, analysis
+- **Cursor Agents**: Structured document production
+- **ElevenLabs**: Persona voice interviews
+- **Midjourney/Canva**: Conceptual opportunity visualization
+
+## Enforcement
+
+- Engineering agents must check Opportunity Score before starting work
+- PRD cannot be created without Opportunity Score ≥ 8.0/10
+- ADR cannot be created without Opportunity Score ≥ 8.0/10
+
+## See Also
+
+- `docs/DISCOVERY-WORKFLOW.md` - Complete workflow documentation
+- `docs/HUB-AND-SPOKE.md` - Hub-and-spoke architecture
+- `projects/README.md` - Projects folder structure

@@ -1,0 +1,217 @@
+# AI Tool Integrations
+
+> Integration patterns for Manus.im, ChatGPT, ElevenLabs, Midjourney/Canva
+
+## Rule
+
+All AI tool integrations must follow these patterns for consistency, reliability, and maintainability.
+
+## Integration Architecture
+
+### Environment Variables
+
+```bash
+# Manus.im
+MANUS_API_KEY=your_key_here
+
+# OpenAI (ChatGPT)
+OPENAI_API_KEY=your_key_here
+
+# ElevenLabs
+ELEVENLABS_API_KEY=your_key_here
+
+# Canva
+CANVA_API_KEY=your_key_here
+CANVA_BRAND_ID=your_brand_id
+```
+
+### API Client Pattern
+
+Create API clients in `src/lib/ai-tools/`:
+
+```typescript
+// src/lib/ai-tools/manus.ts
+export async function generateNarrative(prompt: string) {
+  // Manus.im API call
+}
+
+// src/lib/ai-tools/chatgpt.ts
+export async function reason(problem: string) {
+  // ChatGPT API call
+}
+
+// src/lib/ai-tools/elevenlabs.ts
+export async function generateVoice(script: string, voiceId: string) {
+  // ElevenLabs API call
+}
+
+// src/lib/ai-tools/visual.ts
+export async function generateVisual(prompt: string, style: string) {
+  // Midjourney/Canva integration
+}
+```
+
+## Usage Patterns
+
+### 1. Manus.im (Narrative & Persona)
+
+**When**: Creating narratives, competitor analysis, personas, discovery packs
+
+**Pattern**:
+```typescript
+import { generateDiscoveryPack } from "@/lib/ai-tools/manus";
+import { parseManusDiscoveryPack, extractSources, formatCitations } from "@/lib/ai-tools/manus-parser";
+
+// Preferred: Generate complete discovery pack
+const result = await generateDiscoveryPack({
+  product: "Enterprise Design System",
+  niche: "Startups, CTOs",
+  painPoint: "Inconsistent UI development",
+  context: "Enterprise-grade design system for startups"
+});
+
+// Parse markdown discovery pack
+const parsed = parseManusDiscoveryPack(result.data.narrative);
+const sources = extractSources(result.data.narrative);
+
+// Format citations in text
+const formattedText = formatCitations(text, sources);
+```
+
+**Response Formats**:
+- **JSON**: Structured data with narrative, persona, competitors
+- **Markdown**: Discovery pack format with 7 sections + References
+- **Parser handles both**: Automatically detects and parses format
+
+**Citation Requirements**:
+- ✅ All claims must be backed by cited sources
+- ✅ Citations formatted as `[^number]` footnotes
+- ✅ Sources section at end of document
+- ✅ Source URLs included when available
+
+**Output Location**: 
+- `/docs/product/NARRATIVE-<product>.md`
+- `/docs/research/PERSONA-<product>.md`
+- `/docs/research/COMPETITORS-<product>.md`
+- `/projects/<project-slug>/NARRATIVE-<product>.md` (project-specific)
+
+### 2. ChatGPT (Reasoning & Refinement)
+
+**When**: Complex reasoning, idea refinement, ideation
+
+**Pattern**:
+```typescript
+import { reason, refine, ideate } from "@/lib/ai-tools/chatgpt";
+
+// Reasoning
+const analysis = await reason({
+  problem: "How to build data moat for design system?",
+  context: "Startup SaaS, design system product"
+});
+
+// Refinement
+const refined = await refine({
+  idea: initialIdea,
+  feedback: validationFeedback
+});
+```
+
+**Output Location**: `/docs/product/REASONING-<topic>.md`
+
+### 3. ElevenLabs (Voice Content)
+
+**When**: Demo narrations, validation audio, marketing voiceovers
+
+**Pattern**:
+```typescript
+import { generateVoice } from "@/lib/ai-tools/elevenlabs";
+
+const audio = await generateVoice({
+  script: "Welcome to our design system platform...",
+  voiceId: "professional-male",
+  stability: 0.7,
+  similarity: 0.8
+});
+```
+
+**Output Location**: `/docs/product/AUDIO-<content>.mp3`
+
+### 4. Midjourney/Canva (Visual Assets)
+
+**When**: Hero images, concept visuals, marketing materials
+
+**Pattern**:
+```typescript
+import { generateVisual, createCanvaDesign } from "@/lib/ai-tools/visual";
+
+// Midjourney
+const heroImage = await generateVisual({
+  prompt: "Modern SaaS dashboard, clean design, professional",
+  style: "minimalist",
+  dimensions: "1920x1080"
+});
+
+// Canva
+const marketingAsset = await createCanvaDesign({
+  template: "landing-page-hero",
+  brandColors: ["#000000", "#FFFFFF"],
+  text: "Ship UI Faster"
+});
+```
+
+**Output Location**: `/docs/product/VISUALS-<product>/`
+
+## Error Handling
+
+All AI tool calls must handle errors gracefully:
+
+```typescript
+try {
+  const result = await aiToolCall();
+  return { success: true, data: result };
+} catch (error) {
+  console.error("AI tool error:", error);
+  return { 
+    success: false, 
+    error: error.message,
+    fallback: "Use manual process" 
+  };
+}
+```
+
+## Rate Limiting
+
+- **Manus.im**: Check rate limits, implement retry logic
+- **ChatGPT**: Use exponential backoff for rate limits
+- **ElevenLabs**: Batch requests when possible
+- **Midjourney**: Queue requests, respect Discord rate limits
+- **Canva**: Use webhooks for async operations
+
+## Cost Management
+
+- Log all API calls with costs
+- Set budget limits per tool
+- Use cheaper models when appropriate (GPT-3.5 for ideation, GPT-4 for reasoning)
+- Cache results when possible
+
+## Quality Gates
+
+Before using AI tool outputs:
+
+1. ✅ Review output for accuracy and relevance
+2. ✅ Validate against quality criteria
+3. ✅ Ensure output is actionable
+4. ✅ Check for bias or inappropriate content
+5. ✅ Verify output matches requirements
+
+## Integration Checklist
+
+When adding new AI tool:
+
+- [ ] Create API client in `src/lib/ai-tools/`
+- [ ] Add environment variable
+- [ ] Implement error handling
+- [ ] Add rate limiting
+- [ ] Document usage patterns
+- [ ] Create agent prompt template
+- [ ] Add to integration rule file

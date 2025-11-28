@@ -1,0 +1,361 @@
+# Rule 340: Midjourney Visuals in Discovery
+
+> Mandate Midjourney/Canva prompts for persona and opportunity reports to create visual empathy artifacts
+
+## Core Principle
+
+**Persona and opportunity reports must include Midjourney or Canva prompts for vision mockups, conceptual diagrams, and social ad concepts. This creates visual empathy artifacts.**
+
+## Purpose
+
+Establish mandatory Midjourney/Canva visual prompt requirements for persona and opportunity reports, creating visual empathy artifacts that help teams understand and communicate personas and opportunities visually.
+
+## Mandatory Visual Prompts
+
+### Persona Reports Must Include:
+
+#### 1. Vision Mockup of Future Product
+
+**Required For**: Stage 3 (Persona & JTBD)
+
+**Prompt Requirements**:
+- **Type**: Product vision mockup showing how persona would use the product
+- **Purpose**: Visualize the future product experience from persona's perspective
+- **Format**: Midjourney prompt or Canva template recommendation
+- **Content**: Product interface, persona context, key features, emotional state
+
+**Agent**: `@Visual-Asset-Agent`  
+**Output**: Included in `/docs/discovery/JTBD-<idea-slug>.md`
+
+**Prompt Structure**:
+```
+Vision Mockup Prompt:
+[Detailed Midjourney prompt or Canva template]
+
+Key Elements:
+- Persona context (who is using it)
+- Product interface (what they see)
+- Key features (what they're doing)
+- Emotional state (how they feel)
+- Environment (where they are)
+```
+
+#### 2. Conceptual Diagram
+
+**Required For**: Stage 3 (Persona & JTBD)
+
+**Prompt Requirements**:
+- **Type**: Conceptual diagram showing persona's journey, JTBD, or pain points
+- **Purpose**: Visualize persona's mental model, journey, or problem space
+- **Format**: Midjourney prompt or Canva template recommendation
+- **Content**: Persona journey, JTBD flow, pain point visualization, emotional journey
+
+**Agent**: `@Visual-Asset-Agent`  
+**Output**: Included in `/docs/discovery/JTBD-<idea-slug>.md`
+
+**Prompt Structure**:
+```
+Conceptual Diagram Prompt:
+[Detailed Midjourney prompt or Canva template]
+
+Key Elements:
+- Persona journey stages
+- JTBD flow or process
+- Pain points and barriers
+- Emotional journey
+- Key touchpoints
+```
+
+#### 3. Social Ad Concepts
+
+**Required For**: Stage 3 (Persona & JTBD)
+
+**Prompt Requirements**:
+- **Type**: Social ad concepts targeting the persona
+- **Purpose**: Visualize how to reach and resonate with the persona
+- **Format**: Midjourney prompt or Canva template recommendation
+- **Content**: Ad creative, messaging, visual style, emotional appeal
+
+**Agent**: `@Visual-Asset-Agent`  
+**Output**: Included in `/docs/discovery/JTBD-<idea-slug>.md`
+
+**Prompt Structure**:
+```
+Social Ad Concept Prompt:
+[Detailed Midjourney prompt or Canva template]
+
+Key Elements:
+- Ad creative concept
+- Messaging hook
+- Visual style
+- Emotional appeal
+- Call-to-action
+```
+
+### Opportunity Reports Must Include:
+
+#### 1. Vision Mockup of Future Product
+
+**Required For**: Stage 4 (Opportunity & Moat)
+
+**Prompt Requirements**:
+- **Type**: Product vision mockup showing the future opportunity
+- **Purpose**: Visualize the future product and market opportunity
+- **Format**: Midjourney prompt or Canva template recommendation
+- **Content**: Product vision, market opportunity, key differentiators, moat visualization
+
+**Agent**: `@Visual-Asset-Agent`  
+**Output**: Included in `/docs/discovery/OPPORTUNITY-<idea-slug>.md`
+
+**Prompt Structure**:
+```
+Vision Mockup Prompt:
+[Detailed Midjourney prompt or Canva template]
+
+Key Elements:
+- Product vision
+- Market opportunity
+- Key differentiators
+- Moat visualization
+- Competitive positioning
+```
+
+#### 2. Conceptual Diagram
+
+**Required For**: Stage 4 (Opportunity & Moat)
+
+**Prompt Requirements**:
+- **Type**: Conceptual diagram showing opportunity, moat, or market dynamics
+- **Purpose**: Visualize opportunity structure, moat types, or market dynamics
+- **Format**: Midjourney prompt or Canva template recommendation
+- **Content**: Opportunity map, moat visualization, market dynamics, competitive landscape
+
+**Agent**: `@Visual-Asset-Agent`  
+**Output**: Included in `/docs/discovery/OPPORTUNITY-<idea-slug>.md`
+
+**Prompt Structure**:
+```
+Conceptual Diagram Prompt:
+[Detailed Midjourney prompt or Canva template]
+
+Key Elements:
+- Opportunity structure
+- Moat types and strength
+- Market dynamics
+- Competitive landscape
+- Blue ocean pockets
+```
+
+#### 3. Social Ad Concepts
+
+**Required For**: Stage 4 (Opportunity & Moat)
+
+**Prompt Requirements**:
+- **Type**: Social ad concepts for market entry or positioning
+- **Purpose**: Visualize how to communicate opportunity and positioning
+- **Format**: Midjourney prompt or Canva template recommendation
+- **Content**: Positioning ads, value proposition ads, differentiation ads
+
+**Agent**: `@Visual-Asset-Agent`  
+**Output**: Included in `/docs/discovery/OPPORTUNITY-<idea-slug>.md`
+
+**Prompt Structure**:
+```
+Social Ad Concept Prompt:
+[Detailed Midjourney prompt or Canva template]
+
+Key Elements:
+- Positioning message
+- Value proposition
+- Differentiation
+- Market entry strategy
+- Call-to-action
+```
+
+## Visual Empathy Artifacts
+
+### Purpose
+
+**Visual empathy artifacts** help teams:
+- **Understand personas visually** - See how personas interact with products
+- **Communicate opportunities** - Visualize market opportunities and moats
+- **Build empathy** - Visuals create emotional connection
+- **Validate assumptions** - Visuals help validate product vision
+- **Stakeholder communication** - Visuals are powerful for presentations
+
+### Usage
+
+**Visual empathy artifacts should be used for**:
+- Team onboarding and understanding
+- Design sessions and ideation
+- Stakeholder presentations
+- Investor pitches
+- Marketing and positioning
+- Product vision communication
+
+## Tool Selection Guide
+
+### When to Use Midjourney
+
+**Use Midjourney for**:
+- Unique, creative visual concepts
+- Abstract or conceptual diagrams
+- Artistic interpretations
+- High-quality, detailed mockups
+- Custom visual style
+
+**Midjourney Prompt Format**:
+```
+[Subject] + [Style] + [Context] + [Emotion] + [Technical details]
+```
+
+### When to Use Canva
+
+**Use Canva for**:
+- Template-based designs
+- Social ad formats
+- Professional presentations
+- Quick iterations
+- Brand-consistent designs
+
+**Canva Template Format**:
+```
+Template: [Template name]
+Customizations: [What to customize]
+Content: [What content to include]
+```
+
+## Integration with Discovery Agents
+
+### Persona & JTBD Agent
+
+**Agent**: `@JTBD-Agent`
+
+**Must Execute**:
+1. ✅ Create persona narrative from Manus outputs
+2. ✅ Request `@Visual-Asset-Agent` for visual prompts
+3. ✅ Include vision mockup prompt
+4. ✅ Include conceptual diagram prompt
+5. ✅ Include social ad concept prompts
+6. ✅ Document visual prompts in JTBD document
+
+### Opportunity & Moat Agent
+
+**Agent**: `@Opportunity-Moat-Agent`
+
+**Must Execute**:
+1. ✅ Analyze opportunity and moat potential
+2. ✅ Request `@Visual-Asset-Agent` for visual prompts
+3. ✅ Include vision mockup prompt
+4. ✅ Include conceptual diagram prompt
+5. ✅ Include social ad concept prompts
+6. ✅ Document visual prompts in Opportunity document
+
+## Output Format
+
+### JTBD Document Structure
+
+**Required Sections**:
+1. Deep Persona Narrative
+2. Main Job + Related Jobs + Emotional Jobs
+3. Ongoing vs Discrete Jobs
+4. Triggers, Success Criteria, Barriers
+5. **Midjourney/Canva Visual Prompts**:
+   - Vision Mockup of Future Product
+   - Conceptual Diagram
+   - Social Ad Concepts
+
+### Opportunity Document Structure
+
+**Required Sections**:
+1. Opportunity Summary
+2. Winner-Take-Most Dynamics
+3. Switching Cost Potential
+4. Data Moats
+5. Workflow Embedding Opportunities
+6. Underserved Segments
+7. **Midjourney/Canva Visual Prompts**:
+   - Vision Mockup of Future Product
+   - Conceptual Diagram
+   - Social Ad Concepts
+
+### Visual Prompt Format in Document
+
+```markdown
+## Midjourney/Canva Visual Prompts
+
+### Vision Mockup of Future Product
+
+**Tool**: [Midjourney / Canva]
+**Prompt/Template**: [Detailed prompt or template name]
+
+**Key Elements**:
+- [Element 1]
+- [Element 2]
+- [Element 3]
+
+**Usage**: [How to use this visual]
+
+### Conceptual Diagram
+
+**Tool**: [Midjourney / Canva]
+**Prompt/Template**: [Detailed prompt or template name]
+
+**Key Elements**:
+- [Element 1]
+- [Element 2]
+- [Element 3]
+
+**Usage**: [How to use this visual]
+
+### Social Ad Concepts
+
+**Tool**: [Midjourney / Canva]
+**Prompt/Template**: [Detailed prompt or template name]
+
+**Key Elements**:
+- [Element 1]
+- [Element 2]
+- [Element 3]
+
+**Usage**: [How to use this visual]
+```
+
+## Quality Gates
+
+**Midjourney/Canva visual prompts must pass all quality gates**:
+
+- ✅ **Vision mockup prompt provided** (for persona or opportunity)
+- ✅ **Conceptual diagram prompt provided** (for persona or opportunity)
+- ✅ **Social ad concept prompts provided** (for persona or opportunity)
+- ✅ **Prompts are detailed** (include all key elements)
+- ✅ **Tool specified** (Midjourney or Canva)
+- ✅ **Usage documented** (how to use the visual)
+- ✅ **Visual empathy artifact created** (helps understanding and communication)
+
+## Non-Negotiables
+
+- **Vision mockup prompt required** - Cannot skip vision mockup
+- **Conceptual diagram prompt required** - Cannot skip conceptual diagram
+- **Social ad concept prompts required** - Cannot skip social ad concepts
+- **Tool must be specified** - Must specify Midjourney or Canva
+- **Prompts must be detailed** - Must include all key elements
+- **Visual empathy artifact required** - Must help understanding and communication
+
+## Integration with Other Rules
+
+- **Rule 070 (Midjourney/Canva)**: General visual asset requirements
+- **Rule 194 (Visual Asset Integration)**: Visual asset specific patterns
+- **Rule 043 (Persona & JTBD)**: Persona document requirements
+- **Rule 044 (Opportunity & Moat)**: Opportunity document requirements
+- **Rule 301 (Discovery Overview)**: Discovery pipeline structure
+
+## Summary
+
+1. **Persona reports must include**: Vision mockup, conceptual diagram, social ad concepts
+2. **Opportunity reports must include**: Vision mockup, conceptual diagram, social ad concepts
+3. **Tool selection**: Midjourney for unique concepts, Canva for templates
+4. **Visual empathy artifacts**: Help teams understand and communicate visually
+5. **Quality gates enforced**: All prompts must pass quality checks
+
+**Midjourney/Canva visual prompts are not optional. They're required to create visual empathy artifacts for persona and opportunity understanding.**

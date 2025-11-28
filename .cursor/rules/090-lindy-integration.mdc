@@ -1,0 +1,256 @@
+# Rule: Lindy AI Integration (Automation Layer)
+
+## GOAL
+
+Use Lindy AI as the primary automation runner for discovery + demand validation, replacing n8n for most workflows.
+
+## LINDY IS USED FOR
+
+### Trigger-Based Outreach and Follow-Up
+- Automated DM outreach sequences
+- Follow-up reminders and scheduling
+- Reply detection and triage
+- Conversation routing and escalation
+
+### Waitlist Nurture Sequences
+- Welcome emails and onboarding
+- Segmentation based on responses
+- Personalized nurture content
+- Re-engagement campaigns
+
+### Community/Lead Monitoring and Routing
+- Monitor social platforms for mentions
+- Track community engagement
+- Route leads to appropriate channels
+- Alert on high-value opportunities
+
+### Results Logging into Sheets/Airtable/Notion
+- Log validation test results
+- Track metrics and KPIs
+- Update dashboards automatically
+- Sync data across tools
+
+### Scheduling Interviews and Reminders
+- Schedule user interviews
+- Send reminder notifications
+- Reschedule handling
+- Calendar integration
+
+### Cross-App Workflows Requiring Reasoning
+- Multi-step workflows across services
+- AI-powered decision making
+- Context-aware automation
+- Intelligent routing and prioritization
+
+## LINDY IS NOT USED FOR
+
+- **Core product logic**: Business logic stays in application code
+- **Source-of-truth docs**: Cursor remains canonical for documentation
+- **Deterministic CI/CD steps**: Use GitHub Actions or similar
+- **Anything that must be versioned in git**: Code and docs stay in repo
+
+## SYSTEM OF RECORD
+
+### Cursor Remains Canonical For
+
+- **PRDs, ADRs, research, validation plans**: All documentation in `/docs/`
+- **Agent outputs and decisions**: All agent-generated content in repo
+- **Final copy and code**: Production-ready content in codebase
+
+### Lindy Handles
+
+- **Execution workflows**: Automation of manual tasks
+- **Data collection**: Logging results and metrics
+- **Communication**: Outreach, follow-ups, notifications
+- **Integration**: Connecting multiple services
+
+## STANDARD LINDY AUTOMATIONS REQUIRED PER IDEA
+
+### 1) Waitlist Intake → Segmentation → Nurture
+
+**Purpose**: Automate waitlist management and nurturing
+
+**Workflow**:
+1. **Intake**: New waitlist signup triggers automation
+2. **Segmentation**: Analyze signup data (source, responses, profile)
+3. **Nurture**: Send personalized sequence based on segment
+4. **Tracking**: Log engagement and conversion metrics
+
+**Components**:
+- Trigger: New waitlist signup (form, landing page, API)
+- Actions: Segment user, send welcome email, schedule follow-ups
+- Tools: Email service, CRM, analytics
+- Logging: Update `/docs/validation/RESULTS-<idea>.md` and Sheet
+
+**Output**: Segmented waitlist with personalized nurture sequences
+
+### 2) DM Outreach Sequencer → Reply Triage → Call Scheduling
+
+**Purpose**: Automate DM outreach and conversation management
+
+**Workflow**:
+1. **Sequencer**: Send DM outreach based on schedule
+2. **Reply Triage**: Detect replies, analyze sentiment, prioritize
+3. **Call Scheduling**: If interested, schedule discovery call
+4. **Follow-Up**: Send reminders and follow-ups
+
+**Components**:
+- Trigger: Scheduled time or manual trigger
+- Actions: Send DM, monitor replies, analyze sentiment, schedule calls
+- Tools: Social platform APIs, calendar, email
+- Logging: Track outreach metrics, reply rates, conversion
+
+**Output**: Automated outreach with intelligent reply handling
+
+### 3) Validation Metrics Logger → Daily Summary → Slack/Email Report
+
+**Purpose**: Automate validation metrics collection and reporting
+
+**Workflow**:
+1. **Logger**: Collect metrics from validation tests
+2. **Daily Summary**: Aggregate daily results
+3. **Report**: Send summary to Slack/Email
+4. **Dashboard**: Update Sheets/Airtable/Notion
+
+**Components**:
+- Trigger: Scheduled (daily) or event-based
+- Actions: Collect metrics, aggregate data, generate report, send notifications
+- Tools: Analytics APIs, Sheets/Airtable/Notion, Slack/Email
+- Logging: Update `/docs/validation/RESULTS-<idea>.md`
+
+**Output**: Automated metrics collection and reporting
+
+## AGENT REQUIREMENTS
+
+### Agents That Touch Real-World Execution
+
+**Agents that must output Lindy automation specs**:
+- `@Demand-Validator` (validation test execution)
+- `@Distribution-Operator` (outreach and community management)
+- `@Pricing-Tester` (pricing test execution and tracking)
+- `@Landing-Builder` (waitlist and conversion tracking)
+
+### Required Outputs
+
+#### 1. Lindy Automation Spec
+
+**Must Include**:
+- **Triggers**: What starts the automation (event, schedule, manual)
+- **Actions**: What the automation does (steps and logic)
+- **Data Fields**: What data is collected/used (inputs, outputs, variables)
+- **Tools Connected**: Which services are integrated (APIs, webhooks, etc.)
+- **Error Handling**: What happens on failure (retries, alerts, fallbacks)
+
+**Format**: Document in `/docs/validation/LINDY-<idea>.md`
+
+#### 2. Fallback Manual Workflow
+
+**Must Include**:
+- Step-by-step manual process if automation fails
+- Tools and resources needed
+- Time estimates per step
+- Quality criteria for manual execution
+
+**Purpose**: Ensure validation can continue if automation is unavailable
+
+#### 3. Where Logs/Results Are Stored
+
+**Must Specify**:
+- Primary location: `/docs/validation/RESULTS-<idea>.md` (exact path)
+- Secondary location: Exact sheet/tab name (format: `Sheet Name - Tab Name`)
+- Data sync: How data flows between locations
+- Access: Who can view/edit logs
+
+**Format**: Document in validation plan or results document
+
+#### 4. Exact Documentation References (REQUIRED)
+
+**Every Lindy spec MUST include exact paths and references** (see Rule 091):
+
+- **Exact doc path for thresholds**: `/docs/validation/VALIDATION-PLAN-<idea>.md` (full path, not placeholder)
+- **Exact sheet/tab name for logging**: `Sheet Name - Tab Name` (format: `Validation Metrics - Waitlist Intake`)
+- **Exact asset folder for creatives**: `/docs/validation/assets/<idea>/` (full path from repo root)
+- **Exact ElevenLabs links**: Full URL or file path (not placeholder)
+
+**Why**: Makes the entire factory predictable and enables automation without manual intervention.
+
+## CREDIT AWARENESS
+
+### Lindy Credit Usage
+
+- **Credits per task/action**: Each automation step consumes credits
+- **Batch tasks**: Use sparingly (high credit cost)
+- **Summarized steps**: Prefer when possible (lower credit cost)
+- **Free/Pro limits**: Monitor usage to stay within plan limits
+
+### Optimization Strategies
+
+- **Batch operations**: Group similar actions to reduce credit usage
+- **Conditional logic**: Skip unnecessary steps based on conditions
+- **Caching**: Reuse data when possible to avoid redundant API calls
+- **Summarization**: Use AI to summarize data instead of processing everything
+
+### Monitoring
+
+- Track credit usage in Lindy dashboard
+- Set alerts for high usage
+- Review and optimize workflows regularly
+- Document credit costs in automation specs
+
+## Integration with Validation Workflows
+
+### With Demand-Validator
+
+**Integration Point**: Validation test execution
+
+**Workflow**:
+1. Demand-Validator creates validation plan
+2. Lindy automation executes tests (outreach, landing, etc.)
+3. Results logged to RESULTS document and Sheet
+4. Daily summary sent to team
+
+### With Distribution-Operator
+
+**Integration Point**: Outreach and community management
+
+**Workflow**:
+1. Distribution-Operator creates posting calendar and DM scripts
+2. Lindy automation executes outreach sequence
+3. Replies triaged and routed
+4. Metrics logged and reported
+
+### With Pricing-Tester
+
+**Integration Point**: Pricing test execution
+
+**Workflow**:
+1. Pricing-Tester defines pricing test strategy
+2. Lindy automation runs ad tests and tracks conversions
+3. Results logged and analyzed
+4. Reports generated and shared
+
+## Quality Gates
+
+**All Lindy automations must pass quality gates**:
+
+- ✅ **Automation spec provided** (triggers, actions, data fields, tools)
+- ✅ **Fallback manual workflow documented** (step-by-step process)
+- ✅ **Logging locations specified** (RESULTS doc + exact sheet/tab name)
+- ✅ **Exact documentation references provided** (see Rule 091):
+  - Exact doc path for thresholds (full path, not placeholder)
+  - Exact sheet/tab name for logging (format: `Sheet Name - Tab Name`)
+  - Exact asset folder for creatives (full path from repo root)
+  - Exact ElevenLabs links (full URL or file path)
+- ✅ **Credit usage optimized** (batch sparingly, summarize when possible)
+- ✅ **Error handling implemented** (retries, alerts, fallbacks)
+- ✅ **Integration with validation workflows** (Demand-Validator, Distribution-Operator, Pricing-Tester)
+
+## Summary
+
+1. **Lindy is primary automation runner** for discovery + validation workflows
+2. **Lindy handles execution**, Cursor handles documentation and code
+3. **3 standard automations required** per idea (waitlist, outreach, metrics)
+4. **Agents must output** automation specs, fallback workflows, and logging locations
+5. **Credit awareness** required (optimize usage, monitor limits)
+
+**Lindy automates execution workflows. Cursor remains the system of record for documentation and code.**

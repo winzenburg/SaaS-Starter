@@ -1,0 +1,300 @@
+# Rule 070: ElevenLabs Integration
+
+> Every persona and landing deliverable must include ElevenLabs voice content
+
+## Core Principle
+
+**Every persona and landing deliverable must include ElevenLabs voice content.**
+
+Voice content creates empathy artifacts and credibility signals that enhance discovery and validation.
+
+## Required ElevenLabs Content
+
+### 1. 30–60 Second ElevenLabs Script (Required)
+
+**When**: All persona documents and landing pages
+
+**Purpose**: Create voice empathy artifact for persona validation
+
+**Required Elements**:
+- **Duration**: 30-60 seconds
+- **Content**: 
+  - Persona introduction (who they are)
+  - Core pain point (from Manus pain language)
+  - Desired outcome (from JTBD)
+  - Emotional driver (from persona narrative)
+- **Script Structure**:
+  - Opening: Identity statement
+  - Problem: Pain point in persona's words
+  - Aspiration: Desired outcome
+  - Closing: Emotional driver
+
+**Output Format**:
+```markdown
+## ElevenLabs Script (30-60 seconds)
+
+**Duration**: 45 seconds
+**Voice**: [Voice selection]
+**Tone**: [Casual/Professional]
+
+**Script**:
+[30-60 second script content]
+```
+
+**Agent**: `@JTBD-Agent`, `@Landing-Builder`
+
+### 2. Two Tone Variants (Required)
+
+**When**: All persona documents and landing pages
+
+**Purpose**: Test different tones for different contexts
+
+**Required Variants**:
+
+#### Variant 1: Casual Tone
+
+**Characteristics**:
+- Conversational, friendly
+- Relatable, approachable
+- Less formal language
+- Personal pronouns (I, we, you)
+
+**Use Cases**:
+- Community outreach
+- Social media content
+- Informal validation tests
+- Persona interviews
+
+#### Variant 2: Professional Tone
+
+**Characteristics**:
+- Formal, authoritative
+- Credible, trustworthy
+- Business-focused language
+- Professional terminology
+
+**Use Cases**:
+- Landing pages
+- Enterprise outreach
+- Formal validation tests
+- Investor presentations
+
+**Output Format**:
+```markdown
+## ElevenLabs Script Variants
+
+### Casual Tone (30-60 seconds)
+**Voice**: [Voice selection]
+**Tone**: Casual, conversational
+
+**Script**:
+[Casual script content]
+
+### Professional Tone (30-60 seconds)
+**Voice**: [Voice selection]
+**Tone**: Professional, authoritative
+
+**Script**:
+[Professional script content]
+```
+
+**Agent**: `@JTBD-Agent`, `@Landing-Builder`
+
+### 3. Optional "Persona Interview Script"
+
+**When**: Persona documents (optional but recommended)
+
+**Purpose**: Create audio empathy artifact for persona validation
+
+**Required Elements**:
+- **Duration**: 2-5 minutes
+- **Structure**: Interview format with questions and persona responses
+- **Content**:
+  - Introduction questions
+  - Identity questions
+  - Pain point questions
+  - JTBD questions
+  - Emotional driver questions
+  - Closing questions
+
+**Output Format**:
+```markdown
+## Persona Interview Script (ElevenLabs) - Optional
+
+**Duration**: 3 minutes
+**Voice**: [Voice selection]
+**Tone**: [Casual/Professional]
+
+**Script**:
+Interviewer: [Question]
+Persona: [Response based on persona narrative]
+
+[Additional Q&A pairs]
+```
+
+**Agent**: `@JTBD-Agent`
+
+### 4. Optional "Founder Intro" Script for Landing Pages
+
+**When**: Landing pages (optional but recommended)
+
+**Purpose**: Create credibility signal and trust-building content
+
+**Required Elements**:
+- **Duration**: 30-60 seconds
+- **Content**:
+  - Brief founder background
+  - Problem statement (from Manus pain language)
+  - Solution introduction
+  - Call to action
+- **Tone**: Professional, authentic, trustworthy
+
+**Output Format**:
+```markdown
+## Founder Intro Script (ElevenLabs) - Optional
+
+**Duration**: 45 seconds
+**Voice**: Professional Male/Female (neutral)
+**Tone**: Professional, authentic
+
+**Script**:
+Hi, I'm [Founder Name], founder of [Product Name].
+
+[Problem statement from Manus pain language]
+
+That's why we built [Product Name] - [Solution description].
+
+[Call to action]
+```
+
+**Agent**: `@Landing-Builder`
+
+## Voice Selection Guidelines
+
+### Voice Characteristics
+
+**For Casual Tone**:
+- Warm, friendly voice
+- Conversational pace
+- Natural, relaxed delivery
+- Approachable personality
+
+**For Professional Tone**:
+- Clear, authoritative voice
+- Professional pace
+- Confident, credible delivery
+- Trustworthy personality
+
+### Voice Settings
+
+**Recommended Settings**:
+- **Stability**: 0.6-0.7 (balanced between natural and consistent)
+- **Similarity**: 0.75-0.85 (maintains voice characteristics)
+- **Style**: 0.3-0.5 (moderate expressiveness)
+
+**For Casual Tone**:
+- Higher style (0.5-0.7) for more expressiveness
+- Slightly lower stability (0.5-0.6) for natural variation
+
+**For Professional Tone**:
+- Lower style (0.2-0.4) for more controlled delivery
+- Higher stability (0.7-0.8) for consistency
+
+## Integration Points
+
+### Persona Documents
+
+**Required in**: `/docs/discovery/JTBD-<idea-slug>.md`
+
+**Required Content**:
+- ✅ 30-60 second ElevenLabs script (required)
+- ✅ Two tone variants: casual + professional (required)
+- ✅ Optional persona interview script (recommended)
+
+**Agent**: `@JTBD-Agent`
+
+### Landing Pages
+
+**Required in**: `/docs/validation/LANDING-<idea-slug>.md`
+
+**Required Content**:
+- ✅ 30-60 second ElevenLabs script (required)
+- ✅ Two tone variants: casual + professional (required)
+- ✅ Optional founder intro script (recommended)
+
+**Agent**: `@Landing-Builder`
+
+## Quality Gates
+
+**All ElevenLabs content must meet quality criteria:**
+
+- ✅ **Duration**: 30-60 seconds for main script
+- ✅ **Two tone variants**: Casual + professional
+- ✅ **Content alignment**: Scripts align with Manus persona/pain language
+- ✅ **Voice selection**: Appropriate voice for tone
+- ✅ **Script structure**: Clear opening, problem, aspiration, closing
+- ✅ **Optional content**: Persona interview and founder intro when applicable
+
+## Workflow
+
+```
+Persona/Landing Document Created
+  ↓
+Extract Persona/Pain Language from Manus
+  ↓
+@JTBD-Agent or @Landing-Builder → Generate Scripts
+  ↓
+Create 30-60 Second Script (Required)
+  ↓
+Create Casual Tone Variant (Required)
+  ↓
+Create Professional Tone Variant (Required)
+  ↓
+Optional: Create Persona Interview Script
+  ↓
+Optional: Create Founder Intro Script (Landing Pages)
+  ↓
+Include in Document
+```
+
+## Integration with Other Rules
+
+- **Rule 001 (Philosophy)**: AI-assisted discovery mandatory, ElevenLabs required
+- **Rule 040 (Demand Validation)**: Landing pages must include ElevenLabs scripts
+- **Rule 043 (Persona & JTBD)**: Persona documents must include ElevenLabs scripts
+- **Rule 193 (ElevenLabs Integration)**: Technical ElevenLabs integration patterns
+- **Rule 330 (ElevenLabs Voice)**: Detailed voice requirements for discovery
+
+## Enforcement
+
+### Pre-Persona Document Checks
+
+**Before completing persona document**:
+1. ✅ 30-60 second script must exist
+2. ✅ Two tone variants must exist (casual + professional)
+3. ✅ Scripts must align with Manus persona narrative
+
+### Pre-Landing Page Checks
+
+**Before completing landing page**:
+1. ✅ 30-60 second script must exist
+2. ✅ Two tone variants must exist (casual + professional)
+3. ✅ Scripts must align with Manus pain language and value proposition
+
+### Agent Requirements
+
+**All relevant agents must**:
+1. Generate ElevenLabs scripts as part of standard outputs
+2. Create both casual and professional tone variants
+3. Include optional scripts when applicable
+4. Align scripts with Manus outputs
+
+## Summary
+
+1. **Every persona and landing deliverable must include** ElevenLabs voice content
+2. **Required Content**: 30-60 second script + two tone variants (casual, professional)
+3. **Optional Content**: Persona interview script, founder intro script
+4. **Quality Gates**: Duration, tone variants, content alignment, voice selection
+5. **Enforcement**: Agents must generate scripts as part of standard outputs
+
+**ElevenLabs voice content is required to create empathy artifacts and credibility signals for discovery and validation.**

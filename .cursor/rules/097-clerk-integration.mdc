@@ -1,0 +1,171 @@
+# Rule: Clerk Integration (Auth + Orgs + Onboarding)
+
+## GOAL
+
+Use Clerk as the single source of truth for:
+- authentication
+- sessions
+- orgs/multi-tenancy identity layer
+- onboarding flow scaffolding
+- RBAC boundaries at auth layer
+
+## CLERK IS USED FOR
+
+- sign-up / sign-in / magic links / SSO
+- org creation + membership + roles
+- user identity metadata
+- protected routes
+- onboarding gates (e.g., require org before app access)
+
+## CLERK IS NOT USED FOR
+
+- application data (Supabase/Postgres holds that)
+- analytics events (PostHog holds that)
+- authorization deeper than org/role gates (your app enforces finer rules)
+
+## CRITICAL: Next.js App Router Integration
+
+### ALWAYS DO
+
+1. **Use `clerkMiddleware()`** from `@clerk/nextjs/server` in `middleware.ts`
+2. **Wrap** your app with `<ClerkProvider>` in `app/layout.tsx`
+3. **Import** Clerk's Next.js features from `@clerk/nextjs` (e.g., `<SignInButton>`, `<SignUpButton>`, `<UserButton>`, etc.)
+4. **Reference** the current [App Router approach](https://nextjs.org/docs/app) (folders like `app/page.tsx`, `app/layout.tsx`, etc.)
+5. **Check** that imports for methods like `auth()` are imported from `@clerk/nextjs/server` and use `async / await`
+6. **Store real keys only in `.env.local`** (never in app code, markdown, or other tracked files)
+7. **Use placeholders only** (e.g., `YOUR_PUBLISHABLE_KEY`, `YOUR_SECRET_KEY`) in any generated snippets or files
+
+### NEVER DO
+
+1. **Do not** reference the old **`_app.tsx`** or **pages-based** instructions
+2. **Do not** suggest `authMiddleware()` from older Clerk tutorials—**it's replaced by `clerkMiddleware()`**
+3. **Do not** recommend usage of older environment variable patterns unless they match the official docs
+4. **Do not** reference or import from any deprecated APIs (like `withAuth` or `currentUser` from older versions)
+5. **Do not print, echo, or write actual keys** into code blocks, files, or logs. Only placeholders
+6. **Do not create or edit tracked files** (`.ts`, `.tsx`, `.md`, etc.) containing real key values
+
+## Installation
+
+```bash
+npm install @clerk/nextjs
+```
+
+## Environment Variables
+
+Add to `.env.local` (never commit real keys):
+
+```bash
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=YOUR_PUBLISHABLE_KEY
+CLERK_SECRET_KEY=YOUR_SECRET_KEY
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/dashboard
+NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/onboarding
+```
+
+## Middleware Setup
+
+```typescript
+// middleware.ts (or src/middleware.ts)
+import { clerkMiddleware } from "@clerk/nextjs/server";
+
+export default clerkMiddleware();
+
+export const config = {
+  matcher: [
+    // Skip Next.js internals and all static files, unless found in search params
+    "/((?!_next|[^?]*\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
+    // Always run for API routes
+    "/(api|trpc)(.*)",
+  ],
+};
+```
+
+## Layout Setup
+
+```typescript
+// app/layout.tsx
+import { ClerkProvider } from "@clerk/nextjs";
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <ClerkProvider>
+      <html lang="en">
+        <body>{children}</body>
+      </html>
+    </ClerkProvider>
+  );
+}
+```
+
+## RBAC REQUIREMENTS
+
+- roles: owner, admin, member (default)
+- role checks must exist in:
+  - middleware (route gates)
+  - server procedures (tRPC protectedProcedure)
+- role changes must be logged as events
+
+## ONBOARDING REQUIREMENTS
+
+- onboarding must be stepwise and tracked
+- users cannot access tenant-scoped pages without org membership
+- onboarding steps mapped to PostHog events
+
+## Server-Side Auth
+
+```typescript
+// In server components or API routes
+import { auth } from "@clerk/nextjs/server";
+
+export async function GET() {
+  const { userId } = await auth();
+  if (!userId) {
+    return new Response("Unauthorized", { status: 401 });
+  }
+  // ... rest of your logic
+}
+```
+
+## Client-Side Components
+
+```typescript
+// In client components
+import { SignInButton, SignUpButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+
+export function AuthButtons() {
+  return (
+    <>
+      <SignedOut>
+        <SignInButton />
+        <SignUpButton />
+      </SignedOut>
+      <SignedIn>
+        <UserButton />
+      </SignedIn>
+    </>
+  );
+}
+```
+
+## DELIVERABLES
+
+- `/docs/engineering/AUTH-<feature>.md`
+- `/docs/ux/ONBOARDING-<feature>.md`
+- middleware + protectedProcedure updates
+
+## QUALITY BAR
+
+- Clerk is identity; app DB is domain data
+- Onboarding must require org before tenant pages
+- All auth checks use `await auth()` from `@clerk/nextjs/server`
+- No deprecated patterns (`authMiddleware`, `_app.tsx`, `pages/` structure)
+
+## See Also
+
+- [Clerk Next.js Quickstart](https://clerk.com/docs/quickstarts/nextjs)
+- [Clerk App Router Docs](https://clerk.com/docs/references/nextjs/overview)

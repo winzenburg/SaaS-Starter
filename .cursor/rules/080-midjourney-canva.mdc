@@ -1,0 +1,388 @@
+# Rule 080: Midjourney/Canva Integration
+
+> Cursor agents must output visual prompts for all visual deliverables
+
+## Core Principle
+
+**Cursor agents must output visual prompts for all visual deliverables.**
+
+Visual prompts enable creation of professional visual assets using Midjourney or Canva.
+
+## Required Visual Prompts
+
+Cursor agents must output visual prompts for:
+
+### 1. Landing Page Hero Images
+
+**When**: Landing page creation
+
+**Purpose**: Create compelling hero images that communicate value proposition
+
+**Required Elements**:
+- **Style**: Modern, clean, startup-friendly, tech-forward
+- **Lighting**: Bright, professional, inviting
+- **Medium**: Digital illustration, photography, or 3D render
+- **Mood**: Confident, efficient, transformative
+- **Content**: Product concept, transformation narrative, value proposition
+
+**Output Format**:
+```markdown
+## Landing Page Hero Image Prompts
+
+### Variant 1: [Style Description]
+**Style**: [Explicit style description]
+**Lighting**: [Explicit lighting description]
+**Medium**: [Explicit medium description]
+**Mood**: [Explicit mood description]
+
+**Prompt**:
+[Complete Midjourney/Canva prompt with all specifications]
+
+### Variant 2: [Style Description]
+[Same structure as Variant 1]
+
+### Variant 3: [Style Description]
+[Same structure as Variant 1]
+```
+
+**Agent**: `@Landing-Builder`, `@Visual-Asset-Agent`
+
+### 2. Social Ad Visuals
+
+**When**: Distribution strategy creation
+
+**Purpose**: Create social media ad visuals for different platforms
+
+**Required Elements**:
+- **Platform-specific**: LinkedIn, X/Twitter, Facebook, Instagram, TikTok
+- **Style**: Platform-appropriate, attention-grabbing
+- **Lighting**: Platform-optimized (bright for LinkedIn, dynamic for TikTok)
+- **Medium**: Platform-appropriate format
+- **Mood**: Platform-appropriate tone (professional for LinkedIn, energetic for TikTok)
+
+**Output Format**:
+```markdown
+## Social Ad Visual Prompts
+
+### LinkedIn Ad
+**Style**: Professional, clean, business-focused
+**Lighting**: Bright, professional
+**Medium**: Digital illustration or photography
+**Mood**: Authoritative, credible
+
+**Prompt**:
+[Complete prompt with platform-specific specifications]
+
+### X/Twitter Ad
+**Style**: [Platform-specific style]
+**Lighting**: [Platform-specific lighting]
+**Medium**: [Platform-specific medium]
+**Mood**: [Platform-specific mood]
+
+**Prompt**:
+[Complete prompt]
+
+### Instagram Ad
+[Same structure]
+
+### TikTok Ad
+[Same structure]
+```
+
+**Agent**: `@Distribution-Operator`, `@Visual-Asset-Agent`
+
+### 3. "Future Vision" Product Mockups
+
+**When**: Opportunity & Moat analysis
+
+**Purpose**: Visualize conceptual opportunities and future product vision
+
+**Required Elements**:
+- **Style**: Futuristic, aspirational, visionary
+- **Lighting**: Dynamic, forward-looking, inspiring
+- **Medium**: 3D render, digital illustration, or conceptual diagram
+- **Mood**: Exciting, transformative, innovative
+- **Content**: Future product concept, opportunity visualization, transformation narrative
+
+**Output Format**:
+```markdown
+## Future Vision Product Mockup Prompts
+
+### Variant 1: [Vision Description]
+**Style**: Futuristic, aspirational, visionary
+**Lighting**: Dynamic, forward-looking, inspiring
+**Medium**: 3D render or digital illustration
+**Mood**: Exciting, transformative, innovative
+
+**Prompt**:
+[Complete prompt visualizing future product concept]
+
+### Variant 2: [Vision Description]
+[Same structure]
+
+### Variant 3: [Vision Description]
+[Same structure]
+```
+
+**Agent**: `@Opportunity-Moat-Agent`, `@Visual-Asset-Agent`
+
+### 4. Concept Diagrams
+
+**When**: Discovery and validation documents
+
+**Purpose**: Visualize concepts, workflows, and relationships
+
+**Required Elements**:
+- **Style**: Clean, diagrammatic, informative
+- **Lighting**: Clear, professional, readable
+- **Medium**: Digital diagram, infographic, or illustration
+- **Mood**: Clear, professional, informative
+- **Content**: Concept visualization, workflow diagram, relationship map
+
+**Output Format**:
+```markdown
+## Concept Diagram Prompts
+
+### Variant 1: [Diagram Type]
+**Style**: Clean, diagrammatic, informative
+**Lighting**: Clear, professional, readable
+**Medium**: Digital diagram or infographic
+**Mood**: Clear, professional, informative
+
+**Prompt**:
+[Complete prompt for concept diagram]
+
+### Variant 2: [Diagram Type]
+[Same structure]
+
+### Variant 3: [Diagram Type]
+[Same structure]
+```
+
+**Agent**: `@Niche-Intelligence-Agent`, `@Pain-Signal-Agent`, `@JTBD-Agent`, `@Opportunity-Moat-Agent`
+
+### 5. Brand Style Options
+
+**When**: Landing page and brand identity creation
+
+**Purpose**: Explore different brand style directions
+
+**Required Elements**:
+- **Style**: Multiple brand style directions
+- **Lighting**: Style-appropriate lighting
+- **Medium**: Style-appropriate medium
+- **Mood**: Style-appropriate mood
+- **Content**: Brand identity exploration, visual style options
+
+**Output Format**:
+```markdown
+## Brand Style Option Prompts
+
+### Option 1: [Style Name]
+**Style**: [Explicit style description]
+**Lighting**: [Explicit lighting description]
+**Medium**: [Explicit medium description]
+**Mood**: [Explicit mood description]
+
+**Prompt**:
+[Complete prompt for brand style option]
+
+### Option 2: [Style Name]
+[Same structure]
+
+### Option 3: [Style Name]
+[Same structure]
+```
+
+**Agent**: `@Landing-Builder`, `@Visual-Asset-Agent`
+
+## Prompt Requirements
+
+**All prompts must be:**
+
+### 1. Explicit in Style
+
+**Required**:
+- Specific style description (e.g., "modern minimalist", "tech-forward", "startup-friendly")
+- Visual references if applicable
+- Color palette direction
+- Typography direction (if applicable)
+
+**Example**:
+```
+Style: Modern minimalist, tech-forward, startup-friendly aesthetic with clean lines and geometric shapes. Inspired by Stripe and Linear design language. Color palette: Blue and white with subtle gradients.
+```
+
+### 2. Explicit in Lighting
+
+**Required**:
+- Specific lighting description (e.g., "bright professional lighting", "soft ambient lighting", "dynamic dramatic lighting")
+- Lighting direction (e.g., "top-down", "side-lit", "rim lighting")
+- Lighting mood (e.g., "inviting", "dramatic", "professional")
+
+**Example**:
+```
+Lighting: Bright professional lighting from top-left, creating soft shadows and highlights. Inviting and approachable mood with high contrast for clarity.
+```
+
+### 3. Explicit in Medium
+
+**Required**:
+- Specific medium description (e.g., "digital illustration", "3D render", "photography", "infographic")
+- Technical specifications if applicable (e.g., "vector illustration", "photorealistic 3D")
+- Format direction (e.g., "16:9 aspect ratio", "square format")
+
+**Example**:
+```
+Medium: Digital illustration, vector-based, clean and scalable. 16:9 aspect ratio, optimized for web display.
+```
+
+### 4. Explicit in Mood
+
+**Required**:
+- Specific mood description (e.g., "confident and efficient", "exciting and transformative", "professional and authoritative")
+- Emotional tone (e.g., "uplifting", "serious", "energetic")
+- Audience feeling (e.g., "inspired", "confident", "trusting")
+
+**Example**:
+```
+Mood: Confident and efficient, with an uplifting and inspiring tone. Audience should feel empowered and ready to take action.
+```
+
+### 5. 2–3 Variants Minimum
+
+**Required**:
+- Minimum 2 variants for each visual type
+- Recommended 3 variants for A/B testing
+- Each variant must have distinct style, lighting, medium, or mood
+- Variants should test different approaches
+
+**Example Structure**:
+```
+### Variant 1: Modern Minimalist
+[Complete prompt with explicit style, lighting, medium, mood]
+
+### Variant 2: Tech-Forward Dynamic
+[Complete prompt with different style, lighting, medium, mood]
+
+### Variant 3: Professional Corporate
+[Complete prompt with different style, lighting, medium, mood]
+```
+
+## Integration Points
+
+### Landing Pages
+
+**Required in**: `/docs/validation/LANDING-<idea-slug>.md`
+
+**Required Prompts**:
+- ✅ Landing page hero images (2-3 variants)
+- ✅ Brand style options (2-3 variants)
+- ✅ Social ad visuals (platform-specific)
+
+**Agent**: `@Landing-Builder`
+
+### Opportunity & Moat Reports
+
+**Required in**: `/docs/discovery/OPPORTUNITY-<idea-slug>.md`
+
+**Required Prompts**:
+- ✅ "Future vision" product mockups (2-3 variants)
+- ✅ Concept diagrams (2-3 variants)
+
+**Agent**: `@Opportunity-Moat-Agent`
+
+### Discovery Documents
+
+**Optional in**: Discovery documents (NICHE-INTEL, PAIN-SIGNALS, JTBD)
+
+**Optional Prompts**:
+- Concept diagrams (when helpful for visualization)
+
+**Agents**: `@Niche-Intelligence-Agent`, `@Pain-Signal-Agent`, `@JTBD-Agent`
+
+## Tool Selection Guidelines
+
+### Use Midjourney For
+
+- **Unique, creative visuals**: Hero images, future vision mockups
+- **Conceptual illustrations**: Abstract concepts, transformation narratives
+- **Artistic styles**: When specific artistic style is needed
+- **High-quality renders**: When photorealistic or high-quality renders are needed
+
+### Use Canva For
+
+- **Template-based designs**: Social ad visuals, brand style options
+- **Quick iterations**: When multiple variants need to be created quickly
+- **Brand consistency**: When maintaining brand guidelines is important
+- **Text-heavy designs**: When text and design elements need to be combined
+
+## Quality Gates
+
+**All visual prompts must meet quality criteria:**
+
+- ✅ **Explicit style**: Specific style description with visual references
+- ✅ **Explicit lighting**: Specific lighting description with direction and mood
+- ✅ **Explicit medium**: Specific medium description with technical specifications
+- ✅ **Explicit mood**: Specific mood description with emotional tone
+- ✅ **2-3 variants minimum**: Each visual type has 2-3 distinct variants
+- ✅ **Complete prompts**: All prompts are ready for Midjourney/Canva use
+- ✅ **Platform-appropriate**: Social ad visuals are platform-specific
+
+## Workflow
+
+```
+Document Created (Landing/Opportunity/Discovery)
+  ↓
+Extract Visual Requirements from Content
+  ↓
+@Landing-Builder or @Opportunity-Moat-Agent → Generate Prompts
+  ↓
+Create 2-3 Variants for Each Visual Type
+  ↓
+Ensure All Prompts Are Explicit (Style, Lighting, Medium, Mood)
+  ↓
+Include in Document
+```
+
+## Integration with Other Rules
+
+- **Rule 001 (Philosophy)**: AI-assisted discovery mandatory, Midjourney/Canva required
+- **Rule 040 (Demand Validation)**: Landing pages must include visual prompts
+- **Rule 044 (Opportunity & Moat)**: Opportunity reports must include future vision prompts
+- **Rule 194 (Visual Asset Integration)**: Technical visual asset integration patterns
+- **Rule 340 (Midjourney Visuals)**: Detailed visual requirements for discovery
+
+## Enforcement
+
+### Pre-Landing Page Checks
+
+**Before completing landing page**:
+1. ✅ Hero image prompts must exist (2-3 variants)
+2. ✅ All prompts must be explicit (style, lighting, medium, mood)
+3. ✅ Brand style options must exist (2-3 variants)
+
+### Pre-Opportunity Report Checks
+
+**Before completing opportunity report**:
+1. ✅ Future vision mockup prompts must exist (2-3 variants)
+2. ✅ All prompts must be explicit (style, lighting, medium, mood)
+3. ✅ Concept diagram prompts must exist (2-3 variants)
+
+### Agent Requirements
+
+**All relevant agents must**:
+1. Generate visual prompts as part of standard outputs
+2. Create 2-3 variants for each visual type
+3. Make all prompts explicit (style, lighting, medium, mood)
+4. Include prompts in structured documents
+
+## Summary
+
+1. **Cursor agents must output visual prompts** for all visual deliverables
+2. **5 Required Visual Types**: Landing page hero images, social ad visuals, future vision mockups, concept diagrams, brand style options
+3. **Prompt Requirements**: Explicit in style, lighting, medium, mood
+4. **2-3 Variants Minimum**: Each visual type must have 2-3 distinct variants
+5. **Quality Gates**: All prompts must be explicit and complete
+
+**Visual prompts are required to enable creation of professional visual assets for discovery and validation.**

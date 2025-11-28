@@ -1,0 +1,243 @@
+# AI Prompt Templates
+
+> Reusable prompt templates for each AI tool
+
+## Rule
+
+Use these prompt templates to ensure consistent, high-quality outputs from AI tools.
+
+## Manus.im Templates
+
+### Narrative Generation
+
+```
+Create a compelling narrative for [PRODUCT] targeting [NICHE].
+
+Core pain point: [PAIN_POINT]
+Identity-level motivation: [IDENTITY_MOTIVATION]
+Solution: [SOLUTION]
+
+Generate 5 narrative variations that:
+1. Connect identity-level pain to solution
+2. Are emotionally compelling and memorable
+3. Have clear value proposition
+4. Are ready for validation testing
+
+Select the strongest narrative and explain why.
+```
+
+### Competitor Analysis
+
+```
+Analyze competitors for [PRODUCT] in [CATEGORY].
+
+Competitors: [COMPETITOR_LIST]
+Focus areas:
+- Narrative positioning
+- Messaging strategies
+- Persona targeting
+- Differentiation opportunities
+
+Provide:
+1. Competitor narrative analysis
+2. Positioning map
+3. Differentiation opportunities
+4. Recommendations
+```
+
+### Persona Development
+
+```
+Create detailed personas for [PRODUCT] targeting [NICHE].
+
+Job-to-be-done: [JTBD]
+Identity-level motivations: [IDENTITY_MOTIVATIONS]
+Pain points: [PAIN_POINTS]
+
+Generate personas that include:
+1. Identity-level motivations (not just functional needs)
+2. Emotional drivers
+3. Behavioral patterns
+4. Communication preferences
+5. Validation test approach
+```
+
+## ChatGPT Templates
+
+### Reasoning Analysis
+
+```
+Analyze this problem step-by-step:
+
+Problem: [PROBLEM]
+Context: [CONTEXT]
+Constraints: [CONSTRAINTS]
+
+Use chain-of-thought reasoning:
+1. Understand the problem
+2. Break down into sub-problems
+3. Analyze each sub-problem
+4. Synthesize conclusions
+5. Validate against constraints
+
+Provide actionable recommendations.
+```
+
+### Idea Refinement
+
+```
+Refine this idea:
+
+Initial Idea: [IDEA]
+Feedback: [FEEDBACK]
+Constraints: [CONSTRAINTS]
+
+Process:
+1. Identify weaknesses in initial idea
+2. Propose specific improvements
+3. Refine idea addressing weaknesses
+4. Validate refined idea against constraints
+
+Provide refined idea with explanation of improvements.
+```
+
+### Accelerated Ideation
+
+```
+Generate [COUNT] ideas for this problem:
+
+Problem: [PROBLEM]
+Constraints: [CONSTRAINTS]
+Quality criteria: [CRITERIA]
+
+Generate diverse, actionable ideas that:
+1. Address the problem
+2. Meet all constraints
+3. Are specific and actionable
+4. Are ranked by quality
+
+Provide ideas with brief explanations.
+```
+
+## ElevenLabs Templates
+
+### Voice Script Template
+
+```
+Create a professional voice script for [CONTENT_TYPE]:
+
+Product: [PRODUCT]
+Target audience: [AUDIENCE]
+Tone: [TONE]
+Key message: [MESSAGE]
+
+Script requirements:
+- [LENGTH] seconds duration
+- Clear, conversational language
+- Natural pauses
+- Emphasis on [KEY_POINTS]
+
+Generate script optimized for voice narration.
+```
+
+### Demo Narration Template
+
+```
+Create demo narration script:
+
+Product: [PRODUCT]
+Demo flow: [FLOW]
+Key features: [FEATURES]
+Call-to-action: [CTA]
+
+Script should:
+1. Welcome viewers
+2. Introduce product value
+3. Highlight key features
+4. End with clear CTA
+
+Keep script under [DURATION] seconds.
+```
+
+## Visual Asset Templates
+
+### Midjourney Hero Image
+
+```
+/imagine prompt: [PRODUCT_CONCEPT], [STYLE], [MOOD], [COMPOSITION], --ar 16:9 --style raw --v 6
+
+Example:
+/imagine prompt: Modern SaaS dashboard interface, clean minimalist design, professional tech startup aesthetic, bright optimistic mood, centered composition, --ar 16:9 --style raw --v 6
+```
+
+### Midjourney Concept Visual
+
+```
+/imagine prompt: [FEATURE_CONCEPT], [STYLE], [VIEW], [MOOD], --ar 16:9 --style raw --v 6
+
+Example:
+/imagine prompt: Design system component library interface, organized grid layout, professional UI design, clean workspace mood, top-down view, --ar 16:9 --style raw --v 6
+```
+
+### Canva Design Template
+
+```
+Create [DESIGN_TYPE] using Canva:
+
+Template: [TEMPLATE_NAME]
+Brand colors: [COLORS]
+Brand fonts: [FONTS]
+Content:
+  - Headline: [HEADLINE]
+  - Subheadline: [SUBHEADLINE]
+  - CTA: [CTA]
+
+Customize template with brand elements and content.
+```
+
+## Prompt Optimization Tips
+
+### 1. Be Specific
+
+**Bad**: "Create a narrative"
+**Good**: "Create a narrative that connects identity-level pain of inconsistent UI development to a design system solution for startup CTOs"
+
+### 2. Include Constraints
+
+**Bad**: "Generate ideas"
+**Good**: "Generate 10 ideas that are actionable, low-cost, and can be implemented in 2 weeks"
+
+### 3. Provide Context
+
+**Bad**: "Analyze competitors"
+**Good**: "Analyze competitors in the design system SaaS space, focusing on narrative positioning and differentiation opportunities for a startup-focused product"
+
+### 4. Define Quality Criteria
+
+**Bad**: "Create visuals"
+**Good**: "Create hero images that communicate 'fast UI development' clearly, match minimalist brand style, and are optimized for web delivery"
+
+### 5. Request Format
+
+**Bad**: "Provide analysis"
+**Good**: "Provide analysis in markdown format with sections for: problem breakdown, analysis, conclusions, recommendations"
+
+## Template Variables
+
+Use these variables in templates:
+
+- `[PRODUCT]` - Product name
+- `[NICHE]` - Target niche
+- `[PAIN_POINT]` - Core pain point
+- `[SOLUTION]` - Proposed solution
+- `[CONTEXT]` - Additional context
+- `[CONSTRAINTS]` - Constraints or requirements
+- `[QUALITY_CRITERIA]` - Quality requirements
+
+## Best Practices
+
+1. **Customize Templates** - Adapt to specific needs
+2. **Test Variations** - Try different phrasings
+3. **Iterate** - Refine based on results
+4. **Document** - Save successful prompts
+5. **Share** - Build team prompt library

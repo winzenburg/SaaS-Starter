@@ -1,0 +1,58 @@
+# Rule: PostHog Integration (Analytics + Feature Flags)
+
+## GOAL
+
+Use PostHog as the single source of truth for:
+
+- product analytics (events, funnels, retention)
+- feature flags (rollouts, experiments)
+- session replay (optional)
+- cohorting & user segmentation
+
+## POSTHOG IS USED FOR
+
+- tracking discovery/validation KPIs once an app exists
+- tracking onboarding & activation
+- measuring feature adoption and retention
+- running A/B tests via feature flags
+- identifying churn risk signals
+
+## POSTHOG IS NOT USED FOR
+
+- core product logic
+- non-product marketing analytics (keep those in ad platforms)
+- system-of-record decisions (Cursor docs are canonical)
+
+## EVENT DESIGN REQUIREMENTS
+
+All features must define analytics BEFORE implementation:
+
+- Events derived from PRD acceptance criteria
+- Events mapped to funnels
+- Events mapped to success metrics
+
+## STANDARD EVENTS REQUIRED PER FEATURE
+
+- `<feature>.viewed`
+- `<feature>.created` / `completed` / `updated` / `deleted` (as applicable)
+- `<feature>.error`
+- `<feature>.cta_clicked`
+- `onboarding.step_completed`
+- `billing.upgraded` / `downgraded` / `churned` (if billing feature)
+
+## FEATURE FLAGS
+
+- Every major feature must ship behind a PostHog flag
+- Flags must be named: `flag_<feature>_<version>`
+- Flags must include rollout plan in PRD
+
+## DELIVERABLES
+
+- `/docs/analytics/EVENTS-<feature>.md`
+- `/docs/analytics/FUNNEL-<feature>.md`
+- PostHog schema must be updated in code (typed events)
+
+## QUALITY BAR
+
+- No PRD is "complete" without events + funnels
+- No feature is "complete" without verified event firing

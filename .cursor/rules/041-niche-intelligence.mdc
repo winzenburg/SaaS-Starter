@@ -1,0 +1,197 @@
+# Rule 041: Niche Intelligence
+
+> Stage 1 of Product Discovery: Understand the niche - culture, vocabulary, identity, geography, income, communities, trends
+
+## Core Principle
+
+**Every product idea must have a complete niche intelligence analysis before problem analysis.**
+
+### Stage Gate
+
+**No product idea proceeds to Stage 2 (Pain Signal Analysis) without completing Stage 1 (Niche Intelligence).**
+
+## Agent: Niche-Intelligence
+
+**Purpose**: Understand the niche deeply - culture, vocabulary, identity, geography, income, communities, trends
+
+## Inputs
+
+### Required Inputs
+
+1. **Manus Narrative** (REQUIRED)
+   - Raw narrative from Manus
+   - Niche insights and characteristics
+   - Cultural context and worldview
+
+2. **Manus Competitor Landscape** (REQUIRED)
+   - Competitor analysis from Manus
+   - Competitive positioning
+   - Market landscape
+
+### Optional Inputs
+
+3. **Pain Signals** (OPTIONAL)
+   - Pain signals from Stage 2 (if available)
+   - Can inform niche understanding
+
+4. **JTBD** (OPTIONAL)
+   - JTBD from Stage 3 (if available)
+   - Can inform niche understanding
+
+## Tasks
+
+### 1. Identify Niche Size, Psychographics, Subcultures
+
+**What to Identify**:
+- **Niche Size**: Total addressable market (TAM), serviceable market (SAM), target market
+- **Psychographics**: Values, beliefs, attitudes, lifestyle, personality traits
+- **Subcultures**: Distinct groups within the niche, their characteristics and differences
+- **Demographics** (if relevant): Age, gender, education, occupation
+- **Geographic Distribution**: Where niche members are located
+- **Income Levels**: Economic characteristics of the niche
+
+**Output**: Included in niche intelligence document
+
+### 2. Extract Vocabulary, Identity Markers, Cultural Norms
+
+**What to Extract**:
+- **Vocabulary**: Specific terminology, jargon, phrases used by the niche
+- **Identity Markers**: How niche members signal their identity
+- **Cultural Norms**: Unwritten rules, expectations, behaviors
+- **Communication Style**: How niche members communicate
+- **Cultural References**: Shared references, memes, inside jokes
+- **Status Markers**: What indicates status or credibility in the niche
+
+**Output**: Included in niche intelligence document
+
+### 3. Map Communities Where Niche Lives
+
+**Platforms to Map**:
+- **Reddit**: Subreddits where niche members gather
+- **Slack**: Slack communities and workspaces
+- **Discord**: Discord servers
+- **LinkedIn**: LinkedIn groups and communities
+- **Facebook Groups**: Facebook groups
+- **Other Platforms**: Twitter/X communities, forums, newsletters, etc.
+
+**For Each Community**:
+- Community name and platform
+- Size and engagement level
+- Entry requirements
+- Community culture and norms
+- Key influencers and leaders
+- Optimal posting times
+
+**Output**: Included in niche intelligence document
+
+### 4. Extract Common Frustrations, Desires, Worldview
+
+**What to Extract**:
+- **Common Frustrations**: What frustrates the niche?
+- **Desires**: What does the niche desire?
+- **Worldview**: Core beliefs, values, aspirations, fears
+- **Cultural Tensions**: What tensions exist within the niche?
+- **Taboos**: What topics are off-limits or sensitive?
+- **Status Hierarchies**: How is status determined in the niche?
+
+**Output**: Included in niche intelligence document
+
+### 5. Identify "Entry Points" Where New Products Gain Trust
+
+**What to Identify**:
+- **Trust Signals**: What signals trust in this niche?
+- **Credibility Requirements**: What credentials or experience are needed?
+- **Community Participation**: How to participate authentically?
+- **Value-First Approaches**: How to add value before asking?
+- **Relationship Building**: How to build relationships in the niche?
+- **Content Strategy**: What content resonates with the niche?
+- **Distribution Channels**: Where to reach niche members?
+
+**Output**: Included in niche intelligence document
+
+### 6. Document Niche Segmentation: Beginners, Intermediates, Pros
+
+**What to Document**:
+- **Beginners**: Characteristics, needs, pain points, entry barriers
+- **Intermediates**: Characteristics, needs, pain points, growth path
+- **Pros**: Characteristics, needs, pain points, expert behaviors
+- **Segmentation Criteria**: How to distinguish between segments
+- **Segment Sizes**: Relative sizes of each segment
+- **Segment Needs**: Different needs for each segment
+
+**Output**: Included in niche intelligence document
+
+### 7. Identify Adjacent Niches
+
+**What to Identify**:
+- **Adjacent Niches**: What niches are adjacent to this niche?
+- **Overlap**: Where do niches overlap?
+- **Differences**: What are the key differences?
+- **Opportunities**: What opportunities exist in adjacent niches?
+- **Risks**: What risks exist from adjacent niches?
+
+**Output**: Included in niche intelligence document
+
+## Output
+
+**Output**: `/docs/discovery/NICHE-INTEL-<idea-slug>.md`
+
+**Required Sections**:
+1. Niche Overview
+2. Niche Size, Psychographics, and Subcultures
+3. Vocabulary, Identity Markers, Cultural Norms
+4. Communities (Reddit, Slack, Discord, LinkedIn, Facebook Groups, Other)
+5. Common Frustrations, Desires, Worldview
+6. Entry Points (How New Products Gain Trust)
+7. Niche Segmentation (Beginners, Intermediates, Pros)
+8. Adjacent Niches
+9. Trends
+10. Recommendations
+
+## Quality Gates
+
+**All niche intelligence outputs must pass quality gates**:
+
+- ✅ **Niche size identified** (TAM, SAM, target market, psychographics, subcultures)
+- ✅ **Vocabulary extracted** (terminology, jargon, phrases, identity markers, cultural norms)
+- ✅ **Communities mapped** (Reddit, Slack, Discord, LinkedIn, Facebook Groups, other platforms)
+- ✅ **Frustrations/desires/worldview extracted** (common frustrations, desires, worldview documented)
+- ✅ **Entry points identified** (how new products gain trust, credibility requirements, value-first approaches)
+- ✅ **Niche segmentation documented** (beginners, intermediates, pros with characteristics and needs)
+- ✅ **Adjacent niches identified** (adjacent niches, overlap, differences, opportunities, risks)
+- ✅ **Recommendations provided** (niche viability, entry strategy, next steps)
+
+## Integration with Other Rules
+
+- **Rule 300 (Discovery Master)**: Discovery master rule
+- **Rule 301 (Discovery Overview)**: Discovery overview and gates
+- **Rule 302 (Discovery Workflow)**: Complete 8-step workflow
+- **Rule 310 (Manus in Discovery)**: Manus output usage
+- **Rule 320 (ChatGPT Refinement)**: ChatGPT refinement patterns
+- **Rule 042 (Pain Signal Analysis)**: Next stage after niche intelligence
+
+## Enforcement
+
+### Pre-Pain Signal Analysis Checks
+
+**Before starting Pain Signal Analysis**:
+1. ✅ Niche intelligence document must exist
+2. ✅ All 7 tasks must be complete
+3. ✅ All quality gates must pass
+
+### Agent Requirements
+
+**@Niche-Intelligence-Agent must**:
+1. Read Manus narrative and competitor landscape
+2. Complete all 7 tasks
+3. Produce structured niche intelligence document
+4. Ensure all quality gates pass
+
+## Summary
+
+1. **Inputs**: Manus narrative (required), Manus competitor landscape (required), Pain signals (optional), JTBD (optional)
+2. **Tasks**: Identify niche size/psychographics/subcultures, extract vocabulary/identity/cultural norms, map communities, extract frustrations/desires/worldview, identify entry points, document niche segmentation, identify adjacent niches
+3. **Output**: `/docs/discovery/NICHE-INTEL-<idea-slug>.md`
+4. **Stage Gate**: Cannot proceed to Stage 2 without completing Stage 1
+
+**Niche Intelligence is required before Pain Signal Analysis. It's the foundation of product discovery.**

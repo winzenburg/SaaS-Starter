@@ -1,0 +1,214 @@
+# AI Cost Management
+
+> Budget tracking and optimization for AI tool usage
+
+## Rule
+
+All AI tool usage must be tracked and optimized to stay within budget.
+
+## Cost Tracking
+
+### Per-Tool Costs
+
+**Manus.im**:
+- Narrative generation: ~$5-10 per narrative
+- Competitor analysis: ~$10-20 per analysis
+- Persona creation: ~$5-10 per persona
+- **Total per product**: ~$20-40
+
+**ChatGPT**:
+- GPT-4 reasoning: ~$0.03/1K input + $0.06/1K output tokens
+- GPT-3.5 ideation: ~$0.0015/1K input + $0.002/1K output tokens
+- **Typical reasoning task**: ~$0.50-2.00
+- **Typical ideation task**: ~$0.10-0.50
+- **Total per product**: ~$5-20
+
+**ElevenLabs**:
+- Voice generation: ~$0.30 per 1000 characters
+- **Typical demo narration**: ~$2-5
+- **Total per product**: ~$5-15
+
+**Midjourney**:
+- Subscription: $10-60/month
+- **Per image**: ~$0.50-2.00 (depending on plan)
+- **Total per product**: ~$5-20
+
+**Canva**:
+- Free: Limited exports
+- Pro: $12.99/month (unlimited)
+- **Per product**: $0 (free) or $13/month (Pro)
+
+### Total Per Product Validation
+
+**Minimum** (using free/low-cost options): ~$35-95
+**Typical** (using recommended tools): ~$90-243
+**Maximum** (using premium options): ~$200-400
+
+## Budget Limits
+
+### Per Workflow
+
+Set budget limits per workflow type:
+
+```typescript
+const BUDGET_LIMITS = {
+  validation: 200, // $200 max per validation cycle
+  build: 100, // $100 max per build cycle
+  refinement: 50, // $50 max per refinement cycle
+};
+```
+
+### Per Tool
+
+Set budget limits per tool:
+
+```typescript
+const TOOL_BUDGETS = {
+  manus: 50, // $50 max per product
+  chatgpt: 30, // $30 max per product
+  elevenlabs: 20, // $20 max per product
+  visual: 30, // $30 max per product
+};
+```
+
+## Cost Optimization Strategies
+
+### 1. Use Cheaper Models When Appropriate
+
+```typescript
+// GPT-3.5 for ideation (10x cheaper)
+const ideas = await ideate({ model: "gpt-3.5-turbo" });
+
+// GPT-4 only for complex reasoning
+const analysis = await reason({ model: "gpt-4-turbo" });
+```
+
+### 2. Cache Results
+
+```typescript
+// Cache similar requests
+const cacheKey = generateCacheKey(request);
+const cached = await getFromCache(cacheKey);
+if (cached) return cached; // $0 cost
+```
+
+### 3. Batch Requests
+
+```typescript
+// Generate multiple variations at once (often cheaper)
+const narratives = await generateNarrative({
+  variations: 5, // Generate 5 at once
+  batch: true
+});
+```
+
+### 4. Optimize Prompts
+
+```typescript
+// Shorter prompts = lower costs
+const optimizedPrompt = trimPrompt(originalPrompt);
+// Reduces token usage by 20-30%
+```
+
+### 5. Set Quality Thresholds
+
+```typescript
+// Don't iterate unnecessarily
+if (qualityScore >= threshold) {
+  return output; // Stop iterating
+}
+```
+
+## Cost Monitoring
+
+### Real-Time Tracking
+
+```typescript
+interface CostTracker {
+  tool: string;
+  operation: string;
+  cost: number;
+  timestamp: Date;
+  workflow: string;
+}
+
+// Log every API call
+await logCost({
+  tool: "chatgpt",
+  operation: "reasoning",
+  cost: 1.50,
+  workflow: "validation"
+});
+```
+
+### Budget Alerts
+
+```typescript
+// Alert when approaching budget
+if (currentCost > budgetLimit * 0.8) {
+  alert("Approaching budget limit");
+}
+
+// Stop when budget exceeded
+if (currentCost > budgetLimit) {
+  throw new Error("Budget exceeded");
+}
+```
+
+## Cost Reporting
+
+### Daily Report
+
+```
+Date: 2025-01-XX
+Total Cost: $45.30
+By Tool:
+  - Manus: $25.00
+  - ChatGPT: $12.50
+  - ElevenLabs: $5.00
+  - Visual: $2.80
+By Workflow:
+  - Validation: $35.00
+  - Build: $10.30
+```
+
+### Per-Product Report
+
+```
+Product: Enterprise Design System
+Total Cost: $95.50
+Breakdown:
+  - Narrative: $15.00
+  - Reasoning: $8.50
+  - Voice: $12.00
+  - Visuals: $20.00
+  - Iterations: $40.00
+```
+
+## Best Practices
+
+1. **Set Budgets Early** - Know limits before starting
+2. **Track Everything** - Log all API calls
+3. **Optimize Prompts** - Shorter = cheaper
+4. **Use Cheaper Models** - When quality allows
+5. **Cache Aggressively** - Reuse results
+6. **Monitor Daily** - Catch issues early
+7. **Review Weekly** - Identify optimization opportunities
+
+## Cost Optimization Checklist
+
+Before each workflow:
+
+- [ ] Budget limit set
+- [ ] Cheapest appropriate models selected
+- [ ] Caching enabled
+- [ ] Prompts optimized
+- [ ] Quality thresholds set (avoid unnecessary iterations)
+- [ ] Monitoring enabled
+
+After each workflow:
+
+- [ ] Costs logged
+- [ ] Budget status checked
+- [ ] Optimization opportunities identified
+- [ ] Report generated

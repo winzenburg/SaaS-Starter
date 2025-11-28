@@ -1,0 +1,214 @@
+# Document Viewer: Markdown Rendering & Organization
+
+**Goal**: Standardize how discovery and validation documents are organized, rendered, and navigated.
+
+## Document Organization
+
+### Directory Structure
+
+```
+docs/
+├── discovery/          # Discovery phase documents
+│   ├── NICHE-INTEL-{project-slug}.md
+│   ├── PAIN-SIGNALS-{project-slug}.md
+│   ├── JTBD-{project-slug}.md
+│   ├── OPPORTUNITY-{project-slug}.md
+│   ├── MANUS-{project-slug}.md
+│   ├── CHATGPT-REFINEMENT-{project-slug}.md
+│   └── REDTEAM-{project-slug}.md
+└── validation/         # Validation phase documents
+    ├── VALIDATION-PLAN-{project-slug}.md
+    ├── LANDING-{project-slug}.md
+    ├── DISTRIBUTION-{project-slug}.md
+    ├── PRICING-TEST-{project-slug}.md
+    └── RESULTS-{project-slug}.md
+```
+
+### Naming Conventions
+
+**Format**: `{TYPE}-{project-slug}.md`
+
+- **TYPE**: Document type prefix (NICHE-INTEL, PAIN-SIGNALS, etc.)
+- **project-slug**: Project identifier (e.g., `enterprise-design-system-startups`)
+
+**Rules**:
+- Always use uppercase for type prefix
+- Use kebab-case for project slug
+- Separate type and slug with single hyphen
+
+## Markdown Rendering
+
+### Component Pattern
+
+Use `MarkdownViewer` component for all markdown rendering:
+
+```tsx
+import { MarkdownViewer } from "@/components/docs/markdown-viewer";
+
+<MarkdownViewer content={markdownContent} />
+```
+
+### Styling Requirements
+
+**Dark Mode Styling**:
+- Headings: White text with gradient accents
+- Paragraphs: Gray-300 text, leading-7
+- Links: Blue-400 with hover states
+- Code blocks: Slate-900 background with borders
+- Tables: Bordered with hover states
+- Blockquotes: Left border with background tint
+
+**Accessibility**:
+- Proper heading hierarchy (h1 → h2 → h3)
+- Semantic HTML elements
+- ARIA labels where needed
+- Keyboard navigation support
+
+### Markdown Libraries
+
+**Required Packages**:
+- `react-markdown` - Core markdown rendering
+- `remark-gfm` - GitHub Flavored Markdown support
+- `rehype-raw` - Raw HTML support (if needed)
+- `rehype-sanitize` - HTML sanitization (security)
+
+## Document Listing Pages
+
+### Pattern: Server + Client Component Split
+
+**Server Component** (`page.tsx`):
+- Reads files from filesystem
+- Parses document metadata
+- Groups by project
+- Passes data to client component
+
+**Client Component** (`*-list.tsx`):
+- Handles animations (Framer Motion)
+- Renders interactive UI
+- Manages client-side state
+
+### Example Structure
+
+```tsx
+// Server Component (page.tsx)
+export default async function DiscoveryDocsPage() {
+  const docs = readdirSync(discoveryDir)
+    .filter(file => file.endsWith(".md"))
+    .map(file => parseDocument(file));
+  
+  return <DiscoveryDocsList docs={docs} />;
+}
+
+// Client Component (*-list.tsx)
+"use client";
+export function DiscoveryDocsList({ docs }) {
+  return (
+    <motion.div>
+      {/* Animated UI */}
+    </motion.div>
+  );
+}
+```
+
+## Document Detail Pages
+
+### Route Pattern
+
+```
+/docs/discovery/{document-name}
+/docs/validation/{document-name}
+/docs/product/{document-name}
+```
+
+### Page Structure
+
+1. **Header Section**:
+   - Back navigation link
+   - Document title
+   - Category badge
+   - Project context
+
+2. **Content Section**:
+   - MarkdownViewer component
+   - Proper typography and spacing
+
+3. **Related Documents Section**:
+   - Shows related docs from same project
+   - Grouped by document type
+   - Quick navigation links
+
+### Related Documents Component
+
+```tsx
+<RelatedDocuments 
+  currentPath={path} 
+  projectSlug={projectSlug} 
+/>
+```
+
+**Rules**:
+- Only show documents from same project
+- Exclude current document
+- Limit to 6 related docs
+- Group by document type
+
+## Document Type Parsing
+
+### Type Detection
+
+```typescript
+function getDocumentType(filename: string): string {
+  const typeMatch = filename.match(/^(NICHE-INTEL|PAIN-SIGNALS|JTBD|OPPORTUNITY|...)/i);
+  return typeMatch ? typeMatch[1] : "OTHER";
+}
+```
+
+### Project Extraction
+
+```typescript
+function extractProjectSlug(filename: string): string | undefined {
+  const match = filename.match(/^[^-]+-(.+)$/);
+  return match ? match[1].replace(".md", "") : undefined;
+}
+```
+
+## Navigation Patterns
+
+### Hub → Documents
+
+- Add "View All Discovery" link when project has discovery docs
+- Add "View All Validation" link when project has validation docs
+- Link to listing pages, not individual documents
+
+### Listing → Detail
+
+- Click document card → Navigate to detail page
+- Show document type badge
+- Show last modified date
+- Group by project
+
+### Detail → Related
+
+- Show related documents from same project
+- Link to other documents in same phase
+- Provide back navigation to listing page
+
+## Rules
+
+1. **Always use MarkdownViewer** for markdown content (never raw `<pre>` tags)
+2. **Separate server/client components** when using Framer Motion
+3. **Group documents by project** in listing pages
+4. **Parse document metadata** from filename (type, project, etc.)
+5. **Provide navigation** between related documents
+6. **Use consistent styling** (dark mode, glassmorphism)
+7. **Include document type badges** for visual categorization
+8. **Show last modified dates** for freshness context
+
+## File Locations
+
+- **Markdown Viewer**: `src/components/docs/markdown-viewer.tsx`
+- **Related Documents**: `src/components/docs/related-documents.tsx`
+- **Discovery List**: `src/components/docs/discovery-docs-list.tsx`
+- **Validation List**: `src/components/docs/validation-docs-list.tsx`
+- **Detail Page**: `src/app/docs/product/[...path]/page.tsx`
+- **Listing Pages**: `src/app/docs/discovery/page.tsx`, `src/app/docs/validation/page.tsx`

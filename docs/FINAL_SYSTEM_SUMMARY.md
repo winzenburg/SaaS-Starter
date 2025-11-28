@@ -222,7 +222,7 @@ Deployment
     - Requires 5 prerequisites: Insight Brief, Narrative PRD, Retention Architecture, Moat + MRR Strategy, Portfolio Greenlight
     - 3 phases: Design → Engineering → Verification
 
-## 12 Agents
+## 30 Agents (including Orchestrator)
 
 ### Strategy Layer (Agents 1-6)
 Focus on **what to build** and **why it will succeed**:
@@ -282,7 +282,7 @@ Focus on **how to build it** and **how to verify it**:
 **Status**: ✅ **COMPLETE**
 
 All components integrated:
-- ✅ 12 agents (`docs/agents/*.md`)
+- ✅ 30 agents (`docs/agents/*.md` including Orchestrator)
 - ✅ 16 core + stack rules (`.cursor/rules/000-*.mdc` to `.cursor/rules/180-*.mdc`)
 - ✅ 8 playbooks (`.cursor/rules/200-*.mdc` to `.cursor/rules/260-*.mdc`)
 - ✅ Documentation (`docs/SYSTEMS.md`, `docs/AGENT_ROSTER.md`, `docs/VERIFICATION.md`)

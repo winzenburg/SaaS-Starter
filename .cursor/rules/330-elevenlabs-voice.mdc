@@ -1,0 +1,286 @@
+# Rule 330: ElevenLabs Voice in Discovery
+
+> Mandate ElevenLabs voice content for persona documents to create audio empathy artifacts
+
+## Core Principle
+
+**All persona documents must include ElevenLabs voice scripts with 30-60 second scripts in 2 variant tones (casual, professional) and optional persona interview prompts. This creates an audio empathy artifact.**
+
+## Purpose
+
+Establish mandatory ElevenLabs voice content requirements for persona documents, creating audio empathy artifacts that help teams understand and connect with personas on an emotional level.
+
+## Mandatory ElevenLabs Content
+
+### All Persona Documents Must Include:
+
+#### 1. 30-60 Second ElevenLabs Script
+
+**Required For**: Stage 3 (Persona & JTBD)
+
+**Script Requirements**:
+- **Length**: 30-60 seconds (approximately 75-150 words)
+- **Content**: Persona introduction, key identity, core beliefs, main pain point
+- **Purpose**: Create audio empathy artifact for persona understanding
+- **Format**: Written script ready for ElevenLabs voice generation
+
+**Agent**: `@ElevenLabs-Voice-Agent`  
+**Output**: Included in `/docs/discovery/JTBD-<idea-slug>.md`
+
+**Script Structure**:
+```
+[30-60 second script]
+- Opening: Persona introduction
+- Identity: What identity does persona want to embody?
+- Beliefs: Core beliefs and worldview
+- Pain: Main pain point or frustration
+- Aspiration: What persona aspires to
+- Closing: Key takeaway
+```
+
+#### 2. 2 Variant Tones
+
+**Required For**: Stage 3 (Persona & JTBD)
+
+**Tone Variants**:
+
+**Variant 1: Casual Tone**
+- Conversational, relaxed, authentic
+- Uses natural language and casual phrasing
+- Feels like a friend explaining their situation
+- Appropriate for: Internal team understanding, empathy building
+
+**Variant 2: Professional Tone**
+- Formal, polished, authoritative
+- Uses professional language and structure
+- Feels like a stakeholder presenting their needs
+- Appropriate for: Stakeholder presentations, investor pitches
+
+**Agent**: `@ElevenLabs-Voice-Agent`  
+**Output**: Both variants included in `/docs/discovery/JTBD-<idea-slug>.md`
+
+**Tone Selection Guide**:
+- **Casual**: For team empathy, internal understanding, design sessions
+- **Professional**: For presentations, pitches, stakeholder communication
+
+#### 3. Optional "Persona Interview" Prompts
+
+**Optional For**: Stage 3 (Persona & JTBD)
+
+**Interview Prompt Requirements**:
+- **Format**: Question prompts for persona validation interviews
+- **Length**: 5-10 questions
+- **Purpose**: Validate persona assumptions through voice interviews
+- **Structure**: Identity questions, belief questions, fear questions, JTBD questions, emotional questions
+
+**Agent**: `@ElevenLabs-Voice-Agent`  
+**Output**: Included in `/docs/discovery/JTBD-<idea-slug>.md` (optional)
+
+**Interview Prompt Structure**:
+```
+Introduction:
+[How to introduce the interview]
+
+Identity Questions:
+1. [Question about identity]
+2. [Question about aspirations]
+
+Belief Questions:
+1. [Question about beliefs]
+2. [Question about worldview]
+
+Fear Questions:
+1. [Question about fears]
+2. [Question about concerns]
+
+JTBD Questions:
+1. [Question about main job]
+2. [Question about triggers]
+
+Emotional Questions:
+1. [Question about emotional drivers]
+2. [Question about desired feelings]
+
+Closing:
+[How to close the interview]
+```
+
+## Audio Empathy Artifact
+
+### Purpose
+
+**Audio empathy artifacts** help teams:
+- **Understand personas emotionally** - Hearing the persona's voice creates deeper connection
+- **Build empathy** - Audio creates more emotional impact than text alone
+- **Validate assumptions** - Voice interviews validate persona accuracy
+- **Communicate personas** - Audio artifacts are powerful for stakeholder communication
+
+### Usage
+
+**Audio empathy artifacts should be used for**:
+- Team onboarding and persona understanding
+- Design sessions and empathy building
+- Stakeholder presentations
+- Investor pitches
+- Validation interviews
+
+## Integration with Persona & JTBD Agent
+
+### Workflow
+
+```
+Persona Narrative (from Manus)
+  ↓
+@JTBD-Agent → Creates persona document
+  ↓
+@ElevenLabs-Voice-Agent → Generates voice scripts
+  ↓
+30-60 Second Script (2 tones)
+  ↓
+Optional Interview Prompts
+  ↓
+Audio Empathy Artifact
+  ↓
+Included in JTBD-*.md
+```
+
+### Agent Requirements
+
+**Agent**: `@JTBD-Agent`
+
+**Must Execute**:
+1. ✅ Create persona narrative from Manus outputs
+2. ✅ Request `@ElevenLabs-Voice-Agent` for voice scripts
+3. ✅ Include 30-60 second script (casual tone)
+4. ✅ Include 30-60 second script (professional tone)
+5. ✅ Include optional interview prompts
+6. ✅ Document audio empathy artifact in JTBD document
+
+## Script Quality Criteria
+
+**ElevenLabs scripts must meet quality criteria**:
+
+- ✅ **Length**: 30-60 seconds (75-150 words)
+- ✅ **Content**: Persona introduction, identity, beliefs, pain, aspiration
+- ✅ **Tone variants**: Both casual and professional tones provided
+- ✅ **Authenticity**: Script reflects real persona (not fictional)
+- ✅ **Emotional resonance**: Script creates emotional connection
+- ✅ **Clarity**: Script is clear and easy to understand
+- ✅ **Interview prompts**: Optional prompts provided if requested
+
+## ElevenLabs Voice Settings
+
+### Recommended Voice Settings
+
+**For Casual Tone**:
+- Voice: Warm, conversational, authentic
+- Speed: Natural conversational pace
+- Emotion: Slight warmth and authenticity
+- Style: Casual, friendly
+
+**For Professional Tone**:
+- Voice: Clear, authoritative, polished
+- Speed: Slightly slower, more deliberate
+- Emotion: Professional, confident
+- Style: Formal, structured
+
+### Voice Selection
+
+**Agents should select voices that**:
+- Match persona characteristics
+- Reflect persona identity
+- Create appropriate emotional tone
+- Sound authentic and natural
+
+## Output Format
+
+### JTBD Document Structure
+
+**Required Sections**:
+1. Deep Persona Narrative
+2. Main Job + Related Jobs + Emotional Jobs
+3. Ongoing vs Discrete Jobs
+4. Triggers, Success Criteria, Barriers
+5. **ElevenLabs Voice Scripts**:
+   - 30-60 Second Script (Casual Tone)
+   - 30-60 Second Script (Professional Tone)
+   - Optional: Persona Interview Prompts
+6. Audio Empathy Artifact Notes
+
+### Script Format in Document
+
+```markdown
+## ElevenLabs Voice Scripts
+
+### 30-60 Second Script (Casual Tone)
+
+**Voice Settings**: [Recommended voice, speed, emotion, style]
+
+**Script**:
+[30-60 second script content]
+
+**Usage**: Team empathy, internal understanding, design sessions
+
+### 30-60 Second Script (Professional Tone)
+
+**Voice Settings**: [Recommended voice, speed, emotion, style]
+
+**Script**:
+[30-60 second script content]
+
+**Usage**: Presentations, pitches, stakeholder communication
+
+### Optional: Persona Interview Prompts
+
+**Introduction**:
+[How to introduce the interview]
+
+**Questions**:
+1. [Question 1]
+2. [Question 2]
+...
+
+**Closing**:
+[How to close the interview]
+```
+
+## Quality Gates
+
+**ElevenLabs voice content must pass all quality gates**:
+
+- ✅ **30-60 second script provided** (casual tone)
+- ✅ **30-60 second script provided** (professional tone)
+- ✅ **Script length appropriate** (75-150 words)
+- ✅ **Script content complete** (introduction, identity, beliefs, pain, aspiration)
+- ✅ **Tone variants distinct** (casual vs professional clearly different)
+- ✅ **Script authentic** (reflects real persona, not fictional)
+- ✅ **Interview prompts provided** (optional, if requested)
+- ✅ **Audio empathy artifact documented** (usage notes included)
+
+## Non-Negotiables
+
+- **30-60 second script required** - Cannot skip voice script
+- **2 tone variants required** - Both casual and professional tones must be provided
+- **Script must be authentic** - Must reflect real persona from Manus outputs
+- **Script must create empathy** - Must create emotional connection
+- **Interview prompts optional** - Can be included if needed for validation
+- **Audio empathy artifact required** - Must be documented in persona document
+
+## Integration with Other Rules
+
+- **Rule 060 (ElevenLabs Integration)**: General ElevenLabs voice content requirements
+- **Rule 193 (ElevenLabs Integration)**: ElevenLabs specific patterns
+- **Rule 043 (Persona & JTBD)**: Persona document requirements
+- **Rule 310 (Manus in Discovery)**: Persona must be based on Manus outputs
+- **Rule 301 (Discovery Overview)**: Discovery pipeline structure
+
+## Summary
+
+1. **All persona documents must include**: 30-60 second ElevenLabs script, 2 variant tones (casual, professional), optional persona interview prompts
+2. **Audio empathy artifact**: Creates emotional connection and deeper persona understanding
+3. **Script requirements**: 30-60 seconds, persona introduction, identity, beliefs, pain, aspiration
+4. **Tone variants**: Casual for team empathy, professional for presentations
+5. **Interview prompts**: Optional for persona validation
+6. **Quality gates enforced**: All scripts must pass quality checks
+
+**ElevenLabs voice content is not optional. It's required to create audio empathy artifacts for persona understanding.**

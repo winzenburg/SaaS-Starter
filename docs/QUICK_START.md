@@ -19,15 +19,30 @@ npm install
 Copy the example environment file:
 
 ```bash
-cp .env.example .env
+cp .env.example .env.local
 ```
 
-Edit `.env` and configure:
+Edit `.env.local` and configure:
 
+**Required:**
 - `DATABASE_URL` - Your PostgreSQL connection string
 - `STRIPE_SECRET_KEY` - From Stripe dashboard
 - `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` - From Stripe dashboard
 - `STRIPE_WEBHOOK_SECRET` - From Stripe webhook settings
+
+**AI Tools (for discovery/validation agents):**
+- `MANUS_API_KEY` - For narrative generation and personas
+- `OPENAI_API_KEY` - For ChatGPT reasoning and refinement
+- `ANTHROPIC_API_KEY` - For Claude red-teaming (optional)
+- `ELEVENLABS_API_KEY` - For voice content (optional)
+- `MIDJOURNEY_API_KEY` or Discord tokens - For visual assets (optional)
+
+**Platform Services (optional):**
+- `NEXT_PUBLIC_POSTHOG_KEY` - For analytics
+- `NEXT_PUBLIC_SUPABASE_URL` - For database/storage
+- `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` - For authentication
+
+See [Environment Variables Guide](./ENVIRONMENT-VARIABLES.md) for complete setup instructions.
 
 ### 3. Database Setup
 

@@ -1,0 +1,172 @@
+# Rule: Document Organization (One Idea = One Full Doc Set)
+
+> Enforce consistent document organization: one idea = one complete set of discovery + validation docs
+
+## Core Principle
+
+**Every idea must have a complete, organized document set. All discovery docs go in `/docs/discovery/`. All validation docs go in `/docs/validation/`. All documents for an idea share the same `<idea-slug>` identifier.**
+
+## Document Structure
+
+### Discovery Documents (`/docs/discovery/`)
+
+**All discovery documents for an idea must be in `/docs/discovery/` with consistent naming:**
+
+- `NARRATIVE-<idea-slug>.md` - Manus narrative output (raw)
+- `NICHE-INTEL-<idea-slug>.md` - Niche Intelligence analysis
+- `PAIN-SIGNALS-<idea-slug>.md` - Pain Signal analysis
+- `JTBD-<idea-slug>.md` - Persona & JTBD analysis
+- `OPPORTUNITY-<idea-slug>.md` - Opportunity & Moat analysis
+- `REDTEAM-<idea-slug>.md` - Red-Team critique (optional)
+
+**Example**: For idea "enterprise-design-system-startups":
+- `/docs/discovery/NARRATIVE-enterprise-design-system-startups.md`
+- `/docs/discovery/NICHE-INTEL-enterprise-design-system-startups.md`
+- `/docs/discovery/PAIN-SIGNALS-enterprise-design-system-startups.md`
+- `/docs/discovery/JTBD-enterprise-design-system-startups.md`
+- `/docs/discovery/OPPORTUNITY-enterprise-design-system-startups.md`
+- `/docs/discovery/REDTEAM-enterprise-design-system-startups.md` (optional)
+
+### Validation Documents (`/docs/validation/`)
+
+**All validation documents for an idea must be in `/docs/validation/` with consistent naming:**
+
+- `VALIDATION-PLAN-<idea-slug>.md` - Validation plan with tests and thresholds
+- `LANDING-<idea-slug>.md` - Landing page copy and visuals
+- `DISTRIBUTION-<idea-slug>.md` - Distribution strategy
+- `PRICING-TEST-<idea-slug>.md` - Pricing test strategy
+- `CREATIVE-BATCH-<idea-slug>.md` - Creative batch workflows (Glif)
+- `RESULTS-<idea-slug>.md` - Validation test results
+- `REDTEAM-<idea-slug>.md` - Red-Team critique (optional)
+
+**Example**: For idea "enterprise-design-system-startups":
+- `/docs/validation/VALIDATION-PLAN-enterprise-design-system-startups.md`
+- `/docs/validation/LANDING-enterprise-design-system-startups.md`
+- `/docs/validation/DISTRIBUTION-enterprise-design-system-startups.md`
+- `/docs/validation/PRICING-TEST-enterprise-design-system-startups.md`
+- `/docs/validation/CREATIVE-BATCH-enterprise-design-system-startups.md`
+- `/docs/validation/RESULTS-enterprise-design-system-startups.md`
+- `/docs/validation/REDTEAM-enterprise-design-system-startups.md` (optional)
+
+### Automation Specs (`/docs/automation/lindy/`)
+
+**All Lindy automation specs must be in `/docs/automation/lindy/` with consistent naming:**
+
+- `LINDY-SPEC-<automation-name>-<idea-slug>.md` - Lindy automation spec
+
+**Example**: For idea "enterprise-design-system-startups":
+- `/docs/automation/lindy/LINDY-SPEC-WAITLIST-NURTURE-enterprise-design-system-startups.md`
+- `/docs/automation/lindy/LINDY-SPEC-OUTREACH-SEQUENCER-enterprise-design-system-startups.md`
+- `/docs/automation/lindy/LINDY-SPEC-DAILY-BRIEF-enterprise-design-system-startups.md`
+
+## Idea Slug Requirements
+
+**Idea slugs must be:**
+- Lowercase
+- Hyphenated (no spaces, underscores, or special characters)
+- Descriptive but concise (e.g., `enterprise-design-system-startups`, not `eds` or `enterprise_design_system`)
+- Consistent across all documents for the same idea
+
+**Examples**:
+- ✅ `enterprise-design-system-startups`
+- ✅ `real-estate-investor-flipper-platform`
+- ✅ `ai-code-review-documentation-tool`
+- ❌ `Enterprise Design System` (uppercase, spaces)
+- ❌ `enterprise_design_system` (underscores)
+- ❌ `eds` (too short, not descriptive)
+
+## Agent Requirements
+
+### Discovery Agents
+
+**All discovery agents MUST output to `/docs/discovery/` with consistent naming:**
+
+- `@Niche-Intelligence-Agent` → `/docs/discovery/NICHE-INTEL-<idea-slug>.md`
+- `@Pain-Signal-Agent` → `/docs/discovery/PAIN-SIGNALS-<idea-slug>.md`
+- `@JTBD-Agent` → `/docs/discovery/JTBD-<idea-slug>.md`
+- `@Opportunity-Moat-Agent` → `/docs/discovery/OPPORTUNITY-<idea-slug>.md`
+- `@Red-Team-Strategist` → `/docs/discovery/REDTEAM-<idea-slug>.md` (optional)
+
+### Validation Agents
+
+**All validation agents MUST output to `/docs/validation/` with consistent naming:**
+
+- `@Demand-Validator` → `/docs/validation/VALIDATION-PLAN-<idea-slug>.md`
+- `@Landing-Builder` → `/docs/validation/LANDING-<idea-slug>.md`
+- `@Distribution-Operator` → `/docs/validation/DISTRIBUTION-<idea-slug>.md`
+- `@Pricing-Tester` → `/docs/validation/PRICING-TEST-<idea-slug>.md`
+- `@Creative-Batch-Operator` → `/docs/validation/CREATIVE-BATCH-<idea-slug>.md`
+- `@Red-Team-Strategist` → `/docs/validation/REDTEAM-<idea-slug>.md` (optional)
+
+### Automation Agents
+
+**All automation agents MUST output to `/docs/automation/lindy/` with consistent naming:**
+
+- `@Landing-Builder` → `/docs/automation/lindy/LINDY-SPEC-WAITLIST-NURTURE-<idea-slug>.md`
+- `@Distribution-Operator` → `/docs/automation/lindy/LINDY-SPEC-OUTREACH-SEQUENCER-<idea-slug>.md`
+- `@Demand-Validator` → `/docs/automation/lindy/LINDY-SPEC-DAILY-BRIEF-<idea-slug>.md`
+
+## Quality Gates
+
+**All document sets must pass quality gates:**
+
+- ✅ **All discovery docs use same `<idea-slug>`**
+- ✅ **All validation docs use same `<idea-slug>`**
+- ✅ **All docs in correct folders** (`/docs/discovery/` or `/docs/validation/`)
+- ✅ **Idea slug is lowercase, hyphenated, descriptive**
+- ✅ **No orphaned documents** (all docs for an idea are present)
+
+## Document Set Completeness
+
+**A complete discovery doc set includes:**
+- NARRATIVE (from Manus)
+- NICHE-INTEL
+- PAIN-SIGNALS
+- JTBD
+- OPPORTUNITY
+- REDTEAM (optional but recommended)
+
+**A complete validation doc set includes:**
+- VALIDATION-PLAN
+- LANDING
+- DISTRIBUTION
+- PRICING-TEST
+- CREATIVE-BATCH
+- RESULTS (after tests run)
+- REDTEAM (optional but recommended)
+
+## Integration with Other Rules
+
+- **Rule 301 (Discovery Overview)**: Discovery docs must be in `/docs/discovery/`
+- **Rule 040 (Demand Validation)**: Validation docs must be in `/docs/validation/`
+- **Rule 090 (Lindy Integration)**: Automation specs must be in `/docs/automation/lindy/`
+- **Rule 302 (Discovery Workflow)**: All discovery agents output to `/docs/discovery/`
+- **Rule 200 (Validation Playbook)**: All validation agents output to `/docs/validation/`
+
+## Document Quality
+
+**Only real, complete documents are created. No placeholder files.**
+
+- ✅ Documents contain substantive content, not just "Pending" status
+- ✅ All required sections are filled in
+- ✅ Proper citations included (if AI-generated)
+- ❌ No placeholder templates or empty files
+- ❌ No files that only contain "To be generated" messages
+
+**See Rule 004 (Core Document Quality) for complete requirements.**
+
+## Summary
+
+1. **Discovery docs**: `/docs/discovery/` with `NARRATIVE-`, `NICHE-INTEL-`, `PAIN-SIGNALS-`, `JTBD-`, `OPPORTUNITY-`, `REDTEAM-` prefixes
+2. **Validation docs**: `/docs/validation/` with `VALIDATION-PLAN-`, `LANDING-`, `DISTRIBUTION-`, `PRICING-TEST-`, `CREATIVE-BATCH-`, `RESULTS-`, `REDTEAM-` prefixes
+3. **Automation specs**: `/docs/automation/lindy/` with `LINDY-SPEC-` prefix
+4. **Idea slug**: Lowercase, hyphenated, descriptive, consistent across all docs
+5. **One idea = one full doc set**: All docs for an idea share the same `<idea-slug>`
+6. **Real files only**: No placeholder files, use README for status tracking
+
+**This prevents chaos by ensuring every idea has a complete, organized document set in predictable locations.**
+
+## Related Rules
+
+- **136-document-viewer-patterns.mdc** - How to render and display documents as web pages
+- **137-nextjs-server-client-separation.mdc** - Server/Client component patterns for document pages

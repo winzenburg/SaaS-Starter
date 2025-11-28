@@ -8,10 +8,13 @@ Greg's playbook emphasizes demand validation and value story before building. Th
 
 ## Inputs
 - Insight Brief (`/docs/product/INSIGHT-<product>.md`)
+- **Manus Persona** (`/docs/research/PERSONA-<product>.md`) - REQUIRED: Detailed personas with identity-level motivations
+- **Manus JTBD** (from Narrative or Persona docs) - REQUIRED: Job-to-be-Done extracted from Manus outputs
 - User problem
-- Target persona / ICP (Ideal Customer Profile)
 - Constraints (stack, timeline)
 - Early signals from Insight Strategist
+- Landing Page Copy (optional) (`/docs/validation/LANDING-<product>.md`)
+- Pricing Test Strategy (optional) (`/docs/validation/PRICING-TEST-<product>.md`)
 
 ## Outputs
 - Demand-Driven PRD document in `/docs/product/PRD-<feature>.md`
@@ -35,6 +38,42 @@ Greg's playbook emphasizes demand validation and value story before building. Th
 - Early adopter profile must be defined (community, identity, motivation)
 - Distribution from Day 1 must be planned
 
+## AI Tool Integrations
+
+### Primary Tools
+
+- **Manus.im**: Extract persona insights and JTBD from Manus outputs
+- **ChatGPT**: Refine PRD structure, optimize success metrics, analyze risks
+
+### Integration Workflow
+
+```
+Step 1: Receive inputs
+   - Manus Persona document
+   - Manus JTBD (from narrative or persona)
+   - Insight Brief
+   - Landing page copy (optional)
+   - Pricing test strategy (optional)
+   ↓
+Step 2: Extract from Manus outputs
+   - Persona language and terminology
+   - Identity-level motivations
+   - JTBD from persona narratives
+   - Emotional drivers
+   ↓
+Step 3: @ChatGPT-Reasoning-Agent → Refine PRD structure
+   - Optimize success metrics
+   - Analyze risks
+   - Design analytics schema
+   ↓
+Step 4: Create PRD
+   - Use Manus persona language
+   - Reference Manus JTBD
+   - Include all required sections
+   ↓
+Output: Complete PRD with success metrics, risks, analytics, feature flags
+```
+
 ## Default Prompt Template
 
 ```
@@ -42,41 +81,54 @@ Greg's playbook emphasizes demand validation and value story before building. Th
 
 Must reference:
 - Insight Brief: /docs/product/INSIGHT-<product>.md
+- Manus Persona: /docs/research/PERSONA-<product>.md (REQUIRED)
+- Manus JTBD: [Extract from Manus narrative or persona docs] (REQUIRED)
 
 Context:
 - SaaS multi-tenant app on Next.js + tRPC + Drizzle + Postgres + Vercel
 - This feature is <core/nice-to-have/experiment>
 - User problem: [PROBLEM_DESCRIPTION]
-- Target persona/ICP: [PERSONA_DESCRIPTION]
 - Constraints: [STACK_CONSTRAINTS, TIMELINE_CONSTRAINTS]
 
+Process:
+1) Extract persona language, identity-level motivations, and JTBD from Manus outputs
+2) @ChatGPT-Reasoning-Agent → Refine PRD structure and optimize success metrics
+3) Create PRD using Manus persona language and JTBD
+
 Include:
-1) Problem + JTBD (reference Insight Brief)
+1) Problem + JTBD (extract from Manus outputs, reference Insight Brief)
 2) Value Story (why this matters, transformation enabled)
 3) Why Now (timing rationale)
 4) Scope (in/out)
-5) User stories + acceptance criteria
-6) Early adopter profile (community, identity, motivation)
+5) User stories + acceptance criteria (use Manus persona language)
+6) Early adopter profile (from Manus persona: community, identity, motivation)
 7) "If users love this, what will they tell friends?"
 8) Distribution from Day 1
 9) 10 High-Velocity Tests
 10) Lo-Fi Validation Plan (email, landing page, Loom demo, tweet test, DM conversations)
-11) Success metrics (leading/lagging)
-12) Risks + mitigations
-13) Rollout plan with feature flags
-14) Analytics events schema
+11) Success metrics (leading/lagging) - REQUIRED
+12) Risks + mitigations - REQUIRED
+13) Rollout plan with feature flags - REQUIRED
+14) Analytics events schema - REQUIRED
 
 Output: /docs/product/PRD-<feature>.md
 ```
 
 ## PRD Structure (Isenberg-Style Demand-Driven)
 
-### 1. Problem + JTBD (Reference Insight Brief)
+### 1. Problem + JTBD (Extract from Manus Outputs)
+
+**CRITICAL**: Extract JTBD and persona insights from Manus outputs.
+
+- **Manus Persona Reference**: Link to `/docs/research/PERSONA-<product>.md`
+- **Manus JTBD**: Extract from Manus narrative or persona documents
 - **Insight Brief Reference**: Link to `/docs/product/INSIGHT-<product>.md`
-- **Problem statement**: Clear problem (from Insight Brief)
-- **Jobs To Be Done framing**: What job is the user trying to get done?
-- **Current state vs desired state**: From Insight Brief narrative
-- **User pain points**: From Insight Brief target community
+- **Problem statement**: Clear problem (from Insight Brief, validated with Manus persona)
+- **Jobs To Be Done framing**: Extract from Manus outputs - What job is the user trying to get done?
+- **Persona language**: Use exact terminology from Manus personas
+- **Identity-level motivations**: Extract from Manus persona documents
+- **Current state vs desired state**: From Insight Brief narrative + Manus persona insights
+- **User pain points**: From Insight Brief target community + Manus persona frustrations
 
 ### 1a. JTBD Frequency Modeling (REQUIRED)
 
@@ -286,18 +338,30 @@ Output: /docs/product/PRD-<feature>.md
 - **MVP boundaries**: What's the minimum viable version?
 
 ### 5. User Stories + Acceptance Criteria
-- **User stories**: "As a [persona], I want [goal] so that [benefit]"
+
+**CRITICAL**: Use Manus persona language and terminology in user stories.
+
+- **User stories**: "As a [Manus persona name], I want [goal] so that [benefit]"
+  - Use exact persona names from Manus outputs
+  - Use persona language and terminology
+  - Reference identity-level motivations from Manus
 - **Acceptance criteria**: In bullet form (must be testable)
 - **Edge cases**: Documented
-- **Keyed to JTBD**: Each story maps to a job
+- **Keyed to JTBD**: Each story maps to a job (extracted from Manus outputs)
+- **Persona alignment**: Stories must align with Manus persona profiles
 
-### 6. Early Adopter Profile (Community, Identity, Motivation)
-- **Community**: Where do they gather? (from Insight Brief)
-- **Identity**: How do they see themselves?
-- **Motivation**: What drives them?
-- **Pain intensity**: Why do they feel this pain most intensely?
-- **Early adopter signals**: What makes them early adopters?
-- **How to reach them**: Channels, communities, influencers
+### 6. Early Adopter Profile (Extract from Manus Persona)
+
+**CRITICAL**: Extract early adopter profile directly from Manus persona documents.
+
+- **Manus Persona Reference**: Link to `/docs/research/PERSONA-<product>.md`
+- **Community**: Where do they gather? (from Manus persona: where they hang out)
+- **Identity**: How do they see themselves? (from Manus persona: identity-level motivations)
+- **Motivation**: What drives them? (from Manus persona: emotional drivers)
+- **Pain intensity**: Why do they feel this pain most intensely? (from Manus persona: frustrations)
+- **Persona language**: Use exact terminology from Manus personas
+- **Early adopter signals**: What makes them early adopters? (from Manus persona: behavioral patterns)
+- **How to reach them**: Channels, communities, influencers (from Manus persona: communication preferences)
 
 ### 7. "If Users Love This, What Will They Tell Friends?"
 - **Word-of-mouth message**: What will they say?
@@ -792,64 +856,163 @@ Based on durability score:
 - **Timeline**: [When to run each validation?]
 - **Success criteria**: [What indicates validation?]
 
-### 16. Success Metrics (leading/lagging)
+### 16. Success Metrics (leading/lagging) - REQUIRED
+
+**CRITICAL**: Success metrics must be clearly defined and measurable. Use ChatGPT to optimize metric selection.
+
 - **Leading indicators**: Predictive metrics (engagement, time to value, word-of-mouth)
+  - **Engagement metrics**: Daily/weekly active users, session frequency, feature usage
+  - **Time to value**: Time from signup to first value, activation rate
+  - **Word-of-mouth**: Referral rate, NPS, social shares
+  - **Habit formation**: Weekly active users, streak metrics, habit loop completion
 - **Lagging indicators**: Outcome metrics (conversion, retention, revenue)
-- **Baseline metrics**: Current state
-- **Target metrics**: Desired state
-- **Measurement plan**: How to measure
+  - **Conversion metrics**: Free-to-paid conversion, trial-to-paid conversion
+  - **Retention metrics**: Week-1 retention, Week-4 retention, Month-3 retention, churn rate
+  - **Revenue metrics**: MRR, ARR, expansion revenue, LTV, CAC
+  - **Product-market fit**: PMF score, retention curve, usage frequency
+- **Baseline metrics**: Current state (if applicable)
+- **Target metrics**: Desired state (specific, measurable, time-bound)
+- **Measurement plan**: How to measure (analytics tools, tracking implementation)
+- **Success thresholds**: What metrics indicate success? (e.g., >40% Week-1 retention, >10% conversion)
+- **Failure thresholds**: What metrics indicate failure? (e.g., <20% Week-1 retention, <2% conversion)
 
-### 17. Risks + Mitigations
+### 17. Risks + Mitigations - REQUIRED
+
+**CRITICAL**: Risks must be identified and mitigated. Use ChatGPT to analyze risks comprehensively.
+
 - **Desirability risks**: What if users don't want this?
+  - **Risk**: Low validation signal, weak demand
+  - **Mitigation**: Run validation tests before build, iterate based on feedback
+  - **Early warning**: Low engagement in validation tests
 - **Buildability risks**: What if we can't build this?
+  - **Risk**: Technical complexity, resource constraints, timeline delays
+  - **Mitigation**: Technical spike, proof-of-concept, phased rollout
+  - **Early warning**: Technical blockers, timeline slips
 - **Distribution risks**: What if we can't reach users?
+  - **Risk**: Low distribution, poor channel fit, weak messaging
+  - **Mitigation**: Test distribution channels early, iterate messaging
+  - **Early warning**: Low conversion rates, poor engagement
 - **Timing risks**: What if timing is wrong?
-- **Mitigation strategies**: How to mitigate each risk
+  - **Risk**: Market not ready, competitor launches first, trend fades
+  - **Mitigation**: Monitor market signals, accelerate if needed, pivot if necessary
+  - **Early warning**: Market signals change, competitor activity
+- **Retention risks**: What if users don't come back?
+  - **Risk**: Low frequency, weak habit formation, no switching costs
+  - **Mitigation**: Design retention mechanics, frequency boosters, habit loops
+  - **Early warning**: Low Week-1 retention, declining usage
+- **Monetization risks**: What if users won't pay?
+  - **Risk**: No willingness to pay, wrong pricing, weak value prop
+  - **Mitigation**: Test pricing early, validate WTP, iterate value prop
+  - **Early warning**: Low conversion, pricing objections
+- **Competitive risks**: What if competitors launch similar features?
+  - **Risk**: Feature parity, better execution, stronger distribution
+  - **Mitigation**: Build moats, focus on differentiation, move fast
+  - **Early warning**: Competitor announcements, market shifts
+- **Mitigation strategies**: How to mitigate each risk (specific, actionable)
+- **Risk monitoring**: How to monitor risks (metrics, signals, triggers)
+- **Contingency plans**: What to do if risks materialize (pivot, kill, iterate)
 
-### 18. Rollout Plan with Feature Flags
-- **Feature flag name**: [Name]
+### 18. Rollout Plan with Feature Flags - REQUIRED
+
+**CRITICAL**: Feature flags enable safe, gradual rollouts. All risky features must have feature flags.
+
+- **Feature flag name**: [Name] (e.g., `feature-<feature-name>`)
+- **Feature flag type**: Boolean, percentage, or user-based
 - **Rollout stages**: 0% → 10% → 50% → 100%
+  - **Stage 1 (0% → 10%)**: Internal testing, dogfooding
+  - **Stage 2 (10% → 50%)**: Beta users, early adopters
+  - **Stage 3 (50% → 100%)**: General availability
 - **Success criteria for each stage**: [Criteria]
+  - **Stage 1 criteria**: No critical bugs, positive internal feedback
+  - **Stage 2 criteria**: >X% engagement, >Y% positive feedback, <Z% error rate
+  - **Stage 3 criteria**: >X% adoption, >Y% retention, <Z% churn
 - **Rollback plan**: [How to rollback]
+  - **Rollback triggers**: Error rate >X%, negative feedback >Y%, engagement <Z%
+  - **Rollback process**: Disable feature flag, notify users, investigate
+  - **Rollback timeline**: Immediate (<1 hour) or scheduled (<24 hours)
 - **Monitoring plan**: [What to monitor]
+  - **Metrics**: Engagement, error rate, performance, retention
+  - **Alerts**: Set up alerts for critical metrics
+  - **Dashboards**: Create dashboards for real-time monitoring
+- **Feature flag implementation**: [How to implement]
+  - **Code location**: Where feature flag is checked
+  - **Flag management**: How to enable/disable flags
+  - **User targeting**: How to target specific users/segments
 
-### 19. Analytics Events Schema
-- **Event names**: [List]
+### 19. Analytics Events Schema - REQUIRED
+
+**CRITICAL**: Analytics events enable measurement of success metrics. All key user actions must be tracked.
+
+- **Event names**: [List of all events]
+  - **User events**: signup, login, logout, profile_update
+  - **Feature events**: feature_viewed, feature_used, feature_completed
+  - **Conversion events**: trial_started, payment_initiated, payment_completed
+  - **Retention events**: daily_active, weekly_active, monthly_active
+  - **Engagement events**: page_viewed, button_clicked, form_submitted
 - **Event properties**: [Properties for each event]
+  - **User properties**: user_id, user_type, plan_type, signup_date
+  - **Feature properties**: feature_name, feature_version, feature_context
+  - **Conversion properties**: plan_type, price, payment_method
+  - **Retention properties**: days_since_signup, usage_frequency, last_active_date
+  - **Engagement properties**: page_name, button_name, form_name, time_spent
 - **When events fire**: [Triggers]
+  - **On page load**: page_viewed events
+  - **On user action**: button_clicked, form_submitted events
+  - **On state change**: signup, payment_completed events
+  - **On schedule**: daily_active, weekly_active events
 - **Event tracking implementation**: [Notes]
+  - **Tracking library**: Which analytics library? (e.g., PostHog, Mixpanel, Amplitude)
+  - **Implementation location**: Where events are tracked (frontend, backend, both)
+  - **Event validation**: How to validate events are firing correctly
+  - **Privacy considerations**: How to handle PII, GDPR compliance
+- **Analytics dashboard**: [What dashboards to create]
+  - **Success metrics dashboard**: Track leading/lagging indicators
+  - **Feature usage dashboard**: Track feature adoption and engagement
+  - **Conversion funnel dashboard**: Track conversion rates
+  - **Retention dashboard**: Track retention curves and churn
 
 ## Workflow
-1. Review Insight Brief (must exist)
-2. Validate desirability (before buildability)
-3. Craft Value Story (transformation enabled)
-4. Define Why Now (timing rationale)
-5. Define scope (in/out)
-6. Create user stories with acceptance criteria
-7. Define early adopter profile (community, identity, motivation)
-8. Answer "If users love this, what will they tell friends?"
-9. Plan distribution from Day 1
-10. **Define Monetization Wedge** (first paid moment, expansion revenue, value metric)
-11. **Define Data Moat Thesis** (proprietary data, compounding mechanism, 10× value, feedback loop)
-12. **Define Network Effects or Collaboration Loops** (at least one collaboration or shared value mechanic)
-13. **Score Durability Filter** (frequency, budget, independent of hype, upset if disappeared, switching costs)
-14. **Assess Durability** (Durable Market | Cash-Flow Micro-Bet | Low Durability)
-15. **Define Retention Thesis** (recurring job, frequency driver, habit loop)
-16. Design 10 High-Velocity Tests
-17. Create Lo-Fi Validation Plan
-18. Define success metrics (leading/lagging)
-19. Identify risks and mitigations
-20. Create rollout plan with feature flags
-21. Define analytics events schema
-16. Create PRD document
-17. Get stakeholder alignment
+1. **Receive Manus outputs** (persona document, JTBD from narrative)
+2. **Extract from Manus outputs**:
+   - Persona language and terminology
+   - Identity-level motivations
+   - JTBD from persona narratives
+   - Emotional drivers
+   - Communication preferences
+3. Review Insight Brief (must exist)
+4. Validate desirability (before buildability)
+5. Craft Value Story (transformation enabled)
+6. Define Why Now (timing rationale)
+7. Define scope (in/out)
+8. Create user stories with acceptance criteria (use Manus persona language)
+9. Define early adopter profile (extract from Manus persona: community, identity, motivation)
+10. Answer "If users love this, what will they tell friends?"
+11. Plan distribution from Day 1
+12. **Define Monetization Wedge** (first paid moment, expansion revenue, value metric)
+13. **Define Data Moat Thesis** (proprietary data, compounding mechanism, 10× value, feedback loop)
+14. **Define Network Effects or Collaboration Loops** (at least one collaboration or shared value mechanic)
+15. **Score Durability Filter** (frequency, budget, independent of hype, upset if disappeared, switching costs)
+16. **Assess Durability** (Durable Market | Cash-Flow Micro-Bet | Low Durability)
+17. **Define Retention Thesis** (recurring job, frequency driver, habit loop)
+18. Design 10 High-Velocity Tests
+19. Create Lo-Fi Validation Plan
+20. **Define success metrics (leading/lagging)** - REQUIRED
+21. **Identify risks and mitigations** - REQUIRED
+22. **Create rollout plan with feature flags** - REQUIRED
+23. **Define analytics events schema** - REQUIRED
+24. @ChatGPT-Reasoning-Agent → Refine PRD structure and optimize success metrics
+25. Create PRD document
+26. Get stakeholder alignment
 
 ## Quality Criteria
+- **Manus Persona is REQUIRED** (persona document must be referenced)
+- **Manus JTBD is REQUIRED** (JTBD must be extracted from Manus outputs)
 - PRD references Insight Brief
+- PRD uses Manus persona language and terminology
 - Desirability validated before buildability
 - Value Story is clear and compelling
 - Why Now is justified
-- Early adopter profile is specific
+- Early adopter profile is extracted from Manus persona (community, identity, motivation)
 - "If users love this" question is answered
 - Distribution from Day 1 is planned
 - **Monetization Wedge is REQUIRED** (first paid moment, expansion revenue, value metric)
@@ -861,20 +1024,28 @@ Based on durability score:
 - **Retention mechanics are designed in** (not patched later)
 - 10 High-Velocity Tests are actionable
 - Lo-Fi Validation Plan is complete
-- Success metrics are measurable (leading/lagging)
+- **Success metrics are REQUIRED** (leading/lagging indicators clearly defined, measurable, with thresholds)
 - Acceptance criteria are in bullet form and testable
-- Risks and mitigations are documented
-- Feature flags planned for risky rollouts
-- Analytics events schema defined
+- **Risks and mitigations are REQUIRED** (comprehensive risk analysis with mitigation strategies)
+- **Feature flags are REQUIRED** (rollout plan with feature flags for risky features)
+- **Analytics events schema is REQUIRED** (all key events defined with properties and triggers)
 - Stakeholder approval obtained
 
 ## Rules
+- **Cannot proceed without Manus Persona** (persona document is REQUIRED)
+- **Cannot proceed without Manus JTBD** (JTBD must be extracted from Manus outputs)
 - Cannot proceed without Insight Brief
 - Must validate desirability before buildability
 - Value Story and Why Now are required (central to Greg's playbook)
+- PRD must use Manus persona language and terminology
+- Early adopter profile must be extracted from Manus persona
 - Lo-Fi Validation Plan must include: email, landing page, Loom demo, tweet test, DM conversations
 - 10 High-Velocity Tests must be fast and low-cost
 - Distribution from Day 1 must be planned (not "we'll figure it out later")
+- **Success metrics are REQUIRED** (leading/lagging indicators must be defined)
+- **Risks and mitigations are REQUIRED** (comprehensive risk analysis required)
+- **Feature flags are REQUIRED** (all risky features must have feature flags)
+- **Analytics events schema is REQUIRED** (all key events must be tracked)
 
 ## Agent Packs
 For domain-specific SaaS categories, use agent packs:

@@ -1,8 +1,10 @@
 # Complete Agent Roster
 
-> All 12 agents in the SaaS Starter multi-agent system
+> All agents in the SaaS Starter multi-agent system (30 total)
 
-## Agent List (12 Total)
+## Agent List (30 Total)
+
+**Note**: This roster includes the Orchestrator and all specialist agents. See `docs/agents/orchestrator.md` for the master orchestrator that runs the complete pipeline.
 
 ### Strategy & Validation Agents (1-5)
 

@@ -1,0 +1,352 @@
+# Rule 050: Manus Integration
+
+> Manus.im outputs are required inputs for discovery and validation
+
+## Core Principle
+
+**Manus.im outputs are required inputs for discovery and validation.**
+
+All discovery and validation agents must consume Manus outputs. Manus is the source-of-truth narrative engine.
+
+## Required Manus Extractions
+
+**Agents must extract the following from Manus outputs:**
+
+### 1. Pain Language Lists
+
+**What to Extract**:
+- Direct quotes from the niche (frustration statements, complaints)
+- "I wish..." statements
+- Pain intensity indicators
+- Frequency of pain mentions
+- Emotional language around pain
+
+**Usage**: 
+- Pain Signal Analysis
+- Landing page copy
+- Value proposition development
+- DM outreach scripts
+
+**Agent**: `@Pain-Signal-Agent`, `@Landing-Builder`, `@Distribution-Operator`
+
+### 2. Persona Psychological Profiles
+
+**What to Extract**:
+- Identity-level motivations
+- Beliefs and worldview
+- Fears and anxieties
+- Aspirations and goals
+- Values and attitudes
+- Lifestyle characteristics
+- Personality traits
+- Emotional drivers
+
+**Usage**:
+- JTBD Persona Document
+- Landing page messaging
+- Distribution targeting
+- Pricing strategy
+
+**Agent**: `@JTBD-Agent`, `@Landing-Builder`, `@Distribution-Operator`, `@Pricing-Tester`
+
+### 3. JTBD (Functional, Emotional, Social)
+
+**What to Extract**:
+- **Functional Jobs**: What job is the user trying to get done?
+- **Emotional Jobs**: How does the user want to feel?
+- **Social Jobs**: How does the user want to be perceived?
+- Job triggers (when/where/why does job arise?)
+- Job context (what context surrounds the job?)
+- Job frequency (how often does job occur?)
+- Job steps (what steps are involved?)
+- Success criteria (how does user know job is done well?)
+- Barriers (what prevents job completion?)
+
+**Usage**:
+- JTBD Persona Document
+- PRD development
+- Feature prioritization
+- Validation test design
+
+**Agent**: `@JTBD-Agent`, `@Demand-Validator`, `@Product-Strategist`
+
+### 4. Competitor Gaps
+
+**What to Extract**:
+- Competitor positioning and narratives
+- Positioning gaps (where competitors don't serve the niche)
+- Differentiation opportunities
+- Market positioning insights
+- Competitive weaknesses
+- Underserved segments
+
+**Usage**:
+- Opportunity & Moat Report
+- Landing page positioning
+- Value proposition development
+- Distribution strategy
+
+**Agent**: `@Opportunity-Moat-Agent`, `@Landing-Builder`, `@Distribution-Operator`
+
+### 5. Pricing Expectations
+
+**What to Extract**:
+- Willingness-to-pay signals
+- Price sensitivity indicators
+- Budget authority information
+- Competitive pricing context
+- Value perception at different price points
+- Premium vs. budget positioning
+
+**Usage**:
+- Pricing Test Strategy
+- Pricing tiers design
+- Value proposition development
+- Revenue model design
+
+**Agent**: `@Pricing-Tester`, `@Product-Strategist`
+
+### 6. Community/Language Patterns
+
+**What to Extract**:
+- Specific terminology and jargon
+- Communication style
+- Identity signals
+- Status markers
+- Cultural references
+- Shared values and beliefs
+- Community entry points
+- Trust signals
+
+**Usage**:
+- Niche Intelligence Document
+- Distribution strategy
+- Landing page copy
+- DM outreach scripts
+
+**Agent**: `@Niche-Intelligence-Agent`, `@Distribution-Operator`, `@Landing-Builder`
+
+### 7. Transformation Narratives
+
+**What to Extract**:
+- Before/after stories
+- Identity transformation
+- Emotional transformation
+- Status transformation
+- Life improvement narratives
+- Success stories
+- Aspirational outcomes
+
+**Usage**:
+- Landing page copy
+- Value proposition development
+- Growth loop messaging
+- Referral messaging
+
+**Agent**: `@Landing-Builder`, `@Product-Strategist`, `@Growth-Loop-Agent`
+
+## Manus Output Feeds
+
+**Manus outputs feed the following agents:**
+
+### Discovery Agents
+
+1. **@Niche-Intelligence-Agent**
+   - **Inputs**: Niche narrative, community/language patterns, competitor landscape
+   - **Extracts**: Community patterns, language patterns, entry points, worldview
+
+2. **@Pain-Signal-Agent**
+   - **Inputs**: Pain language lists, complaints, unmet needs
+   - **Extracts**: Pain clusters, MAAP identification, pain scoring
+
+3. **@JTBD-Agent**
+   - **Inputs**: Persona psychological profiles, JTBD extraction, emotional drivers
+   - **Extracts**: Deep persona narrative, main/related/emotional jobs, triggers, barriers
+
+4. **@Opportunity-Moat-Agent**
+   - **Inputs**: Competitor gaps, transformation narratives, pricing expectations
+   - **Extracts**: Winner-take-most dynamics, switching costs, data moats, blue ocean opportunities
+
+### Validation Agents
+
+5. **@Demand-Validator**
+   - **Inputs**: Pain language, persona profiles, JTBD, competitor gaps
+   - **Extracts**: Validation test design, thresholds, kill/pivot/proceed rules
+
+6. **@Landing-Builder**
+   - **Inputs**: Pain language, persona profiles, transformation narratives, competitor gaps
+   - **Extracts**: Hero copy, value propositions, offer framing, transformation narrative
+
+7. **@Distribution-Operator**
+   - **Inputs**: Community/language patterns, persona profiles, transformation narratives
+   - **Extracts**: Community targeting, posting calendar, DM scripts, platform hooks
+
+8. **@Pricing-Tester**
+   - **Inputs**: Pricing expectations, persona profiles, competitor gaps
+   - **Extracts**: Pricing bands, feature differentiation, WTP questions, premium anchor
+
+## Manus Workflow
+
+### Step 1: Generate Manus Outputs
+
+**Agent**: `@Manus-Narrative-Agent`
+
+**Input**: Raw product idea
+
+**Outputs**:
+- Niche narrative
+- Pain language dictionary
+- Persona narrative
+- JTBD extraction
+- Competitor analysis
+- Pricing expectations
+- Community insights
+- Transformation narratives
+
+**Duration**: 1-2 hours
+
+### Step 2: Extract Required Elements
+
+**Agents**: All discovery and validation agents
+
+**Process**:
+1. Each agent reads Manus outputs
+2. Extracts relevant elements for their specific task
+3. Uses extracted elements to create structured documents
+
+### Step 3: Use Extracted Elements
+
+**Agents**: All discovery and validation agents
+
+**Process**:
+1. Incorporate extracted elements into agent outputs
+2. Ensure Manus insights are properly attributed
+3. Maintain consistency with Manus narrative
+
+## Quality Gates
+
+**All Manus extractions must meet quality criteria:**
+
+- ✅ **Pain Language**: Direct quotes, frustration statements, "I wish..." statements
+- ✅ **Persona Profiles**: Identity, beliefs, fears, aspirations, emotional drivers
+- ✅ **JTBD**: Functional, emotional, social jobs with triggers, context, frequency
+- ✅ **Competitor Gaps**: Clear positioning gaps, differentiation opportunities
+- ✅ **Pricing Expectations**: Willingness-to-pay signals, price sensitivity, budget authority
+- ✅ **Community Patterns**: Terminology, communication style, entry points, trust signals
+- ✅ **Transformation Narratives**: Before/after stories, identity transformation, aspirational outcomes
+
+## Integration with Other Rules
+
+- **Rule 001 (Philosophy)**: AI-assisted discovery mandatory, Manus required
+- **Rule 300 (Discovery Master)**: Manus is source-of-truth narrative engine
+- **Rule 301 (Discovery Overview)**: Manus outputs feed all discovery agents
+- **Rule 310 (Manus in Discovery)**: Detailed Manus usage patterns in discovery
+- **Rule 040 (Demand Validation)**: Manus insights required for validation
+- **Rule 191 (Manus Integration)**: Manus.im specific technical patterns
+
+## Enforcement
+
+### Pre-Discovery Checks
+
+**Before starting discovery**:
+1. ✅ Manus outputs must exist
+2. ✅ All required Manus extractions must be available
+3. ✅ Manus narrative must be complete
+
+### Pre-Validation Checks
+
+**Before starting validation**:
+1. ✅ Manus outputs must exist
+2. ✅ Pain language, persona, JTBD must be extracted
+3. ✅ Manus insights must be incorporated into validation plan
+
+### Agent Requirements
+
+**All discovery and validation agents must**:
+1. Read Manus outputs as primary input
+2. Extract relevant elements for their task
+3. Incorporate Manus insights into their outputs
+4. Attribute Manus insights appropriately
+
+## Manus Discovery Pack Format
+
+**Manus returns discovery packs in markdown format with structured sections:**
+
+1. **Niche Narrative** - Culture, vocabulary, identity, geography, communities, trends
+2. **Pain Language Dictionary** - Complaints, frustrations, unmet needs, direct quotes
+3. **Detailed Persona** - Name, role, identity, pain points, emotional drivers, JTBD
+4. **Competitor Landscape** - Competitor categories, positioning, gaps, opportunities
+5. **Pricing Expectations** - Pricing tiers, willingness to pay, value perception
+6. **Distribution Hooks** - Entry points, trust signals, community engagement
+7. **References** - All sources with citations and URLs
+
+### Parsing Manus Discovery Packs
+
+**Use the parser utility** (`src/lib/ai-tools/manus-parser.ts`) to extract structured data:
+
+```typescript
+import { parseManusDiscoveryPack, extractSources, formatCitations } from "@/lib/ai-tools/manus-parser";
+
+// Parse markdown discovery pack
+const parsed = parseManusDiscoveryPack(markdownContent);
+
+// Extract sources for citations
+const sources = extractSources(markdownContent);
+
+// Format citations in text (convert [1] to [^1])
+const formattedText = formatCitations(text, sources);
+```
+
+**The parser handles**:
+- ✅ Both JSON and markdown formats
+- ✅ Section extraction (Narrative, Persona, Competitors, etc.)
+- ✅ Citation extraction from References section
+- ✅ Source attribution with URLs
+- ✅ Citation formatting (footnotes)
+
+### Citation Requirements
+
+**All Manus outputs must include proper citations:**
+
+1. **Extract all sources** from the References section
+2. **Format citations** as footnotes using `[^number]` notation
+3. **Include source URLs** when available
+4. **Preserve citation numbers** from original Manus output
+5. **Generate sources section** at end of documents
+
+**Example citation format**:
+```markdown
+[^1]: Moreno Celta, R. (2025). *Design System Trends*. Design Systems Collective. - https://example.com/article
+```
+
+### Importing Manus Discovery Packs
+
+**Use import scripts** to process Manus discovery packs:
+
+1. **From File**: `scripts/import-manus-discovery-pack-from-file.ts`
+   - Reads discovery pack markdown file
+   - Parses sections and citations
+   - Generates validation documents (NARRATIVE, PERSONA, COMPETITORS)
+
+2. **From Task ID**: `scripts/import-manus-from-task-id.ts`
+   - Retrieves Manus task by ID
+   - Parses response
+   - Generates validation documents
+
+**All generated documents must**:
+- ✅ Include proper citations and footnotes
+- ✅ Preserve all source attribution
+- ✅ Link to original Manus discovery pack
+- ✅ Include generation metadata (tool, date, source)
+
+## Summary
+
+1. **Manus outputs are required** for discovery and validation
+2. **7 Required Extractions**: Pain language, persona profiles, JTBD, competitor gaps, pricing expectations, community patterns, transformation narratives
+3. **8 Agents Feed From Manus**: Niche-Intelligence, Pain-Signal, JTBD, Opportunity-Moat, Demand-Validator, Landing-Builder, Distribution-Operator, Pricing-Tester
+4. **Quality Gates**: All extractions must meet quality criteria
+5. **Enforcement**: Agents must extract and use Manus outputs
+6. **Format Support**: Parser handles both JSON and markdown formats
+7. **Citation Requirements**: All outputs must include proper citations and source attribution
+
+**Manus is the source-of-truth narrative engine. All discovery and validation agents must consume Manus outputs with proper citation handling.**
