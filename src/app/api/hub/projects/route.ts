@@ -60,9 +60,9 @@ function parsePortfolioScore(content: string, slug: string): {
     const nameMatch = content.match(/^# Portfolio Score: (.+)$/m);
     const name = nameMatch?.[1] || slug.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
 
-    // Extract score
-    const scoreMatch = content.match(/\*\*Total Score\*\*.*?(\d+)\/40/i);
-    const score = scoreMatch && scoreMatch[1] ? parseInt(scoreMatch[1]!) : 0;
+    // Extract score - handle both integer and decimal scores (e.g., "34.5/40")
+    const scoreMatch = content.match(/\*\*Total Score\*\*.*?(\d+\.?\d*)\/40/i);
+    const score = scoreMatch && scoreMatch[1] ? Math.round(parseFloat(scoreMatch[1]!)) : 0;
 
     // Extract verdict - handle formats like "### Verdict: ✅ **PROCEED**" or "### Verdict: ⚠️ PIVOT"
     // Try multiple patterns to handle different formats

@@ -179,7 +179,7 @@ Greg Isenberg's approach validates demand before building. This playbook extends
 - Visual prompts for Midjourney (3-5 hero image prompts)
 - Canva template recommendations (templates, brand specs, layout)
 - ElevenLabs founder intro script and audio
-- Optional: Next.js landing page at `/app/(marketing)/<idea>/page.tsx`
+- Optional: Next.js landing page at `/app/(marketing)/<idea>/page.tsx` (standalone, no SaaS Starter navigation)
 
 **AI Integration**:
 - Uses Manus.im to generate all copy (hero, offer, narrative, headlines)
@@ -187,13 +187,49 @@ Greg Isenberg's approach validates demand before building. This playbook extends
 - Uses ElevenLabs Voice Agent to generate founder intro audio
 - Optionally uses Cursor to generate Next.js landing page code
 
+**CRITICAL Requirements for All Validation Artifacts**:
+1. **Discovery Documents Required**: All validation artifacts MUST reference discovery documents
+   - MANUS Discovery Pack (REQUIRED)
+   - Persona Profile (REQUIRED)
+   - Validation Plan (REQUIRED)
+   - Narrative (RECOMMENDED)
+   - Competitor Analysis (RECOMMENDED)
+2. **Use Exact Discovery Language**: All artifacts MUST use exact language from discovery
+   - Exact pain language from MANUS (e.g., "burnt-out, under-compensated, and overwhelmed")
+   - Specific quotes and "I wish" statements from discovery
+   - Identity-level motivations from PERSONA
+   - Specific JTBD from discovery
+   - Differentiation opportunities from discovery
+   - Pricing expectations from discovery
+   - Community signals from discovery
+3. **No Generic Language**: Generic language is forbidden
+   - FORBIDDEN: "transform your life", "achieve your goals", "better wellness"
+   - REQUIRED: Specific quotes, pain points, and insights from discovery
+
+**CRITICAL Requirements for Next.js Landing Pages**:
+1. **Standalone Pages**: Must be completely standalone with no SaaS Starter navigation, header, or branding
+   - Create `src/middleware.ts` to detect standalone pages and set `x-standalone-landing` header
+   - Update root `layout.tsx` to conditionally hide navigation based on header
+   - Create standalone `layout.tsx` for each landing page (no SaaS Starter branding)
+2. **Use Exact LANDING Document Content**: Next.js page MUST use exact content from LANDING document
+   - Extract hero variants directly from LANDING document
+   - Extract value stack directly from LANDING document
+   - Extract transformation narrative directly from LANDING document
+   - Do NOT generate new content or modify existing content
+   - Use constants/objects to store content from LANDING document
+3. **Accessibility**: WCAG 2.2 AA compliant (semantic HTML, ARIA labels, keyboard navigation)
+
 **Deliverables**:
 - Complete landing page documentation
 - Visual asset specifications
 - Audio content
-- Optional: Next.js landing page code
+- Optional: Next.js landing page code (standalone, using exact LANDING document content)
 
-**Quality Gate**: 5 hero variants created, all elements align with Manus narrative, landing page ready for validation tests
+**Quality Gate**: 
+- 5 hero variants created, all elements align with Manus narrative
+- Landing page ready for validation tests
+- If Next.js code generated: standalone page with no SaaS Starter navigation
+- If Next.js code generated: uses exact content from LANDING document (no new content generation)
 
 ### 7. @Distribution-Operator → Distribution Strategy
 
@@ -436,29 +472,44 @@ Greg Isenberg's approach validates demand before building. This playbook extends
 - [ ] Sprint plan is executable
 
 ### Gate 4: Landing Page
-- [ ] 5 hero section variants created
-- [ ] Offer framing is compelling
-- [ ] Transformation narrative is clear
-- [ ] A/B headline variants ready
-- [ ] Visual prompts created
-- [ ] Founder intro audio generated
+- [ ] ALL discovery documents loaded (MANUS, PERSONA, VALIDATION-PLAN, NARRATIVE, COMPETITORS)
+- [ ] 5 hero section variants created (using exact discovery language)
+- [ ] Offer framing is compelling (using discovery insights)
+- [ ] Transformation narrative is clear (using exact pain language from discovery)
+- [ ] A/B headline variants ready (using persona language from discovery)
+- [ ] Visual prompts created (aligned with persona)
+- [ ] Founder intro audio generated (using persona language)
 - [ ] Landing page ready for validation tests
+- [ ] Uses exact discovery language (no generic language)
+- [ ] References specific quotes, pain points, and insights from discovery
+- [ ] If Next.js code generated: Standalone page with no SaaS Starter navigation (middleware pattern implemented)
+- [ ] If Next.js code generated: Uses exact content from LANDING document (no new content generation)
+- [ ] If Next.js code generated: WCAG 2.2 AA compliant
 
 ### Gate 5: Distribution Strategy
-- [ ] Top 15 communities identified with clear rationale
-- [ ] 7-day posting calendar is actionable
-- [ ] 20 DM variants cover different approaches
-- [ ] Content formats provided for all platforms
-- [ ] Paid channel recommendations are specific
+- [ ] ALL discovery documents loaded (MANUS, PERSONA, VALIDATION-PLAN)
+- [ ] Top 15 communities identified (from MANUS discovery - e.g., "7CTOs", "r/startups")
+- [ ] Communities use exact names from discovery (no generic lists)
+- [ ] 7-day posting calendar is actionable (using persona language from discovery)
+- [ ] 20 DM variants cover different approaches (using exact persona language from discovery)
+- [ ] DM scripts use specific quotes and pain points from discovery
+- [ ] Content formats provided for all platforms (aligned with persona)
+- [ ] Paid channel recommendations are specific (based on discovery insights)
 - [ ] Distribution strategy ready for execution
+- [ ] Uses exact discovery language (no generic language)
 
 ### Gate 6: Pricing Test Strategy
-- [ ] 3-5 pricing bands defined with clear rationale
-- [ ] Feature differentiation creates natural upgrade path
-- [ ] Fake-door experiments test key pricing hypotheses
-- [ ] WTP interview questions cover all discovery areas
-- [ ] Premium anchor variant creates value contrast
+- [ ] ALL discovery documents loaded (MANUS, PERSONA, VALIDATION-PLAN, COMPETITORS)
+- [ ] Pricing expectations from MANUS discovery loaded
+- [ ] 3-5 pricing bands defined (anchored to discovery pricing - e.g., "$199-$299/year", "$29-$49 journey packs")
+- [ ] Pricing uses exact recommendations from discovery (no arbitrary price points)
+- [ ] Value anchors from discovery referenced (e.g., "$15,000 retreats", "$450-$800 IV infusions")
+- [ ] Feature differentiation creates natural upgrade path (aligned with persona)
+- [ ] Fake-door experiments test key pricing hypotheses (using discovery pricing)
+- [ ] WTP interview questions cover all discovery areas (using persona language)
+- [ ] Premium anchor variant creates value contrast (using discovery value anchors)
 - [ ] Pricing strategy ready for validation tests
+- [ ] Uses exact discovery language (no generic language)
 
 ### Gate 7: Desirability Validation
 - [ ] At least 3 demand-validation tests passed

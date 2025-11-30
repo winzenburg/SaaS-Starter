@@ -2,7 +2,7 @@
 
 ## Overview
 Projects and their metadata are stored in multiple locations. The Hub API combines data from:
-1. **Real project folders** (7 projects)
+1. **Real project folders** (6 projects)
 2. **Virtual projects** from portfolio scores (16 portfolio score files)
 3. **Documents** scattered across multiple directories
 
@@ -11,14 +11,13 @@ Projects and their metadata are stored in multiple locations. The Hub API combin
 ## 1. Real Project Folders
 **Location**: `projects/` directory
 
-**7 Project Folders**:
+**6 Project Folders**:
 - `projects/ai-meeting-assistant/`
 - `projects/amazon-fba-seller-intelligence/`
 - `projects/real-estate-investor-flipper-platform/`
 - `projects/ai-code-review-documentation-tool/`
 - `projects/enterprise-design-system-startups/`
 - `projects/ketamine-meditation-journey-music-mobile-app/`
-- `projects/music-journey-app/`
 
 **Metadata in each folder**:
 - `README.md` - Project description, status
@@ -136,9 +135,9 @@ Claude Code likely only sees the **real project folders** in `projects/` directo
 
 ## Total Project Count
 
-- **7 Real Projects** (with folders in `projects/`)
+- **6 Real Projects** (with folders in `projects/`)
 - **16 Portfolio Score Files** (in `docs/portfolio/`)
-- **~22 Total Projects** (after deduplication - some portfolio scores match real projects)
+- **~21 Total Projects** (after deduplication - some portfolio scores match real projects)
 
 The exact count depends on how many portfolio scores have corresponding project folders.
 

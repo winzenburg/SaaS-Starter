@@ -1,0 +1,151 @@
+# Discovery Insights Required in Validation Artifacts
+
+**Goal**: Ensure all validation artifacts (landing pages, distribution strategies, pricing tests, etc.) use exact insights, persona language, and pain points from discovery documents.
+
+## Rule
+
+**All validation artifacts MUST reference and use insights from the Discovery and Validation phase. Generic language is forbidden.**
+
+## Required Discovery Documents
+
+Before creating any validation artifact, the following discovery documents must exist and be referenced:
+
+1. **MANUS Discovery Pack** (`docs/discovery/MANUS-<product>.md`)
+   - Niche narrative
+   - Pain language dictionary (with exact quotes)
+   - JTBD seeds
+   - Competitor landscape and gaps
+   - Pricing expectations
+   - Distribution hooks
+
+2. **Persona Profile** (`docs/research/PERSONA-<product>.md`)
+   - Identity-level motivations
+   - Emotional drivers
+   - Pain points
+   - Language patterns and terminology
+
+3. **Validation Plan** (`docs/validation/VALIDATION-PLAN-<product>.md`)
+   - Extracted persona language
+   - Frustrations
+   - Emotional drivers
+   - Identity-level pain points
+
+4. **Narrative** (`docs/product/NARRATIVE-<product>.md`) (optional but recommended)
+   - Selected narrative
+   - Transformation story
+
+5. **Competitor Analysis** (`docs/research/COMPETITORS-<product>.md`) (optional but recommended)
+   - Differentiation opportunities
+   - Positioning gaps
+
+## Validation Artifacts That Must Reference Discovery
+
+### 1. Landing Page (`docs/validation/LANDING-<product>.md`)
+
+**MUST use:**
+- Exact pain language from MANUS (e.g., "burnt-out, under-compensated, and overwhelmed")
+- Specific quotes and "I wish" statements from discovery
+- Identity-level motivations from PERSONA (e.g., "optimization-obsessed", "biohacker mentality")
+- Specific JTBD from discovery (e.g., "Help me escape my mental ruts", "Help me feel less alone")
+- Differentiation opportunities from discovery (e.g., "Adaptive Music for the Executive Mind")
+- Pricing expectations from discovery ($199-$299/year, $29-$49 journey packs)
+- Community signals from discovery (e.g., "7CTOs community", "r/startups")
+
+**FORBIDDEN:**
+- Generic language (e.g., "transform your life", "achieve your goals")
+- Vague pain points (e.g., "feeling stressed", "wanting improvement")
+- Generic value propositions (e.g., "better wellness", "improved mental health")
+
+### 2. Distribution Strategy (`docs/validation/DISTRIBUTION-<product>.md`)
+
+**MUST use:**
+- Specific communities from MANUS discovery (e.g., "7CTOs", "r/startups", "r/ExperiencedDevs")
+- Distribution hooks from discovery
+- Persona language in DM scripts and social posts
+- Trust signals from discovery
+- Community entry points from discovery
+
+**FORBIDDEN:**
+- Generic community lists (e.g., "LinkedIn", "Twitter")
+- Generic DM templates
+- Vague distribution strategies
+
+### 3. Pricing Test Strategy (`docs/validation/PRICING-TEST-<product>.md`)
+
+**MUST use:**
+- Pricing expectations from MANUS discovery
+- Value anchors from discovery (e.g., "$15,000 retreats", "$450-$800 IV infusions")
+- Willingness-to-pay signals from discovery
+- Pricing model recommendations from discovery
+
+**FORBIDDEN:**
+- Generic pricing tiers
+- Arbitrary price points
+- Pricing not anchored to discovery insights
+
+### 4. Creative Batch (`docs/validation/CREATIVE-BATCH-<product>.md`)
+
+**MUST use:**
+- Persona language in ad copy
+- Pain points from discovery in headlines
+- Identity-level motivations in visuals
+- Community signals in social proof
+
+**FORBIDDEN:**
+- Generic ad copy
+- Vague value propositions
+- Stock imagery without persona context
+
+## Quality Gates
+
+Before any validation artifact is considered complete, verify:
+
+- [ ] **Discovery Documents Loaded**: All required discovery documents are loaded and referenced
+- [ ] **Exact Language Used**: Copy uses exact quotes, pain language, and terminology from discovery
+- [ ] **No Generic Language**: No generic phrases like "transform your life" or "achieve your goals"
+- [ ] **Specific References**: References specific communities, pricing, differentiation from discovery
+- [ ] **Persona Alignment**: All copy aligns with identity-level motivations from PERSONA
+- [ ] **JTBD Referenced**: References specific JTBD from discovery documents
+- [ ] **Conversion-Focused**: Copy is compelling and speaks directly to persona's pain and identity
+
+## Script Requirements
+
+All scripts that generate validation artifacts MUST:
+
+1. **Load All Discovery Documents**: Load MANUS, PERSONA, VALIDATION-PLAN, NARRATIVE, COMPETITORS
+2. **Pass Full Context to AI**: Include all discovery documents in AI prompts (not just summaries)
+3. **Enforce Language Requirements**: System prompts must explicitly require using exact discovery language
+4. **Validate Output**: Check that generated content references specific discovery insights
+
+## Example: Correct vs. Wrong
+
+### ❌ Wrong (Generic):
+- Headline: "Transform Your Life with Ketamine Meditation"
+- Subheadline: "Experience better wellness and mental health"
+- Value Stack: "Meditation guides, music tracks, community support"
+
+### ✅ Correct (Discovery-Referenced):
+- Headline: "For CTOs Who Are Burnt-out, Under-compensated, and Overwhelmed"
+- Subheadline: "Escape your mental ruts with adaptive music technology designed for tech leaders"
+- Value Stack: "Adaptive Music for the Executive Mind, Integration tools for leadership insights, Journey tracking for the optimization-obsessed"
+
+## Integration Points
+
+- **Rule 200 (Insight Validation Playbook)**: All validation steps must reference discovery
+- **Rule 112 (Standalone Landing Pages)**: Landing pages must use exact LANDING document content
+- **docs/agents/landing-builder.md**: Landing-Builder must reference discovery documents
+- **docs/agents/distribution-operator.md**: Distribution-Operator must use discovery insights
+- **docs/agents/pricing-tester.md**: Pricing-Tester must use discovery pricing expectations
+
+## Enforcement
+
+**CRITICAL**: If a validation artifact is created without proper discovery references, it must be regenerated. Generic language is a quality gate failure.
+
+## Related Rules
+
+- `.cursor/rules/200-playbook-insight-validation.mdc` - Insight Validation Playbook
+- `.cursor/rules/112-standalone-landing-pages.mdc` - Standalone Landing Pages
+- `.cursor/rules/028-core-cursor-agent-responsibilities.mdc` - Cursor Agent Responsibilities
+- `docs/agents/landing-builder.md` - Landing-Builder Agent
+- `docs/agents/distribution-operator.md` - Distribution-Operator Agent
+- `docs/agents/pricing-tester.md` - Pricing-Tester Agent

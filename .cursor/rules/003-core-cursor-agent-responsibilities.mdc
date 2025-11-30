@@ -1,0 +1,103 @@
+# Rule: Cursor Agent Responsibilities
+
+> Clarifies what Cursor agents should and should not do
+
+## Purpose
+
+Prevent Cursor agents from doing research/synthesis that should be done by external AI tools (ChatGPT, Manus, Claude). Cursor agents should only organize and structure content returned from external tools.
+
+## Cursor Agents DO
+
+✅ **Organize and structure content** returned from external AI tools (ChatGPT, Manus, Claude)
+- Format content into proper markdown document structure
+- Add metadata (generation date, AI tool, tokens, etc.)
+- Ensure proper sections, headers, formatting
+- Save documents to correct locations with proper naming
+
+✅ **Write code and implement features**
+- Create ADRs, schemas, test plans based on requirements
+- Implement features according to PRDs and ADRs
+- Write tests and ensure code quality
+
+✅ **Organize existing content**
+- Reorganize documents that already exist
+- Merge content from multiple sources
+- Format and structure existing content
+
+## Cursor Agents DO NOT
+
+❌ **Perform research or synthesis**
+- That's what external AI tools (ChatGPT, Manus, Claude) do
+- Cursor agents should not create content from scratch using their own reasoning
+
+❌ **Skip calling external AI tools**
+- Do not create documents directly without first calling ChatGPT/Manus/Claude
+- Do not assume you can do the research/synthesis yourself
+
+❌ **Do analysis that should be done by external tools**
+- Validation test design → Use ChatGPT
+- Market research → Use Manus
+- Red-team critique → Use Claude
+- Portfolio scoring → Use ChatGPT
+
+## Workflow Pattern
+
+**Correct Workflow:**
+```
+1. External AI tool (ChatGPT/Manus/Claude) generates content/research/synthesis
+   ↓
+2. Cursor agent receives that content
+   ↓
+3. Cursor agent organizes it into proper document structure
+   ↓
+4. Cursor agent saves the organized document
+```
+
+**Wrong Workflow:**
+```
+1. Cursor agent creates content from scratch using own reasoning
+   ↓
+2. Cursor agent saves document directly
+   ❌ This skips external AI tools and violates tool lanes
+```
+
+## Examples
+
+### ✅ Correct: Validation Plan
+
+1. **Call ChatGPT** (via script or API) to generate validation plan content
+2. **Organize** ChatGPT output into proper markdown structure
+3. **Add metadata** (generation date, AI tool, tokens, etc.)
+4. **Save** to `/docs/validation/VALIDATION-PLAN-<product>.md`
+
+### ❌ Wrong: Validation Plan
+
+1. **Create validation plan** from scratch using own reasoning
+2. **Save** to `/docs/validation/VALIDATION-PLAN-<product>.md`
+   - ❌ This skips ChatGPT and violates tool lanes
+
+### ✅ Correct: Discovery Documents
+
+1. **Load** Manus output and ChatGPT refinement
+2. **Organize** content into proper document structure (NICHE-INTEL, PAIN-SIGNALS, etc.)
+3. **Format** with proper sections, headers, metadata
+4. **Save** to `/docs/discovery/`
+
+### ❌ Wrong: Discovery Documents
+
+1. **Create** discovery documents from scratch using own reasoning
+2. **Save** to `/docs/discovery/`
+   - ❌ This skips Manus and ChatGPT and violates tool lanes
+
+## Integration with Other Rules
+
+- **Rule 000 (Orchestration)**: Tool lanes define responsibilities
+- **Rule 311 (Manus Orchestration Flow)**: Cursor agents organize, not create
+- **Rule 200 (Insight Validation Playbook)**: Agents must use external tools first
+
+## Summary
+
+**Cursor agents = Organizers, not researchers**
+- External AI tools do research and synthesis
+- Cursor agents organize and structure the results
+- Never skip external tools and create content directly

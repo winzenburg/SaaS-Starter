@@ -1,16 +1,4 @@
 import "@testing-library/jest-dom";
-import { afterEach } from "vitest";
-import { cleanup } from "@testing-library/react";
 
-// Cleanup after each test
-afterEach(() => {
-  cleanup();
-});
-import { afterEach } from "vitest";
-import { cleanup } from "@testing-library/react";
-
-// Cleanup after each test
-afterEach(() => {
-  cleanup();
-});
-
+// Cleanup is handled by vitest globals
+// If needed, cleanup can be called manually in tests

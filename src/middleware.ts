@@ -1,35 +1,54 @@
-import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
+import { clerkMiddleware } from "@clerk/nextjs/server";
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 
-// Public routes that don't require authentication
-const isPublicRoute = createRouteMatcher([
-  '/',
-  '/sign-in(.*)',
-  '/sign-up(.*)',
-  '/api/webhooks(.*)',
-  '/design-preview(.*)',
-  '/articles(.*)',
-  '/docs(.*)',
-  '/hub(.*)',
-  '/workflows(.*)',
-]);
-
-export default clerkMiddleware(async (auth, req: NextRequest) => {
-  // Allow public routes
-  if (isPublicRoute(req)) {
-    return NextResponse.next();
+export default clerkMiddleware(async (auth, request: NextRequest) => {
+  const pathname = request.nextUrl.pathname;
+  
+  // Add header for standalone landing pages
+  const isStandaloneLanding = pathname.includes("ketamine-meditation-journey-music-mobile-app");
+  
+  const response = NextResponse.next();
+  
+  if (isStandaloneLanding) {
+    response.headers.set("x-standalone-landing", "true");
   }
-
-  // Protect other routes (authentication handled by Clerk)
-  return NextResponse.next();
+  
+  // Public routes - no authentication required
+  const publicPaths = [
+    "/",
+    "/sign-in",
+    "/sign-up",
+    "/api/webhooks",
+    "/ketamine-meditation-journey-music-mobile-app",
+    "/hub",
+    "/workflows",
+    "/articles",
+    "/docs",
+  ];
+  
+  const isPublicPath = publicPaths.some(path => 
+    pathname === path || pathname.startsWith(path + "/")
+  );
+  
+  // Only protect non-public routes (for now, make most routes public)
+  // TODO: Add authentication back to specific routes when ready
+  // if (!isPublicPath) {
+  //   await auth.protect();
+  // }
+  
+  return response;
 });
 
 export const config = {
   matcher: [
-    // Skip Next.js internals and all static files, unless found in search params
-    '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
-    // Always run for API routes
-    '/(api|trpc)(.*)',
+    /*
+     * Match all request paths except for the ones starting with:
+     * - api (API routes) - but include webhooks
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     */
+    "/((?!api|_next/static|_next/image|favicon.ico).*)",
   ],
 };

@@ -115,3 +115,4 @@ if (!verdictMatch) {
 - `docs/portfolio/`
 - `docs/ideas/<slug>/`
 
+

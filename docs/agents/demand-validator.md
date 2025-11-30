@@ -4,7 +4,7 @@
 
 ## Mission
 
-Define validation strategy, tests, thresholds, and kill/pivot rules by synthesizing AI-generated narratives and personas into actionable validation plans.
+Organize and structure validation plans from ChatGPT-generated content. **DO NOT** create validation plans from scratch using your own reasoning. Always use ChatGPT to generate the content, then organize it into proper document structure.
 
 ## When to Use
 
@@ -22,29 +22,32 @@ Define validation strategy, tests, thresholds, and kill/pivot rules by synthesiz
 ### Integration Workflow
 
 ```
-Step 1: Receive Manus outputs
-   - Narrative document
-   - Persona profiles
-   - Competitor analysis
+Step 1: Load input documents
+   - Discovery documents (NICHE-INTEL, PAIN-SIGNALS, JTBD, OPPORTUNITY)
+   - Or Manus outputs (NARRATIVE, PERSONA, COMPETITORS)
    ↓
-Step 2: Extract key elements
-   - JTBD from narrative
-   - Persona language and frustrations
-   - Emotional drivers
-   - Identity-level pain points
+Step 2: Call ChatGPT to generate validation plan content
+   - Use ChatGPT API/script to generate validation plan
+   - ChatGPT does the research, synthesis, and test design
+   - ChatGPT returns raw content
    ↓
-Step 3: @ChatGPT-Reasoning-Agent → Design validation tests
-   - Analyze narrative for test opportunities
-   - Design 8-12 validation tests
-   - Define test thresholds
+Step 3: Organize ChatGPT output into document structure
+   - Format ChatGPT content into proper markdown structure
+   - Add metadata (generation date, AI tool, tokens, etc.)
+   - Ensure proper sections, headers, formatting
    ↓
-Step 4: Create validation plan
-   - 7-14 day sprint plan
-   - Kill/pivot/proceed rules
-   - Test sequencing
+Step 4: Save organized validation plan
+   - Save to /docs/validation/VALIDATION-PLAN-<product>.md
+   - Ensure proper naming and location
    ↓
-Output: Complete validation plan
+Output: Complete validation plan (organized from ChatGPT output)
 ```
+
+**CRITICAL**: 
+- ❌ **DO NOT** create validation plans from scratch using your own reasoning
+- ❌ **DO NOT** skip calling ChatGPT and create documents directly
+- ✅ **DO** call ChatGPT/scripts to generate content first
+- ✅ **DO** organize the ChatGPT output into proper document structure
 
 ## Required Inputs
 
@@ -414,18 +417,22 @@ Automate validation metrics collection, threshold comparison, and daily reportin
 @Demand-Validator Create a validation plan for <PRODUCT>.
 
 Inputs:
-- Narrative: /docs/product/NARRATIVE-<product>.md
-- Personas: /docs/research/PERSONA-<product>.md
-- Competitors: /docs/research/COMPETITORS-<product>.md (optional)
+- Discovery documents: /docs/discovery/NICHE-INTEL-<product>.md, PAIN-SIGNALS-<product>.md, JTBD-<product>.md, OPPORTUNITY-<product>.md
+- Or Manus outputs: /docs/product/NARRATIVE-<product>.md, /docs/research/PERSONA-<product>.md, /docs/research/COMPETITORS-<product>.md
 
 Process:
-1) Extract JTBD, persona language, frustrations, emotional drivers from Manus output
-2) @ChatGPT-Reasoning-Agent → Design 8-12 validation tests
-3) Define test thresholds (success, kill, pivot, proceed)
-4) Create kill/pivot/proceed rules
-5) Create 7-14 day sprint plan
+1) Load input documents
+2) Call ChatGPT (via script or API) to generate validation plan content
+   - ChatGPT does the research, synthesis, and test design
+   - ChatGPT returns raw content
+3) Organize ChatGPT output into proper document structure
+   - Format into markdown with proper sections
+   - Add metadata (generation date, AI tool, tokens, etc.)
+4) Save organized validation plan to /docs/validation/VALIDATION-PLAN-<product>.md
 
 Output: /docs/validation/VALIDATION-PLAN-<product>.md
+
+CRITICAL: DO NOT create validation plans from scratch. Always use ChatGPT/scripts to generate content first, then organize it.
 ```
 
 ## Quality Criteria

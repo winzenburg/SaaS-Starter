@@ -129,3 +129,4 @@ Example for ketamine app:
 - Search pattern: `*ketamine-meditation-journey-music-mobile-app*`
 - Locations: All `docs/*/` and `projects/ketamine-meditation-journey-music-mobile-app/`
 
+

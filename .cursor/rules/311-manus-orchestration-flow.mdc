@@ -63,7 +63,7 @@ Manus → ChatGPT → Claude → Cursor Agents
 
 **See Rule 320 (ChatGPT Refinement) for detailed refinement requirements.**
 
-### Step 3: Cursor Agents Create Structured Documents
+### Step 3: Cursor Agents Organize Structured Documents
 
 **Agents**: Discovery agents (`@Niche-Intelligence-Agent`, `@Pain-Signal-Agent`, `@JTBD-Agent`, `@Opportunity-Moat-Agent`)  
 **Tool**: Cursor  
@@ -71,13 +71,21 @@ Manus → ChatGPT → Claude → Cursor Agents
 - Raw Manus discovery pack (`/docs/discovery/MANUS-<idea-slug>.md`)
 - ChatGPT refinement (`/docs/discovery/CHATGPT-REFINEMENT-<idea-slug>.md`)
 
+**Cursor Agent Role**: 
+- **DO NOT** create content from scratch or do research/synthesis
+- **DO** organize the content from Manus + ChatGPT into proper document structure
+- **DO** format the content into markdown with proper sections, headers, metadata
+- **DO** save documents to correct locations with proper naming
+
 **Output**: Structured discovery documents:
-- `/docs/discovery/NICHE-INTEL-<idea-slug>.md` (from Manus niche narrative + ChatGPT refinement)
-- `/docs/discovery/PAIN-SIGNALS-<idea-slug>.md` (from Manus pain language + ChatGPT clustering)
-- `/docs/discovery/JTBD-<idea-slug>.md` (from Manus persona + ChatGPT JTBD synthesis)
-- `/docs/discovery/OPPORTUNITY-<idea-slug>.md` (from Manus competitors + ChatGPT opportunity vectors)
+- `/docs/discovery/NICHE-INTEL-<idea-slug>.md` (organized from Manus niche narrative + ChatGPT refinement)
+- `/docs/discovery/PAIN-SIGNALS-<idea-slug>.md` (organized from Manus pain language + ChatGPT clustering)
+- `/docs/discovery/JTBD-<idea-slug>.md` (organized from Manus persona + ChatGPT JTBD synthesis)
+- `/docs/discovery/OPPORTUNITY-<idea-slug>.md` (organized from Manus competitors + ChatGPT opportunity vectors)
 
 **These are the final structured documents that appear on the Hub.**
+
+**Important**: The content comes from external AI tools. Cursor agents only organize and structure it.
 
 ## What NOT to Do
 

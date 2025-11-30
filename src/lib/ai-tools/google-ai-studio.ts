@@ -73,11 +73,10 @@ export async function generateImage(
       throw new Error(`Google AI Studio API error: ${response.status} - ${JSON.stringify(error)}`);
     }
 
-    const data = await response.json();
-    const generatedText = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
-
     // Note: Gemini's current API primarily generates text descriptions
     // For actual image generation, you may need to use Imagen API separately
+    // const data = await response.json();
+    // const generatedText = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
     // or use the text description with another service
     // This returns a structured prompt that can be used with image generation services
 
@@ -128,13 +127,15 @@ export async function generateDesign(
         // If it's a URL, you'd need to fetch and convert
         if (imageRef.startsWith("data:")) {
           const [mimeType, data] = imageRef.split(",");
-          const mime = mimeType.split(":")[1]?.split(";")[0] || "image/png";
-          parts.push({
-            inlineData: {
-              mimeType: mime,
-              data: data,
-            },
-          });
+          if (data) {
+            const mime = mimeType?.split(":")[1]?.split(";")[0] || "image/png";
+            parts.push({
+              inlineData: {
+                mimeType: mime,
+                data: data,
+              },
+            });
+          }
         }
       }
     }
@@ -172,8 +173,8 @@ export async function generateDesign(
       throw new Error(`Google AI Studio API error: ${response.status} - ${JSON.stringify(error)}`);
     }
 
-    const data = await response.json();
-    const generatedContent = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
+    // const data = await response.json();
+    // const generatedContent = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
 
     return createSuccessResponse<VisualResponse>(
       {

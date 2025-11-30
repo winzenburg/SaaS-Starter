@@ -142,7 +142,7 @@ function getProjectName(slug: string): string {
     if (statSync(portfolioScorePath).isFile()) {
       const content = readFileSync(portfolioScorePath, "utf-8");
       const nameMatch = content.match(/^#\s+(.+)$/m);
-      if (nameMatch) {
+      if (nameMatch?.[1]) {
         return nameMatch[1].trim();
       }
     }
@@ -156,7 +156,7 @@ function getProjectName(slug: string): string {
     if (statSync(projectReadmePath).isFile()) {
       const content = readFileSync(projectReadmePath, "utf-8");
       const nameMatch = content.match(/^#\s+(.+)$/m);
-      if (nameMatch) {
+      if (nameMatch?.[1]) {
         return nameMatch[1].trim();
       }
     }

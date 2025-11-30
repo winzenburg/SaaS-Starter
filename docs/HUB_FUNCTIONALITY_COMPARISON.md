@@ -118,3 +118,4 @@ Claude Code's design system:
 3. **Integrate**: Apply new design system to Hub page while preserving all functionality
 4. **Test**: Run Playwright tests to ensure everything still works
 
+

@@ -23,51 +23,77 @@ Build compelling landing pages for validation by synthesizing Manus narrative, v
 ### Integration Workflow
 
 ```
-Step 1: Receive inputs
-   - Manus narrative output
-   - Value proposition
-   - Validation plan context
+Step 1: Load ALL discovery documents
+   - MANUS Discovery Pack (REQUIRED)
+   - Persona Profile (REQUIRED)
+   - Validation Plan (REQUIRED)
+   - Narrative (RECOMMENDED)
+   - Competitor Analysis (RECOMMENDED)
    ↓
-Step 2: @Manus-Narrative-Agent → Generate landing copy
-   - Hero section (5 variants)
-   - Offer framing
-   - Transformation narrative
-   - A/B headline variants
+Step 2: @Manus-Narrative-Agent or @ChatGPT-Reasoning-Agent → Generate landing copy
+   - Load ALL discovery documents into AI prompt
+   - Use EXACT persona language, pain points, quotes from discovery
+   - Hero section (5 variants) - using discovery insights
+   - Offer framing - using discovery insights
+   - Transformation narrative - using discovery insights
+   - A/B headline variants - using discovery insights
    ↓
 Step 3: @Visual-Asset-Agent → Create visuals
-   - Hero image prompts for Midjourney
-   - Canva template recommendations
+   - Hero image prompts for Midjourney (aligned with persona)
+   - Canva template recommendations (using brand insights from discovery)
    - Visual asset specifications
    ↓
 Step 4: @ElevenLabs-Voice-Agent → Generate audio
-   - Founder intro script
+   - Founder intro script (using persona language from discovery)
    - Voice narration
    ↓
 Step 5: Synthesize into landing page
-   - Complete landing page copy
+   - Complete landing page copy (using exact discovery language)
    - Visual asset specifications
    - Audio integration
-   - Optional: Next.js code generation
+   - Optional: Next.js code generation (using exact LANDING document content)
    ↓
 Output: Landing page documentation + optional code
 ```
 
+**CRITICAL**: Step 2 MUST pass ALL discovery documents to the AI tool, not just summaries. The AI must use exact quotes, pain language, and insights from discovery documents.
+
 ## Required Inputs
 
-1. **Manus Narrative Output** (`/docs/product/NARRATIVE-<product>.md`)
-   - Selected narrative
-   - Persona language
+**CRITICAL**: All discovery documents must be loaded and referenced. Generic language is forbidden.
+
+1. **MANUS Discovery Pack** (`/docs/discovery/MANUS-<product>.md`) - REQUIRED
+   - Niche narrative
+   - Pain language dictionary (with exact quotes)
+   - JTBD seeds
+   - Competitor landscape and gaps
+   - Pricing expectations
+   - Distribution hooks
+
+2. **Persona Profile** (`/docs/research/PERSONA-<product>.md`) - REQUIRED
+   - Identity-level motivations
    - Emotional drivers
+   - Pain points
+   - Language patterns and terminology
 
-2. **Value Proposition**
-   - Core value statement
-   - Key benefits
-   - Differentiation points
+3. **Validation Plan** (`/docs/validation/VALIDATION-PLAN-<product>.md`) - REQUIRED
+   - Extracted persona language
+   - Frustrations
+   - Emotional drivers
+   - Identity-level pain points
 
-3. **Validation Plan** (optional) (`/docs/validation/VALIDATION-PLAN-<product>.md`)
-   - Test context
-   - Target metrics
-   - CTA requirements
+4. **Narrative** (`/docs/product/NARRATIVE-<product>.md`) - RECOMMENDED
+   - Selected narrative
+   - Transformation story
+
+5. **Competitor Analysis** (`/docs/research/COMPETITORS-<product>.md`) - RECOMMENDED
+   - Differentiation opportunities
+   - Positioning gaps
+
+6. **Value Proposition** - Derived from discovery documents
+   - Core value statement (from discovery)
+   - Key benefits (from discovery)
+   - Differentiation points (from discovery)
 
 ## Core Responsibilities
 
@@ -160,9 +186,24 @@ Each variant tests different angles:
 **Using Cursor**, generate Next.js landing page:
 
 - **Route**: `/app/(marketing)/<idea>/page.tsx`
+- **Layout**: `/app/(marketing)/<idea>/layout.tsx` (standalone, no SaaS Starter navigation)
 - **Components**: Hero, features, social proof, CTA
 - **Styling**: Tailwind CSS
 - **Accessibility**: WCAG 2.2 AA compliant
+- **Standalone**: Must be completely standalone with no SaaS Starter branding/navigation
+
+**CRITICAL REQUIREMENTS**:
+
+1. **Standalone Page**: Landing pages must be completely standalone with no SaaS Starter navigation, header, or branding. Use middleware to detect standalone pages and hide navigation.
+
+2. **Use Exact LANDING Document Content**: The Next.js page MUST use the exact content from the generated LANDING document. Do NOT generate new content or modify the content. Extract all content (hero variants, value stack, transformation narrative, etc.) directly from the LANDING document.
+
+3. **Middleware Pattern**: Create `src/middleware.ts` to detect standalone landing pages and set headers that the root layout can use to conditionally hide navigation.
+
+4. **Layout Structure**: Each standalone landing page must have its own `layout.tsx` that:
+   - Imports marketing CSS
+   - Sets standalone metadata
+   - Does NOT include SaaS Starter navigation or branding
 
 ## LINDY OUTPUT REQUIRED
 
@@ -487,6 +528,10 @@ Output:
 - ✅ **Logging locations specified** (Waitlist Intake Sheet)
 - ✅ All elements align with Manus narrative
 - ✅ Landing page is ready for validation tests
+- ✅ **Next.js page uses exact content from LANDING document** (no new content generation)
+- ✅ **Standalone page with no SaaS Starter navigation** (middleware pattern implemented)
+- ✅ **Standalone layout created** (no SaaS Starter branding)
+- ✅ **WCAG 2.2 AA compliant** (accessibility requirements met)
 
 ## Integration Points
 
@@ -634,14 +679,104 @@ Output:
 ### Route Structure
 ```
 /app/(marketing)/<idea>/
-  ├── page.tsx (main landing page)
-  ├── components/
-  │   ├── Hero.tsx
-  │   ├── Features.tsx
-  │   ├── SocialProof.tsx
-  │   └── CTA.tsx
-  └── layout.tsx (optional)
+  ├── page.tsx (main landing page - uses exact content from LANDING document)
+  ├── layout.tsx (REQUIRED - standalone layout, no SaaS Starter navigation)
+  └── components/ (optional)
+      ├── Hero.tsx
+      ├── Features.tsx
+      ├── SocialProof.tsx
+      └── CTA.tsx
 ```
+
+### Standalone Page Requirements
+
+**CRITICAL**: All landing pages must be completely standalone with no SaaS Starter navigation or branding.
+
+#### 1. Middleware Pattern
+
+Create or update `src/middleware.ts` to detect standalone landing pages:
+
+```typescript
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+
+export function middleware(request: NextRequest) {
+  const pathname = request.nextUrl.pathname;
+  
+  // Add header for standalone landing pages
+  const isStandaloneLanding = pathname.includes("<idea-slug>");
+  
+  const response = NextResponse.next();
+  
+  if (isStandaloneLanding) {
+    response.headers.set("x-standalone-landing", "true");
+  }
+  
+  return response;
+}
+
+export const config = {
+  matcher: [
+    "/((?!api|_next/static|_next/image|favicon.ico).*)",
+  ],
+};
+```
+
+#### 2. Root Layout Update
+
+Update `src/app/layout.tsx` to conditionally hide navigation:
+
+```typescript
+export default async function RootLayout({ children }) {
+  const headersList = await headers();
+  const isStandaloneLanding = headersList.get("x-standalone-landing") === "true";
+
+  return (
+    <ClerkProvider>
+      <html lang="en">
+        <body>
+          {!isStandaloneLanding && (
+            <header>
+              {/* SaaS Starter navigation - hidden on standalone pages */}
+            </header>
+          )}
+          <main>{children}</main>
+        </body>
+      </html>
+    </ClerkProvider>
+  );
+}
+```
+
+#### 3. Standalone Layout
+
+Each landing page must have its own `layout.tsx`:
+
+```typescript
+import type { Metadata } from "next";
+import "../marketing.css";
+
+export const metadata: Metadata = {
+  title: "[Product Name] | [Value Proposition]",
+  description: "[Description from LANDING document]",
+};
+
+export default function LandingLayout({ children }) {
+  // Standalone layout - no SaaS Starter navigation or branding
+  return <>{children}</>;
+}
+```
+
+#### 4. Content Source
+
+**CRITICAL**: The `page.tsx` MUST use exact content from the LANDING document:
+
+- Extract hero variants directly from LANDING document
+- Extract value stack directly from LANDING document
+- Extract transformation narrative directly from LANDING document
+- Extract all copy exactly as written in LANDING document
+- Do NOT generate new content or modify the content
+- Use constants/objects to store content from LANDING document
 
 ### Component Guidelines
 
@@ -678,14 +813,27 @@ Output:
 
 ## Best Practices
 
-1. **Use Persona Language**: Mirror language from Manus personas
-2. **Test Multiple Angles**: 5 hero variants cover different approaches
-3. **Visual Consistency**: All visuals should match brand style
-4. **Clear CTAs**: Every section should have a clear call-to-action
-5. **Mobile-First**: Design for mobile, enhance for desktop
-6. **Fast Loading**: Optimize images and assets
-7. **A/B Test Ready**: Structure for easy A/B testing
-8. **Track Metrics**: Include analytics for validation tests
+1. **Use Exact LANDING Document Content**: Extract all content directly from the generated LANDING document. Do NOT generate new content or modify existing content.
+
+2. **Standalone Pages**: All landing pages must be completely standalone with no SaaS Starter navigation, header, or branding. Use middleware pattern to hide navigation.
+
+3. **Use Persona Language**: Mirror language from Manus personas (as specified in LANDING document)
+
+4. **Test Multiple Angles**: 5 hero variants cover different approaches (from LANDING document)
+
+5. **Visual Consistency**: All visuals should match brand style (from LANDING document)
+
+6. **Clear CTAs**: Every section should have a clear call-to-action (from LANDING document)
+
+7. **Mobile-First**: Design for mobile, enhance for desktop
+
+8. **Fast Loading**: Optimize images and assets
+
+9. **A/B Test Ready**: Structure for easy A/B testing (use variants from LANDING document)
+
+10. **Track Metrics**: Include analytics for validation tests
+
+11. **Accessibility**: WCAG 2.2 AA compliant (semantic HTML, ARIA labels, keyboard navigation)
 
 ## See Also
 

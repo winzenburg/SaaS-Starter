@@ -4,7 +4,7 @@
 
 import { eq, desc } from "drizzle-orm";
 import { getDb } from "@/lib/db";
-import { workflows } from "@/lib/db/schema";
+import { workflows, type WorkflowRow } from "@/lib/db/schema";
 import type { Workflow } from "./types";
 
 /**
@@ -34,6 +34,9 @@ export async function saveWorkflow(workflow: Workflow): Promise<Workflow> {
       .where(eq(workflows.id, workflow.id))
       .returning();
 
+    if (!updated) {
+      throw new Error("Failed to update workflow");
+    }
     return updated.workflowData as Workflow;
   } else {
     // Insert new workflow
@@ -49,6 +52,9 @@ export async function saveWorkflow(workflow: Workflow): Promise<Workflow> {
       })
       .returning();
 
+    if (!inserted) {
+      throw new Error("Failed to insert workflow");
+    }
     return inserted.workflowData as Workflow;
   }
 }
@@ -132,17 +138,17 @@ export async function getWorkflowCountsByProject(
 }> {
   const db = getDb();
 
-  const results = await db
+  const results: WorkflowRow[] = await db
     .select()
     .from(workflows)
     .where(eq(workflows.ideaSlug, projectSlug));
-
-  const workflows = results.map((row) => row.workflowData as Workflow);
+  
+  const workflowList = results.map((row) => row.workflowData as Workflow);
   
   const byPhase: Record<string, number> = {};
   let active = 0;
 
-  workflows.forEach((workflow) => {
+  workflowList.forEach((workflow) => {
     byPhase[workflow.phase] = (byPhase[workflow.phase] || 0) + 1;
     if (workflow.status === "in_progress" || workflow.status === "pending") {
       active++;
@@ -150,7 +156,7 @@ export async function getWorkflowCountsByProject(
   });
 
   return {
-    total: workflows.length,
+    total: workflowList.length,
     byPhase,
     active,
   };

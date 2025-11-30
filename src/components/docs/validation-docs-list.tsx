@@ -10,7 +10,7 @@ import Link from"next/link";
 import { motion } from"framer-motion";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from"@/components/ui/card";
 import { Badge } from"@/components/ui/badge";
-import { FileText, FolderKanban, ArrowLeft, ArrowRight } from"lucide-react";
+import { FileText, FolderKanban } from"lucide-react";
 
 interface ValidationDoc {
   filename: string;
@@ -36,9 +36,9 @@ function getTypeLabel(type: string | undefined): string {
 function getTypeColor(type: string | undefined): string {
   const colors: Record<string, string> = {"VALIDATION-PLAN":"bg-[var(--primary)]/20 text-[var(--primary)] border-[var(--primary)]/50","LANDING":"bg-green-500/20 text-green-400 border-green-500/50","DISTRIBUTION":"bg-purple-500/20 text-purple-400 border-purple-500/50","PRICING-TEST":"bg-yellow-500/20 text-yellow-400 border-yellow-500/50","CREATIVE-BATCH":"bg-pink-500/20 text-pink-400 border-pink-500/50","RESULTS":"bg-cyan-500/20 text-cyan-400 border-cyan-500/50","OTHER":"bg-slate-500/20 text-slate-400 border-slate-500/50",
   };
-  if (!type) return colors.OTHER;
+  if (!type) return colors["OTHER"]!;
   const color = colors[type];
-  return color ?? colors.OTHER;
+  return color ?? colors["OTHER"]!;
 }
 
 export function ValidationDocsList({ docs, docsByProject, projects }: ValidationDocsListProps) {
@@ -53,10 +53,9 @@ export function ValidationDocsList({ docs, docsByProject, projects }: Validation
         <div className="flex items-center gap-3 mb-4">
           <Link
             href="/hub"
-            className="text-sm text-[var(--primary)] hover:text-[var(--primary)]/80 inline-flex items-center gap-1.5 transition-colors duration-300"
+            className="text-sm text-[var(--primary)] hover:text-[var(--primary)]/80 inline-flex items-center gap-2 transition-colors duration-300"
           >
-            <ArrowLeft className="w-3.5 h-3.5" />
-            Back to Hub
+            ← Back to Hub
           </Link>
         </div>
         <h1 className="text-4xl sm:text-5xl font-bold font-heading text-[var(--primary)] mb-2">
@@ -106,10 +105,9 @@ export function ValidationDocsList({ docs, docsByProject, projects }: Validation
                   {projectKey !=="other" && (
                     <Link
                       href={`/hub?project=${projectKey}`}
-                      className="text-sm text-[var(--primary)] hover:text-[var(--primary)]/80 transition-colors inline-flex items-center gap-1"
+                      className="text-sm text-[var(--primary)] hover:text-[var(--primary)]/80 transition-colors"
                     >
-                      View Project
-                      <ArrowRight className="w-3.5 h-3.5" />
+                      View Project →
                     </Link>
                   )}
                 </div>

@@ -45,3 +45,4 @@ If Claude Code needs to use these keys:
 - **Production**: Set in Vercel Dashboard → Settings → Environment Variables
 - **Template**: `.env.example` (shows structure, no actual keys)
 
+

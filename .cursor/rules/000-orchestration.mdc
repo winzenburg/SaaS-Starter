@@ -17,10 +17,10 @@ Discovery → Demand Validation → Build → Scale
 
 ## TOOL LANES (NO OVERLAP)
 
-- **Manus** = niche narrative, pains, JTBD seeds, competitors, pricing expectations, hooks.
-- **ChatGPT** = breadth/variants/fast clustering/prompt expansion.
-- **Claude** = depth/critique/red-team/editorial polish.
-- **Cursor agents** = structured docs + code.
+- **Manus** = niche narrative, pains, JTBD seeds, competitors, pricing expectations, hooks (research & synthesis).
+- **ChatGPT** = breadth/variants/fast clustering/prompt expansion (research & synthesis).
+- **Claude** = depth/critique/red-team/editorial polish (research & synthesis).
+- **Cursor agents** = organize structured docs + code (NOT research/synthesis - only organization).
 - **Lindy AI** = outreach, nurture, scheduling, logging, daily briefs.
 - **Glif** = creative batching (drafts, variants, micro-tools).
 - **Midjourney/Canva/Leonardo** = polish visuals.
@@ -28,6 +28,27 @@ Discovery → Demand Validation → Build → Scale
 - **Clerk** = auth, sessions, orgs/roles, onboarding gates.
 - **Supabase** = app Postgres, RLS, storage, edge functions, webhooks.
 - **PostHog** = events, funnels, retention, feature flags, experiments.
+
+## CURSOR AGENT RESPONSIBILITIES
+
+**Cursor agents DO:**
+- ✅ Organize and structure content returned from external AI tools (ChatGPT, Manus, Claude)
+- ✅ Format content into proper markdown document structure
+- ✅ Save documents to correct locations with proper naming
+- ✅ Write code and implement features
+- ✅ Create ADRs, schemas, test plans based on requirements
+
+**Cursor agents DO NOT:**
+- ❌ Perform research or synthesis (that's what external AI tools do)
+- ❌ Create content from scratch using their own reasoning
+- ❌ Skip calling external AI tools and create documents directly
+- ❌ Do analysis that should be done by ChatGPT/Manus/Claude
+
+**Workflow:**
+1. External AI tool (ChatGPT/Manus/Claude) generates content/research/synthesis
+2. Cursor agent receives that content
+3. Cursor agent organizes it into proper document structure
+4. Cursor agent saves the organized document
 
 ## GLOBAL GATES
 
@@ -87,6 +108,7 @@ Discovery → Demand Validation → Build → Scale
 - **Rule 001**: Philosophy (validation-first, AI-enhanced)
 - **Rule 002**: Model Routing (ChatGPT vs Claude)
 - **Rule 003**: Document Organization (one idea = one full doc set)
+- **Rule 028**: Cursor Agent Responsibilities (organize, don't research)
 - **Rule 040**: Demand Validation (validation requirements)
 - **Rule 041-044**: Discovery stage rules
 - **Rule 095-097**: Platform integration rules (PostHog, Supabase, Clerk)

@@ -26,7 +26,7 @@ interface RelatedDocumentsProps {
 
 function getDocumentType(filename: string): string {
   const typeMatch = filename.match(/^(NICHE-INTEL|PAIN-SIGNALS|JTBD|OPPORTUNITY|REDTEAM|CHATGPT-REFINEMENT|MANUS|WORKFLOW|VALIDATION-PLAN|LANDING|DISTRIBUTION|PRICING-TEST|CREATIVE-BATCH|RESULTS)/i);
-  return typeMatch ? typeMatch[1] :"OTHER";
+  return typeMatch?.[1] ?? "OTHER";
 }
 
 function getTypeLabel(type: string): string {
@@ -38,7 +38,7 @@ function getTypeLabel(type: string): string {
 function getTypeColor(type: string): string {
   const colors: Record<string, string> = {"NICHE-INTEL":"bg-cyan-500/20 text-cyan-400 border-cyan-500/50","PAIN-SIGNALS":"bg-red-500/20 text-red-400 border-red-500/50","JTBD":"bg-purple-500/20 text-purple-400 border-purple-500/50","OPPORTUNITY":"bg-green-500/20 text-green-400 border-green-500/50","REDTEAM":"bg-orange-500/20 text-orange-400 border-orange-500/50","CHATGPT-REFINEMENT":"bg-[var(--primary)]/20 text-[var(--primary)] border-[var(--primary)]/50","MANUS":"bg-indigo-500/20 text-indigo-400 border-indigo-500/50","WORKFLOW":"bg-gray-500/20 text-[hsl(var(--text-muted))] border-gray-500/50","VALIDATION-PLAN":"bg-[var(--primary)]/20 text-[var(--primary)] border-[var(--primary)]/50","LANDING":"bg-green-500/20 text-green-400 border-green-500/50","DISTRIBUTION":"bg-purple-500/20 text-purple-400 border-purple-500/50","PRICING-TEST":"bg-yellow-500/20 text-yellow-400 border-yellow-500/50","CREATIVE-BATCH":"bg-pink-500/20 text-pink-400 border-pink-500/50","RESULTS":"bg-cyan-500/20 text-cyan-400 border-cyan-500/50","OTHER":"bg-slate-500/20 text-slate-400 border-slate-500/50",
   };
-  return colors[type] || colors.OTHER;
+  return colors[type] ?? colors["OTHER"]!;
 }
 
 export function RelatedDocuments({ currentPath, projectSlug }: RelatedDocumentsProps) {

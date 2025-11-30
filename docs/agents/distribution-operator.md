@@ -22,62 +22,75 @@ Design and execute distribution strategy by identifying target communities, crea
 ### Integration Workflow
 
 ```
-Step 1: Receive inputs
-   - Manus social hooks
-   - Persona insights
-   - Landing page copy
-   - Validation plan context
+Step 1: Load ALL discovery documents
+   - MANUS Discovery Pack (REQUIRED - distribution hooks, communities)
+   - Persona Profile (REQUIRED - exact language, pain points)
+   - Validation Plan (REQUIRED - persona language)
+   - Landing Page Copy (RECOMMENDED)
+   - Narrative (RECOMMENDED)
    ↓
 Step 2: @ChatGPT-Reasoning-Agent → Analyze distribution opportunities
-   - Identify target communities
-   - Analyze platform fit
-   - Recommend channels
+   - Use specific communities from MANUS discovery (e.g., "7CTOs", "r/startups")
+   - Use distribution hooks from discovery
+   - Analyze platform fit using persona insights
+   - Recommend channels based on discovery
    ↓
-Step 3: @Manus-Narrative-Agent → Generate social hooks
-   - Platform-specific hooks
-   - Engagement hooks
-   - Conversion hooks
+Step 3: @Manus-Narrative-Agent or @ChatGPT-Reasoning-Agent → Generate social hooks
+   - Use exact persona language from discovery
+   - Platform-specific hooks (using persona language)
+   - Engagement hooks (using pain points from discovery)
+   - Conversion hooks (using identity-level motivations)
    ↓
 Step 4: @ChatGPT-Reasoning-Agent → Create posting calendar
    - 7-day posting schedule
-   - Content cadence
-   - Optimal posting times
+   - Content cadence (using persona language)
+   - Optimal posting times (based on persona behavior from discovery)
    ↓
-Step 5: @Manus-Narrative-Agent → Generate DM scripts
-   - 20 DM outreach variants
-   - Personalized scripts
-   - Follow-up sequences
+Step 5: @Manus-Narrative-Agent or @ChatGPT-Reasoning-Agent → Generate DM scripts
+   - 20 DM outreach variants (using exact persona language)
+   - Personalized scripts (using pain points and quotes from discovery)
+   - Follow-up sequences (using persona language)
    ↓
 Step 6: Synthesize into distribution plan
-   - Community list
-   - Posting calendar
-   - DM scripts
-   - Content formats
-   - Paid channel recommendations
+   - Community list (from MANUS discovery)
+   - Posting calendar (using persona language)
+   - DM scripts (using exact discovery language)
+   - Content formats (aligned with persona)
+   - Paid channel recommendations (based on discovery)
    ↓
 Output: Complete distribution strategy
 ```
 
+**CRITICAL**: All steps MUST use exact language, communities, and insights from discovery documents. Generic language is forbidden.
+
 ## Required Inputs
 
-1. **Manus Social Hooks** (from Manus Narrative Agent)
-   - Platform-specific hooks
-   - Engagement hooks
-   - Conversion hooks
+**CRITICAL**: All discovery documents must be loaded and referenced. Generic language is forbidden.
 
-2. **Persona Insights** (`/docs/research/PERSONA-<product>.md`)
+1. **MANUS Discovery Pack** (`/docs/discovery/MANUS-<product>.md`) - REQUIRED
+   - Distribution hooks and entry points
+   - Community signals
+   - Trust signals
+   - Specific communities (e.g., "7CTOs", "r/startups")
+
+2. **Persona Profile** (`/docs/research/PERSONA-<product>.md`) - REQUIRED
    - Target personas
-   - Where they hang out
+   - Where they hang out (from discovery)
    - Communication preferences
-   - Pain points and language
+   - Pain points and language (exact quotes from discovery)
 
-3. **Landing Page Copy** (optional) (`/docs/validation/LANDING-<product>.md`)
+3. **Validation Plan** (`/docs/validation/VALIDATION-PLAN-<product>.md`) - REQUIRED
+   - Extracted persona language
+   - Test context
+
+4. **Landing Page Copy** (`/docs/validation/LANDING-<product>.md`) - RECOMMENDED
    - Value proposition
-   - Headlines
+   - Headlines (using persona language)
    - CTAs
 
-4. **Validation Plan** (optional) (`/docs/validation/VALIDATION-PLAN-<product>.md`)
-   - Test context
+5. **Narrative** (`/docs/product/NARRATIVE-<product>.md`) - RECOMMENDED
+   - Social hooks
+   - Engagement hooks
    - Target metrics
    - Timeline
 

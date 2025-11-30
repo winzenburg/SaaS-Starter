@@ -25,8 +25,7 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  css: {
-    postcss: false, // Disable PostCSS in Vitest to avoid config conflicts
-  },
+  // CSS processing disabled in Vitest to avoid config conflicts
+  // postcss: false is not a valid option in newer versions
 });
 

@@ -1,5 +1,4 @@
 import { pgTable, text, timestamp, uuid, jsonb } from "drizzle-orm/pg-core";
-import { sql } from "drizzle-orm";
 
 /**
  * Example User table

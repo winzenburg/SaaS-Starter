@@ -23,80 +23,94 @@ Transform validated narrative, landing copy, and niche insights into high-volume
 ### Integration Workflow
 
 ```
-Step 1: Receive inputs
-   - Manus narrative + hooks
-   - Landing copy draft
-   - Target niche + tone
+Step 1: Load ALL discovery documents
+   - MANUS Discovery Pack (REQUIRED - pain language, persona language)
+   - Persona Profile (REQUIRED - identity, pain points, language)
+   - Landing Copy Draft (REQUIRED - using discovery language)
+   - Validation Plan (REQUIRED - test context)
    ↓
-Step 2: Define 3 Glif workflows
-   - Landing hero + UI mock batch
-   - Social card/carousel batch
-   - Ad creative batch (3 angles x 3 visuals)
+Step 2: Define 3 Glif workflows (using discovery insights)
+   - Landing hero + UI mock batch (using persona language and pain points)
+   - Social card/carousel batch (using exact discovery language)
+   - Ad creative batch (3 angles x 3 visuals - using discovery insights)
    ↓
-Step 3: Create Glif block plans
+Step 3: Create Glif block plans (using discovery language)
    - Modular, single-purpose workflows
-   - Exact prompts + variables
+   - Exact prompts + variables (using persona language from discovery)
    - Output mapping specifications
    ↓
 Step 4: Generate creative batch document
-   - Workflow definitions
-   - Block plans
-   - Prompts and variables
+   - Workflow definitions (aligned with discovery)
+   - Block plans (using persona language)
+   - Prompts and variables (using exact discovery language)
    - Output mapping
    ↓
 Step 5: Save assets
    - Final assets in /docs/validation/assets/
 ```
 
+**CRITICAL**: All creative batch prompts and copy MUST use exact language, pain points, and insights from discovery documents. Generic language is forbidden.
+
 ## Required Inputs
 
-### 1. Manus Narrative + Hooks (REQUIRED)
+### 1. MANUS Discovery Pack (REQUIRED)
 
-**Source**: Manus Narrative Agent output
+**Source**: `/docs/discovery/MANUS-<product>.md`
 
 **Must Include**:
-- Product narrative and positioning
-- Social hooks and angles
-- Value propositions
-- Transformation stories
-- Emotional drivers
+- Pain language dictionary (with exact quotes)
+- Persona language
+- Differentiation opportunities
+- Visual style preferences from niche narrative
 
 **Extract For**:
-- Landing hero messaging
-- Social card copy
-- Ad creative angles
+- Landing hero messaging (using exact pain language)
+- Social card copy (using persona language)
+- Ad creative angles (using discovery insights)
 
-### 2. Landing Copy Draft (REQUIRED)
+### 2. Persona Profile (REQUIRED)
 
-**Source**: Landing-Builder agent output
-
-**Must Include**:
-- Hero section copy
-- Value proposition statements
-- Feature descriptions
-- Call-to-action text
-- Tone and voice guidelines
-
-**Extract For**:
-- Landing hero visuals
-- UI mock text overlays
-- Social card copy
-
-### 3. Target Niche + Tone (REQUIRED)
-
-**Source**: Niche Intelligence Agent or Market Scanner output
+**Source**: `/docs/research/PERSONA-<product>.md`
 
 **Must Include**:
-- Niche characteristics
-- Cultural norms and language patterns
+- Identity-level motivations
+- Pain points (exact quotes)
+- Language patterns and terminology
 - Visual style preferences
-- Tone guidelines (casual/professional/technical)
-- Brand voice requirements
 
 **Extract For**:
-- Visual style specifications
-- Tone consistency across creatives
+- Visual style specifications (aligned with persona)
+- Tone consistency across creatives (using persona language)
 - Niche-appropriate design choices
+
+### 3. Landing Copy Draft (REQUIRED)
+
+**Source**: Landing-Builder agent output (`/docs/validation/LANDING-<product>.md`)
+
+**Must Include**:
+- Hero section copy (using discovery language)
+- Value proposition statements (from discovery)
+- Feature descriptions (aligned with persona)
+- Call-to-action text (using persona language)
+- Tone and voice guidelines (from discovery)
+
+**Extract For**:
+- Landing hero visuals (aligned with persona)
+- UI mock text overlays (using exact landing copy)
+- Social card copy (using landing copy language)
+
+### 4. Validation Plan (REQUIRED)
+
+**Source**: `/docs/validation/VALIDATION-PLAN-<product>.md`
+
+**Must Include**:
+- Extracted persona language
+- Test context
+- Creative requirements
+
+**Extract For**:
+- Creative batch specifications
+- Test alignment
 
 ## Core Responsibilities
 

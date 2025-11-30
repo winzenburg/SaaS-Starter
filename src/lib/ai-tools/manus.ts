@@ -543,7 +543,11 @@ Format your response as JSON with the following structure:
             emotionalDrivers: [],
             jtbd: [],
           },
-          competitors: parsed.competitors || [],
+          competitors: (parsed.competitors || []).map(c => ({
+            name: c.name || "",
+            positioning: c.positioning || "",
+            gaps: c.gaps || [],
+          })),
           pricingExpectations: parsed.pricingExpectations ? [parsed.pricingExpectations] : [],
           hooks: parsed.distributionHooks ? [parsed.distributionHooks] : [],
         };
@@ -644,5 +648,81 @@ export function extractJTBD(persona: ManusResponse["persona"]): string[] {
     return [];
   }
   return persona.jtbd;
+}
+
+/**
+ * Generate landing page copy using Manus
+ * This uses Manus to generate landing page content (hero sections, offer framing, headlines)
+ */
+export async function generateLandingPageCopy(
+  request: {
+    product: string;
+    niche: string;
+    narrative?: string;
+    persona?: string;
+    valueProposition?: string;
+  }
+): Promise<AIResponse<{ content: string }>> {
+  try {
+    const prompt = `Generate landing page copy for: ${request.product}
+
+Target niche: ${request.niche}
+${request.valueProposition ? `Value proposition: ${request.valueProposition}` : ""}
+
+${request.narrative ? `Context from narrative:\n${request.narrative.substring(0, 2000)}` : ""}
+${request.persona ? `Context from persona:\n${request.persona.substring(0, 2000)}` : ""}
+
+Provide complete landing page copy including:
+
+1. Hero Section (5 Variants):
+   - Variant 1: Direct Value (headline, subheadline, CTA)
+   - Variant 2: Problem-Solution (headline, subheadline, CTA)
+   - Variant 3: Identity Connection (headline, subheadline, CTA)
+   - Variant 4: Transformation (headline, subheadline, CTA)
+   - Variant 5: Social Proof (headline, subheadline, CTA)
+
+2. Offer Framing:
+   - Value Stack (what's included)
+   - Transformation Promise (what changes)
+   - Urgency/Scarcity (why act now)
+   - Risk Reversal (remove friction)
+   - Social Proof (build trust)
+
+3. Transformation Narrative:
+   - Before State (current pain/frustration)
+   - Transformation Moment (key insight/realization)
+   - After State (desired outcome)
+   - Journey (how product enables transformation)
+
+4. A/B Headline Variants (3+ variants):
+   - Headline A: [Primary headline with angle description]
+   - Headline B: [Alternative headline with angle description]
+   - Headline C: [Alternative headline with angle description]
+
+All copy must use the exact persona language and terminology from the input documents.`;
+
+    // Create task (use "speed" mode to conserve credits)
+    const task = await createManusTask(prompt, "speed");
+
+    // Wait for completion
+    const result = await getTaskResult(task.task_id);
+
+    if (!result.result) {
+      throw new Error("Manus task completed but no result returned");
+    }
+
+    return createSuccessResponse(
+      { content: result.result },
+      {
+        model: "manus-landing-page",
+        timestamp: new Date().toISOString(),
+      }
+    );
+  } catch (error) {
+    return createErrorResponse(
+      error as Error,
+      "Manual landing page copy generation required"
+    );
+  }
 }
 

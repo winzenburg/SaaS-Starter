@@ -105,3 +105,4 @@ case "pivot":
 - ✅ Data accuracy improved (verdict parsing fixed, counts correct)
 - ✅ Better user experience
 
+

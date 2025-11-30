@@ -228,3 +228,4 @@ After integrating with new design, verify:
 - [ ] API route returns correct data
 - [ ] Playwright tests pass
 
+

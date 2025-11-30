@@ -43,7 +43,9 @@ export function getDocumentType(
     lower.includes("pain-signals") ||
     lower.includes("jtbd") ||
     lower.includes("opportunity") ||
-    lower.includes("discovery-demo")
+    lower.includes("discovery-demo") ||
+    lower.includes("manus") ||
+    lower.includes("chatgpt-refinement")
   ) {
     return { type: "discovery", phase: "discovery" };
   }

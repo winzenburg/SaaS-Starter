@@ -1,0 +1,123 @@
+# Standalone Landing Pages
+
+**Goal**: Ensure landing pages are completely standalone with no SaaS Starter navigation or branding.
+
+## Rule
+
+All landing pages created for validation tests must be completely standalone with no SaaS Starter navigation, header, or branding.
+
+## Requirements
+
+### 1. Middleware Pattern
+
+Create or update `src/middleware.ts` to detect standalone landing pages:
+
+```typescript
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+
+export function middleware(request: NextRequest) {
+  const pathname = request.nextUrl.pathname;
+  
+  // Add header for standalone landing pages
+  const isStandaloneLanding = pathname.includes("<idea-slug>");
+  
+  const response = NextResponse.next();
+  
+  if (isStandaloneLanding) {
+    response.headers.set("x-standalone-landing", "true");
+  }
+  
+  return response;
+}
+
+export const config = {
+  matcher: [
+    "/((?!api|_next/static|_next/image|favicon.ico).*)",
+  ],
+};
+```
+
+### 2. Root Layout Update
+
+Update `src/app/layout.tsx` to conditionally hide navigation:
+
+```typescript
+import { headers } from "next/headers";
+
+export default async function RootLayout({ children }) {
+  const headersList = await headers();
+  const isStandaloneLanding = headersList.get("x-standalone-landing") === "true";
+
+  return (
+    <ClerkProvider>
+      <html lang="en">
+        <body>
+          {!isStandaloneLanding && (
+            <header>
+              {/* SaaS Starter navigation - hidden on standalone pages */}
+            </header>
+          )}
+          <main>{children}</main>
+        </body>
+      </html>
+    </ClerkProvider>
+  );
+}
+```
+
+### 3. Standalone Layout
+
+Each landing page must have its own `layout.tsx`:
+
+```typescript
+import type { Metadata } from "next";
+import "../marketing.css";
+
+export const metadata: Metadata = {
+  title: "[Product Name] | [Value Proposition]",
+  description: "[Description from LANDING document]",
+};
+
+export default function LandingLayout({ children }) {
+  // Standalone layout - no SaaS Starter navigation or branding
+  return <>{children}</>;
+}
+```
+
+### 4. Content Source
+
+**CRITICAL**: The `page.tsx` MUST use exact content from the LANDING document:
+
+- Extract hero variants directly from LANDING document
+- Extract value stack directly from LANDING document
+- Extract transformation narrative directly from LANDING document
+- Extract all copy exactly as written in LANDING document
+- Do NOT generate new content or modify the content
+- Use constants/objects to store content from LANDING document
+
+## Route Structure
+
+```
+/app/(marketing)/<idea>/
+  ├── page.tsx (main landing page - uses exact content from LANDING document)
+  ├── layout.tsx (REQUIRED - standalone layout, no SaaS Starter navigation)
+  └── components/ (optional)
+      ├── Hero.tsx
+      ├── Features.tsx
+      ├── SocialProof.tsx
+      └── CTA.tsx
+```
+
+## Quality Gates
+
+- ✅ Standalone page with no SaaS Starter navigation (middleware pattern implemented)
+- ✅ Standalone layout created (no SaaS Starter branding)
+- ✅ Uses exact content from LANDING document (no new content generation)
+- ✅ WCAG 2.2 AA compliant (accessibility requirements met)
+
+## Related Rules
+
+- `.cursor/rules/200-playbook-insight-validation.mdc` - Insight Validation Playbook (Step 6)
+- `docs/agents/landing-builder.md` - Landing-Builder Agent documentation
+- `.cursor/rules/010-core-ux-a11y.mdc` - Accessibility requirements

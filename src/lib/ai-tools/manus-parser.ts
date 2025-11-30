@@ -57,12 +57,15 @@ export function extractSources(content: string): Map<string, Source> {
   if (referencesMatch) {
     const referencesText = referencesMatch[1];
     
+    if (!referencesText) return sources;
+    
     // Match [number] citations - improved pattern to capture full citation
     const citationPattern = /\[(\d+)\]\s*([^\n]+(?:\n(?!\[\d+\]|$)[^\n]+)*)/g;
     let match;
     
     while ((match = citationPattern.exec(referencesText)) !== null) {
       const [, number, fullCitation] = match;
+      if (!fullCitation || !number) continue;
       // Extract URL if present
       const urlMatch = fullCitation.match(/Retrieved from\s+(https?:\/\/[^\s]+)/);
       const url = urlMatch ? urlMatch[1] : undefined;
@@ -91,37 +94,37 @@ export function parseManusDiscoveryPack(markdown: string): ParsedManusDiscoveryP
   
   // Extract Niche Narrative
   const nicheNarrativeMatch = markdown.match(/## 1\. Niche Narrative\s*([\s\S]*?)(?=## 2\.|$)/);
-  if (nicheNarrativeMatch) {
+  if (nicheNarrativeMatch?.[1]) {
     result.narrative = nicheNarrativeMatch[1].trim();
   }
   
   // Extract Pain Language Dictionary
   const painLanguageMatch = markdown.match(/## 2\. Pain Language Dictionary\s*([\s\S]*?)(?=## 3\.|$)/);
-  if (painLanguageMatch) {
+  if (painLanguageMatch?.[1]) {
     result.painLanguage = painLanguageMatch[1].trim();
   }
   
   // Extract Detailed Persona
   const personaMatch = markdown.match(/## 3\. Detailed Persona\s*([\s\S]*?)(?=## 4\.|$)/);
-  if (personaMatch) {
+  if (personaMatch?.[1]) {
     const personaText = personaMatch[1];
     
     // Extract persona name
     const nameMatch = personaText.match(/\*\*Persona:\s*([^\*]+)\*\*/);
-    const name = nameMatch ? nameMatch[1].trim() : undefined;
+    const name = nameMatch?.[1]?.trim();
     
     // Extract role from table
     const roleMatch = personaText.match(/\*\*Role\*\*\s*\|\s*([^\|]+)/);
-    const role = roleMatch ? roleMatch[1].trim() : undefined;
+    const role = roleMatch?.[1]?.trim();
     
     // Extract identity
     const identityMatch = personaText.match(/\*\*Identity & Psychographics\*\*\s*\|\s*([^\|]+)/);
-    const identity = identityMatch ? identityMatch[1].trim() : undefined;
+    const identity = identityMatch?.[1]?.trim();
     
     // Extract pain points
     const painPointsSection = personaText.match(/\*\*Pain Points[^\*]*\*\*\s*\|\s*([^\|]+)/);
     let painPoints: string[] = [];
-    if (painPointsSection) {
+    if (painPointsSection?.[1]) {
       const painText = painPointsSection[1];
       // Extract bullet points
       painPoints = painText.split(/<br>|•|-/).map(p => p.trim()).filter(p => p.length > 0);
@@ -130,7 +133,7 @@ export function parseManusDiscoveryPack(markdown: string): ParsedManusDiscoveryP
     // Extract emotional drivers
     const emotionalDriversSection = personaText.match(/\*\*Emotional Drivers[^\*]*\*\*\s*\|\s*([^\|]+)/);
     let emotionalDrivers: string[] = [];
-    if (emotionalDriversSection) {
+    if (emotionalDriversSection?.[1]) {
       const driversText = emotionalDriversSection[1];
       emotionalDrivers = driversText.split(/<br>|•|-/).map(d => d.trim()).filter(d => d.length > 0);
     }
@@ -138,7 +141,7 @@ export function parseManusDiscoveryPack(markdown: string): ParsedManusDiscoveryP
     // Extract JTBD
     const jtbdSection = personaText.match(/\*\*Job-to-be-Done[^\*]*\*\*\s*\|\s*([^\|]+)/);
     let jtbd: string[] = [];
-    if (jtbdSection) {
+    if (jtbdSection?.[1]) {
       const jtbdText = jtbdSection[1];
       jtbd = jtbdText.split(/<br>|•|-/).map(j => j.trim()).filter(j => j.length > 0);
     }
@@ -155,21 +158,23 @@ export function parseManusDiscoveryPack(markdown: string): ParsedManusDiscoveryP
   
   // Extract Competitor Landscape
   const competitorsMatch = markdown.match(/## 4\. Competitor Landscape\s*([\s\S]*?)(?=## 5\.|$)/);
-  if (competitorsMatch) {
+  if (competitorsMatch?.[1]) {
     const competitorsText = competitorsMatch[1];
     // Try to extract competitor information from tables
     // This is a simplified extraction - full parsing would be more complex
     const competitors: Array<{ name?: string; positioning?: string; gaps?: string[] }> = [];
     
     // Look for competitor categories
-    const categoryMatches = competitorsMatch[1].matchAll(/\d+\.\s+\*\*([^\*]+)\*\*:([\s\S]*?)(?=\d+\.|$)/g);
+    const categoryMatches = competitorsText.matchAll(/\d+\.\s+\*\*([^\*]+)\*\*:([\s\S]*?)(?=\d+\.|$)/g);
     for (const match of categoryMatches) {
-      const categoryName = match[1].trim();
+      const categoryName = match[1]?.trim();
       const categoryText = match[2];
+      
+      if (!categoryName || !categoryText) continue;
       
       // Extract examples from the category text
       const examplesMatch = categoryText.match(/Examples include\s+\*\*([^\*]+)\*\*/);
-      if (examplesMatch) {
+      if (examplesMatch?.[1]) {
         competitors.push({
           name: examplesMatch[1].trim(),
           positioning: categoryName,
@@ -184,13 +189,13 @@ export function parseManusDiscoveryPack(markdown: string): ParsedManusDiscoveryP
   
   // Extract Pricing Expectations
   const pricingMatch = markdown.match(/## 5\. Pricing Expectations[^#]*([\s\S]*?)(?=## 6\.|$)/);
-  if (pricingMatch) {
+  if (pricingMatch?.[1]) {
     result.pricingExpectations = pricingMatch[1].trim();
   }
   
   // Extract Distribution Hooks
   const distributionMatch = markdown.match(/## 6\. Distribution Hooks[^#]*([\s\S]*?)(?=## 7\.|$)/);
-  if (distributionMatch) {
+  if (distributionMatch?.[1]) {
     result.distributionHooks = distributionMatch[1].trim();
   }
   

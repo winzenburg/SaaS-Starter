@@ -22,60 +22,79 @@ Design and execute pricing validation by defining pricing bands, feature differe
 ### Integration Workflow
 
 ```
-Step 1: Receive inputs
-   - Manus pricing expectations
-   - Competitive landscape
-   - Value proposition
-   - Persona insights
+Step 1: Load ALL discovery documents
+   - MANUS Discovery Pack (REQUIRED - pricing expectations, value anchors)
+   - Persona Profile (REQUIRED - price sensitivity)
+   - Competitive Landscape (REQUIRED)
+   - Validation Plan (REQUIRED)
+   - Value Proposition (RECOMMENDED)
    ↓
 Step 2: @ChatGPT-Reasoning-Agent → Analyze pricing strategy
-   - Competitive analysis
-   - Value-based pricing logic
-   - Packaging recommendations
+   - Use pricing expectations from MANUS discovery
+   - Use value anchors from discovery (e.g., "$15,000 retreats")
+   - Competitive analysis (using discovery insights)
+   - Value-based pricing logic (anchored to discovery)
+   - Packaging recommendations (based on discovery)
    ↓
-Step 3: @Manus-Narrative-Agent → Generate price expectations
-   - Persona-based price sensitivity
-   - Willingness-to-pay insights
-   - Price anchor points
+Step 3: Extract pricing insights from discovery
+   - Use exact pricing model from MANUS (e.g., "$199-$299/year", "$29-$49 journey packs")
+   - Use willingness-to-pay signals from discovery
+   - Use price anchor points from discovery
    ↓
 Step 4: @ChatGPT-Reasoning-Agent → Design pricing bands
-   - 3-5 pricing tiers
-   - Feature differentiation
-   - Value ladder
+   - Use pricing recommendations from discovery
+   - 3-5 pricing tiers (anchored to discovery)
+   - Feature differentiation (aligned with persona)
+   - Value ladder (using discovery insights)
    ↓
 Step 5: @ChatGPT-Reasoning-Agent → Create fake-door experiments
-   - Pricing page variants
+   - Pricing page variants (using discovery pricing)
    - Conversion tracking
-   - Test scenarios
+   - Test scenarios (aligned with validation plan)
    ↓
-Step 6: @Manus-Narrative-Agent → Generate WTP interview questions
-   - Price discovery questions
-   - Value perception questions
-   - Decision-making questions
+Step 6: @ChatGPT-Reasoning-Agent → Generate WTP interview questions
+   - Use persona language from discovery
+   - Price discovery questions (anchored to discovery pricing)
+   - Value perception questions (using discovery insights)
+   - Decision-making questions (using persona language)
    ↓
 Step 7: Synthesize into pricing test plan
-   - Pricing bands
-   - Feature tiers
+   - Pricing bands (from discovery)
+   - Feature tiers (aligned with persona)
    - Fake-door experiments
-   - WTP interview questions
-   - Premium anchor variant
+   - WTP interview questions (using persona language)
+   - Premium anchor variant (using discovery value anchors)
    ↓
 Output: Complete pricing test strategy
 ```
 
+**CRITICAL**: All pricing must be anchored to discovery documents. Use exact pricing expectations, value anchors, and willingness-to-pay signals from MANUS discovery.
+
 ## Required Inputs
 
-1. **Manus Pricing Expectations** (from Manus Narrative Agent)
-   - Persona-based price sensitivity
-   - Willingness-to-pay insights
-   - Price anchor points
+**CRITICAL**: All discovery documents must be loaded and referenced. Generic pricing is forbidden.
 
-2. **Competitive Landscape** (`/docs/research/COMPETITORS-<product>.md`)
-   - Competitor pricing
+1. **MANUS Discovery Pack** (`/docs/discovery/MANUS-<product>.md`) - REQUIRED
+   - Pricing expectations section
+   - Value anchors (e.g., "$15,000 retreats", "$450-$800 IV infusions")
+   - Willingness-to-pay signals
+   - Pricing model recommendations
+
+2. **Persona Profile** (`/docs/research/PERSONA-<product>.md`) - REQUIRED
+   - Price sensitivity insights
+   - Income and spending patterns
+   - Value perception
+
+3. **Competitive Landscape** (`/docs/research/COMPETITORS-<product>.md`) - REQUIRED
+   - Competitor pricing (from discovery)
    - Market positioning
    - Feature comparisons
 
-3. **Value Proposition** (from Landing Page or PRD)
+4. **Validation Plan** (`/docs/validation/VALIDATION-PLAN-<product>.md`) - REQUIRED
+   - Pricing test context
+   - WTP survey requirements
+
+5. **Value Proposition** (from Landing Page or PRD) - RECOMMENDED
    - Core value statement
    - Key benefits
    - Differentiation points

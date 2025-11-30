@@ -1,6 +1,6 @@
 "use client";
 
-import { Search, Menu, Bell, Sprout } from "lucide-react";
+import { Search, Menu, Bell } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Link from "next/link";

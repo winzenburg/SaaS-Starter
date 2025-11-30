@@ -11,13 +11,14 @@ export {
   analyzeCompetitors,
   extractPainLanguage,
   extractJTBD,
+  generateLandingPageCopy,
 } from "./manus";
 
 // OpenAI (ChatGPT)
 export { reason, refine, cluster, ideate } from "./chatgpt";
 
 // Anthropic (Claude)
-export { analyze, redTeam, auditConsistency } from "./claude";
+export { critique, polish } from "./claude";
 
 // ElevenLabs
 export {
