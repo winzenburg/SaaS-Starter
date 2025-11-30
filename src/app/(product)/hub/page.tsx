@@ -122,7 +122,8 @@ export default function HubPage() {
       case "proceed":
         return project.verdict?.toUpperCase().includes("PROCEED") ?? false;
       case "pivot":
-        return project.verdict?.toUpperCase().includes("PIVOT") ?? false;
+        const verdict = project.verdict?.toUpperCase();
+        return verdict?.includes("PIVOT") || verdict?.includes("KILL") || false;
       case "all":
       default:
         return true;
@@ -288,20 +289,23 @@ export default function HubPage() {
                   onClick={() => setFilter("top-priority")}
                   className={filter === "top-priority" ? "bg-green-500 hover:bg-green-600" : ""}
                 >
-                  ⭐⭐⭐⭐⭐ Top Priority ({projects.filter(p => (p.portfolioScore || 0) >= 30).length})
+                  Priority ({projects.filter(p => (p.portfolioScore || 0) >= 30).length})
                 </Button>
                 <Button
                   variant={filter === "proceed" ? "default" : "outline"}
                   onClick={() => setFilter("proceed")}
                 >
-                  ✅ Proceed ({projects.filter(p => p.verdict?.toUpperCase().includes("PROCEED")).length})
+                  Proceed ({projects.filter(p => p.verdict?.toUpperCase().includes("PROCEED")).length})
                 </Button>
                 <Button
                   variant={filter === "pivot" ? "default" : "outline"}
                   onClick={() => setFilter("pivot")}
                   className={filter === "pivot" ? "bg-yellow-500 hover:bg-yellow-600" : ""}
                 >
-                  ⚠️ Need Pivoting ({projects.filter(p => p.verdict?.toUpperCase().includes("PIVOT")).length})
+                  Pivot ({projects.filter(p => {
+                    const verdict = p.verdict?.toUpperCase();
+                    return verdict?.includes("PIVOT") || verdict?.includes("KILL") || false;
+                  }).length})
                 </Button>
               </div>
             </motion.div>

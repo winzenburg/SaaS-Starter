@@ -65,7 +65,12 @@ function parsePortfolioScore(content: string, slug: string): {
     const score = scoreMatch && scoreMatch[1] ? parseInt(scoreMatch[1]!) : 0;
 
     // Extract verdict - handle formats like "### Verdict: ✅ **PROCEED**" or "### Verdict: ⚠️ PIVOT"
-    const verdictMatch = content.match(/### Verdict:\s*[✅⚠️❌]?\s*\*?\*?([A-Z]+)\*?\*?/i);
+    // Try multiple patterns to handle different formats
+    let verdictMatch = content.match(/### Verdict:\s*[✅⚠️❌]?\s*\*?\*?([A-Z]+)\*?\*?/i);
+    if (!verdictMatch) {
+      // Fallback: look for "Verdict:" followed by any word in all caps
+      verdictMatch = content.match(/### Verdict:\s*[^\n]*?([A-Z]{4,})/i);
+    }
     const verdict: string | null = verdictMatch && verdictMatch[1] ? verdictMatch[1].trim() : null;
 
     // Extract niche
