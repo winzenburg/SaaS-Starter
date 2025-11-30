@@ -10,7 +10,7 @@ import Link from"next/link";
 import { motion } from"framer-motion";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from"@/components/ui/card";
 import { Badge } from"@/components/ui/badge";
-import { FileText, FolderKanban } from"lucide-react";
+import { FileText, FolderKanban, ArrowLeft, ArrowRight } from"lucide-react";
 
 interface DiscoveryDoc {
   filename: string;
@@ -53,9 +53,10 @@ export function DiscoveryDocsList({ docs, docsByProject, projects }: DiscoveryDo
         <div className="flex items-center gap-3 mb-4">
           <Link
             href="/hub"
-            className="text-sm text-[var(--primary)] hover:text-[var(--primary)]/80 inline-flex items-center gap-2 transition-colors duration-300"
+            className="text-sm text-[var(--primary)] hover:text-[var(--primary)]/80 inline-flex items-center gap-1.5 transition-colors duration-300"
           >
-            ← Back to Hub
+            <ArrowLeft className="w-3.5 h-3.5" />
+            Back to Hub
           </Link>
         </div>
         <h1 className="text-4xl sm:text-5xl font-bold font-heading text-[var(--primary)] mb-2">
@@ -105,9 +106,10 @@ export function DiscoveryDocsList({ docs, docsByProject, projects }: DiscoveryDo
                   {projectKey !=="other" && (
                     <Link
                       href={`/hub?project=${projectKey}`}
-                      className="text-sm text-[var(--primary)] hover:text-[var(--primary)]/80 transition-colors"
+                      className="text-sm text-[var(--primary)] hover:text-[var(--primary)]/80 transition-colors inline-flex items-center gap-1"
                     >
-                      View Project →
+                      View Project
+                      <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
                   )}
                 </div>

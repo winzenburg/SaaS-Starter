@@ -12,7 +12,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from"@/comp
 import { Badge } from"@/components/ui/badge";
 import { WorkflowCard } from"@/components/workflows/workflow-card";
 import { CreateWorkflowDialog } from"@/components/workflows/create-workflow-dialog";
-import { Plus, Workflow as WorkflowIcon, FolderKanban, Filter } from"lucide-react";
+import { Plus, Workflow as WorkflowIcon, FolderKanban, Filter, ArrowRight } from"lucide-react";
 import type { Workflow, WorkflowPhase } from"@/lib/workflows/types";
 
 export default function WorkflowsPage() {
@@ -173,7 +173,7 @@ export default function WorkflowsPage() {
             <Button
               onClick={() => setShowCreateDialog(true)}
               size="lg"
-              className="bg-[var(--primary)] text-white hover:bg-[var(--primary-hover)]"
+              className="bg-[#4a7c59] text-white hover:bg-[#3d6649]"
             >
               <Plus className="w-5 h-5 mr-2" />
               New Analysis
@@ -182,7 +182,7 @@ export default function WorkflowsPage() {
 
         {loading ? (
           <div className="text-center py-12">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-4 border-[var(--primary)] mx-auto mb-4"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-4 border-[#4a7c59] mx-auto mb-4"></div>
             <p className="text-base font-medium text-muted-foreground">Loading workflows...</p>
           </div>
         ) : workflows.length === 0 ? (
@@ -243,15 +243,16 @@ export default function WorkflowsPage() {
               <div className="space-y-6">
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-3">
-                    <FolderKanban className="w-5 h-5 text-[var(--primary)]" />
+                    <FolderKanban className="w-5 h-5 text-emerald-600" />
                     <h2 className="text-2xl font-bold text-foreground">
                       {workflowsByProject[selectedProject]?.[0]?.ideaName || selectedProject}
                     </h2>
                     <Link
                       href="/hub"
-                      className="text-sm text-[var(--primary)] hover:text-[var(--primary)]/80 transition-colors"
+                      className="text-sm text-[#4a7c59] hover:text-[#3d6649] transition-colors inline-flex items-center gap-1"
                     >
-                      View in Hub →
+                      View in Hub
+                      <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
                   </div>
                 </div>
@@ -278,7 +279,7 @@ export default function WorkflowsPage() {
                   <div key={projectSlug} className="space-y-4">
                     <div className="flex items-center justify-between border-b  pb-3">
                       <div className="flex items-center gap-3">
-                        <FolderKanban className="w-5 h-5 text-[var(--primary)]" />
+                        <FolderKanban className="w-5 h-5 text-emerald-600" />
                         <h2 className="text-xl font-bold text-foreground">
                           {projectWorkflows[0]?.ideaName || projectSlug}
                         </h2>
@@ -288,9 +289,10 @@ export default function WorkflowsPage() {
                       </div>
                       <Link
                         href={`/hub?project=${projectSlug}`}
-                        className="text-sm text-[var(--primary)] hover:text-[var(--primary)]/80 transition-colors flex items-center gap-1"
+                        className="text-sm text-[#4a7c59] hover:text-[#3d6649] transition-colors flex items-center gap-1"
                       >
-                        View Project →
+                        View Project
+                        <ArrowRight className="w-3.5 h-3.5" />
                       </Link>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

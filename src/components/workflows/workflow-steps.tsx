@@ -1,9 +1,10 @@
 /**
  * Workflow Steps Component
- * 
+ *
  * Displays all steps in a workflow with their status
  */"use client";
 
+import { Check, Loader2, X, Pause, Circle } from "lucide-react";
 import type { Workflow, WorkflowStep } from"@/lib/workflows/types";
 
 interface WorkflowStepsProps {
@@ -15,30 +16,30 @@ export function WorkflowSteps({ workflow }: WorkflowStepsProps) {
   const getStepStatusIcon = (status: WorkflowStep["status"]) => {
     switch (status) {
       case"completed":
-        return"✓";
+        return <Check className="w-4 h-4" />;
       case"in_progress":
-        return"⟳";
+        return <Loader2 className="w-4 h-4 animate-spin" />;
       case"failed":
-        return"✗";
+        return <X className="w-4 h-4" />;
       case"paused":
-        return"⏸";
+        return <Pause className="w-4 h-4" />;
       default:
-        return"○";
+        return <Circle className="w-4 h-4" />;
     }
   };
 
   const getStepStatusColor = (status: WorkflowStep["status"]) => {
     switch (status) {
       case"completed":
-        return"text-green-400";
+        return"text-green-600";
       case"in_progress":
-        return"text-[var(--primary)] animate-spin";
+        return"text-[var(--primary)]";
       case"failed":
-        return"text-red-400";
+        return"text-red-600";
       case"paused":
-        return"text-yellow-400";
+        return"text-amber-600";
       default:
-        return"text-[hsl(var(--text-muted))]";
+        return"text-slate-400";
     }
   };
 

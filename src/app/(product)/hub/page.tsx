@@ -5,7 +5,7 @@ import Link from"next/link";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from"@/components/ui/card";
 import { Badge } from"@/components/ui/badge";
 import { Button } from"@/components/ui/button";
-import { Workflow, Plus } from"lucide-react";
+import { Workflow, Plus, ArrowRight } from"lucide-react";
 import {
   getStatusBadgeVariant,
   getVerdictBadgeVariant,
@@ -133,7 +133,7 @@ export default function HubPage() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#FAF9F7]">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-4 border-[var(--primary)] mx-auto"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-4 border-[#4a7c59] mx-auto"></div>
           <p className="mt-4 text-lg font-semibold text-foreground">Loading portfolio...</p>
         </div>
       </div>
@@ -149,11 +149,11 @@ export default function HubPage() {
               <CardTitle className="text-2xl mb-4 text-foreground">
                 Hub Dashboard
               </CardTitle>
-              <div className="bg-muted/50 border border-[var(--primary)]/30 rounded-lg p-6 mb-6">
-                <p className="text-[var(--primary)] mb-2 font-bold text-lg">
+              <div className="bg-amber-50 border border-amber-200 rounded-lg p-6 mb-6">
+                <p className="text-amber-800 mb-2 font-bold text-lg">
                   <strong>Note:</strong> Projects registry is local-only
                 </p>
-                <p className="text-[var(--primary)]/80 text-base font-medium">
+                <p className="text-amber-700 text-base font-medium">
                   {error}
                 </p>
               </div>
@@ -189,7 +189,7 @@ export default function HubPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <div className="group bg-white border border-border rounded-lg shadow-sm hover:shadow-md p-6 transition-all duration-300">
             <div className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-2">Total Projects</div>
-            <div className="text-4xl font-bold text-foreground group-hover:text-[var(--primary)] transition-colors duration-300">
+            <div className="text-4xl font-bold text-foreground group-hover:text-[#4a7c59] transition-colors duration-300">
               {stats.total}
             </div>
           </div>
@@ -201,7 +201,7 @@ export default function HubPage() {
           </div>
           <div className="group bg-white border border-border rounded-lg shadow-sm hover:shadow-md p-6 transition-all duration-300">
             <div className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-2">Avg Portfolio Score</div>
-            <div className="text-4xl font-bold text-foreground group-hover:text-[var(--primary)] transition-colors duration-300">
+            <div className="text-4xl font-bold text-foreground group-hover:text-[#4a7c59] transition-colors duration-300">
               {stats.avgScore > 0 ? stats.avgScore.toFixed(1) :"—"}
             </div>
           </div>
@@ -258,7 +258,7 @@ export default function HubPage() {
           <div>
             <div className="mb-6">
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-3xl font-bold font-heading text-[var(--primary)]">
+                <h2 className="text-2xl font-bold text-foreground">
                   Projects ({filteredProjects.length})
                 </h2>
               </div>
@@ -308,7 +308,7 @@ export default function HubPage() {
                   <Card key={project.slug} className="group h-full hover:shadow-md transition-all duration-300 bg-white border border-border rounded-lg shadow-sm">
                     <CardHeader>
                       <div className="flex items-start justify-between mb-2">
-                        <CardTitle className="text-xl flex-1 group-hover:text-[var(--primary)] transition-colors duration-300 text-foreground">
+                        <CardTitle className="text-xl flex-1 group-hover:text-[#4a7c59] transition-colors duration-300 text-foreground">
                           {project.name}
                         </CardTitle>
                         <div className="flex flex-col gap-1 ml-2">
@@ -347,13 +347,13 @@ export default function HubPage() {
                           </span>
                         </div>
                         {project.workflowCounts && project.workflowCounts.total > 0 && (
-                          <div className="flex items-center justify-between text-sm p-2.5 rounded-lg bg-[var(--primary)]/500/10 border border-[var(--primary)]/500/20 group-hover:bg-[var(--primary)]/500/15 transition-colors duration-300">
+                          <div className="flex items-center justify-between text-sm p-2.5 rounded-lg bg-[#e8f0eb] border border-[#c5d9cb] group-hover:bg-[#dce8df] transition-colors duration-300">
                             <span className="text-muted-foreground font-medium">Workflows</span>
                             <div className="flex items-center gap-2">
-                              <span className="text-xs font-semibold text-[var(--primary)]">
+                              <span className="text-xs font-semibold text-[#4a7c59]">
                                 {project.workflowCounts.active > 0 && (
                                   <span className="inline-flex items-center gap-1">
-                                    <span className="w-2 h-2 bg-[var(--primary)]/400 rounded-full animate-pulse"></span>
+                                    <span className="w-2 h-2 bg-[#4a7c59] rounded-full animate-pulse"></span>
                                     {project.workflowCounts.active} active
                                   </span>
                                 )}
@@ -377,17 +377,19 @@ export default function HubPage() {
                               {project.documents.some(d => d.phase ==="discovery") && (
                                 <Link
                                   href="/docs/discovery"
-                                  className="text-xs text-[var(--primary)] hover:text-[var(--primary)]/80 transition-colors"
+                                  className="text-xs text-[#4a7c59] hover:text-[#3d6649] transition-colors inline-flex items-center gap-1"
                                 >
-                                  View All Discovery →
+                                  View All Discovery
+                                  <ArrowRight className="w-3 h-3" />
                                 </Link>
                               )}
                               {project.documents.some(d => d.phase ==="validation") && (
                                 <Link
                                   href="/docs/validation"
-                                  className="text-xs text-green-400 hover:text-green-300 transition-colors"
+                                  className="text-xs text-[#4a7c59] hover:text-[#3d6649] transition-colors inline-flex items-center gap-1"
                                 >
-                                  View All Validation →
+                                  View All Validation
+                                  <ArrowRight className="w-3 h-3" />
                                 </Link>
                               )}
                             </div>
@@ -429,7 +431,7 @@ export default function HubPage() {
                                         discovery:"bg-cyan-50 text-cyan-900 border-2 border-cyan-400",
                                         validation:"bg-orange-50 text-orange-900 border-2 border-orange-400",
                                         insight:"bg-purple-50 text-purple-900 border-2 border-purple-400",
-                                        portfolio:"bg-[var(--primary)]/50 text-[var(--primary)]-foreground border-2 border-[var(--primary)]",
+                                        portfolio:"bg-[#e8f0eb] text-[#4a7c59] border-2 border-[#c5d9cb]",
                                         moat:"bg-green-50 text-green-900 border-2 border-green-400",
                                         retention:"bg-yellow-50 text-yellow-900 border-2 border-yellow-400",
                                         prd:"bg-indigo-50 text-indigo-900 border-2 border-indigo-400",
@@ -473,13 +475,11 @@ export default function HubPage() {
                                             >
                                               {doc.type}
                                             </span>
-                                            <span className="text-muted-foreground truncate group-hover:text-[var(--primary)] font-medium text-xs transition-colors duration-300">
+                                            <span className="text-muted-foreground truncate group-hover:text-[#4a7c59] font-medium text-xs transition-colors duration-300">
                                               {displayName}
                                             </span>
                                           </div>
-                                          <span className="text-muted-foreground ml-2 flex-shrink-0 font-bold text-sm group-hover:text-[var(--primary)] group-hover:translate-x-0.5 transition-all duration-300">
-                                            →
-                                          </span>
+                                          <ArrowRight className="w-3 h-3 text-muted-foreground ml-2 flex-shrink-0 group-hover:text-[#4a7c59] group-hover:translate-x-0.5 transition-all duration-300" />
                                         </Link>
                                       );
                                     })}
@@ -504,7 +504,7 @@ export default function HubPage() {
                         {project.workflowCounts && project.workflowCounts.total > 0 ? (
                           <Link
                             href={`/workflows?project=${project.slug}`}
-                            className="text-xs text-[var(--primary)] hover:text-[var(--primary)]/80 font-medium transition-colors duration-300 flex items-center gap-1"
+                            className="text-xs text-[#4a7c59] hover:text-[#3d6649] font-medium transition-colors duration-300 flex items-center gap-1"
                           >
                             <Workflow className="w-3 h-3" />
                             View Workflows ({project.workflowCounts.total})
@@ -523,7 +523,7 @@ export default function HubPage() {
                             href={project.gitRepo}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-xs text-[var(--primary)] hover:text-[var(--primary)]/80 truncate font-medium transition-colors duration-300"
+                            className="text-xs text-[#4a7c59] hover:text-[#3d6649] truncate font-medium transition-colors duration-300"
                           >
                             {project.gitRepo}
                           </a>
@@ -544,7 +544,7 @@ export default function HubPage() {
           </h2>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             <div className="group">
-              <h3 className="font-bold text-foreground mb-3 text-lg group-hover:text-[var(--primary)] transition-colors duration-300">
+              <h3 className="font-bold text-foreground mb-3 text-lg group-hover:text-[#4a7c59] transition-colors duration-300">
                 Create New Project
               </h3>
               <code className="block rounded-lg p-4 text-sm font-mono text-muted-foreground border border-border bg-muted/50">
@@ -552,7 +552,7 @@ export default function HubPage() {
               </code>
             </div>
             <div className="group">
-              <h3 className="font-bold text-foreground mb-3 text-lg group-hover:text-[var(--primary)] transition-colors duration-300">
+              <h3 className="font-bold text-foreground mb-3 text-lg group-hover:text-[#4a7c59] transition-colors duration-300">
                 List Projects
               </h3>
               <code className="block rounded-lg p-4 text-sm font-mono text-muted-foreground border border-border bg-muted/50">
@@ -560,7 +560,7 @@ export default function HubPage() {
               </code>
             </div>
             <div className="group">
-              <h3 className="font-bold text-foreground mb-3 text-lg group-hover:text-[var(--primary)] transition-colors duration-300">
+              <h3 className="font-bold text-foreground mb-3 text-lg group-hover:text-[#4a7c59] transition-colors duration-300">
                 Check Status
               </h3>
               <code className="block rounded-lg p-4 text-sm font-mono text-muted-foreground border border-border bg-muted/50">

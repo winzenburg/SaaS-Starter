@@ -1,6 +1,17 @@
 /* Product Styles - SynthFlow Dashboard Aesthetic */
 /* Clean, Clinical, Data-First Design */
 
+/* Product-specific color overrides - Muted Sage Green (Synthflow style) */
+.product-page {
+  --primary: oklch(52% 0.10 160);
+  --primary-foreground: oklch(100% 0 0);
+  --primary-hover: oklch(47% 0.10 160);
+  --ring: oklch(52% 0.10 160);
+  --accent-green: #4a7c59;
+  --accent-green-light: #e8f0eb;
+  --accent-green-hover: #3d6649;
+}
+
 /* Hide marketing header on product pages */
 body:has(.product-page) .marketing-header {
   display: none !important;
@@ -9,7 +20,7 @@ body:has(.product-page) .marketing-header {
 /* Base Layout - Structured, Clean */
 .product-page {
   min-height: 100vh;
-  background-color: var(--background);
+  background-color: #FAF9F7;
   display: flex;
   flex-direction: row;
   color: var(--foreground);

@@ -6,7 +6,7 @@
 
 import { useState } from"react";
 import Link from"next/link";
-import { FolderKanban } from"lucide-react";
+import { FolderKanban, ChevronDown, ChevronRight, ArrowRight } from"lucide-react";
 import { WorkflowSteps } from"./workflow-steps";
 import { WorkflowActions } from"./workflow-actions";
 import type { Workflow, WorkflowPhase } from"@/lib/workflows/types";
@@ -22,30 +22,30 @@ export function WorkflowCard({ workflow, onUpdate }: WorkflowCardProps) {
   const getStatusColor = (status: Workflow["status"]) => {
     switch (status) {
       case"completed":
-        return"bg-green-500/20 text-green-400 border border-green-500/50";
+        return"bg-[#e8f0eb] text-[#4a7c59] border border-[#c5d9cb]";
       case"in_progress":
-        return"bg-[var(--primary)]/20 text-[var(--primary)] border border-[var(--primary)]/50";
+        return"bg-slate-700 text-white border border-slate-600";
       case"failed":
-        return"bg-red-500/20 text-red-400 border border-red-500/50";
+        return"bg-red-100 text-red-700 border border-red-200";
       case"paused":
-        return"bg-yellow-500/20 text-yellow-400 border border-yellow-500/50";
+        return"bg-amber-100 text-amber-700 border border-amber-200";
       default:
-        return"bg-gray-500/20 text-[hsl(var(--text-muted))] border border-gray-500/50";
+        return"bg-slate-100 text-slate-600 border border-slate-200";
     }
   };
 
   const getPhaseColor = (phase: WorkflowPhase) => {
     switch (phase) {
       case"discovery":
-        return"bg-cyan-500/20 text-cyan-400 border border-cyan-500/50";
+        return"bg-cyan-100 text-cyan-800 border border-cyan-300";
       case"validation":
-        return"bg-orange-500/20 text-orange-400 border border-orange-500/50";
+        return"bg-orange-100 text-orange-900 border border-orange-300";
       case"build":
-        return"bg-purple-500/20 text-purple-400 border border-purple-500/50";
+        return"bg-violet-100 text-violet-800 border border-violet-300";
       case"scale":
-        return"bg-pink-500/20 text-pink-400 border border-pink-500/50";
+        return"bg-pink-100 text-pink-800 border border-pink-300";
       default:
-        return"bg-gray-500/20 text-[hsl(var(--text-muted))] border border-gray-500/50";
+        return"bg-gray-100 text-gray-700 border border-gray-300";
     }
   };
 
@@ -56,7 +56,7 @@ export function WorkflowCard({ workflow, onUpdate }: WorkflowCardProps) {
   const progress = totalSteps > 0 ? (completedSteps / totalSteps) * 100 : 0;
 
   return (
-    <article className="glass-card rounded-lg p-6 hover:shadow-xl transition-all duration-300">
+    <article className="bg-white border border-border rounded-lg p-6 hover:shadow-md transition-all duration-300">
       {/* Header */}
       <header className="flex justify-between items-start mb-4">
         <div className="flex-1">
@@ -78,32 +78,32 @@ export function WorkflowCard({ workflow, onUpdate }: WorkflowCardProps) {
               {workflow.status.replace("_","").toUpperCase()}
             </span>
           </div>
-          <h3 className="text-xl font-bold text-[hsl(var(--text-main))] mb-2">{workflow.ideaName}</h3>
-          <p className="text-base text-[hsl(var(--text-muted))] font-medium">
+          <h3 className="text-lg font-semibold text-foreground mb-1">{workflow.ideaName}</h3>
+          <p className="text-sm text-muted-foreground">
             {workflow.ideaSlug}
           </p>
         </div>
         <button
           onClick={() => setExpanded(!expanded)}
-          className="text-[hsl(var(--text-muted))] hover:text-[hsl(var(--text-main))] focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-slate-900 rounded-md p-2 text-lg font-bold transition-colors duration-300"
+          className="text-muted-foreground hover:text-foreground focus:outline-none focus:ring-2 focus:ring-[#4a7c59] focus:ring-offset-2 rounded-md p-2 transition-colors duration-200"
           aria-label={expanded ?"Collapse workflow details" :"Expand workflow details"}
           aria-expanded={expanded}
         >
-          {expanded ?"▼" :"▶"}
+          {expanded ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
         </button>
       </header>
 
       {/* Progress Bar */}
       <div className="mb-4">
-        <div className="flex justify-between text-base font-semibold text-[hsl(var(--text-main))] mb-2">
+        <div className="flex justify-between text-sm font-medium text-foreground mb-2">
           <span>Progress</span>
-          <span>
+          <span className="text-muted-foreground">
             {completedSteps} / {totalSteps} steps
           </span>
         </div>
-        <div className="w-full rounded-full h-3" role="progressbar" aria-valuenow={completedSteps} aria-valuemin={0} aria-valuemax={totalSteps} aria-label={`${completedSteps} of ${totalSteps} steps completed`}>
+        <div className="w-full bg-gray-100 rounded-full h-2" role="progressbar" aria-valuenow={completedSteps} aria-valuemin={0} aria-valuemax={totalSteps} aria-label={`${completedSteps} of ${totalSteps} steps completed`}>
           <div
-            className="bg-[var(--primary)] h-3 rounded-full transition-all"
+            className="bg-[#4a7c59] h-2 rounded-full transition-all"
             style={{ width: `${progress}%` }}
           />
         </div>
@@ -111,26 +111,30 @@ export function WorkflowCard({ workflow, onUpdate }: WorkflowCardProps) {
 
       {/* Score (Discovery only) */}
       {workflow.phase ==="discovery" &&"score" in workflow && (
-        <div className="mb-4 p-4 border rounded-lg">
+        <div className="mb-4 p-4 bg-[#e8f0eb] border border-[#c5d9cb] rounded-lg">
           <div className="flex justify-between items-center mb-3">
-            <span className="text-base font-bold text-[hsl(var(--text-main))]">Opportunity Score</span>
-            <span className="text-3xl font-bold text-[var(--primary)]">
+            <span className="text-sm font-semibold text-foreground">Opportunity Score</span>
+            <span className="text-2xl font-bold text-[#4a7c59]">
               {workflow.score?.toFixed(1) ||"—"}
             </span>
           </div>
           {workflow.scoreBreakdown && (
-            <div className="grid grid-cols-2 gap-3 mt-3 text-sm font-semibold text-[hsl(var(--text-muted))]">
-              <div>
-                <span className="text-[hsl(var(--text-muted))]">Niche:</span> {workflow.scoreBreakdown.nicheViability.toFixed(1)}
+            <div className="grid grid-cols-2 gap-2 text-xs text-muted-foreground">
+              <div className="flex justify-between">
+                <span>Niche</span>
+                <span className="font-medium text-foreground">{workflow.scoreBreakdown.nicheViability.toFixed(1)}</span>
               </div>
-              <div>
-                <span className="text-[hsl(var(--text-muted))]">Pain:</span> {workflow.scoreBreakdown.painIntensity.toFixed(1)}
+              <div className="flex justify-between">
+                <span>Pain</span>
+                <span className="font-medium text-foreground">{workflow.scoreBreakdown.painIntensity.toFixed(1)}</span>
               </div>
-              <div>
-                <span className="text-[hsl(var(--text-muted))]">Persona:</span> {workflow.scoreBreakdown.personaClarity.toFixed(1)}
+              <div className="flex justify-between">
+                <span>Persona</span>
+                <span className="font-medium text-foreground">{workflow.scoreBreakdown.personaClarity.toFixed(1)}</span>
               </div>
-              <div>
-                <span className="text-[hsl(var(--text-muted))]">Moat:</span> {workflow.scoreBreakdown.moatPotential.toFixed(1)}
+              <div className="flex justify-between">
+                <span>Moat</span>
+                <span className="font-medium text-foreground">{workflow.scoreBreakdown.moatPotential.toFixed(1)}</span>
               </div>
             </div>
           )}
@@ -139,22 +143,26 @@ export function WorkflowCard({ workflow, onUpdate }: WorkflowCardProps) {
 
       {/* Results (Validation only) */}
       {workflow.phase ==="validation" &&"results" in workflow && (
-        <div className="mb-4 p-4 border rounded-lg">
-          <div className="text-base font-bold text-[hsl(var(--text-main))] mb-3">Results</div>
-          <div className="grid grid-cols-2 gap-3 text-sm font-semibold text-[hsl(var(--text-muted))]">
+        <div className="mb-4 p-4 bg-orange-50 border border-orange-100 rounded-lg">
+          <div className="text-sm font-semibold text-foreground mb-3">Validation Results</div>
+          <div className="grid grid-cols-2 gap-2 text-xs text-muted-foreground">
             {workflow.results && (
               <>
-                <div>
-                  <span className="text-[hsl(var(--text-muted))]">Signups:</span> {workflow.results.signups || 0}
+                <div className="flex justify-between">
+                  <span>Signups</span>
+                  <span className="font-medium text-foreground">{workflow.results.signups || 0}</span>
                 </div>
-                <div>
-                  <span className="text-[hsl(var(--text-muted))]">Conversion:</span> {workflow.results.conversionRate || 0}%
+                <div className="flex justify-between">
+                  <span>Conversion</span>
+                  <span className="font-medium text-foreground">{workflow.results.conversionRate || 0}%</span>
                 </div>
-                <div>
-                  <span className="text-[hsl(var(--text-muted))]">DM Replies:</span> {workflow.results.dmReplies || 0}
+                <div className="flex justify-between">
+                  <span>DM Replies</span>
+                  <span className="font-medium text-foreground">{workflow.results.dmReplies || 0}</span>
                 </div>
-                <div>
-                  <span className="text-[hsl(var(--text-muted))]">WTP Signals:</span> {workflow.results.wtpSignals || 0}
+                <div className="flex justify-between">
+                  <span>WTP Signals</span>
+                  <span className="font-medium text-foreground">{workflow.results.wtpSignals || 0}</span>
                 </div>
               </>
             )}
@@ -173,23 +181,24 @@ export function WorkflowCard({ workflow, onUpdate }: WorkflowCardProps) {
       )}
 
       {/* Footer */}
-      <footer className="mt-4 pt-4 border-t">
+      <footer className="mt-4 pt-4 border-t border-border">
         <div className="space-y-2">
           <div className="flex justify-between items-center">
-            <time className="text-sm font-medium text-[hsl(var(--text-muted))]" dateTime={workflow.createdAt}>
+            <time className="text-xs text-muted-foreground" dateTime={workflow.createdAt}>
               Created: {new Date(workflow.createdAt).toISOString().split("T")[0]}
             </time>
             <Link
               href={`/workflows/${workflow.id}`}
-              className="text-sm font-semibold text-[var(--primary)] hover:text-[var(--primary)]/80 hover:underline focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-slate-900 rounded-md px-2 py-1 transition-colors duration-300 whitespace-nowrap"
+              className="text-sm font-medium text-[#4a7c59] hover:text-[#3d6649] focus:outline-none focus:ring-2 focus:ring-[#4a7c59] focus:ring-offset-2 rounded px-2 py-1 transition-colors duration-200 inline-flex items-center gap-1"
             >
-              View Details →
+              View Details
+              <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
           <div className="flex items-center justify-start">
             <Link
               href={`/hub?project=${workflow.ideaSlug}`}
-              className="text-xs text-[hsl(var(--text-muted))] hover:text-[hsl(var(--text-muted))] transition-colors duration-300 flex items-center gap-1"
+              className="text-xs text-muted-foreground hover:text-foreground transition-colors duration-200 flex items-center gap-1"
             >
               <FolderKanban className="w-3 h-3" />
               View Project

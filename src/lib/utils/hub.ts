@@ -54,11 +54,11 @@ export function getScoreTextColor(score?: number): string {
  */
 export function getPriorityLabel(score?: number): string {
   if (!score) return "—";
-  if (score >= 30) return "⭐⭐⭐⭐⭐ Top Priority";
-  if (score >= 25) return "⭐⭐⭐⭐ High Priority";
-  if (score >= 20) return "⭐⭐⭐ Medium Priority";
-  if (score >= 15) return "⭐⭐ Low Priority";
-  return "⭐ Kill";
+  if (score >= 30) return "Top Priority";
+  if (score >= 25) return "High Priority";
+  if (score >= 20) return "Medium Priority";
+  if (score >= 15) return "Low Priority";
+  return "Kill";
 }
 
 /**
@@ -67,9 +67,9 @@ export function getPriorityLabel(score?: number): string {
 export function formatVerdict(verdict?: string): string {
   if (!verdict) return "";
   const upper = verdict.toUpperCase();
-  if (upper.includes("PROCEED")) return "✅ PROCEED";
-  if (upper.includes("PIVOT")) return "⚠️ PIVOT";
-  if (upper.includes("KILL")) return "❌ KILL";
+  if (upper.includes("PROCEED")) return "PROCEED";
+  if (upper.includes("PIVOT")) return "PIVOT";
+  if (upper.includes("KILL")) return "KILL";
   return verdict;
 }
 
