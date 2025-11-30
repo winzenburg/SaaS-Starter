@@ -7,7 +7,6 @@
 import { useState, useEffect, useMemo } from"react";
 import { useSearchParams } from"next/navigation";
 import Link from"next/link";
-import { motion } from"framer-motion";
 import { Button } from"@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from"@/components/ui/card";
 import { Badge } from"@/components/ui/badge";
@@ -15,24 +14,6 @@ import { WorkflowCard } from"@/components/workflows/workflow-card";
 import { CreateWorkflowDialog } from"@/components/workflows/create-workflow-dialog";
 import { Plus, Workflow as WorkflowIcon, FolderKanban, Filter } from"lucide-react";
 import type { Workflow, WorkflowPhase } from"@/lib/workflows/types";
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-  },
-};
 
 export default function WorkflowsPage() {
   const searchParams = useSearchParams();
@@ -169,23 +150,23 @@ export default function WorkflowsPage() {
   // Prevent hydration mismatch by not rendering until mounted
   if (!mounted) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 flex items-center justify-center">
+      <div className="min-h-screen bg-[#FAF9F7] flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-4 border-[var(--primary)] mx-auto"></div>
-          <p className="mt-4 text-lg font-semibold text-gray-900">Loading...</p>
+          <p className="mt-4 text-lg font-semibold text-foreground">Loading...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <>
+    <div className="bg-[#FAF9F7] min-h-screen">
       <div className="flex justify-between items-center mb-8">
             <div>
-              <h1 className="text-3xl font-heading font-light text-[hsl(var(--text-main))] mb-2">
+              <h1 className="text-3xl font-heading font-light text-foreground mb-2">
                 Workflows
               </h1>
-              <p className="text-[hsl(var(--text-muted))]">
+              <p className="text-muted-foreground">
                 Manage discovery and validation workflows for your ideas
               </p>
             </div>
@@ -202,43 +183,36 @@ export default function WorkflowsPage() {
         {loading ? (
           <div className="text-center py-12">
             <div className="animate-spin rounded-full h-12 w-12 border-b-4 border-[var(--primary)] mx-auto mb-4"></div>
-            <p className="text-base font-medium text-[hsl(var(--text-muted))]">Loading workflows...</p>
+            <p className="text-base font-medium text-muted-foreground">Loading workflows...</p>
           </div>
         ) : workflows.length === 0 ? (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Card className="text-center py-12 border-dashed glass-card">
-              <CardHeader>
-                <div className="w-16 h-16  rounded-full flex items-center justify-center mx-auto mb-4">
-                  <WorkflowIcon className="w-8 h-8 text-muted-foreground" />
-                </div>
-                <CardTitle className="text-2xl mb-2 text-[hsl(var(--text-main))]">No workflows yet</CardTitle>
-                <CardDescription className="text-base mb-6 text-[hsl(var(--text-muted))]">
-                  Create your first workflow to start validating your ideas
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Button
-                  onClick={() => setShowCreateDialog(true)}
-                  size="lg"
-                  className="shadow-lg hover:shadow-xl"
-                >
-                  <Plus className="w-5 h-5 mr-2" />
-                  Create Your First Workflow
-                </Button>
-              </CardContent>
-            </Card>
-          </motion.div>
+          <Card className="text-center py-12 border-dashed bg-white border border-border rounded-lg shadow-sm">
+            <CardHeader>
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 border border-border bg-muted/50">
+                <WorkflowIcon className="w-8 h-8 text-muted-foreground" />
+              </div>
+              <CardTitle className="text-2xl mb-2 text-foreground">No workflows yet</CardTitle>
+              <CardDescription className="text-base mb-6 text-muted-foreground">
+                Create your first workflow to start validating your ideas
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Button
+                onClick={() => setShowCreateDialog(true)}
+                size="lg"
+              >
+                <Plus className="w-5 h-5 mr-2" />
+                Create Your First Workflow
+              </Button>
+            </CardContent>
+          </Card>
         ) : (
           <>
             {/* Project Filter */}
             {projects.length > 0 && (
               <div className="mb-6 flex items-center gap-3 flex-wrap">
-                <Filter className="w-5 h-5 text-[hsl(var(--text-muted))]" />
-                <span className="text-sm font-medium text-[hsl(var(--text-muted))]">Filter by project:</span>
+                <Filter className="w-5 h-5 text-muted-foreground" />
+                <span className="text-sm font-medium text-muted-foreground">Filter by project:</span>
                 <Button
                   variant={selectedProject === null ?"default" :"outline"}
                   size="sm"
@@ -270,7 +244,7 @@ export default function WorkflowsPage() {
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-3">
                     <FolderKanban className="w-5 h-5 text-[var(--primary)]" />
-                    <h2 className="text-2xl font-bold text-[hsl(var(--text-main))]">
+                    <h2 className="text-2xl font-bold text-foreground">
                       {workflowsByProject[selectedProject]?.[0]?.ideaName || selectedProject}
                     </h2>
                     <Link
@@ -281,31 +255,21 @@ export default function WorkflowsPage() {
                     </Link>
                   </div>
                 </div>
-                <motion.div
-                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-                  variants={containerVariants}
-                  initial="hidden"
-                  animate="visible"
-                >
-                  {filteredWorkflows.map((workflow, index) => (
-                    <motion.div
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {filteredWorkflows.map((workflow) => (
+                    <WorkflowCard
                       key={workflow.id}
-                      variants={itemVariants}
-                      style={{ animationDelay: `${index * 0.1}s` }}
-                    >
-                      <WorkflowCard
-                        workflow={workflow}
-                        onUpdate={(updated) => {
-                          setWorkflows(
-                            workflows.map((w) =>
-                              w.id === updated.id ? updated : w
-                            )
-                          );
-                        }}
-                      />
-                    </motion.div>
+                      workflow={workflow}
+                      onUpdate={(updated) => {
+                        setWorkflows(
+                          workflows.map((w) =>
+                            w.id === updated.id ? updated : w
+                          )
+                        );
+                      }}
+                    />
                   ))}
-                </motion.div>
+                </div>
               </div>
             ) : (
               /* All Workflows Grouped by Project */
@@ -315,10 +279,10 @@ export default function WorkflowsPage() {
                     <div className="flex items-center justify-between border-b  pb-3">
                       <div className="flex items-center gap-3">
                         <FolderKanban className="w-5 h-5 text-[var(--primary)]" />
-                        <h2 className="text-xl font-bold text-[hsl(var(--text-main))]">
+                        <h2 className="text-xl font-bold text-foreground">
                           {projectWorkflows[0]?.ideaName || projectSlug}
                         </h2>
-                        <Badge variant="outline" className="text-[hsl(var(--text-muted))]">
+                        <Badge variant="outline" className="text-muted-foreground">
                           {projectWorkflows.length} workflow{projectWorkflows.length !== 1 ?"s" :""}
                         </Badge>
                       </div>
@@ -329,31 +293,21 @@ export default function WorkflowsPage() {
                         View Project →
                       </Link>
                     </div>
-                    <motion.div
-                      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-                      variants={containerVariants}
-                      initial="hidden"
-                      animate="visible"
-                    >
-                      {projectWorkflows.map((workflow, index) => (
-                        <motion.div
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                      {projectWorkflows.map((workflow) => (
+                        <WorkflowCard
                           key={workflow.id}
-                          variants={itemVariants}
-                          style={{ animationDelay: `${index * 0.1}s` }}
-                        >
-                          <WorkflowCard
-                            workflow={workflow}
-                            onUpdate={(updated) => {
-                              setWorkflows(
-                                workflows.map((w) =>
-                                  w.id === updated.id ? updated : w
-                                )
-                              );
-                            }}
-                          />
-                        </motion.div>
+                          workflow={workflow}
+                          onUpdate={(updated) => {
+                            setWorkflows(
+                              workflows.map((w) =>
+                                w.id === updated.id ? updated : w
+                              )
+                            );
+                          }}
+                        />
                       ))}
-                    </motion.div>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -371,7 +325,7 @@ export default function WorkflowsPage() {
             initialSlug={createForProject || undefined}
           />
         )}
-    </>
+    </div>
   );
 }
 

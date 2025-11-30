@@ -1,0 +1,43 @@
+---
+description: Hub page implementation patterns and document discovery
+globs:
+  - src/app/**/hub/**
+  - src/lib/projects/**
+  - src/app/api/hub/**
+---
+
+# Hub Implementation Guide
+
+## Document Discovery Locations
+When working with the hub, documents are discovered from these 7 locations:
+1. `projects/<slug>/` - Project folder
+2. `docs/discovery/` - MANUS, NICHE-INTEL, PAIN-SIGNALS, JTBD, OPPORTUNITY
+3. `docs/validation/` - VALIDATION-PLAN, REDTEAM
+4. `docs/product/` - NARRATIVE, INSIGHT, PRD
+5. `docs/research/` - PERSONA, COMPETITORS, MARKET
+6. `docs/portfolio/` - PORTFOLIO-SCORE files
+7. `docs/ideas/<slug>/` - Orchestrator outputs
+
+## Naming Convention
+All documents must follow: `<DOC-TYPE>-<project-slug>.md`
+Example: `NICHE-INTEL-enterprise-design-system-startups.md`
+
+## Key Helper Functions (src/lib/projects/helpers.ts)
+- `parseIdeasFromMarkdown()` - Parses ideas from INITIAL_20_IDEAS.md
+- `getAllProjectsWithIdeas()` - Merges real projects with virtual ideas
+- `findProjectDocuments()` - Discovers documents across all locations
+- `readProjectFromFolder()` - Reads project including portfolio score/verdict
+
+## Portfolio Score Parsing
+Scores extracted from `PORTFOLIO-SCORE-*.md` files using regex:
+- Score: `**Total Score**: 34/40`
+- Verdict: `### Verdict: ✅ **PROCEED**`
+
+## Filter Types
+- all: All projects
+- priority: portfolioScore >= 30
+- proceed: verdict === "PROCEED"
+- pivot: verdict === "PIVOT" or "KILL"
+
+## See Also
+Full implementation details: `docs/CLAUDE-CODE-HUB-IMPLEMENTATION.md`

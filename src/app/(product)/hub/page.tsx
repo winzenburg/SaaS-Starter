@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from"react";
 import Link from"next/link";
-import { motion } from"framer-motion";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from"@/components/ui/card";
 import { Badge } from"@/components/ui/badge";
 import { Button } from"@/components/ui/button";
@@ -132,7 +131,7 @@ export default function HubPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center bg-[#FAF9F7]">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-4 border-[var(--primary)] mx-auto"></div>
           <p className="mt-4 text-lg font-semibold text-foreground">Loading portfolio...</p>
@@ -143,9 +142,9 @@ export default function HubPage() {
 
   if (error && projects.length === 0) {
     return (
-      <div className="min-h-screen">
+      <div className="min-h-screen bg-[#FAF9F7]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <Card className="text-center bg-card border border-border rounded-lg">
+          <Card className="text-center bg-white border border-border rounded-lg shadow-sm">
             <CardHeader>
               <CardTitle className="text-2xl mb-4 text-foreground">
                 Hub Dashboard
@@ -163,7 +162,7 @@ export default function HubPage() {
               <p className="text-lg text-muted-foreground mb-6 font-semibold">
                 To view your projects, run locally:
               </p>
-              <code className="block bg-muted/50 rounded-lg p-4 text-base max-w-md mx-auto mb-6 font-mono text-foreground">
+              <code className="block bg-muted/50 rounded-lg p-4 text-base max-w-md mx-auto mb-6 font-mono text-foreground border border-border">
                 npm run manage-projects list
               </code>
               <p className="text-base text-muted-foreground font-medium">
@@ -177,7 +176,7 @@ export default function HubPage() {
   }
 
   return (
-    <>
+    <div className="bg-[#FAF9F7] min-h-screen">
       <div className="mb-8">
         <h1 className="text-3xl font-heading font-light text-foreground mb-2">
           Dashboard Overview
@@ -188,27 +187,27 @@ export default function HubPage() {
       </div>
         {/* Portfolio Stats */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <div className="group bg-card border border-border rounded-lg rounded-2xl hover:shadow-xl p-6 transition-all duration-300 hover:-translate-y-1 animate-slide-up" style={{ animationDelay: '0.1s' }}>
+          <div className="group bg-white border border-border rounded-lg shadow-sm hover:shadow-md p-6 transition-all duration-300">
             <div className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-2">Total Projects</div>
             <div className="text-4xl font-bold text-foreground group-hover:text-[var(--primary)] transition-colors duration-300">
               {stats.total}
             </div>
           </div>
-          <div className="group bg-card border border-border rounded-lg rounded-2xl hover:shadow-xl p-6 transition-all duration-300 hover:-translate-y-1 animate-slide-up" style={{ animationDelay: '0.2s' }}>
+          <div className="group bg-white border border-border rounded-lg shadow-sm hover:shadow-md p-6 transition-all duration-300">
             <div className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-2">Total MRR</div>
-            <div className="text-4xl font-bold text-green-400 group-hover:text-green-300 transition-colors duration-300">
+            <div className="text-4xl font-bold text-green-600 group-hover:text-green-500 transition-colors duration-300">
               ${stats.totalMRR.toLocaleString()}
             </div>
           </div>
-          <div className="group bg-card border border-border rounded-lg rounded-2xl hover:shadow-xl p-6 transition-all duration-300 hover:-translate-y-1 animate-slide-up" style={{ animationDelay: '0.3s' }}>
+          <div className="group bg-white border border-border rounded-lg shadow-sm hover:shadow-md p-6 transition-all duration-300">
             <div className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-2">Avg Portfolio Score</div>
-            <div className="text-4xl font-bold text-foreground group-hover:text-purple-400 transition-colors duration-300">
+            <div className="text-4xl font-bold text-foreground group-hover:text-[var(--primary)] transition-colors duration-300">
               {stats.avgScore > 0 ? stats.avgScore.toFixed(1) :"—"}
             </div>
           </div>
-          <div className="group bg-card border border-border rounded-lg rounded-2xl hover:shadow-xl p-6 transition-all duration-300 hover:-translate-y-1 animate-slide-up" style={{ animationDelay: '0.4s' }}>
+          <div className="group bg-white border border-border rounded-lg shadow-sm hover:shadow-md p-6 transition-all duration-300">
             <div className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-2">In Validation</div>
-            <div className="text-4xl font-bold text-yellow-400 group-hover:text-yellow-300 transition-colors duration-300">
+            <div className="text-4xl font-bold text-amber-600 group-hover:text-amber-500 transition-colors duration-300">
               {stats.byStatus.validation || 0}
             </div>
           </div>
@@ -216,17 +215,16 @@ export default function HubPage() {
 
         {/* Status Breakdown */}
         {Object.keys(stats.byStatus).length > 0 && (
-          <div className="bg-card border border-border rounded-lg rounded-2xl p-6 mb-8 animate-slide-up" style={{ animationDelay: '0.5s' }}>
+          <div className="bg-white border border-border rounded-lg shadow-sm p-6 mb-8">
             <h2 className="text-xl font-bold text-foreground mb-4">
               Portfolio by Status
             </h2>
             <div className="flex flex-wrap gap-3">
-              {Object.entries(stats.byStatus).map(([status, count], index) => (
+              {Object.entries(stats.byStatus).map(([status, count]) => (
                 <Badge
                   key={status}
                   variant={getStatusBadgeVariant(status)}
                   className="px-4 py-2.5 text-sm"
-                  style={{ animationDelay: `${0.6 + index * 0.1}s` }}
                 >
                   <span className="font-bold capitalize">{status}</span>
                   <span className="ml-2 font-bold">{count}</span>
@@ -238,38 +236,27 @@ export default function HubPage() {
 
         {/* Projects List */}
         {projects.length === 0 ? (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Card className="text-center py-12 border-dashed bg-card border border-border rounded-lg">
-              <CardHeader>
-                <div className="w-16 h-16 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-4 border">
-                  <svg className="w-8 h-8 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                  </svg>
-                </div>
-                <CardTitle className="text-2xl mb-3 text-foreground">No projects yet</CardTitle>
-                <CardDescription className="text-lg mb-6 text-muted-foreground">
-                  Create your first project using the CLI:
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <code className="block bg-muted/50 rounded-xl p-4 text-sm max-w-md mx-auto font-mono text-foreground hover:bg-muted/70 transition-colors duration-300">
-                  npm run create-project &quot;My First SaaS&quot;
-                </code>
-              </CardContent>
-            </Card>
-          </motion.div>
+          <Card className="text-center py-12 border-dashed bg-white border border-border rounded-lg shadow-sm">
+            <CardHeader>
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 border border-border bg-muted/50">
+                <svg className="w-8 h-8 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                </svg>
+              </div>
+              <CardTitle className="text-2xl mb-3 text-foreground">No projects yet</CardTitle>
+              <CardDescription className="text-lg mb-6 text-muted-foreground">
+                Create your first project using the CLI:
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <code className="block bg-muted/50 rounded-lg p-4 text-sm max-w-md mx-auto font-mono text-foreground border border-border">
+                npm run create-project &quot;My First SaaS&quot;
+              </code>
+            </CardContent>
+          </Card>
         ) : (
           <div>
-            <motion.div
-              className="mb-6"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
+            <div className="mb-6">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-3xl font-bold font-heading text-[var(--primary)]">
                   Projects ({filteredProjects.length})
@@ -287,7 +274,6 @@ export default function HubPage() {
                 <Button
                   variant={filter === "top-priority" ? "default" : "outline"}
                   onClick={() => setFilter("top-priority")}
-                  className={filter === "top-priority" ? "bg-green-500 hover:bg-green-600" : ""}
                 >
                   Priority ({projects.filter(p => (p.portfolioScore || 0) >= 30).length})
                 </Button>
@@ -300,7 +286,6 @@ export default function HubPage() {
                 <Button
                   variant={filter === "pivot" ? "default" : "outline"}
                   onClick={() => setFilter("pivot")}
-                  className={filter === "pivot" ? "bg-yellow-500 hover:bg-yellow-600" : ""}
                 >
                   Pivot ({projects.filter(p => {
                     const verdict = p.verdict?.toUpperCase();
@@ -308,9 +293,9 @@ export default function HubPage() {
                   }).length})
                 </Button>
               </div>
-            </motion.div>
+            </div>
             {filteredProjects.length === 0 ? (
-              <Card className="text-center py-8 border-dashed bg-card border border-border rounded-lg">
+              <Card className="text-center py-8 border-dashed bg-white border border-border rounded-lg shadow-sm">
                 <CardContent className="pt-6">
                   <p className="text-muted-foreground">
                     No projects match the selected filter. Try a different filter.
@@ -318,20 +303,9 @@ export default function HubPage() {
                 </CardContent>
               </Card>
             ) : (
-              <motion.div
-                className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, staggerChildren: 0.1 }}
-              >
-                {filteredProjects.map((project, index) => (
-                <motion.div
-                  key={project.slug}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                >
-                  <Card className="group h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-card border border-border rounded-lg">
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {filteredProjects.map((project) => (
+                  <Card key={project.slug} className="group h-full hover:shadow-md transition-all duration-300 bg-white border border-border rounded-lg shadow-sm">
                     <CardHeader>
                       <div className="flex items-start justify-between mb-2">
                         <CardTitle className="text-xl flex-1 group-hover:text-[var(--primary)] transition-colors duration-300 text-foreground">
@@ -557,15 +531,14 @@ export default function HubPage() {
                       </div>
                     </div>
                   </Card>
-                </motion.div>
-              ))}
-              </motion.div>
+                ))}
+              </div>
             )}
           </div>
         )}
 
         {/* Quick Actions */}
-        <div className="mt-12 bg-card border border-border rounded-lg rounded-2xl p-8 animate-fade-in">
+        <div className="mt-12 bg-white border border-border rounded-lg shadow-sm p-8">
           <h2 className="text-2xl font-bold text-foreground mb-6">
             Quick Actions
           </h2>
@@ -574,7 +547,7 @@ export default function HubPage() {
               <h3 className="font-bold text-foreground mb-3 text-lg group-hover:text-[var(--primary)] transition-colors duration-300">
                 Create New Project
               </h3>
-              <code className="block rounded-xl p-4 text-sm font-mono text-muted-foreground border transition-colors duration-300">
+              <code className="block rounded-lg p-4 text-sm font-mono text-muted-foreground border border-border bg-muted/50">
                 npm run create-project &quot;Project Name&quot;
               </code>
             </div>
@@ -582,7 +555,7 @@ export default function HubPage() {
               <h3 className="font-bold text-foreground mb-3 text-lg group-hover:text-[var(--primary)] transition-colors duration-300">
                 List Projects
               </h3>
-              <code className="block rounded-xl p-4 text-sm font-mono text-muted-foreground border transition-colors duration-300">
+              <code className="block rounded-lg p-4 text-sm font-mono text-muted-foreground border border-border bg-muted/50">
                 npm run manage-projects list
               </code>
             </div>
@@ -590,12 +563,12 @@ export default function HubPage() {
               <h3 className="font-bold text-foreground mb-3 text-lg group-hover:text-[var(--primary)] transition-colors duration-300">
                 Check Status
               </h3>
-              <code className="block rounded-xl p-4 text-sm font-mono text-muted-foreground border transition-colors duration-300">
+              <code className="block rounded-lg p-4 text-sm font-mono text-muted-foreground border border-border bg-muted/50">
                 npm run manage-projects status &lt;slug&gt;
               </code>
             </div>
           </div>
         </div>
-    </>
+    </div>
   );
 }

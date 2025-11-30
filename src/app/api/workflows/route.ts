@@ -6,15 +6,18 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { listWorkflows } from "@/lib/workflows/db";
+import { discoverWorkflowsFromFiles } from "@/lib/workflows/file-loader";
 
 export async function GET(_request: NextRequest) {
   try {
     // Check if DATABASE_URL is set before attempting to use the database
     if (!process.env.DATABASE_URL) {
+      // Fallback to file-based discovery when database is not configured
+      const workflows = discoverWorkflowsFromFiles();
       return NextResponse.json({
         success: true,
-        workflows: [],
-        message: "Database not configured. Workflows are stored in the database. Set DATABASE_URL to enable workflows.",
+        workflows,
+        message: "Database not configured. Workflows discovered from files.",
       });
     }
 
@@ -27,15 +30,23 @@ export async function GET(_request: NextRequest) {
   } catch (error) {
     console.error("Error listing workflows:", error);
     
-    // If database is not configured or connection fails, return empty array gracefully
-    // This allows the app to work without a database (e.g., during development)
+    // If database is not configured or connection fails, try file-based discovery
     const errorMessage = error instanceof Error ? error.message : String(error);
     if (errorMessage.includes("DATABASE_URL") || errorMessage.includes("database") || errorMessage === "") {
-      return NextResponse.json({
-        success: true,
-        workflows: [],
-        message: "Database not configured or connection failed. Workflows are stored in the database. Set DATABASE_URL to enable workflows.",
-      });
+      try {
+        const workflows = discoverWorkflowsFromFiles();
+        return NextResponse.json({
+          success: true,
+          workflows,
+          message: "Database not configured. Workflows discovered from files.",
+        });
+      } catch (fileError) {
+        return NextResponse.json({
+          success: true,
+          workflows: [],
+          message: "Database not configured and file discovery failed. Set DATABASE_URL to enable workflows.",
+        });
+      }
     }
     
     return NextResponse.json(
