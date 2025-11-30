@@ -1,0 +1,154 @@
+# Core Article Content Standards
+
+> Articles focus on principles and frameworks, not specific brands or individuals
+
+## Rule
+
+**Articles must focus on general principles and frameworks, avoiding references to specific brands, individuals, or proprietary systems.**
+
+## Core Principle
+
+**Principles over promotion.** Articles serve as educational content that explains concepts and frameworks in general terms, making them accessible and applicable to any reader.
+
+## What to Avoid
+
+### ❌ Brand/Product Names
+- Don't reference your own product name or brand (e.g., "SaaS Starter", "Our Hub")
+- Don't promote specific tools or platforms as your own
+- Don't include brand-specific call-to-action links
+
+### ❌ Individual Attribution
+- Don't attribute frameworks to specific individuals by name (e.g., "Greg Isenberg's approach")
+- Don't mention specific thought leaders or influencers by name
+- Don't use phrases like "[Person]'s methodology" or "[Person]'s framework"
+
+### ❌ Promotional Language
+- Don't use "we/our" language that promotes your specific system
+- Don't include links to your own product pages or workflows
+- Don't reference screenshots or visuals with brand names
+- Don't say "our approach" - say "this approach" or "a systematic approach"
+
+## What to Use Instead
+
+### ✅ General Frameworks
+- ✅ "desirability-first approach" (not "[Person]'s methodology")
+- ✅ "a systematic validation process" (not "our SaaS Starter system")
+- ✅ "the durability filter" (not "our durability filter")
+- ✅ "a portfolio approach" (not "our portfolio management system")
+
+### ✅ Universal Language
+- ✅ Use "you" or "founders" instead of "we"
+- ✅ Use "this approach" or "the framework" instead of "our approach"
+- ✅ Focus on principles that apply universally
+
+### ✅ Educational Tone
+- ✅ Explain concepts without attribution
+- ✅ Describe frameworks generically
+- ✅ Focus on how things work, not who created them
+
+## Examples
+
+### ❌ Bad: Brand/Person References
+```markdown
+At SaaS Starter, we've built a system using Greg Isenberg's 
+desirability-first methodology. Our product creation engine 
+solves these problems. Check out our Hub to see it in action.
+```
+
+### ✅ Good: General Principles
+```markdown
+A systematic approach combines desirability-first validation 
+with durability assessment. This product creation framework 
+solves these problems through a two-filter pipeline.
+```
+
+### ❌ Bad: Individual Attribution
+```markdown
+Isenberg's approach focuses on validating desirability first.
+His framework helps confirm high-heat communities.
+```
+
+### ✅ Good: General Concepts
+```markdown
+A desirability-first approach focuses on validating demand 
+before building. This framework helps confirm high-heat 
+communities through low-cost tests.
+```
+
+### ❌ Bad: Promotional Language
+```markdown
+Our product creation engine solves these problems. We've 
+integrated AI assistants into our workflow. Check out our 
+Hub to see the system in action.
+```
+
+### ✅ Good: Universal Application
+```markdown
+A systematic product creation approach solves these problems. 
+Integrating AI assistants into workflows with clear handoffs 
+and quality gates makes tools work together effectively.
+```
+
+## Article Generation Rules
+
+### Before Generating Articles
+
+**Check that**:
+1. ✅ No brand/product names mentioned
+2. ✅ No individual attributions by name
+3. ✅ No "we/our" promotional language
+4. ✅ No links to your own product pages
+5. ✅ Focus is on universal principles
+
+### During Article Review
+
+**Replace**:
+- Brand names → General descriptors
+- Person names → Framework descriptions
+- "We/our" → "You/this approach"
+- Product links → General advice
+
+### After Generation
+
+**Verify**:
+1. ✅ Article focuses on principles, not products
+2. ✅ Concepts are described generically
+3. ✅ Language is educational, not promotional
+4. ✅ No proprietary system references
+
+## Integration with Other Rules
+
+- **Rule 004 (Document Quality)**: Real, complete articles with general principles
+- **Rule 196 (AI Quality Control)**: AI-generated articles follow these standards
+- **ARTICLE_STYLE_GUIDE.md**: Style guide aligns with content standards
+- **CLAUDE_ARTICLE_WRITING_GUIDE.md**: Claude prompts enforce these standards
+
+## Enforcement
+
+### Pre-Generation Checks
+
+**Before generating any article**:
+1. ✅ Verify article config doesn't include brand/person names
+2. ✅ Check sources don't require attribution
+3. ✅ Ensure prompts instruct general principles focus
+
+### Post-Generation Review
+
+**After generating an article**:
+1. ✅ Search for brand/product names and remove
+2. ✅ Search for individual names and replace with general terms
+3. ✅ Replace "we/our" with universal language
+4. ✅ Remove promotional links or CTAs
+5. ✅ Verify educational, principle-focused tone
+
+**If any violations found**: Edit to focus on general principles.
+
+## Summary
+
+1. **No brand names** - Focus on general descriptors
+2. **No individual attribution** - Describe frameworks generically
+3. **No promotional language** - Use universal "you/this approach" language
+4. **Focus on principles** - Make content applicable to all readers
+5. **Educational tone** - Explain concepts without ownership claims
+
+**Principles over promotion. Universal application over specific attribution.**

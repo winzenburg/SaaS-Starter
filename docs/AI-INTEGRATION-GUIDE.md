@@ -4,13 +4,14 @@
 
 ## Overview
 
-This system integrates 5 AI tools into your Cursor 2.1 agent workflows:
+This system integrates 6 AI tools into your Cursor 2.1 agent workflows:
 
 1. **Manus.im** - Narrative, competitor analysis, personas
 2. **ChatGPT** - Reasoning, refinement, ideation
 3. **ElevenLabs** - Voice content for demos and validation
-4. **Midjourney** - Hero images and concept visuals
-5. **Canva** - Marketing materials and templates
+4. **Google AI Studio (Gemini)** - Advanced image generation, multimodal design
+5. **Midjourney** - Hero images and concept visuals
+6. **Canva** - Marketing materials and templates
 
 ## Quick Start
 
@@ -22,6 +23,7 @@ Add to `.env.local`:
 MANUS_API_KEY=your_manus_key
 OPENAI_API_KEY=your_openai_key
 ELEVENLABS_API_KEY=your_elevenlabs_key
+GOOGLE_AI_STUDIO_API_KEY=your_google_ai_studio_key
 CANVA_API_KEY=your_canva_key
 CANVA_BRAND_ID=your_canva_brand_id
 ```
@@ -33,7 +35,8 @@ CANVA_BRAND_ID=your_canva_brand_id
 import { generateNarrative } from "@/lib/ai-tools/manus";
 import { reason } from "@/lib/ai-tools/chatgpt";
 import { generateVoice } from "@/lib/ai-tools/elevenlabs";
-import { generateVisual } from "@/lib/ai-tools/visual";
+import { generateVisual, generateVisualWithGoogleAI } from "@/lib/ai-tools/visual";
+import { generateImage, generateDesign, generateMultimodal } from "@/lib/ai-tools/google-ai-studio";
 
 // Use in your agent logic
 ```
@@ -59,11 +62,12 @@ import { generateVisual } from "@/lib/ai-tools/visual";
 7. UX Researcher
 8. IA Designer
 
-### Validation Agents (4 NEW)
+### Validation Agents (5 NEW)
 9. **Manus Narrative Agent** - Narrative, competitors, personas
 10. **ChatGPT Reasoning Agent** - Reasoning, refinement, ideation
 11. **ElevenLabs Voice Agent** - Voice content
-12. **Visual Asset Agent** - Visual assets
+12. **Visual Asset Agent** - Visual assets (Google AI Studio, Midjourney, Canva)
+13. **Google AI Studio Agent** - Advanced image generation, multimodal design
 
 ### Execution Agents (4)
 13. Accessibility Agent
@@ -106,6 +110,7 @@ import { generateVisual } from "@/lib/ai-tools/visual";
 - `060-chatgpt-refinement.mdc` - ChatGPT refinement patterns
 - `070-elevenlabs-integration.mdc` - ElevenLabs integration patterns
 - `080-midjourney-canva.mdc` - Midjourney/Canva patterns
+- `081-google-ai-studio.mdc` - Google AI Studio (Gemini) integration patterns
 
 ## Cost Management
 
@@ -114,6 +119,7 @@ import { generateVisual } from "@/lib/ai-tools/visual";
 - **Manus.im**: $50-100 (narrative + personas)
 - **ChatGPT**: $10-50 (reasoning + refinement)
 - **ElevenLabs**: $20-50 (demo narration)
+- **Google AI Studio**: $5-25 (multimodal design, image analysis, prompt generation)
 - **Midjourney**: $10-30 (hero images)
 - **Canva**: $0-13 (templates, Pro if needed)
 

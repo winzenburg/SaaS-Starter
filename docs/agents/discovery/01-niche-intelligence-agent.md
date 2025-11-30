@@ -142,6 +142,7 @@ Input:
 - Manus niche narrative: [From Manus Narrative Agent]
 - Competitor landscape: [From competitor analysis]
 - Persona overview: [From persona research]
+- Manus References section: [Full citations with URLs from Manus document]
 
 Tasks:
 1) Map niche size, psychographics, and subcultures
@@ -150,6 +151,13 @@ Tasks:
 4) Define "entry points" (how founders earn trust)
 5) Document niche worldview and cultural tensions
 6) Produce documentation (Cursor)
+
+**CRITICAL: Citation Requirements**
+- When referencing sources, you MUST include the full citation with URL, not just the number
+- Format: "Source: [1] Author, A. (Year). Title. Publisher. - https://example.com/article"
+- Example: "Source: [1] Moreno Celta, R. (2025). Design System Trends That Are Actually Worth Following in 2025. Design Systems Collective. - https://www.designsystemscollective.com/design-system-trends-that-are-actually-worth-following-in-2025-44a405348687"
+- Do NOT use generic references like "Source: Manus Discovery Pack" or "Source: [1]"
+- All claims must be backed by full citations with URLs from the Manus References section
 
 Output: /docs/discovery/NICHE-INTEL-<idea-slug>.md
 ```

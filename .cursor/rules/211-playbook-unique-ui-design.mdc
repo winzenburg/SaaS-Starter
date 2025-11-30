@@ -1,0 +1,419 @@
+# Playbook: Unique UI Design with Google Gemini
+
+> Workflow for creating contemporary, unique UI that doesn't look like generic Shadcn/UI while maintaining all UX, accessibility, and design principles
+
+## Goal
+
+Create distinctive, contemporary UI designs that stand out from typical Shadcn/UI implementations while maintaining:
+- ✅ UX principles (usability, information architecture)
+- ✅ Accessibility (WCAG 2.2 AA compliance)
+- ✅ Interaction design (keyboard navigation, focus management)
+- ✅ Usability standards (clear feedback, error handling)
+- ✅ Writing quality (clear, concise, user-focused)
+
+## Problem
+
+Shadcn/UI provides excellent accessibility and components, but sites built with it can look very similar. This workflow enables:
+- Unique visual identity while keeping functional excellence
+- Contemporary design trends without sacrificing usability
+- Brand differentiation without breaking accessibility
+- AI-powered design exploration with principled implementation
+
+## Workflow Overview
+
+```
+Step 1: Inspiration Research (Red Dot Awards + Visual Tools)
+  ↓
+Step 2: Gemini Analysis & Design System Creation
+  ↓
+Step 3: Implementation with Cursor (Maintaining Principles)
+  ↓
+Step 4: Validation & Refinement
+```
+
+## Detailed Workflow
+
+### Step 1: Inspiration Research (Red Dot Awards + Visual Tools)
+
+**Goal**: Research award-winning design excellence and explore unique, contemporary UI styles
+
+**Inspiration Sources**:
+- **Red Dot Award Winners** - Award-winning design excellence (https://www.red-dot.org)
+- **Visual Tools** - Midjourney, Canva, or Google AI Studio (via Visual Asset Agent)
+
+**Process**:
+
+1. **Research Red Dot Award Winners**
+   - Review recent Red Dot Award winners for UI/UX and digital product design
+   - Focus on: Product Design 2025, Brands & Communication Design 2025
+   - Analyze award-winning design patterns:
+     - Color palette innovations
+     - Typography and layout excellence
+     - Interaction design patterns
+     - Visual identity systems
+     - Component design approaches
+   
+   **Red Dot Award Sources**:
+   - Product Design 2025: https://www.red-dot.org/search?solr[filter][]=year%3A2025&solr[filter][]=meta_categories%3A%2F10%2F
+   - Best of the Best winners for premium design excellence
+   - Brand & Communication Design for UI/UX patterns
+   
+   **Document Insights**:
+   - Award-winning design patterns
+   - Unique visual approaches
+   - Contemporary design trends from winners
+   - Color, typography, and spacing innovations
+
+2. **Generate UI Style Concepts (Visual Tools)**
+   - Use `@Visual-Asset-Agent` to create UI style exploration images
+   - Incorporate insights from Red Dot Award winners
+   - Focus on contemporary design trends that are unique
+   - Consider: color palettes, typography, spacing, component styles, layout patterns
+
+3. **Create Style Prompt Examples**
+   ```
+   @Visual-Asset-Agent Create UI style research images for [PROJECT].
+   
+   Inspiration sources:
+   - Red Dot Award winners 2025 (Product Design, Brand & Communication Design)
+   - Award-winning design patterns and visual innovations
+   
+   Generate 3-5 unique, contemporary UI style concepts:
+   - Modern SaaS dashboard designs (inspired by Red Dot winners)
+   - Contemporary component styles
+   - Unique color palette combinations (from award-winning designs)
+   - Typography and spacing systems
+   - Layout and composition patterns
+   
+   Avoid: Generic Shadcn/UI look
+   Focus: Award-winning design excellence, unique identity, contemporary trends, professional quality
+   
+   Output: /docs/ux/UI-STYLE-RESEARCH-<project>.md
+   ```
+
+4. **Collect Visual References**
+   - Save Red Dot Award winner screenshots/references
+   - Save style exploration images
+   - Document what makes each unique
+   - Note contemporary design elements (animations, micro-interactions, etc.)
+   - Create inspiration board with Red Dot winners
+
+**Output**: `/docs/ux/UI-STYLE-RESEARCH-<project>.md` (includes Red Dot Award insights)
+
+### Step 2: Gemini Analysis & Design System Creation
+
+**Goal**: Use Google Gemini to analyze visual research and create a comprehensive design system specification
+
+**Tool**: Google AI Studio (Gemini)
+
+**Process**:
+
+1. **Analyze Visual Research with Gemini (Including Red Dot Awards)**
+   ```typescript
+   import { generateMultimodal } from "@/lib/ai-tools/google-ai-studio";
+   
+   const analysis = await generateMultimodal({
+     prompt: `Analyze these UI style research images and Red Dot Award winner references to create a unique design system specification that:
+     
+     1. Incorporates award-winning design excellence from Red Dot Award winners
+     2. Maintains all UX principles (usability, information architecture, interaction design)
+     3. Maintains WCAG 2.2 AA accessibility standards
+     4. Creates a unique visual identity different from generic Shadcn/UI
+     5. Implements contemporary design trends inspired by award-winning designs
+     6. Specifies exact design tokens (colors, typography, spacing, components)
+     
+     Inspiration Context:
+     - Reference Red Dot Award winners for design excellence patterns
+     - Extract award-winning color, typography, and layout innovations
+     - Incorporate contemporary design trends from recognized designs
+     - Maintain accessibility while achieving visual excellence
+     
+     Output format:
+     - Design System Specification (JSON/CSS variables)
+     - Color palette with HSL values (inspired by award winners)
+     - Typography scale with exact sizes/weights
+     - Spacing system (maintaining 4px baseline)
+     - Component specifications (buttons, cards, inputs, etc.)
+     - Accessibility considerations for each token
+     - Implementation guide for Tailwind CSS v4
+     - Inspiration sources (which Red Dot winners influenced each decision)`,
+     images: [
+       { base64: redDotWinnerImage1, mimeType: "image/png" },
+       { base64: redDotWinnerImage2, mimeType: "image/png" },
+       { base64: styleResearchImage1, mimeType: "image/png" },
+       { base64: styleResearchImage2, mimeType: "image/png" },
+     ],
+     model: "gemini-1.5-pro",
+   });
+   ```
+
+2. **Extract Design System Specification**
+   - Parse Gemini's output into structured design tokens
+   - Create CSS variable definitions for Tailwind v4
+   - Document accessibility considerations
+   - Specify component-level customizations
+
+3. **Create Design System Document**
+   - Design tokens (colors, typography, spacing, shadows, borders)
+   - Component specifications (how each component differs from default)
+   - Accessibility validation (contrast ratios, focus indicators)
+   - Implementation guidelines
+
+**Output**: `/docs/ux/DESIGN-SYSTEM-<project>.md`
+
+### Step 3: Implementation with Cursor
+
+**Goal**: Implement the unique design system while maintaining all UX and accessibility principles
+
+**Agent**: `@Implementer` with `@IA-Designer` and `@Accessibility-Agent`
+
+**Process**:
+
+1. **Update Design Tokens (globals.css)**
+   - Update CSS variables in `@theme` block
+   - Maintain HSL color format for Tailwind compatibility
+   - Keep 4px spacing baseline
+   - Add new design tokens from specification
+
+2. **Customize Components**
+   - Update Shadcn/UI components to use new design tokens
+   - Maintain component structure and accessibility
+   - Add unique styling while keeping functionality
+   - Ensure keyboard navigation still works
+
+3. **Validate Accessibility**
+   - Run `@Accessibility-Agent` to audit new design
+   - Check contrast ratios for all color combinations
+   - Verify focus indicators are visible
+   - Test keyboard navigation
+   - Ensure screen reader compatibility
+
+4. **Maintain UX Principles**
+   - Keep information architecture intact
+   - Maintain clear visual hierarchy
+   - Ensure error states are clear
+   - Keep loading states informative
+   - Maintain consistent interaction patterns
+
+**Implementation Checklist**:
+
+- [ ] Design tokens added to `globals.css`
+- [ ] Components updated with new styles
+- [ ] Accessibility audit passed (WCAG 2.2 AA)
+- [ ] Keyboard navigation tested
+- [ ] Screen reader tested
+- [ ] Responsive design verified
+- [ ] All UX principles maintained
+- [ ] Error states are clear
+- [ ] Loading states are informative
+
+**Output**: Updated `src/app/globals.css` and component files
+
+### Step 4: Validation & Refinement
+
+**Goal**: Validate the design system and refine based on feedback
+
+**Process**:
+
+1. **Visual Validation**
+   - Compare implemented design to research images
+   - Verify unique identity is achieved
+   - Check contemporary design elements are present
+
+2. **Accessibility Validation**
+   - Run automated accessibility tests
+   - Manual keyboard navigation testing
+   - Screen reader testing
+   - Color contrast validation
+
+3. **UX Validation**
+   - Verify usability is maintained
+   - Check information architecture is clear
+   - Test interaction patterns
+   - Validate error handling
+
+4. **Iteration**
+   - Refine design tokens based on validation
+   - Adjust components as needed
+   - Update documentation
+
+**Output**: Finalized design system and implementation
+
+## Design System Specification Format
+
+### Color Palette
+
+```css
+@theme {
+  /* Unique color palette - different from generic Shadcn/UI */
+  --background: [H] [S]% [L]%;
+  --foreground: [H] [S]% [L]%;
+  
+  /* Custom accent colors for unique identity */
+  --accent-primary: [H] [S]% [L]%;
+  --accent-secondary: [H] [S]% [L]%;
+  
+  /* Ensure all combinations meet WCAG 2.2 AA */
+  /* Document contrast ratios for each combination */
+}
+```
+
+### Typography
+
+```css
+@theme {
+  /* Unique typography scale */
+  --font-family-base: '[Font Name]', system-ui, sans-serif;
+  --font-size-base: [size];
+  --font-weight-base: [weight];
+  
+  /* Typography scale maintaining accessibility */
+  /* Document line-height and letter-spacing for readability */
+}
+```
+
+### Spacing System
+
+```css
+/* Maintain 4px baseline */
+/* Document spacing scale */
+/* Ensure consistent spacing across components */
+```
+
+### Component Specifications
+
+For each component, specify:
+- Visual style (colors, borders, shadows)
+- Size variations
+- State styles (hover, focus, active, disabled)
+- Accessibility requirements
+- Animation/micro-interaction details
+
+## Principles to Maintain
+
+### UX Principles
+- ✅ Clear information hierarchy
+- ✅ Consistent interaction patterns
+- ✅ Obvious affordances
+- ✅ Clear feedback for all actions
+- ✅ Error prevention and recovery
+- ✅ Efficient task completion
+
+### Accessibility Principles
+- ✅ WCAG 2.2 AA compliance
+- ✅ Keyboard navigation support
+- ✅ Screen reader compatibility
+- ✅ Color contrast ratios (4.5:1 for text, 3:1 for UI)
+- ✅ Focus indicators
+- ✅ ARIA labels where needed
+
+### Interaction Design Principles
+- ✅ Consistent interaction patterns
+- ✅ Clear affordances
+- ✅ Immediate feedback
+- ✅ Predictable behavior
+- ✅ Error prevention
+- ✅ Efficient workflows
+
+### Information Architecture Principles
+- ✅ Clear navigation structure
+- ✅ Logical content organization
+- ✅ Consistent labeling
+- ✅ Breadcrumbs when needed
+- ✅ Search functionality (if applicable)
+
+### Writing Principles
+- ✅ Clear, concise language
+- ✅ User-focused messaging
+- ✅ Actionable labels
+- ✅ Helpful error messages
+- ✅ Accessible language (plain language)
+
+## Quality Gates
+
+Before considering the design system complete:
+
+1. ✅ **Visual Identity**: Design is unique and contemporary
+2. ✅ **Accessibility**: WCAG 2.2 AA compliance verified
+3. ✅ **Usability**: All UX principles maintained
+4. ✅ **Keyboard Navigation**: Fully functional
+5. ✅ **Screen Reader**: Compatible and tested
+6. ✅ **Responsive**: Works on all device sizes
+7. ✅ **Performance**: No performance regressions
+8. ✅ **Documentation**: Design system is documented
+
+## Integration with Existing Workflows
+
+This workflow integrates with:
+
+- **IA Designer Workflow**: Use unique design system in wireframes
+- **Implementation Workflow**: Follow standard implementation process with design system
+- **Accessibility Agent**: Validate accessibility throughout
+- **Visual Asset Agent**: Generate style research images
+
+## Example Workflow Invocation
+
+```
+@IA-Designer Create unique UI design system for [PROJECT].
+
+Use workflow:
+1) Research Red Dot Award winners 2025 for inspiration (Product Design, Brand & Communication Design)
+2) @Visual-Asset-Agent → Generate UI style research images (3-5 concepts) incorporating Red Dot insights
+3) @Google-Gemini-Agent → Analyze Red Dot winners + research images and create design system spec
+4) @Implementer → Implement design system in globals.css and components
+5) @Accessibility-Agent → Validate accessibility
+
+Inspiration Sources:
+- Red Dot Award: Product Design 2025 winners
+- Red Dot Award: Brands & Communication Design 2025 winners
+- Best of the Best winners for premium design excellence
+
+Requirements:
+- Award-winning design excellence (inspired by Red Dot winners)
+- Unique visual identity (not generic Shadcn/UI)
+- Contemporary design trends from recognized designs
+- Maintain all UX principles
+- WCAG 2.2 AA compliance
+- 4px spacing baseline
+
+Outputs:
+- /docs/ux/UI-STYLE-RESEARCH-<project>.md (includes Red Dot Award insights)
+- /docs/ux/DESIGN-SYSTEM-<project>.md
+- Updated src/app/globals.css
+- Updated components
+```
+
+## Red Dot Award Inspiration Sources
+
+The workflow leverages Red Dot Award winners for design inspiration:
+
+- **Product Design 2025**: https://www.red-dot.org/search?solr[filter][]=year%3A2025&solr[filter][]=meta_categories%3A%2F10%2F
+- **Brands & Communication Design 2025**: Award-winning UI/UX and communication design
+- **Best of the Best**: Premium design excellence winners
+- **Designer Profiles**: Insights into award-winning design processes
+
+**How to Use**:
+1. Review award-winning designs for patterns and innovations
+2. Extract color palettes, typography, layout approaches
+3. Note contemporary design trends from recognized designs
+4. Use as reference in Gemini analysis for design system creation
+5. Document which award winners influenced design decisions
+
+## Related Rules
+
+- **080-midjourney-canva.mdc** - Visual asset generation patterns
+- **081-google-ai-studio.mdc** - Google Gemini integration patterns
+- **010-core-ux-a11y.mdc** - UX and accessibility baseline
+- **210-playbook-new-feature.mdc** - Feature development workflow
+- **IA Designer Agent** - Information architecture and interaction design
+
+## Summary
+
+This playbook enables creating unique, contemporary UI designs that stand out while maintaining all UX, accessibility, and design principles. The workflow uses:
+
+1. **Visual Tools** - Research unique styles
+2. **Google Gemini** - Analyze and create design system specs
+3. **Cursor/Implementer** - Implement with principles intact
+4. **Validation** - Ensure quality and accessibility
+
+**Result**: Distinctive, contemporary UI that doesn't look like generic Shadcn/UI while maintaining all best practices.

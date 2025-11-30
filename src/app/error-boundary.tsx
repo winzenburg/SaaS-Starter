@@ -56,7 +56,7 @@ export class ErrorBoundary extends Component<Props, State> {
                   this.setState({ hasError: false, error: undefined });
                   window.location.reload();
                 }}
-                className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90"
+                className="px-4 py-2 bg-[var(--primary)] text-[var(--primary)]-foreground rounded-md hover:bg-[var(--primary)]/90"
               >
                 Reload Page
               </button>
@@ -78,7 +78,7 @@ export class ErrorBoundary extends Component<Props, State> {
                   this.setState({ hasError: false, error: undefined });
                   window.location.reload();
                 }}
-                className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90"
+                className="px-4 py-2 bg-[var(--primary)] text-[var(--primary)]-foreground rounded-md hover:bg-[var(--primary)]/90"
               >
                 Reload Page
               </button>

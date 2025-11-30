@@ -13,6 +13,7 @@ import { writeFileSync, readFileSync, existsSync } from "fs";
 import { join } from "path";
 import { reason } from "../src/lib/ai-tools/chatgpt";
 import { critique } from "../src/lib/ai-tools/claude";
+import { extractSources } from "../src/lib/ai-tools/manus-parser";
 
 const PROJECT_SLUG = "enterprise-design-system-startups";
 const PROJECT_NAME = "Enterprise Design System for Startups";
@@ -38,6 +39,13 @@ async function orchestrateManusDiscovery() {
   const rawManusContent = readFileSync(DISCOVERY_PACK_PATH, "utf-8");
   const manusOutputPath = join(DISCOVERY_DIR, `MANUS-${PROJECT_SLUG}.md`);
   
+  // Extract sources from Manus output for citation propagation
+  const manusSources = extractSources(rawManusContent);
+  const sourcesList = Array.from(manusSources.values())
+    .sort((a, b) => parseInt(a.number) - parseInt(b.number))
+    .map(source => `[${source.number}] ${source.citation}${source.url ? ` - ${source.url}` : ""}`)
+    .join("\n");
+  
   const manusOutput = `# Manus Discovery Pack: ${PROJECT_NAME}
 
 **Product**: ${PROJECT_NAME}  
@@ -62,6 +70,7 @@ ${rawManusContent}
 
   writeFileSync(manusOutputPath, manusOutput);
   console.log(`✅ Saved raw Manus output to: ${manusOutputPath}\n`);
+  console.log(`📚 Extracted ${manusSources.size} citations from Manus output\n`);
 
   // Step 2: ChatGPT Refinement
   console.log("🤖 Step 2: ChatGPT Refinement...\n");
@@ -75,6 +84,13 @@ ${rawManusContent}
 
 ${rawManusContent}
 
+**CRITICAL: Citation Requirements**
+When referencing sources, you MUST include the full citation with URL, not just the number.
+For example, instead of "Source: [1]", use "Source: [1] Moreno Celta, R. (2025). Design System Trends... - https://www.designsystemscollective.com/..."
+
+**Available Citations:**
+${sourcesList}
+
 **Refinement Tasks:**
 
 1. **Cluster Pain Points**:
@@ -83,6 +99,7 @@ ${rawManusContent}
    - Group pains by urgency (Low/Medium/High/Critical)
    - Identify pain patterns across clusters
    - Score top 5 pains (1-10 scale)
+   - **For each pain point, cite the source with full citation and URL**
 
 2. **Synthesize JTBD**:
    - Extract main functional job (primary job-to-be-done)
@@ -92,6 +109,7 @@ ${rawManusContent}
    - Map triggers (when/where/why does job arise?)
    - Define success criteria (how does persona know job is done well?)
    - Identify barriers (what prevents job completion?)
+   - **For each JTBD element, cite the source with full citation and URL**
 
 3. **Extract Opportunity Vectors**:
    - Winner-take-most dynamics (network effects, platform effects)
@@ -99,6 +117,7 @@ ${rawManusContent}
    - Data moat opportunities (unique data exhaust, insights, tracking)
    - Workflow embedding opportunities (integration points, daily usage)
    - Underserved segments (blue ocean pockets, unmet needs)
+   - **For each opportunity, cite the source with full citation and URL**
 
 4. **Validate Competitor Assumptions**:
    - Cross-check competitor positioning claims
@@ -106,15 +125,20 @@ ${rawManusContent}
    - Verify differentiation opportunities
    - Validate market positioning assumptions
    - Check pricing expectations against market reality
+   - **For each competitor insight, cite the source with full citation and URL**
 
 **Output Format:**
-- Clustered pain points with scores
-- Structured JTBD map (main, related, emotional, social jobs)
-- Opportunity vectors ranked by potential
-- Validated competitor insights
+- Clustered pain points with scores and full citations (author, title, URL)
+- Structured JTBD map (main, related, emotional, social jobs) with full citations
+- Opportunity vectors ranked by potential with full citations
+- Validated competitor insights with full citations
 - Ready-to-use insights for Cursor discovery agents
 
-**All claims must be backed by citations from the Manus discovery pack.**`;
+**Citation Format Example:**
+- ✅ GOOD: "Source: [1] Moreno Celta, R. (2025). Design System Trends That Are Actually Worth Following in 2025. Design Systems Collective. - https://www.designsystemscollective.com/design-system-trends-that-are-actually-worth-following-in-2025-44a405348687"
+- ❌ BAD: "Source: [1]" or "Source: Manus Discovery Pack"
+
+**All claims must be backed by full citations with URLs from the Manus discovery pack.**`;
 
   const chatgptResult = await reason({
     prompt: chatgptRefinementPrompt,
@@ -175,8 +199,15 @@ ${chatgptResult.data.content}
 **Manus Raw Output:**
 ${rawManusContent.substring(0, 10000)}...
 
+**Available Citations from Manus:**
+${sourcesList}
+
 ${chatgptRefinementContent ? `**ChatGPT Refinement:**
 ${chatgptRefinementContent.substring(0, 5000)}...` : "**Note**: ChatGPT refinement was skipped. Critique based on raw Manus output."}
+
+**CRITICAL: Citation Requirements**
+When referencing sources in your critique, you MUST include the full citation with URL, not just the number.
+For example, instead of "Source: [1]", use "Source: [1] Moreno Celta, R. (2025). Design System Trends... - https://www.designsystemscollective.com/..."
 
 **Red-Team Critique Tasks:**
 
@@ -249,7 +280,71 @@ ${claudeResult.data.content}
   writeFileSync(claudeOutputPath, claudeOutput);
   console.log(`✅ Saved Claude red-team critique to: ${claudeOutputPath}\n`);
 
-  // Step 4: Summary
+  // Step 4: Check if Cursor agents have created structured documents
+  console.log("🔍 Step 4: Checking for structured discovery documents...\n");
+  
+  const requiredDocuments = [
+    `NICHE-INTEL-${PROJECT_SLUG}.md`,
+    `PAIN-SIGNALS-${PROJECT_SLUG}.md`,
+    `JTBD-${PROJECT_SLUG}.md`,
+    `OPPORTUNITY-${PROJECT_SLUG}.md`,
+  ];
+  
+  const missingDocuments: string[] = [];
+  const existingDocuments: string[] = [];
+  
+  for (const doc of requiredDocuments) {
+    const docPath = join(DISCOVERY_DIR, doc);
+    if (existsSync(docPath)) {
+      existingDocuments.push(doc);
+    } else {
+      missingDocuments.push(doc);
+    }
+  }
+  
+  if (existingDocuments.length > 0) {
+    console.log(`✅ Found ${existingDocuments.length} existing structured documents:`);
+    existingDocuments.forEach(doc => console.log(`   - ${doc}`));
+    console.log();
+  }
+  
+  if (missingDocuments.length > 0) {
+    console.log(`⚠️  MISSING: ${missingDocuments.length} required structured documents not found:\n`);
+    missingDocuments.forEach(doc => console.log(`   ❌ ${doc}`));
+    console.log();
+    console.log("🚨 ORCHESTRATION INCOMPLETE: Step 3 (Cursor Agents) not completed!\n");
+    console.log("📋 Required Actions:");
+    console.log("   According to Rule 311 (Manus Orchestration Flow), you MUST complete Step 3:");
+    console.log("   - Cursor Agents must create structured discovery documents\n");
+    console.log("   Invoke these Cursor agents in order:");
+    console.log(`   1. @Niche-Intelligence-Agent → Create /docs/discovery/NICHE-INTEL-${PROJECT_SLUG}.md`);
+    console.log(`      Inputs: ${manusOutputPath} + ${chatgptOutputPath || "ChatGPT refinement skipped"}`);
+    console.log();
+    console.log(`   2. @Pain-Signal-Agent → Create /docs/discovery/PAIN-SIGNALS-${PROJECT_SLUG}.md`);
+    console.log(`      Inputs: ${manusOutputPath} + ${chatgptOutputPath || "ChatGPT refinement skipped"}`);
+    console.log();
+    console.log(`   3. @JTBD-Agent → Create /docs/discovery/JTBD-${PROJECT_SLUG}.md`);
+    console.log(`      Inputs: ${manusOutputPath} + ${chatgptOutputPath || "ChatGPT refinement skipped"}`);
+    console.log();
+    console.log(`   4. @Opportunity-Moat-Agent → Create /docs/discovery/OPPORTUNITY-${PROJECT_SLUG}.md`);
+    console.log(`      Inputs: ${manusOutputPath} + ${chatgptOutputPath || "ChatGPT refinement skipped"}`);
+    console.log();
+    console.log("   These agents will use:");
+    console.log(`   - Raw Manus output: ${manusOutputPath}`);
+    if (chatgptOutputPath) {
+      console.log(`   - ChatGPT refinement: ${chatgptOutputPath}`);
+    } else {
+      console.log(`   - ChatGPT refinement: SKIPPED (API quota/error)`);
+    }
+    console.log(`   - Claude red-team critique: ${claudeOutputPath}`);
+    console.log();
+    console.log("   ⚠️  Do NOT proceed to validation until all 4 structured documents are created.\n");
+    process.exit(1); // Exit with error to indicate incomplete orchestration
+  } else {
+    console.log("✅ All required structured documents found!\n");
+  }
+  
+  // Step 5: Summary
   console.log("✅ Orchestration Complete!\n");
   console.log("📁 Files Created:");
   console.log(`   1. ${manusOutputPath}`);
@@ -258,17 +353,11 @@ ${claudeResult.data.content}
   } else {
     console.log(`   2. ChatGPT refinement skipped (API quota/error)`);
   }
-  console.log(`   3. ${claudeOutputPath}\n`);
-  console.log("🎯 Next Steps:");
-  console.log("   - Use Cursor agents to create structured discovery documents:");
-  console.log("     - @Niche-Intelligence-Agent → NICHE-INTEL-*.md");
-  console.log("     - @Pain-Signal-Agent → PAIN-SIGNALS-*.md");
-  console.log("     - @JTBD-Agent → JTBD-*.md");
-  console.log("     - @Opportunity-Moat-Agent → OPPORTUNITY-*.md\n");
-  console.log("   These agents will use:");
-  console.log("   - Raw Manus output (reference)");
-  console.log("   - ChatGPT refinement (clustered/synthesized insights)");
-  console.log("   - Claude red-team critique (validated assumptions)\n");
+  console.log(`   3. ${claudeOutputPath}`);
+  console.log("   4. Structured discovery documents (all present)");
+  console.log();
+  console.log("🎯 Next Phase: Validation");
+  console.log("   All discovery documents complete. Ready to proceed to validation phase.\n");
 }
 
 orchestrateManusDiscovery().catch((error) => {

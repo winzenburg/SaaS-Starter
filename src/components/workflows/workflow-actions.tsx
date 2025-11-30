@@ -2,12 +2,10 @@
  * Workflow Actions Component
  * 
  * Provides actions for executing workflow steps
- */
+ */"use client";
 
-"use client";
-
-import { useState } from "react";
-import type { Workflow } from "@/lib/workflows/types";
+import { useState } from"react";
+import type { Workflow } from"@/lib/workflows/types";
 
 interface WorkflowActionsProps {
   workflow: Workflow;
@@ -21,18 +19,19 @@ export function WorkflowActions({ workflow, onUpdate }: WorkflowActionsProps) {
     setExecuting(stepId);
     try {
       const endpoint =
-        workflow.phase === "discovery"
-          ? "/api/workflows/discovery"
-          : "/api/workflows/validation";
+        workflow.phase ==="discovery"
+          ?"/api/workflows/discovery"
+          :"/api/workflows/validation";
 
       const response = await fetch(endpoint, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+        method:"POST",
+        headers: {"Content-Type":"application/json" },
         body: JSON.stringify({
           ideaSlug: workflow.ideaSlug,
           ideaName: workflow.ideaName,
           phase: workflow.phase,
-          action: "execute",
+          action:"execute",
+          workflowId: workflow.id,
           stepId,
         }),
       });
@@ -42,29 +41,50 @@ export function WorkflowActions({ workflow, onUpdate }: WorkflowActionsProps) {
       }
 
       const data = await response.json();
-      onUpdate(data.workflow);
+      if (data.success && data.workflow) {
+        onUpdate(data.workflow);
+        // Files are now being saved to disk automatically
+        // Reload workflow from server to ensure we have the latest state
+        // This ensures files are saved and workflow state is persisted
+        setTimeout(async () => {
+          try {
+            const reloadResponse = await fetch(`/api/workflows/${workflow.id}`);
+            if (reloadResponse.ok) {
+              const reloadData = await reloadResponse.json();
+              if (reloadData.success && reloadData.workflow) {
+                onUpdate(reloadData.workflow);
+              }
+            }
+          } catch (reloadError) {
+            console.error("Failed to reload workflow:", reloadError);
+          }
+        }, 1500); // Wait 1.5s for file operations to complete
+      } else {
+        throw new Error(data.error || "Failed to execute step");
+      }
     } catch (error) {
       console.error("Error executing step:", error);
-      alert("Failed to execute step. Check console for details.");
+      const errorMessage = error instanceof Error ? error.message : "Failed to execute step. Check console for details.";
+      alert(errorMessage);
     } finally {
       setExecuting(null);
     }
   };
 
   const pendingSteps = workflow.steps.filter(
-    (s) => s.status === "pending" || s.status === "failed"
+    (s) => s.status ==="pending" || s.status ==="failed"
   );
 
   const inProgressStep = workflow.steps.find(
-    (s) => s.status === "in_progress"
+    (s) => s.status ==="in_progress"
   );
 
   return (
     <div>
-      <h4 className="font-medium mb-3 text-white">Actions</h4>
+      <h4 className="font-medium mb-3 text-[hsl(var(--text-main))]">Actions</h4>
       <div className="space-y-2">
         {inProgressStep && (
-          <div className="p-2 bg-blue-500/20 border border-blue-500/50 rounded text-sm text-blue-400">
+          <div className="p-2 bg-[var(--primary)]/20 border border-[var(--primary)]/50 rounded text-sm text-[var(--primary)]">
             Step &quot;{inProgressStep.name}&quot; is currently in progress
           </div>
         )}
@@ -75,14 +95,14 @@ export function WorkflowActions({ workflow, onUpdate }: WorkflowActionsProps) {
                 key={step.id}
                 onClick={() => executeStep(step.id)}
                 disabled={executing !== null || !!inProgressStep}
-                className="w-full text-left px-3 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-sm transition-colors duration-300"
+                className="w-full text-left px-3 py-2 bg-[var(--primary)] text-[hsl(var(--text-main))] rounded hover:bg-[var(--primary)]/90 disabled:opacity-50 disabled:cursor-not-allowed text-sm transition-colors duration-300"
               >
-                {executing === step.id ? "Executing..." : `Execute: ${step.name}`}
+                {executing === step.id ?"Executing..." : `Execute: ${step.name}`}
               </button>
             ))}
           </div>
         ) : (
-          <div className="p-2 bg-slate-800/50 border border-slate-700 rounded text-sm text-gray-400">
+          <div className="p-2 border rounded text-sm text-[hsl(var(--text-muted))]">
             All steps completed
           </div>
         )}

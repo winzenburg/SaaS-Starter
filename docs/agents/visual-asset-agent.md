@@ -15,6 +15,33 @@ Use Midjourney and Canva to create compelling visual assets that communicate pro
 
 ## Integration with Visual Tools
 
+### Google AI Studio (Gemini) Integration
+
+```typescript
+// Use Google AI Studio for multimodal design analysis and generation
+import { generateDesign, generateMultimodal } from "@/lib/ai-tools/google-ai-studio";
+
+// Multimodal design with reference images
+const design = await generateDesign({
+  prompt: "Modern SaaS dashboard hero",
+  style: "minimalist, tech-forward",
+  referenceImages: [brandGuidelines],
+  creativeMode: false,
+});
+
+// Analyze existing designs and get feedback
+const analysis = await generateMultimodal({
+  prompt: "Analyze this design and suggest improvements",
+  images: [{ base64: currentDesign, mimeType: "image/png" }],
+});
+```
+
+**Features**:
+- Multimodal prompts (text + image input)
+- Design analysis and feedback
+- Enhanced prompt generation for other tools
+- Brand-consistent design guidance
+
 ### Midjourney Integration
 
 ```typescript
@@ -39,6 +66,7 @@ Use Midjourney and Canva to create compelling visual assets that communicate pro
    - Identify key visual elements
 
 2. **Asset Generation**
+   - **Google AI Studio**: Analyze designs, generate detailed prompts, provide design feedback
    - **Midjourney**: Generate concept visuals and hero images
    - **Canva**: Create marketing materials and templates
    - Iterate based on feedback

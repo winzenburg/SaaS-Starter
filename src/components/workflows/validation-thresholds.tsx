@@ -2,12 +2,10 @@
  * Validation Thresholds Component
  * 
  * Displays and manages validation thresholds and results
- */
+ */"use client";
 
-"use client";
-
-import { useState, useRef } from "react";
-import type { ValidationWorkflow } from "@/lib/workflows/types";
+import { useState, useRef } from"react";
+import type { ValidationWorkflow } from"@/lib/workflows/types";
 
 interface ValidationThresholdsProps {
   workflow: ValidationWorkflow;
@@ -30,13 +28,13 @@ export function ValidationThresholds({
 
     try {
       const response = await fetch("/api/workflows/validation", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+        method:"POST",
+        headers: {"Content-Type":"application/json" },
         body: JSON.stringify({
           ideaSlug: workflow.ideaSlug,
           ideaName: workflow.ideaName,
-          phase: "validation",
-          action: "update-results",
+          phase:"validation",
+          action:"update-results",
           results,
         }),
       });
@@ -51,7 +49,7 @@ export function ValidationThresholds({
       setTimeout(() => setStatusMessage(null), 3000);
     } catch (error) {
       console.error("Error updating results:", error);
-      const errorMsg = error instanceof Error ? error.message : "Failed to update results";
+      const errorMsg = error instanceof Error ? error.message :"Failed to update results";
       setError(errorMsg);
     } finally {
       setUpdating(false);
@@ -69,13 +67,13 @@ export function ValidationThresholds({
 
     try {
       const response = await fetch("/api/workflows/validation", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+        method:"POST",
+        headers: {"Content-Type":"application/json" },
         body: JSON.stringify({
           ideaSlug: workflow.ideaSlug,
           ideaName: workflow.ideaName,
-          phase: "validation",
-          action: "check-thresholds",
+          phase:"validation",
+          action:"check-thresholds",
           results: workflow.results,
         }),
       });
@@ -91,12 +89,12 @@ export function ValidationThresholds({
         const failed = data.checks
           .filter((c: { passed: boolean }) => !c.passed)
           .map((c: { metric: string }) => c.metric)
-          .join(", ");
+          .join(",");
         setError(`Thresholds not met. Failed metrics: ${failed}`);
       }
     } catch (error) {
       console.error("Error checking thresholds:", error);
-      const errorMsg = error instanceof Error ? error.message : "Failed to check thresholds";
+      const errorMsg = error instanceof Error ? error.message :"Failed to check thresholds";
       setError(errorMsg);
     }
   };
@@ -116,7 +114,7 @@ export function ValidationThresholds({
 
   return (
     <div className="glass-card rounded-lg p-6">
-      <h3 className="font-semibold mb-4 text-white" id="thresholds-heading">
+      <h3 className="font-semibold mb-4 text-[hsl(var(--text-main))]" id="thresholds-heading">
         Validation Thresholds
       </h3>
 
@@ -146,7 +144,7 @@ export function ValidationThresholds({
       {/* Results Input */}
       <div className="space-y-3 mb-4" role="group" aria-labelledby="thresholds-heading">
         <div>
-          <label htmlFor="signups" className="block text-sm font-medium mb-1 text-gray-300">
+          <label htmlFor="signups" className="block text-sm font-medium mb-1 text-[hsl(var(--text-muted))]">
             Signups
           </label>
           <input
@@ -160,7 +158,7 @@ export function ValidationThresholds({
               updateResults({ signups: value });
             }}
             disabled={updating}
-            className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:opacity-50 disabled:cursor-not-allowed placeholder:text-gray-500"
+            className="w-full px-3 py-2 border rounded-md text-[hsl(var(--text-main))] focus:outline-none focus:ring-2 focus:ring-primary focus:border-[var(--primary)] disabled:opacity-50 disabled:cursor-not-allowed placeholder:text-[hsl(var(--text-muted))]"
             aria-describedby="signups-hint"
             aria-busy={updating}
           />
@@ -170,7 +168,7 @@ export function ValidationThresholds({
         </div>
 
         <div>
-          <label htmlFor="conversionRate" className="block text-sm font-medium mb-1 text-gray-300">
+          <label htmlFor="conversionRate" className="block text-sm font-medium mb-1 text-[hsl(var(--text-muted))]">
             Conversion Rate (%)
           </label>
           <input
@@ -185,7 +183,7 @@ export function ValidationThresholds({
               updateResults({ conversionRate: value });
             }}
             disabled={updating}
-            className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:opacity-50 disabled:cursor-not-allowed placeholder:text-gray-500"
+            className="w-full px-3 py-2 border rounded-md text-[hsl(var(--text-main))] focus:outline-none focus:ring-2 focus:ring-primary focus:border-[var(--primary)] disabled:opacity-50 disabled:cursor-not-allowed placeholder:text-[hsl(var(--text-muted))]"
             aria-describedby="conversionRate-hint conversionRate-threshold"
             aria-busy={updating}
           />
@@ -198,7 +196,7 @@ export function ValidationThresholds({
         </div>
 
         <div>
-          <label htmlFor="dmReplies" className="block text-sm font-medium mb-1 text-gray-300">
+          <label htmlFor="dmReplies" className="block text-sm font-medium mb-1 text-[hsl(var(--text-muted))]">
             DM Reply Rate (%)
           </label>
           <input
@@ -213,7 +211,7 @@ export function ValidationThresholds({
               updateResults({ dmReplies: value });
             }}
             disabled={updating}
-            className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:opacity-50 disabled:cursor-not-allowed placeholder:text-gray-500"
+            className="w-full px-3 py-2 border rounded-md text-[hsl(var(--text-main))] focus:outline-none focus:ring-2 focus:ring-primary focus:border-[var(--primary)] disabled:opacity-50 disabled:cursor-not-allowed placeholder:text-[hsl(var(--text-muted))]"
             aria-describedby="dmReplies-hint dmReplies-threshold"
             aria-busy={updating}
           />
@@ -226,7 +224,7 @@ export function ValidationThresholds({
         </div>
 
         <div>
-          <label htmlFor="wtpSignals" className="block text-sm font-medium mb-1 text-gray-300">
+          <label htmlFor="wtpSignals" className="block text-sm font-medium mb-1 text-[hsl(var(--text-muted))]">
             WTP Signals
           </label>
           <input
@@ -240,7 +238,7 @@ export function ValidationThresholds({
               updateResults({ wtpSignals: value });
             }}
             disabled={updating}
-            className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:opacity-50 disabled:cursor-not-allowed placeholder:text-gray-500"
+            className="w-full px-3 py-2 border rounded-md text-[hsl(var(--text-main))] focus:outline-none focus:ring-2 focus:ring-primary focus:border-[var(--primary)] disabled:opacity-50 disabled:cursor-not-allowed placeholder:text-[hsl(var(--text-muted))]"
             aria-describedby="wtpSignals-hint wtpSignals-threshold"
             aria-busy={updating}
           />
@@ -256,20 +254,20 @@ export function ValidationThresholds({
       {/* Thresholds Display */}
       <div className="space-y-2 mb-4 text-sm" role="region" aria-label="Threshold comparison">
         <div className="flex justify-between">
-          <span className="text-gray-400">Warm Traffic Conversion</span>
-          <span className="font-medium text-white" aria-label={`${results.conversionRate || 0} percent out of ${thresholds.warmTrafficConversion} percent target`}>
+          <span className="text-[hsl(var(--text-muted))]">Warm Traffic Conversion</span>
+          <span className="font-medium text-[hsl(var(--text-main))]" aria-label={`${results.conversionRate || 0} percent out of ${thresholds.warmTrafficConversion} percent target`}>
             {results.conversionRate || 0}% / {thresholds.warmTrafficConversion}%
           </span>
         </div>
         <div className="flex justify-between">
-          <span className="text-gray-400">DM Reply Rate</span>
-          <span className="font-medium text-white" aria-label={`${results.dmReplies || 0} percent out of ${thresholds.dmReplyRate} percent target`}>
+          <span className="text-[hsl(var(--text-muted))]">DM Reply Rate</span>
+          <span className="font-medium text-[hsl(var(--text-main))]" aria-label={`${results.dmReplies || 0} percent out of ${thresholds.dmReplyRate} percent target`}>
             {results.dmReplies || 0}% / {thresholds.dmReplyRate}%
           </span>
         </div>
         <div className="flex justify-between">
-          <span className="text-gray-400">WTP Signals</span>
-          <span className="font-medium text-white" aria-label={`${results.wtpSignals || 0} out of ${thresholds.wtpSignals} target`}>
+          <span className="text-[hsl(var(--text-muted))]">WTP Signals</span>
+          <span className="font-medium text-[hsl(var(--text-main))]" aria-label={`${results.wtpSignals || 0} out of ${thresholds.wtpSignals} target`}>
             {results.wtpSignals || 0} / {thresholds.wtpSignals}
           </span>
         </div>
@@ -279,7 +277,7 @@ export function ValidationThresholds({
       <button
         onClick={checkThresholds}
         disabled={!workflow.results || updating}
-        className="w-full px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-900 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-300"
+        className="w-full px-4 py-2 bg-[var(--primary)] text-[hsl(var(--text-main))] rounded-md hover:bg-[var(--primary)]/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-slate-900 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-300"
         aria-describedby="check-thresholds-hint"
       >
         {updating ? (
@@ -287,8 +285,7 @@ export function ValidationThresholds({
             <span aria-hidden="true">Checking...</span>
             <span className="sr-only">Checking thresholds, please wait</span>
           </>
-        ) : (
-          "Check Thresholds"
+        ) : ("Check Thresholds"
         )}
       </button>
       <p id="check-thresholds-hint" className="sr-only">

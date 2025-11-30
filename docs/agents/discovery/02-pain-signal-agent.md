@@ -120,6 +120,7 @@ Extract and analyze the real painful, expensive, urgent problems the niche feels
 Input:
 - Manus pain language dictionary: [From Manus Narrative Agent]
 - Competitor gap analysis: [From competitor analysis]
+- Manus References section: [Full citations with URLs from Manus document]
 
 Tasks:
 1) Cluster pains using frequency, severity, urgency
@@ -132,6 +133,13 @@ Tasks:
    - Workaround difficulty
    - Monetization potential
 5) Produce documentation (Cursor)
+
+**CRITICAL: Citation Requirements**
+- When referencing sources, you MUST include the full citation with URL, not just the number
+- Format: "Source: [1] Author, A. (Year). Title. Publisher. - https://example.com/article"
+- Example: "Source: [5] Reddit. (c. 2024). I work at a start up that doesn't have a design system... [Online forum post]. r/FigmaDesign. - https://www.reddit.com/r/FigmaDesign/comments/1dgfisa/i_work_at_a_start_up_that_doesnt_have_a_design/"
+- Do NOT use generic references like "Source: Manus Discovery Pack" or "Source: [5]"
+- All claims must be backed by full citations with URLs from the Manus References section
 
 Output: /docs/discovery/PAIN-SIGNALS-<idea-slug>.md
 ```

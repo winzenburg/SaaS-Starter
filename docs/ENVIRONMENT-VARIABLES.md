@@ -101,6 +101,23 @@
 
 **Cost**: Free tier available, paid plans for API access
 
+### Google AI Studio (Gemini)
+**Purpose**: Advanced image generation, multimodal design, AI-powered visual creation
+
+- `GOOGLE_AI_STUDIO_API_KEY` - Your Google AI Studio API key
+  - Get from: [Google AI Studio](https://aistudio.google.com/) → Get API Key → Create API Key
+  - **Required for**: Advanced image generation, multimodal visual design
+- `GOOGLE_AI_STUDIO_MODEL` - Optional, defaults to `gemini-1.5-pro`
+  - Options: `gemini-1.5-pro`, `gemini-1.5-flash`, `gemini-pro`
+
+**Features**:
+- Multimodal prompts (text + image input)
+- Advanced image generation capabilities
+- Design creation and refinement
+- Text-to-image generation
+
+**Cost**: Free tier available (generous quotas), paid plans for higher usage
+
 ### Glif
 **Purpose**: Creative batching workflows (high-volume creative outputs)
 
@@ -197,6 +214,7 @@ Next.js supports environment-specific files:
 - **ChatGPT**: $1-10 (refinement tasks)
 - **Claude**: $3-15 (red-teaming, deep analysis)
 - **ElevenLabs**: $5-20 (voice content)
+- **Google AI Studio**: $5-25 (multimodal design, image analysis)
 - **Midjourney/Canva**: $10-50 (visual assets)
 - **Glif**: $5-25 (creative batching)
 - **Lindy**: $0-20 (automation, free tier available)

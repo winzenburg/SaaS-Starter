@@ -133,6 +133,7 @@ Input:
 - Manus persona narrative: [From Manus Narrative Agent]
 - Manus emotional drivers: [From Manus]
 - Manus JTBD extraction: [From Manus]
+- Manus References section: [Full citations with URLs from Manus document]
 
 Tasks:
 1) Produce deep persona narrative (identity, beliefs, fears, aspirations)
@@ -141,6 +142,13 @@ Tasks:
 4) Map triggers, success criteria, and barriers
 5) Provide ElevenLabs interview script (30-60 seconds, 2 tones)
 6) Produce documentation (Cursor)
+
+**CRITICAL: Citation Requirements**
+- When referencing sources, you MUST include the full citation with URL, not just the number
+- Format: "Source: [1] Author, A. (Year). Title. Publisher. - https://example.com/article"
+- Example: "Source: [9] Heymans, Y. (2022, September 7). Startup CTO: role, responsibilities and how to find one. HeroHunt.ai. - https://www.herohunt.ai/blog/startup-cto-role-responsibilities"
+- Do NOT use generic references like "Source: Manus Discovery Pack" or "Source: [9]"
+- All claims must be backed by full citations with URLs from the Manus References section
 
 Output: /docs/discovery/JTBD-<idea-slug>.md
 ```

@@ -103,12 +103,26 @@ export async function createCanvaDesign(
 }
 
 /**
- * Generate visual asset (wrapper that tries Canva first, falls back to Midjourney prompt)
+ * Generate visual asset (wrapper that tries multiple services)
+ * Tries: Google AI Studio → Canva → Midjourney prompt
  */
 export async function generateVisual(
   request: VisualRequest
 ): Promise<AIResponse<VisualResponse>> {
-  // Try Canva first if available
+  // Try Google AI Studio first if available
+  if (process.env.GOOGLE_AI_STUDIO_API_KEY) {
+    try {
+      const { generateVisualWithGoogleAI } = await import("./google-ai-studio");
+      const googleResult = await generateVisualWithGoogleAI(request);
+      if (googleResult.success) {
+        return googleResult;
+      }
+    } catch (error) {
+      console.warn("Google AI Studio unavailable, trying alternatives:", error);
+    }
+  }
+
+  // Try Canva if available
   if (process.env.CANVA_API_KEY) {
     const canvaResult = await createCanvaDesign(request);
     if (canvaResult.success) {

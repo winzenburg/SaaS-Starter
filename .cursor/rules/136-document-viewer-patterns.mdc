@@ -210,5 +210,14 @@ function extractProjectSlug(filename: string): string | undefined {
 - **Related Documents**: `src/components/docs/related-documents.tsx`
 - **Discovery List**: `src/components/docs/discovery-docs-list.tsx`
 - **Validation List**: `src/components/docs/validation-docs-list.tsx`
-- **Detail Page**: `src/app/docs/product/[...path]/page.tsx`
+- **Detail Pages**: 
+  - `src/app/docs/discovery/[...path]/page.tsx`
+  - `src/app/docs/validation/[...path]/page.tsx`
+  - `src/app/docs/research/[...path]/page.tsx`
+  - `src/app/docs/product/[...path]/page.tsx`
 - **Listing Pages**: `src/app/docs/discovery/page.tsx`, `src/app/docs/validation/page.tsx`
+
+## Related Rules
+
+- **137-docs-route-handlers.mdc** - Documentation route handlers (ensures routes exist before creating links)
+- **138-hub-document-discovery.mdc** - Hub document discovery patterns

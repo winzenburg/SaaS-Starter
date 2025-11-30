@@ -158,7 +158,34 @@ export function findProjectDocuments(
   );
   documents.push(...validationDocs);
 
-  // 4. Find orchestrator outputs in /docs/ideas/
+  // 4. Find product documents in /docs/product/ (NARRATIVE, INSIGHT, PRD, etc.)
+  const productDir = join(process.cwd(), "docs", "product");
+  const productDocs = findDocumentsInDirectory(
+    productDir,
+    "/docs/product",
+    projectSlug
+  );
+  documents.push(...productDocs);
+
+  // 5. Find research documents in /docs/research/ (PERSONA, COMPETITORS, MARKET, etc.)
+  const researchDir = join(process.cwd(), "docs", "research");
+  const researchDocs = findDocumentsInDirectory(
+    researchDir,
+    "/docs/research",
+    projectSlug
+  );
+  documents.push(...researchDocs);
+
+  // 6. Find portfolio scores in /docs/portfolio/
+  const portfolioDir = join(process.cwd(), "docs", "portfolio");
+  const portfolioDocs = findDocumentsInDirectory(
+    portfolioDir,
+    "/docs/portfolio",
+    projectSlug
+  );
+  documents.push(...portfolioDocs);
+
+  // 7. Find orchestrator outputs in /docs/ideas/
   const ideasDir = join(process.cwd(), "docs", "ideas", projectSlug);
   const ideaDocs = findDocumentsInDirectory(ideasDir, `/docs/ideas/${projectSlug}`, projectSlug);
   documents.push(...ideaDocs);

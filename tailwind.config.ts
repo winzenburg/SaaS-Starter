@@ -9,14 +9,31 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      spacing: {
-        // 4px baseline with standard increments
-        "0.5": "4px",
-        "1": "8px",
-        "1.5": "12px",
-        "2": "16px",
-        "2.5": "20px",
-        "3": "24px",
+      colors: {
+        primary: "var(--primary)",
+        "primary-foreground": "var(--primary-foreground)",
+        background: "var(--background)",
+        foreground: "var(--foreground)",
+        card: "var(--card)",
+        "card-foreground": "var(--card-foreground)",
+        muted: "var(--muted)",
+        "muted-foreground": "var(--muted-foreground)",
+        accent: "var(--accent)",
+        "accent-foreground": "var(--accent-foreground)",
+        destructive: "var(--destructive)",
+        "destructive-foreground": "var(--destructive-foreground)",
+        border: "var(--border)",
+        ring: "var(--ring)",
+        secondary: "var(--secondary)",
+        "secondary-foreground": "var(--secondary-foreground)",
+      },
+      borderRadius: {
+        DEFAULT: "var(--radius)",
+      },
+      fontFamily: {
+        display: ["var(--font-display)", "serif"],
+        body: ["var(--font-body)", "ui-sans-serif", "system-ui", "sans-serif"],
+        heading: ["var(--font-display)", "serif"],
       },
     },
   },
@@ -24,4 +41,3 @@ const config: Config = {
 };
 
 export default config;
-

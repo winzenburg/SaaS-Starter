@@ -8,11 +8,12 @@ import { NextRequest, NextResponse } from "next/server";
 import { loadWorkflow } from "@/lib/workflows/db";
 
 export async function GET(
-  request: NextRequest,
-  { params }: { params: { id: string } }
+  _request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const workflowId = params.id;
+    const { id } = await params;
+    const workflowId = id;
 
     if (!workflowId) {
       return NextResponse.json(

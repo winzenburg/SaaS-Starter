@@ -1,10 +1,10 @@
 "use client";
 
-import Link from "next/link";
-import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowLeft, Workflow } from "lucide-react";
+import Link from"next/link";
+import { motion } from"framer-motion";
+import { Button } from"@/components/ui/button";
+// Card components not used in this page
+import { ArrowLeft, Workflow } from"lucide-react";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -23,14 +23,14 @@ const itemVariants = {
     y: 0,
     transition: {
       duration: 0.5,
-      ease: "easeOut",
+      ease: [0.4, 0, 0.2, 1] as const, // cubic-bezier equivalent of easeOut
     },
   },
 };
 
 export default function MarketingLanding() {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+    <main className="min-h-screen">
       <section className="mx-auto flex max-w-5xl flex-col gap-6 px-6 py-24 text-center">
         <motion.div
           variants={containerVariants}
@@ -44,7 +44,7 @@ export default function MarketingLanding() {
             Marketing Hub
           </motion.p>
           <motion.h1
-            className="text-4xl font-bold bg-gradient-to-r from-white via-gray-300 to-white bg-clip-text text-transparent md:text-5xl mb-6"
+            className="text-4xl font-bold font-heading text-[var(--primary)] md:text-5xl mb-6"
             variants={itemVariants}
           >
             Sell the vision before you build the roadmap
@@ -54,10 +54,10 @@ export default function MarketingLanding() {
             variants={itemVariants}
           >
             This space hosts idea-specific marketing routes—hero pages, waitlist funnels,
-            and validation experiments—so you can keep product execution in{" "}
-            <code className="rounded-lg bg-slate-800 px-2 py-1 text-sm text-slate-300 font-mono border border-slate-700">
+            and validation experiments—so you can keep product execution in{""}
+            <code className="rounded-lg  px-2 py-1 text-sm text-slate-300 font-mono border">
               src/app
-            </code>{" "}
+            </code>{""}
             while shipping landing pages side-by-side.
           </motion.p>
           <motion.div

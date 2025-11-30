@@ -1,0 +1,269 @@
+# Core UI Components
+
+Goal: Maintainable, consistent UI using shadcn/ui + Radix UI + Tailwind v3.
+
+## Non-Negotiables
+
+### 1. Use shadcn/ui Components First
+
+**ALWAYS use shadcn/ui components from `src/components/ui/` before creating custom components.**
+
+Available shadcn/ui components:
+- `Button` - All buttons, links styled as buttons
+- `Card`, `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter` - All card layouts
+- `Input` - All text inputs, search inputs
+- `Badge` - Status indicators, labels, tags
+- `Dialog` - Modals, popovers (use Radix Dialog via shadcn/ui)
+- `Select` - Dropdowns (use Radix Select via shadcn/ui)
+- `Label` - Form labels (use Radix Label via shadcn/ui)
+- `NavigationMenu` - Navigation (use Radix NavigationMenu via shadcn/ui)
+
+**Before creating a custom component, check:**
+1. Does shadcn/ui have this component? → Use it
+2. Can I compose shadcn/ui components? → Compose them
+3. Is this a one-off styling need? → Use Tailwind utilities + shadcn/ui base
+4. Only create custom component if: Repeated 3+ times AND shadcn/ui doesn't cover it
+
+### 2. Component Composition Pattern
+
+**Compose shadcn/ui components, don't create new ones:**
+
+```tsx
+// ✅ GOOD: Compose shadcn/ui components
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+
+export function ProjectCard({ project }) {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>{project.name}</CardTitle>
+        <Badge>{project.status}</Badge>
+      </CardHeader>
+      <CardContent>
+        <Button>View Details</Button>
+      </CardContent>
+    </Card>
+  );
+}
+
+// ❌ BAD: Custom component when shadcn/ui exists
+export function CustomCard({ children }) {
+  return <div className="bg-card border rounded-lg p-6">{children}</div>;
+}
+```
+
+### 3. Utility Functions, Not Inline Styles
+
+**Extract color/styling logic to utility functions:**
+
+```tsx
+// ✅ GOOD: Utility function
+import { cn } from "@/lib/utils";
+import { Badge } from "@/components/ui/badge";
+
+function getStatusVariant(status: string): "default" | "secondary" | "destructive" {
+  const variants = {
+    validation: "secondary",
+    engineering: "default",
+    growth: "default",
+    killed: "destructive",
+  };
+  return variants[status] || "secondary";
+}
+
+export function StatusBadge({ status }: { status: string }) {
+  return <Badge variant={getStatusVariant(status)}>{status}</Badge>;
+}
+
+// ❌ BAD: Inline color functions
+function getStatusColor(status: string): string {
+  return status === "validation" ? "bg-yellow-500/20 text-yellow-400" : "...";
+}
+```
+
+### 4. Use shadcn/ui Variants, Not Custom Classes
+
+**Use component variants instead of custom className strings:**
+
+```tsx
+// ✅ GOOD: Use Button variants
+import { Button } from "@/components/ui/button";
+
+<Button variant="default">Primary</Button>
+<Button variant="outline">Secondary</Button>
+<Button variant="destructive">Delete</Button>
+<Button variant="ghost">Cancel</Button>
+
+// ❌ BAD: Custom button classes
+<button className="bg-[var(--primary)] text-white px-4 py-2 rounded">
+  Click me
+</button>
+```
+
+### 5. Form Components Must Use shadcn/ui
+
+**All forms must use shadcn/ui Input, Label, Select:**
+
+```tsx
+// ✅ GOOD: shadcn/ui form components
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
+
+<form>
+  <div>
+    <Label htmlFor="email">Email</Label>
+    <Input id="email" type="email" />
+  </div>
+  <Button type="submit">Submit</Button>
+</form>
+
+// ❌ BAD: Raw HTML inputs
+<input className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2" />
+```
+
+### 6. Tailwind Utilities Only for Layout/Spacing
+
+**Use Tailwind for:**
+- Layout: `flex`, `grid`, `space-y-4`, `gap-6`
+- Spacing: `p-6`, `mt-4`, `mb-8`
+- Responsive: `md:grid-cols-2`, `lg:hidden`
+- Positioning: `relative`, `absolute`, `sticky`
+
+**Don't use Tailwind for:**
+- Component styling (use shadcn/ui variants)
+- Colors (use theme tokens via shadcn/ui)
+- Interactive states (use shadcn/ui component props)
+
+### 7. Custom Components Only When Necessary
+
+**Create custom components ONLY if:**
+1. Repeated 3+ times across features
+2. shadcn/ui doesn't have equivalent
+3. Composed from multiple shadcn/ui components
+4. Domain-specific (e.g., `ProjectCard`, `WorkflowStep`)
+
+**Custom component structure:**
+```tsx
+// src/features/<feature>/ui/<ComponentName>.tsx
+"use client";
+
+import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+// ... other shadcn/ui imports
+
+export function FeatureCard({ data }: { data: FeatureData }) {
+  // Compose shadcn/ui components
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>{data.name}</CardTitle>
+      </CardHeader>
+      {/* ... */}
+    </Card>
+  );
+}
+```
+
+### 8. No Inline Style Functions
+
+**Extract style logic to utilities or use component variants:**
+
+```tsx
+// ✅ GOOD: Use Badge variants
+import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
+
+const statusVariants = {
+  proceed: "default",
+  pivot: "secondary",
+  kill: "destructive",
+} as const;
+
+<Badge variant={statusVariants[verdict.toLowerCase()] || "secondary"}>
+  {verdict}
+</Badge>
+
+// ❌ BAD: Inline style functions
+function getStatusColor(status: string): string {
+  return `bg-${status}-500/20 text-${status}-400`;
+}
+```
+
+### 9. Accessibility Built-In
+
+**shadcn/ui components are accessible by default. Don't override accessibility:**
+
+- Use semantic HTML (shadcn/ui does this)
+- Use ARIA attributes via component props (shadcn/ui provides these)
+- Don't remove focus indicators
+- Don't override keyboard navigation
+
+### 10. Component File Organization
+
+**Component location rules:**
+- `src/components/ui/` - shadcn/ui components only (don't modify these)
+- `src/features/<feature>/ui/` - Feature-specific components (compose shadcn/ui)
+- `src/components/<category>/` - Shared domain components (e.g., `navigation/`, `docs/`)
+
+**When to put in `src/components/` vs `src/features/<feature>/ui/`:**
+- `src/components/` - Used by 2+ features
+- `src/features/<feature>/ui/` - Used only by one feature
+
+## Checklist Before Creating UI
+
+- [ ] Checked shadcn/ui components list
+- [ ] Tried composing existing shadcn/ui components
+- [ ] Used component variants instead of custom classes
+- [ ] Extracted utility functions for styling logic
+- [ ] Used Tailwind only for layout/spacing
+- [ ] Component is accessible (shadcn/ui handles this)
+- [ ] Component location follows organization rules
+
+## Common Patterns
+
+### Filter Buttons
+```tsx
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+
+<Button
+  variant={filter === "all" ? "default" : "outline"}
+  onClick={() => setFilter("all")}
+>
+  All Ideas
+</Button>
+```
+
+### Status Badges
+```tsx
+import { Badge } from "@/components/ui/badge";
+
+<Badge variant={status === "active" ? "default" : "secondary"}>
+  {status}
+</Badge>
+```
+
+### Cards with Actions
+```tsx
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+
+<Card>
+  <CardHeader>
+    <CardTitle>Title</CardTitle>
+  </CardHeader>
+  <CardContent>Content</CardContent>
+  <CardFooter>
+    <Button>Action</Button>
+  </CardFooter>
+</Card>
+```
+
+## References
+
+- shadcn/ui docs: https://ui.shadcn.com
+- Radix UI docs: https://www.radix-ui.com
+- Tailwind v3 docs: https://tailwindcss.com/docs

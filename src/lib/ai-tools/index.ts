@@ -33,6 +33,14 @@ export {
   createCanvaDesign,
 } from "./visual";
 
+// Google AI Studio (Gemini)
+export {
+  generateImage,
+  generateDesign,
+  generateMultimodal,
+  generateVisualWithGoogleAI,
+} from "./google-ai-studio";
+
 // Types
 export type {
   AIResponse,

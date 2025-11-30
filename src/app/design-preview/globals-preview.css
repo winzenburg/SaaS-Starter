@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+@theme {
+  /* Cosmic Dusk - Dark Mode Palette */
+  
+  /* Base Colors */
+  --background: 240 20% 8%; /* Deep Charcoal Indigo */
+  --foreground: 220 10% 90%; /* Soft Off-White */
+  
+  /* Card & Popover - Subtle Glassmorphism Base */
+  --card: 240 20% 12%;      /* Slightly lighter than background */
+  --card-foreground: var(--foreground);
+  --popover: var(--card);
+  --popover-foreground: var(--foreground);
+  
+  /* Primary Accent - Vibrant Magenta/Fuchsia */
+  --primary: 320 80% 60%;
+  --primary-foreground: 240 20% 8%; /* Dark text for primary background */
+  
+  /* Secondary Accent - Muted Emerald Green */
+  --secondary: 160 50% 40%;
+  --secondary-foreground: var(--foreground);
+  
+  /* Muted & Border Elements */
+  --muted: 230 15% 20%;     /* Desaturated Gray-Blue */
+  --muted-foreground: 220 10% 70%; /* Lighter muted text */
+  --accent: 217.2 32.6% 17.5%;
+  --accent-foreground: 210 40% 98%;
+  --border: 230 15% 20%;    /* Matches muted for subtle borders */
+  --input: 230 15% 20%;     /* Matches muted for input backgrounds */
+  
+  /* Interactive States */
+  --accent: 190 70% 60%;    /* Bright Cyan for subtle accents/hover states */
+  --accent-foreground: var(--background);
+  
+  /* Destructive Actions */
+  --destructive: 0 70% 50%; /* Classic Red */
+  --destructive-foreground: var(--foreground);
+  
+  /* Focus Ring */
+  --ring: 320 80% 70%;      /* Brighter Primary for focus glow */
+  
+  /* Border Radius */
+  --radius: 0.75rem; /* Slightly more rounded for a softer, modern feel */
+}
+

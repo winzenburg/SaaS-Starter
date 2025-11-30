@@ -1,7 +1,7 @@
 "use client";
 
-import { useFormState } from "react-dom";
-import { exampleAction, type ExampleActionState } from "../data/exampleAction";
+import { useFormState } from"react-dom";
+import { exampleAction, type ExampleActionState } from"../data/exampleAction";
 
 /**
  * Example form component
@@ -25,8 +25,8 @@ export function ExampleForm() {
           type="email"
           required
           className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2"
-          aria-invalid={state?.success === false ? "true" : "false"}
-          aria-describedby={state?.success === false ? "email-error" : undefined}
+          aria-invalid={state?.success === false ?"true" :"false"}
+          aria-describedby={state?.success === false ?"email-error" : undefined}
         />
         {state?.success === false && (
           <p id="email-error" className="mt-1 text-sm text-red-600" role="alert">
@@ -45,8 +45,8 @@ export function ExampleForm() {
           type="text"
           required
           className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2"
-          aria-invalid={state?.success === false ? "true" : "false"}
-          aria-describedby={state?.success === false ? "name-error" : undefined}
+          aria-invalid={state?.success === false ?"true" :"false"}
+          aria-describedby={state?.success === false ?"name-error" : undefined}
         />
         {state?.success === false && (
           <p id="name-error" className="mt-1 text-sm text-red-600" role="alert">
@@ -57,7 +57,7 @@ export function ExampleForm() {
 
       <button
         type="submit"
-        className="rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+        className="rounded-md bg-[var(--primary)] px-4 py-2 text-[hsl(var(--text-main))] hover:bg-[var(--primary)]/90"
       >
         Submit
       </button>

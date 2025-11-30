@@ -41,6 +41,11 @@ const mainNavLinks: NavLink[] = [
     label: "Workflows",
     description: "Discovery and validation workflows",
   },
+  {
+    href: "/articles",
+    label: "Articles",
+    description: "Product creation insights and guides",
+  },
 ];
 
 export function GlobalNav() {
@@ -60,8 +65,8 @@ export function GlobalNav() {
                   href={link.href}
                   className={cn(
                     navigationMenuTriggerStyle(),
-                    "bg-transparent text-gray-300 hover:bg-slate-800 hover:text-white data-[active]:bg-blue-600 data-[active]:text-white",
-                    isActive && "bg-blue-600 text-white hover:bg-blue-700"
+                    "bg-transparent text-muted-foreground hover:bg-accent hover:text-accent-foreground rounded-md transition-colors",
+                    isActive && "bg-[var(--primary)]/10 text-[var(--primary)] hover:bg-[var(--primary)]/10"
                   )}
                   aria-current={isActive ? "page" : undefined}
                   aria-label={link.description || link.label}

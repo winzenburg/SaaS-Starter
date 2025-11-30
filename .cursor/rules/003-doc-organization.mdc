@@ -27,10 +27,11 @@
 - `/docs/discovery/OPPORTUNITY-enterprise-design-system-startups.md`
 - `/docs/discovery/REDTEAM-enterprise-design-system-startups.md` (optional)
 
-### Validation Documents (`/docs/validation/`)
+### Validation Documents
 
-**All validation documents for an idea must be in `/docs/validation/` with consistent naming:**
+**Validation documents are split across multiple directories:**
 
+#### `/docs/validation/` - Validation execution documents:
 - `VALIDATION-PLAN-<idea-slug>.md` - Validation plan with tests and thresholds
 - `LANDING-<idea-slug>.md` - Landing page copy and visuals
 - `DISTRIBUTION-<idea-slug>.md` - Distribution strategy
@@ -38,6 +39,13 @@
 - `CREATIVE-BATCH-<idea-slug>.md` - Creative batch workflows (Glif)
 - `RESULTS-<idea-slug>.md` - Validation test results
 - `REDTEAM-<idea-slug>.md` - Red-Team critique (optional)
+
+#### `/docs/product/` - Validation narrative documents:
+- `NARRATIVE-<idea-slug>.md` - Narrative variations for validation messaging (from Step 3)
+
+#### `/docs/research/` - Validation research documents:
+- `PERSONA-<idea-slug>.md` - Detailed persona for validation targeting (from Step 3)
+- `COMPETITORS-<idea-slug>.md` - Competitor analysis for validation positioning (from Step 3)
 
 **Example**: For idea "enterprise-design-system-startups":
 - `/docs/validation/VALIDATION-PLAN-enterprise-design-system-startups.md`
@@ -47,6 +55,9 @@
 - `/docs/validation/CREATIVE-BATCH-enterprise-design-system-startups.md`
 - `/docs/validation/RESULTS-enterprise-design-system-startups.md`
 - `/docs/validation/REDTEAM-enterprise-design-system-startups.md` (optional)
+- `/docs/product/NARRATIVE-enterprise-design-system-startups.md` (validation phase)
+- `/docs/research/PERSONA-enterprise-design-system-startups.md` (validation phase)
+- `/docs/research/COMPETITORS-enterprise-design-system-startups.md` (validation phase)
 
 ### Automation Specs (`/docs/automation/lindy/`)
 
@@ -127,21 +138,25 @@
 - REDTEAM (optional but recommended)
 
 **A complete validation doc set includes:**
-- VALIDATION-PLAN
-- LANDING
-- DISTRIBUTION
-- PRICING-TEST
-- CREATIVE-BATCH
-- RESULTS (after tests run)
-- REDTEAM (optional but recommended)
+- VALIDATION-PLAN (in `/docs/validation/`)
+- NARRATIVE (in `/docs/product/`, from Step 3)
+- PERSONA (in `/docs/research/`, from Step 3)
+- COMPETITORS (in `/docs/research/`, from Step 3)
+- LANDING (in `/docs/validation/`)
+- DISTRIBUTION (in `/docs/validation/`)
+- PRICING-TEST (in `/docs/validation/`)
+- CREATIVE-BATCH (in `/docs/validation/`)
+- RESULTS (in `/docs/validation/`, after tests run)
+- REDTEAM (in `/docs/validation/`, optional but recommended)
 
 ## Integration with Other Rules
 
 - **Rule 301 (Discovery Overview)**: Discovery docs must be in `/docs/discovery/`
-- **Rule 040 (Demand Validation)**: Validation docs must be in `/docs/validation/`
+- **Rule 040 (Demand Validation)**: Validation docs must be in `/docs/validation/`, `/docs/product/`, and `/docs/research/`
 - **Rule 090 (Lindy Integration)**: Automation specs must be in `/docs/automation/lindy/`
 - **Rule 302 (Discovery Workflow)**: All discovery agents output to `/docs/discovery/`
-- **Rule 200 (Validation Playbook)**: All validation agents output to `/docs/validation/`
+- **Rule 200 (Validation Playbook)**: Validation agents output to `/docs/validation/`, `/docs/product/`, and `/docs/research/`
+- **Rule 138 (Hub Document Discovery)**: Hub must search all document directories including `/docs/product/` and `/docs/research/`
 
 ## Document Quality
 
@@ -157,12 +172,16 @@
 
 ## Summary
 
-1. **Discovery docs**: `/docs/discovery/` with `NARRATIVE-`, `NICHE-INTEL-`, `PAIN-SIGNALS-`, `JTBD-`, `OPPORTUNITY-`, `REDTEAM-` prefixes
-2. **Validation docs**: `/docs/validation/` with `VALIDATION-PLAN-`, `LANDING-`, `DISTRIBUTION-`, `PRICING-TEST-`, `CREATIVE-BATCH-`, `RESULTS-`, `REDTEAM-` prefixes
+1. **Discovery docs**: `/docs/discovery/` with `NICHE-INTEL-`, `PAIN-SIGNALS-`, `JTBD-`, `OPPORTUNITY-`, `MANUS-`, `CHATGPT-REFINEMENT-`, `REDTEAM-` prefixes
+2. **Validation docs**: Split across multiple directories:
+   - `/docs/validation/` with `VALIDATION-PLAN-`, `LANDING-`, `DISTRIBUTION-`, `PRICING-TEST-`, `CREATIVE-BATCH-`, `RESULTS-`, `REDTEAM-` prefixes
+   - `/docs/product/` with `NARRATIVE-` prefix (validation phase)
+   - `/docs/research/` with `PERSONA-`, `COMPETITORS-` prefixes (validation phase)
 3. **Automation specs**: `/docs/automation/lindy/` with `LINDY-SPEC-` prefix
 4. **Idea slug**: Lowercase, hyphenated, descriptive, consistent across all docs
 5. **One idea = one full doc set**: All docs for an idea share the same `<idea-slug>`
 6. **Real files only**: No placeholder files, use README for status tracking
+7. **Hub discovery**: Hub must search all directories (see Rule 138)
 
 **This prevents chaos by ensuring every idea has a complete, organized document set in predictable locations.**
 

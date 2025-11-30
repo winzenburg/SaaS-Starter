@@ -20,6 +20,9 @@ OPENAI_API_KEY=your_key_here
 # ElevenLabs
 ELEVENLABS_API_KEY=your_key_here
 
+# Google AI Studio (Gemini)
+GOOGLE_AI_STUDIO_API_KEY=your_key_here
+
 # Canva
 CANVA_API_KEY=your_key_here
 CANVA_BRAND_ID=your_brand_id
@@ -136,7 +139,40 @@ const audio = await generateVoice({
 
 **Output Location**: `/docs/product/AUDIO-<content>.mp3`
 
-### 4. Midjourney/Canva (Visual Assets)
+### 4. Google AI Studio (Gemini) - Advanced Visual Generation
+
+**When**: Advanced image generation, multimodal design, brand-consistent visuals
+
+**Pattern**:
+```typescript
+import { generateImage, generateDesign, generateMultimodal } from "@/lib/ai-tools/google-ai-studio";
+
+// Image generation
+const heroImage = await generateImage({
+  prompt: "Modern SaaS dashboard, clean design, professional",
+  style: "minimalist, tech-forward",
+  aspectRatio: "16:9",
+  model: "gemini-1.5-pro",
+});
+
+// Multimodal design with reference images
+const brandConsistentDesign = await generateDesign({
+  prompt: "Landing page hero image",
+  style: "modern, clean",
+  referenceImages: [brandGuidelinesImage],
+  creativeMode: false,
+});
+
+// Image analysis and feedback
+const designAnalysis = await generateMultimodal({
+  prompt: "Analyze this design and suggest improvements",
+  images: [{ base64: currentDesign, mimeType: "image/png" }],
+});
+```
+
+**Output Location**: `/docs/product/VISUALS-<product>/`
+
+### 5. Midjourney/Canva (Visual Assets)
 
 **When**: Hero images, concept visuals, marketing materials
 

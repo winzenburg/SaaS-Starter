@@ -2,11 +2,9 @@
  * Workflow Steps Component
  * 
  * Displays all steps in a workflow with their status
- */
+ */"use client";
 
-"use client";
-
-import type { Workflow, WorkflowStep } from "@/lib/workflows/types";
+import type { Workflow, WorkflowStep } from"@/lib/workflows/types";
 
 interface WorkflowStepsProps {
   workflow: Workflow;
@@ -16,42 +14,42 @@ interface WorkflowStepsProps {
 export function WorkflowSteps({ workflow }: WorkflowStepsProps) {
   const getStepStatusIcon = (status: WorkflowStep["status"]) => {
     switch (status) {
-      case "completed":
-        return "✓";
-      case "in_progress":
-        return "⟳";
-      case "failed":
-        return "✗";
-      case "paused":
-        return "⏸";
+      case"completed":
+        return"✓";
+      case"in_progress":
+        return"⟳";
+      case"failed":
+        return"✗";
+      case"paused":
+        return"⏸";
       default:
-        return "○";
+        return"○";
     }
   };
 
   const getStepStatusColor = (status: WorkflowStep["status"]) => {
     switch (status) {
-      case "completed":
-        return "text-green-400";
-      case "in_progress":
-        return "text-blue-400 animate-spin";
-      case "failed":
-        return "text-red-400";
-      case "paused":
-        return "text-yellow-400";
+      case"completed":
+        return"text-green-400";
+      case"in_progress":
+        return"text-[var(--primary)] animate-spin";
+      case"failed":
+        return"text-red-400";
+      case"paused":
+        return"text-yellow-400";
       default:
-        return "text-gray-500";
+        return"text-[hsl(var(--text-muted))]";
     }
   };
 
   return (
     <div>
-      <h4 className="font-medium mb-3 text-white">Steps</h4>
+      <h4 className="font-medium mb-3 text-[hsl(var(--text-main))]">Steps</h4>
       <div className="space-y-2">
         {workflow.steps.map((step) => (
           <div
             key={step.id}
-            className="flex items-start gap-3 p-2 rounded hover:bg-slate-800/50 transition-colors duration-300"
+            className="flex items-start gap-3 p-2 rounded transition-colors duration-300"
           >
             <div
               className={`text-lg font-bold ${getStepStatusColor(step.status)}`}
@@ -60,9 +58,9 @@ export function WorkflowSteps({ workflow }: WorkflowStepsProps) {
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2">
-                <span className="text-sm font-medium text-gray-300">{step.name}</span>
+                <span className="text-sm font-medium text-[hsl(var(--text-muted))]">{step.name}</span>
                 {step.agent && (
-                  <span className="text-xs text-gray-500">
+                  <span className="text-xs text-[hsl(var(--text-muted))]">
                     ({step.agent})
                   </span>
                 )}
@@ -71,11 +69,11 @@ export function WorkflowSteps({ workflow }: WorkflowStepsProps) {
                 <div className="text-xs text-red-400 mt-1">{step.error}</div>
               )}
               {step.metadata?.note !== undefined && step.metadata.note !== null && (
-                <div className="text-xs text-gray-500 mt-1">
+                <div className="text-xs text-[hsl(var(--text-muted))] mt-1">
                   {(() => {
                     const note = step.metadata.note;
-                    if (typeof note === "string") return note;
-                    if (typeof note === "number" || typeof note === "boolean") return String(note);
+                    if (typeof note ==="string") return note;
+                    if (typeof note ==="number" || typeof note ==="boolean") return String(note);
                     try {
                       return JSON.stringify(note);
                     } catch {
@@ -85,13 +83,13 @@ export function WorkflowSteps({ workflow }: WorkflowStepsProps) {
                 </div>
               )}
               {step.startedAt && (
-                <div className="text-xs text-gray-500 mt-1">
-                  Started: {new Date(step.startedAt).toISOString().replace("T", " ").slice(0, 16)}
+                <div className="text-xs text-[hsl(var(--text-muted))] mt-1">
+                  Started: {new Date(step.startedAt).toISOString().replace("T","").slice(0, 16)}
                 </div>
               )}
               {step.completedAt && (
-                <div className="text-xs text-gray-500">
-                  Completed: {new Date(step.completedAt).toISOString().replace("T", " ").slice(0, 16)}
+                <div className="text-xs text-[hsl(var(--text-muted))]">
+                  Completed: {new Date(step.completedAt).toISOString().replace("T","").slice(0, 16)}
                 </div>
               )}
             </div>

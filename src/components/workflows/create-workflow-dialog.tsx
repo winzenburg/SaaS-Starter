@@ -2,12 +2,10 @@
  * Create Workflow Dialog
  * 
  * Dialog for creating new discovery or validation workflows
- */
+ */"use client";
 
-"use client";
-
-import { useState, useEffect, useRef } from "react";
-import type { WorkflowPhase } from "@/lib/workflows/types";
+import { useState, useEffect, useRef } from"react";
+import type { WorkflowPhase } from"@/lib/workflows/types";
 
 interface CreateWorkflowDialogProps {
   onClose: () => void;
@@ -24,8 +22,8 @@ export function CreateWorkflowDialog({
   initialSlug,
   initialName,
 }: CreateWorkflowDialogProps & { initialSlug?: string; initialName?: string }) {
-  const [ideaSlug, setIdeaSlug] = useState(initialSlug || "");
-  const [ideaName, setIdeaName] = useState(initialName || "");
+  const [ideaSlug, setIdeaSlug] = useState(initialSlug ||"");
+  const [ideaName, setIdeaName] = useState(initialName ||"");
   const [phase, setPhase] = useState<WorkflowPhase>("discovery");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -57,7 +55,7 @@ export function CreateWorkflowDialog({
 
     // Handle Escape key
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && !submitting) {
+      if (e.key ==="Escape" && !submitting) {
         onClose();
       }
     };
@@ -103,7 +101,7 @@ export function CreateWorkflowDialog({
     try {
       onCreate({ ideaSlug: ideaSlug.trim(), ideaName: ideaName.trim(), phase });
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to create workflow");
+      setError(err instanceof Error ? err.message :"Failed to create workflow");
     } finally {
       setSubmitting(false);
     }
@@ -127,10 +125,10 @@ export function CreateWorkflowDialog({
         className="glass-modal rounded-lg p-6 max-w-md w-full mx-4"
         onClick={(e) => e.stopPropagation()}
       >
-        <h2 id="dialog-title" className="text-2xl font-bold mb-2 text-white">
+        <h2 id="dialog-title" className="text-2xl font-bold mb-2 text-[hsl(var(--text-main))]">
           Create New Workflow
         </h2>
-        <p id="dialog-description" className="text-sm text-gray-400 mb-6">
+        <p id="dialog-description" className="text-sm text-[hsl(var(--text-muted))] mb-6">
           Fill in the form below to create a new discovery or validation workflow
         </p>
 
@@ -149,7 +147,7 @@ export function CreateWorkflowDialog({
           <div>
             <label
               htmlFor="ideaName"
-              className="block text-base font-semibold mb-2 text-white"
+              className="block text-base font-semibold mb-2 text-[hsl(var(--text-main))]"
             >
               Idea Name <span className="text-red-400 font-bold" aria-label="required">*</span>
             </label>
@@ -162,11 +160,11 @@ export function CreateWorkflowDialog({
                 setIdeaName(e.target.value);
                 setError(null);
               }}
-              className="w-full px-4 py-3 text-base text-white bg-slate-800 border border-slate-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder:text-gray-500"
+              className="w-full px-4 py-3 text-base text-[hsl(var(--text-main))] border rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-[var(--primary)] placeholder:text-[hsl(var(--text-muted))]"
               placeholder="Enterprise Design System for Startups"
               required
               aria-required="true"
-              aria-invalid={error && !ideaName.trim() ? "true" : "false"}
+              aria-invalid={error && !ideaName.trim() ?"true" :"false"}
               aria-describedby="ideaName-hint"
             />
             <p id="ideaName-hint" className="sr-only">
@@ -177,7 +175,7 @@ export function CreateWorkflowDialog({
           <div>
             <label
               htmlFor="ideaSlug"
-              className="block text-base font-semibold mb-2 text-white"
+              className="block text-base font-semibold mb-2 text-[hsl(var(--text-main))]"
             >
               Idea Slug <span className="text-red-400 font-bold" aria-label="required">*</span>
             </label>
@@ -186,17 +184,17 @@ export function CreateWorkflowDialog({
               type="text"
               value={ideaSlug}
               onChange={(e) => {
-                setIdeaSlug(e.target.value.toLowerCase().replace(/\s+/g, "-"));
+                setIdeaSlug(e.target.value.toLowerCase().replace(/\s+/g,"-"));
                 setError(null);
               }}
-              className="w-full px-4 py-3 text-base text-white bg-slate-800 border border-slate-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder:text-gray-500"
+              className="w-full px-4 py-3 text-base text-[hsl(var(--text-main))] border rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-[var(--primary)] placeholder:text-[hsl(var(--text-muted))]"
               placeholder="enterprise-design-system"
               required
               aria-required="true"
-              aria-invalid={error && !ideaSlug.trim() ? "true" : "false"}
+              aria-invalid={error && !ideaSlug.trim() ?"true" :"false"}
               aria-describedby="ideaSlug-hint ideaSlug-format"
             />
-            <p id="ideaSlug-format" className="text-sm text-gray-400 mt-2 font-medium">
+            <p id="ideaSlug-format" className="text-sm text-[hsl(var(--text-muted))] mt-2 font-medium">
               Lowercase, hyphenated (e.g., &quot;enterprise-design-system&quot;)
             </p>
             <p id="ideaSlug-hint" className="sr-only">
@@ -207,7 +205,7 @@ export function CreateWorkflowDialog({
           <div>
             <label
               htmlFor="phase"
-              className="block text-base font-semibold mb-2 text-white"
+              className="block text-base font-semibold mb-2 text-[hsl(var(--text-main))]"
             >
               Phase <span className="text-red-400 font-bold" aria-label="required">*</span>
             </label>
@@ -215,7 +213,7 @@ export function CreateWorkflowDialog({
               id="phase"
               value={phase}
               onChange={(e) => setPhase(e.target.value as WorkflowPhase)}
-              className="w-full px-4 py-3 text-base text-white bg-slate-800 border border-slate-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full px-4 py-3 text-base text-[hsl(var(--text-main))]  border  rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:focus:border-[var(--primary)]"
               required
               aria-required="true"
               aria-describedby="phase-hint phase-description"
@@ -223,10 +221,10 @@ export function CreateWorkflowDialog({
               <option value="discovery">Discovery</option>
               <option value="validation">Validation</option>
             </select>
-            <p id="phase-description" className="text-sm text-gray-400 mt-2 font-medium">
-              {phase === "discovery"
-                ? "8-step discovery process (Manus → ChatGPT → Cursor agents)"
-                : "6-step validation process (Demand validation → Landing → Distribution)"}
+            <p id="phase-description" className="text-sm text-[hsl(var(--text-muted))] mt-2 font-medium">
+              {phase ==="discovery"
+                ?"8-step discovery process (Manus → ChatGPT → Cursor agents)"
+                :"6-step validation process (Demand validation → Landing → Distribution)"}
             </p>
             <p id="phase-hint" className="sr-only">
               Select whether this is a discovery workflow or validation workflow
@@ -238,7 +236,7 @@ export function CreateWorkflowDialog({
               type="button"
               onClick={onClose}
               disabled={submitting}
-              className="px-6 py-3 text-base font-semibold text-gray-300 bg-slate-800 border border-slate-700 rounded-md hover:bg-slate-700 hover:border-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-900 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              className="px-6 py-3 text-base font-semibold text-[hsl(var(--text-muted))] border rounded-md hover:border-[hsl(var(--primary))] focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
               aria-label="Cancel and close dialog"
             >
               Cancel
@@ -246,7 +244,7 @@ export function CreateWorkflowDialog({
             <button
               type="submit"
               disabled={submitting}
-              className="px-6 py-3 text-base font-semibold text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-900 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              className="px-6 py-3 text-base font-semibold text-[hsl(var(--text-main))] bg-[var(--primary)] rounded-md hover:bg-[var(--primary)]/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-slate-900 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
               aria-busy={submitting}
             >
               {submitting ? (
@@ -254,8 +252,7 @@ export function CreateWorkflowDialog({
                   <span aria-hidden="true">Creating...</span>
                   <span className="sr-only">Creating workflow, please wait</span>
                 </>
-              ) : (
-                "Create Workflow"
+              ) : ("Create Workflow"
               )}
             </button>
           </div>

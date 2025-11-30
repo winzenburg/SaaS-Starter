@@ -1,0 +1,353 @@
+# Google AI Studio (Gemini) Integration
+
+> Integration patterns for Google AI Studio's Gemini API for advanced image generation and multimodal design
+
+## Overview
+
+Google AI Studio provides access to Gemini models with advanced capabilities:
+- **Multimodal prompts** - Combine text and images in a single request
+- **Image analysis** - Analyze existing images and provide design feedback
+- **Enhanced prompt generation** - Create detailed prompts for image generation tools
+- **Design iteration** - Refine designs through multimodal understanding
+- **Creative guidance** - Get AI-powered design suggestions and improvements
+
+**Note**: Gemini models analyze and understand images but don't directly generate images. However, they excel at:
+- Analyzing design compositions
+- Generating detailed image descriptions
+- Creating enhanced prompts for Midjourney/Canva
+- Providing design feedback and improvements
+
+## Rule
+
+All Google AI Studio integrations must follow the established AI tool patterns for consistency, reliability, and maintainability.
+
+## Environment Variables
+
+```bash
+GOOGLE_AI_STUDIO_API_KEY=your_api_key_here
+GOOGLE_AI_STUDIO_MODEL=gemini-1.5-pro  # Optional, defaults to gemini-1.5-pro
+```
+
+**Get API Key**: [Google AI Studio](https://aistudio.google.com/) → Get API Key → Create API Key
+
+## API Client Pattern
+
+The Google AI Studio client is located at `src/lib/ai-tools/google-ai-studio.ts`:
+
+```typescript
+import {
+  generateImage,
+  generateDesign,
+  generateMultimodal,
+  generateVisualWithGoogleAI,
+} from "@/lib/ai-tools/google-ai-studio";
+```
+
+## Usage Patterns
+
+### 1. Image Generation
+
+**When**: Creating hero images, concept visuals, social ad creatives
+
+**Pattern**:
+```typescript
+import { generateImage } from "@/lib/ai-tools/google-ai-studio";
+
+const result = await generateImage({
+  prompt: "Modern SaaS dashboard, clean design, professional",
+  style: "minimalist, tech-forward",
+  aspectRatio: "16:9",
+  model: "gemini-1.5-pro",
+  negativePrompt: "cluttered, low quality",
+});
+```
+
+**Use Cases**:
+- Landing page hero images
+- Social media ad visuals
+- Product mockups
+- Concept diagrams
+
+**Output Location**: `/docs/product/VISUALS-<product>/`
+
+### 2. Design Creation (Multimodal)
+
+**When**: Creating designs with reference images or style guides
+
+**Pattern**:
+```typescript
+import { generateDesign } from "@/lib/ai-tools/google-ai-studio";
+
+const result = await generateDesign({
+  prompt: "Create a landing page hero image",
+  style: "modern, clean, startup-friendly",
+  aspectRatio: "16:9",
+  referenceImages: [
+    "data:image/png;base64,...", // Base64 encoded reference image
+  ],
+  creativeMode: true, // Enable enhanced creativity
+});
+```
+
+**Use Cases**:
+- Brand-consistent designs
+- Style guide-based visuals
+- Iterative design refinement
+- Multi-image compositions
+
+### 3. Multimodal Content Generation
+
+**When**: Analyzing images and generating text descriptions or design feedback
+
+**Pattern**:
+```typescript
+import { generateMultimodal } from "@/lib/ai-tools/google-ai-studio";
+
+const result = await generateMultimodal({
+  prompt: "Analyze this design and suggest improvements",
+  images: [
+    {
+      base64: "iVBORw0KGgoAAAANSUhEUgAA...",
+      mimeType: "image/png",
+    },
+  ],
+  model: "gemini-1.5-pro",
+});
+```
+
+**Use Cases**:
+- Design critique and feedback
+- Image analysis for validation
+- Style extraction from references
+- Design iteration guidance
+
+### 4. Enhanced Visual Generation
+
+**When**: Using Google AI Studio as primary visual generation tool
+
+**Pattern**:
+```typescript
+import { generateVisualWithGoogleAI } from "@/lib/ai-tools/google-ai-studio";
+
+const result = await generateVisualWithGoogleAI({
+  prompt: "Modern SaaS dashboard hero image",
+  style: "minimalist, professional",
+  aspectRatio: "16:9",
+  creativeMode: false, // Professional quality
+});
+```
+
+**Integration**: The `generateVisual()` function automatically tries Google AI Studio first if the API key is available, then falls back to Canva, then Midjourney prompts.
+
+## Model Options
+
+### Available Models
+
+- **gemini-1.5-pro** (default) - Best for complex tasks, multimodal
+- **gemini-1.5-flash** - Faster, cost-effective for simpler tasks
+- **gemini-pro** - Previous generation, still supported
+
+### Model Selection Guidelines
+
+- **Use gemini-1.5-pro for**:
+  - Complex multimodal prompts
+  - High-quality image generation
+  - Design refinement
+  - Creative mode
+
+- **Use gemini-1.5-flash for**:
+  - Quick iterations
+  - Simple visual descriptions
+  - Cost-effective generation
+  - Bulk operations
+
+## Integration with Visual Workflow
+
+Google AI Studio integrates seamlessly into the existing visual asset workflow:
+
+```
+Visual Asset Request
+  ↓
+Try Google AI Studio (if API key available)
+  ↓
+If unavailable → Try Canva
+  ↓
+If unavailable → Generate Midjourney prompt
+  ↓
+Return result or fallback
+```
+
+## Quality Gates
+
+Before using Google AI Studio outputs:
+
+1. ✅ Review generated content for accuracy
+2. ✅ Validate style matches requirements
+3. ✅ Check aspect ratio is correct
+4. ✅ Verify quality meets standards
+5. ✅ Ensure no inappropriate content
+
+## Error Handling
+
+All Google AI Studio calls handle errors gracefully:
+
+```typescript
+try {
+  const result = await generateImage(request);
+  if (result.success) {
+    return result.data;
+  } else {
+    // Fall back to alternative
+    return await generateMidjourneyPrompt(request);
+  }
+} catch (error) {
+  console.error("Google AI Studio error:", error);
+  // Use fallback method
+}
+```
+
+## Rate Limiting
+
+- **Free Tier**: Generous daily quotas
+- **Paid Tier**: Higher rate limits
+- **Best Practice**: Monitor usage via Google Cloud Console
+- **Retry Logic**: Implement exponential backoff for rate limits
+
+## Cost Management
+
+### Pricing (Approximate)
+
+- **Free Tier**: Generous quotas for testing
+- **Paid Tier**: Pay-per-use pricing
+- **Cost per Image**: Varies by model and complexity
+
+### Optimization Tips
+
+1. **Cache results** - Reuse generated visuals when possible
+2. **Use flash model** - For simpler tasks to reduce costs
+3. **Batch requests** - Generate multiple variants at once
+4. **Set budgets** - Monitor usage in Google Cloud Console
+
+## Multimodal Capabilities
+
+### Supported Input Types
+
+- **Text prompts** - Natural language descriptions
+- **Images** - Base64 encoded or URLs (with fetching)
+- **Combined** - Text + image inputs in single request
+
+### Output Types
+
+- **Text descriptions** - Detailed visual descriptions
+- **Design specifications** - Structured design requirements
+- **Image metadata** - Style, color, composition analysis
+
+## Use Cases in Workflow
+
+### Landing Page Creation
+
+```typescript
+// Generate hero image with brand consistency
+const heroImage = await generateDesign({
+  prompt: "Modern SaaS dashboard hero",
+  style: "minimalist, tech-forward",
+  referenceImages: [brandGuidelinesImage],
+  aspectRatio: "16:9",
+});
+```
+
+### Social Ad Creation
+
+```typescript
+// Generate platform-specific ad visuals
+const linkedInAd = await generateImage({
+  prompt: "Professional SaaS product showcase",
+  style: "corporate, clean, LinkedIn-optimized",
+  aspectRatio: "1:1",
+});
+
+const instagramAd = await generateImage({
+  prompt: "Dynamic SaaS product showcase",
+  style: "vibrant, engaging, Instagram-optimized",
+  aspectRatio: "4:5",
+  creativeMode: true,
+});
+```
+
+### Design Iteration
+
+```typescript
+// Analyze existing design and suggest improvements
+const analysis = await generateMultimodal({
+  prompt: "Analyze this design and suggest improvements for better conversion",
+  images: [{ base64: currentDesign, mimeType: "image/png" }],
+});
+
+// Generate improved version
+const improved = await generateDesign({
+  prompt: analysis.data.content,
+  referenceImages: [currentDesign],
+  creativeMode: false,
+});
+```
+
+## Integration with Other Tools
+
+### Complement to Midjourney
+
+- **Google AI Studio**: Multimodal, brand consistency, iterations
+- **Midjourney**: Unique artistic styles, high-quality renders
+
+### Complement to Canva
+
+- **Google AI Studio**: AI-powered design generation
+- **Canva**: Template-based, quick iterations, brand kits
+
+### Workflow Combination
+
+```
+1. Google AI Studio → Generate design concepts
+2. Canva → Refine with templates
+3. Midjourney → Create unique artistic variants
+```
+
+## Rules
+
+1. **Always use error handling** - Graceful fallback to alternatives
+2. **Check API key availability** - Before attempting calls
+3. **Validate outputs** - Review before using in production
+4. **Monitor costs** - Track usage in Google Cloud Console
+5. **Use appropriate models** - Flash for simple, Pro for complex
+6. **Leverage multimodal** - Combine text + images for better results
+7. **Cache when possible** - Reuse generated visuals
+
+## Integration Checklist
+
+When using Google AI Studio:
+
+- [ ] API key set in `.env.local`
+- [ ] Error handling implemented
+- [ ] Fallback to alternatives configured
+- [ ] Quality gates in place
+- [ ] Cost monitoring enabled
+- [ ] Appropriate model selected
+- [ ] Multimodal capabilities used when beneficial
+
+## Related Rules
+
+- **190-ai-tool-integrations.mdc** - General AI tool integration patterns
+- **080-midjourney-canva.mdc** - Visual asset patterns (Google AI Studio complements)
+- **196-ai-quality-control.mdc** - Quality gates for AI outputs
+- **197-ai-cost-management.mdc** - Cost tracking and optimization
+
+## Summary
+
+1. **Google AI Studio** provides advanced image generation and multimodal capabilities
+2. **Multimodal support** enables text + image inputs for better results
+3. **Seamless integration** with existing visual asset workflow
+4. **Model selection** matters - Pro for complex, Flash for simple
+5. **Error handling** ensures graceful fallback to alternatives
+6. **Cost management** via Google Cloud Console monitoring
+7. **Quality gates** required before using outputs
+
+**Google AI Studio enhances the visual asset creation workflow with advanced multimodal AI capabilities.**

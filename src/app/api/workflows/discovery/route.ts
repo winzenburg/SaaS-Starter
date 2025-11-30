@@ -10,7 +10,11 @@ import {
   executeDiscoveryStep,
 } from "@/lib/workflows/discovery";
 import { saveWorkflow, loadWorkflow } from "@/lib/workflows/db";
-import type { WorkflowExecutionRequest } from "@/lib/workflows/types";
+import type { WorkflowExecutionRequest, Workflow, DiscoveryWorkflow } from "@/lib/workflows/types";
+
+function isDiscoveryWorkflow(workflow: Workflow): workflow is DiscoveryWorkflow {
+  return workflow.phase === "discovery";
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -34,6 +38,13 @@ export async function POST(request: NextRequest) {
         return NextResponse.json(
           { error: "Workflow not found" },
           { status: 404 }
+        );
+      }
+
+      if (!isDiscoveryWorkflow(workflow)) {
+        return NextResponse.json(
+          { error: "Workflow is not a discovery workflow" },
+          { status: 400 }
         );
       }
 

@@ -1,0 +1,201 @@
+# Hub Document Discovery: Multi-Directory Search Pattern
+
+**Goal**: Ensure the Hub page discovers all project documents across all document directories.
+
+## Problem
+
+The Hub page displays project documents, but documents can exist in multiple locations:
+- `/docs/discovery/` - Discovery phase documents
+- `/docs/validation/` - Validation phase documents
+- `/docs/product/` - Product strategy documents (NARRATIVE, INSIGHT, PRD, etc.)
+- `/docs/research/` - Research documents (PERSONA, COMPETITORS, MARKET, etc.)
+- `/docs/ideas/` - Orchestrator outputs
+- `/projects/{project-slug}/` - Legacy project folder documents
+
+**The Hub must search ALL of these directories to find all documents for a project.**
+
+## Solution
+
+### `findProjectDocuments` Function Pattern
+
+The `findProjectDocuments` function in `src/lib/projects/helpers.ts` must search all document directories:
+
+```typescript
+export function findProjectDocuments(
+  projectSlug: string,
+  projectDir: string
+): ProjectDocument[] {
+  const documents: ProjectDocument[] = [];
+
+  // 1. Project folder (legacy + product docs)
+  const projectDocs = findDocumentsInDirectory(
+    projectDir,
+    `/projects/${projectSlug}`,
+    projectSlug
+  );
+  documents.push(...projectDocs);
+
+  // 2. Discovery documents
+  const discoveryDir = join(process.cwd(), "docs", "discovery");
+  const discoveryDocs = findDocumentsInDirectory(discoveryDir, "/docs/discovery", projectSlug);
+  documents.push(...discoveryDocs);
+
+  // 3. Validation documents
+  const validationDir = join(process.cwd(), "docs", "validation");
+  const validationDocs = findDocumentsInDirectory(
+    validationDir,
+    "/docs/validation",
+    projectSlug
+  );
+  documents.push(...validationDocs);
+
+  // 4. Product documents (NARRATIVE, INSIGHT, PRD, MOAT, RETENTION, etc.)
+  const productDir = join(process.cwd(), "docs", "product");
+  const productDocs = findDocumentsInDirectory(
+    productDir,
+    "/docs/product",
+    projectSlug
+  );
+  documents.push(...productDocs);
+
+  // 5. Research documents (PERSONA, COMPETITORS, MARKET, etc.)
+  const researchDir = join(process.cwd(), "docs", "research");
+  const researchDocs = findDocumentsInDirectory(
+    researchDir,
+    "/docs/research",
+    projectSlug
+  );
+  documents.push(...researchDocs);
+
+  // 6. Orchestrator outputs
+  const ideasDir = join(process.cwd(), "docs", "ideas", projectSlug);
+  const ideaDocs = findDocumentsInDirectory(ideasDir, `/docs/ideas/${projectSlug}`, projectSlug);
+  documents.push(...ideaDocs);
+
+  // Sort and return
+  return documents;
+}
+```
+
+## Document Location Patterns
+
+### Validation Phase Documents
+
+According to Rule 200 (Insight Validation Playbook), Step 3 creates:
+- **NARRATIVE** → `/docs/product/NARRATIVE-<product>.md`
+- **PERSONA** → `/docs/research/PERSONA-<product>.md`
+- **COMPETITORS** → `/docs/research/COMPETITORS-<product>.md`
+
+These are **validation phase documents** but are stored in `/docs/product/` and `/docs/research/` directories, not `/docs/validation/`.
+
+### Discovery Phase Documents
+
+Discovery documents are in `/docs/discovery/`:
+- `NICHE-INTEL-<idea-slug>.md`
+- `PAIN-SIGNALS-<idea-slug>.md`
+- `JTBD-<idea-slug>.md`
+- `OPPORTUNITY-<idea-slug>.md`
+- `MANUS-<idea-slug>.md`
+- `CHATGPT-REFINEMENT-<idea-slug>.md`
+- `REDTEAM-<idea-slug>.md`
+
+### Validation Phase Documents
+
+Validation documents are in `/docs/validation/`:
+- `VALIDATION-PLAN-<idea-slug>.md`
+- `LANDING-<idea-slug>.md`
+- `DISTRIBUTION-<idea-slug>.md`
+- `PRICING-TEST-<idea-slug>.md`
+- `CREATIVE-BATCH-<idea-slug>.md`
+- `RESULTS-<idea-slug>.md`
+
+**But also in `/docs/product/` and `/docs/research/`:**
+- `/docs/product/NARRATIVE-<product>.md` (validation phase)
+- `/docs/research/PERSONA-<product>.md` (validation phase)
+- `/docs/research/COMPETITORS-<product>.md` (validation phase)
+
+## Hub Href Building Pattern
+
+The Hub page must build correct hrefs for documents in different directories:
+
+```typescript
+// Build correct href based on path
+let href = doc.path;
+if (doc.path.startsWith("/docs/discovery/")) {
+  href = `/docs/${doc.path.replace("/docs/", "")}`;
+} else if (doc.path.startsWith("/docs/validation/")) {
+  href = `/docs/${doc.path.replace("/docs/", "")}`;
+} else if (doc.path.startsWith("/docs/product/")) {
+  href = `/docs/${doc.path.replace("/docs/", "")}`;
+} else if (doc.path.startsWith("/docs/research/")) {
+  href = `/docs/${doc.path.replace("/docs/", "")}`;
+} else if (doc.path.startsWith("/docs/ideas/")) {
+  href = `/docs/${doc.path.replace("/docs/", "")}`;
+} else if (doc.path.startsWith("/projects/")) {
+  href = `/docs/product/${doc.path.replace("/projects/", "")}`;
+} else {
+  href = `/docs/product/${doc.path}`;
+}
+```
+
+## Document Viewer Path Resolution
+
+The document viewer at `/docs/product/[...path]` must check multiple directories:
+
+```typescript
+const possiblePaths = [
+  // Project folder structure
+  !path.startsWith("docs/") && path.includes("/") 
+    ? join(process.cwd(), "projects", path + ".md") 
+    : null,
+  // Discovery documents
+  path.startsWith("discovery/") 
+    ? join(process.cwd(), "docs", path + ".md") 
+    : null,
+  // Validation documents
+  path.startsWith("validation/") 
+    ? join(process.cwd(), "docs", path + ".md") 
+    : null,
+  // Research documents (REQUIRED for PERSONA, COMPETITORS, MARKET)
+  path.startsWith("research/") 
+    ? join(process.cwd(), "docs", path + ".md") 
+    : null,
+  // Ideas documents
+  path.startsWith("ideas/") 
+    ? join(process.cwd(), "docs", path + ".md") 
+    : null,
+  // Legacy project folder
+  path.startsWith("projects/") 
+    ? join(process.cwd(), path + ".md") 
+    : null,
+  // Product documents (default)
+  join(process.cwd(), "docs", "product", path + ".md"),
+].filter((p): p is string => p !== null);
+```
+
+## Rules
+
+1. **Always search all document directories** when finding project documents
+2. **Don't assume documents are in `/docs/validation/`** - validation phase documents can be in `/docs/product/` and `/docs/research/`
+3. **Build correct hrefs** based on the document's actual directory location
+4. **Check multiple paths** in the document viewer to find documents
+5. **Document phase ≠ document location** - validation phase documents can be in `/docs/product/` and `/docs/research/`
+
+## Related Rules
+
+- **003-doc-organization.mdc** - Document organization structure
+- **136-document-viewer-patterns.mdc** - Document viewer patterns
+- **137-docs-route-handlers.mdc** - Documentation route handlers (ensures routes exist before creating links)
+- **200-playbook-insight-validation.mdc** - Validation playbook (defines NARRATIVE/PERSONA/COMPETITORS locations)
+
+## Summary
+
+**The Hub must search 6 directories:**
+1. `/projects/{project-slug}/` (legacy)
+2. `/docs/discovery/` (discovery phase)
+3. `/docs/validation/` (validation phase)
+4. `/docs/product/` (product strategy, including validation NARRATIVE)
+5. `/docs/research/` (research, including validation PERSONA/COMPETITORS)
+6. `/docs/ideas/{project-slug}/` (orchestrator outputs)
+
+**Document phase does not always match document location** - validation phase documents can be in `/docs/product/` and `/docs/research/` directories.

@@ -1,0 +1,245 @@
+# Documentation Route Handlers: Required Route Handlers for All Document Types
+
+**Goal**: Prevent broken documentation links by ensuring route handlers exist for all document directories before creating links.
+
+## Rule
+
+**All document directories MUST have corresponding route handlers before any links to those directories are created.**
+
+## Problem
+
+When documentation links are created pointing to routes like `/docs/validation/...` or `/docs/discovery/...`, but route handlers don't exist, users get 404 errors. This breaks the documentation system and creates a poor user experience.
+
+## Solution
+
+### Route-to-Directory Mapping
+
+**Every document directory MUST have a matching route handler:**
+
+| Document Directory | Route Handler | Status |
+|-------------------|---------------|--------|
+| `/docs/discovery/` | `/app/docs/discovery/[...path]/page.tsx` | ✅ Required |
+| `/docs/validation/` | `/app/docs/validation/[...path]/page.tsx` | ✅ Required |
+| `/docs/research/` | `/app/docs/research/[...path]/page.tsx` | ✅ Required |
+| `/docs/product/` | `/app/docs/product/[...path]/page.tsx` | ✅ Required |
+| `/docs/ux/` | `/app/docs/ux/[...path]/page.tsx` | ⚠️ Needed if UX docs are linked |
+| `/docs/engineering/` | `/app/docs/engineering/[...path]/page.tsx` | ⚠️ Needed if engineering docs are linked |
+| `/docs/portfolio/` | `/app/docs/portfolio/[...path]/page.tsx` | ⚠️ Needed if portfolio docs are linked |
+
+### Route Handler Pattern
+
+All document route handlers MUST follow this pattern:
+
+```typescript
+// src/app/docs/{directory}/[...path]/page.tsx
+import { readFileSync } from "fs";
+import { join } from "path";
+import { notFound } from "next/navigation";
+import { MarkdownViewer } from "@/components/docs/markdown-viewer";
+import { RelatedDocuments } from "@/components/docs/related-documents";
+import Link from "next/link";
+import { ArrowLeft, FileText } from "lucide-react";
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
+interface PageProps {
+  params: Promise<{ path: string[] }>;
+}
+
+export default async function {Directory}DocumentPage({ params }: PageProps) {
+  const { path: pathArray } = await params;
+  const path = pathArray.join("/");
+  
+  let content: string | null = null;
+  
+  // Try document paths
+  const possiblePaths = [
+    join(process.cwd(), "docs", "{directory}", path + ".md"),
+    join(process.cwd(), "docs", "{directory}", path),
+  ].filter((p): p is string => p !== null);
+
+  for (const possiblePath of possiblePaths) {
+    try {
+      content = readFileSync(possiblePath, "utf-8");
+      break;
+    } catch {
+      continue;
+    }
+  }
+
+  if (!content) {
+    notFound();
+  }
+
+  // Extract title, render content, etc.
+  // ... (see existing handlers for complete pattern)
+}
+```
+
+## Requirements
+
+### Before Creating Links to Documentation
+
+**Checklist**:
+- [ ] Does the document directory exist? (`/docs/{directory}/`)
+- [ ] Does the route handler exist? (`/app/docs/{directory}/[...path]/page.tsx`)
+- [ ] Does the route handler read from the correct directory?
+- [ ] Does the route handler handle `.md` file extension automatically?
+- [ ] Does the route handler provide proper error handling (404)?
+- [ ] Does the route handler include back navigation?
+- [ ] Does the route handler use MarkdownViewer component?
+
+**If ANY item is missing → Create route handler FIRST, then create links.**
+
+### When Adding New Document Directories
+
+**Process**:
+1. **Create route handler** at `/app/docs/{directory}/[...path]/page.tsx`
+2. **Test route handler** with a sample document
+3. **Add to route mapping table** in this rule
+4. **Update document discovery** in `src/lib/projects/helpers.ts` if needed
+5. **Then create links** to documents in that directory
+
+### When Creating Documentation Links
+
+**Pattern**:
+- Links MUST use format: `/docs/{directory}/{document-name}`
+- Document name MUST NOT include `.md` extension
+- Links MUST match existing route handler patterns
+- Before creating link, verify route handler exists
+
+## Route Handler Checklist
+
+Every route handler MUST include:
+
+- ✅ **File Reading**: Reads from correct `docs/{directory}/` path
+- ✅ **Extension Handling**: Tries both `{path}.md` and `{path}` formats
+- ✅ **Error Handling**: Returns `notFound()` if file doesn't exist
+- ✅ **MarkdownViewer**: Uses `MarkdownViewer` component for rendering
+- ✅ **Back Navigation**: Provides link back to listing page or hub
+- ✅ **Related Documents**: Includes `RelatedDocuments` component
+- ✅ **Title Extraction**: Extracts readable title from filename
+- ✅ **Category Badge**: Shows document category/type badge
+- ✅ **Dynamic Rendering**: Sets `export const dynamic = "force-dynamic"`
+
+## Common Mistakes to Avoid
+
+### ❌ Bad: Creating Links Before Route Handler
+
+```typescript
+// DON'T: Creating links to routes that don't exist
+<Link href="/docs/validation/VALIDATION-PLAN-xyz" />
+// Error: 404 - route handler doesn't exist!
+```
+
+### ✅ Good: Route Handler Exists First
+
+```typescript
+// DO: Route handler exists, then create links
+// 1. Route handler at: /app/docs/validation/[...path]/page.tsx ✅
+// 2. Then create links:
+<Link href="/docs/validation/VALIDATION-PLAN-xyz" />
+```
+
+### ❌ Bad: Assuming Route Handlers Exist
+
+```typescript
+// DON'T: Assume route handler exists for all directories
+const href = `/docs/${doc.directory}/${doc.name}`;
+```
+
+### ✅ Good: Verify Route Handler Exists
+
+```typescript
+// DO: Check route handler exists before creating link
+const routeHandlers = ['discovery', 'validation', 'research', 'product'];
+if (routeHandlers.includes(doc.directory)) {
+  const href = `/docs/${doc.directory}/${doc.name}`;
+} else {
+  console.warn(`Route handler missing for /docs/${doc.directory}/`);
+}
+```
+
+## Integration with Other Rules
+
+### Rule 136: Document Viewer Patterns
+- Defines document organization and viewer patterns
+- This rule ensures route handlers exist for those patterns
+
+### Rule 138: Hub Document Discovery
+- Defines how Hub discovers documents across directories
+- This rule ensures links created by Hub have matching route handlers
+
+### Rule 110: Next.js App Router
+- Defines Next.js routing conventions
+- This rule ensures document routes follow Next.js patterns
+
+## Enforcement
+
+### Pre-Link Creation Checks
+
+**Before creating ANY documentation link**:
+1. ✅ Verify document directory exists in `/docs/`
+2. ✅ Verify route handler exists in `/app/docs/{directory}/[...path]/page.tsx`
+3. ✅ Test route handler with sample document
+4. ✅ Verify route handler follows pattern above
+
+**If checks fail → Create route handler FIRST.**
+
+### Pre-Commit Validation
+
+**Script** (optional, for future automation):
+```bash
+# Check that all linked document directories have route handlers
+for dir in docs/*/; do
+  dirname=$(basename "$dir")
+  if [ -d "src/app/docs/$dirname/[...path]" ]; then
+    echo "✅ Route handler exists for $dirname"
+  else
+    echo "❌ Route handler missing for $dirname"
+    exit 1
+  fi
+done
+```
+
+### Agent Requirements
+
+**All agents that create documentation links MUST**:
+1. Check route handler exists before creating links
+2. Create route handler if it doesn't exist
+3. Test route handler before proceeding
+4. Document route handler in this rule's mapping table
+
+## Examples
+
+### Example 1: Adding Validation Documents Route
+
+**Problem**: Links to `/docs/validation/...` were 404ing.
+
+**Solution**:
+1. Created route handler at `/app/docs/validation/[...path]/page.tsx`
+2. Route handler reads from `docs/validation/` directory
+3. Route handler handles `.md` extension automatically
+4. Now links work correctly
+
+### Example 2: Adding Discovery Documents Route
+
+**Problem**: Links to `/docs/discovery/...` were 404ing.
+
+**Solution**:
+1. Created route handler at `/app/docs/discovery/[...path]/page.tsx`
+2. Route handler reads from `docs/discovery/` directory
+3. Route handler includes back navigation to listing page
+4. Now links work correctly
+
+## Summary
+
+1. **Route handlers are REQUIRED** for all document directories
+2. **Create route handlers BEFORE creating links**
+3. **Follow the standard route handler pattern**
+4. **Test route handlers before proceeding**
+5. **Update route mapping table when adding new directories**
+6. **Verify route handlers exist before creating links**
+
+**No broken links. All routes must exist. Route handlers first, links second.**

@@ -159,6 +159,7 @@ Input:
 - Manus competitor gaps: [From Manus Narrative Agent]
 - JTBD documents: [From JTBD Agent]
 - Pain signals documents: [From Pain Signal Agent]
+- Manus References section: [Full citations with URLs from Manus document]
 
 Tasks:
 1) Identify winner-take-most dynamics
@@ -169,6 +170,13 @@ Tasks:
 6) Provide Midjourney/Canva prompts for "future vision" mockups (2-3 variants)
 7) Calculate Opportunity Score (must be ≥ 8.0/10)
 8) Produce documentation (Cursor)
+
+**CRITICAL: Citation Requirements**
+- When referencing sources, you MUST include the full citation with URL, not just the number
+- Format: "Source: [1] Author, A. (Year). Title. Publisher. - https://example.com/article"
+- Example: "Source: [10] Autentika. (2024, June 18). How much is a design system? We counted and here's the price tag. - https://autentika.com/blog/how-much-is-a-design-system-we-counted-and-here-s-the-price-tag"
+- Do NOT use generic references like "Source: Manus Discovery Pack" or "Source: [10]"
+- All claims must be backed by full citations with URLs from the Manus References section
 
 Output: /docs/discovery/OPPORTUNITY-<idea-slug>.md
 ```

@@ -15,5 +15,7 @@ Goal: Prevent path/layout disagreements between agents.
 
 ## Related Rules
 
+- **035-core-ui-components.mdc** - UI component rules (shadcn/ui + Radix UI + Tailwind v3)
 - **137-nextjs-server-client-separation.mdc** - Server/Client component separation patterns (prevents "createMotionComponent from server" errors)
 - **136-document-viewer-patterns.mdc** - Document organization and rendering patterns
+- **137-docs-route-handlers.mdc** - Documentation route handlers (ensures routes exist before creating links)

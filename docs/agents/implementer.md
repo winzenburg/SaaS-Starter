@@ -345,6 +345,8 @@ export async function createFeatureAction(
 
 **CRITICAL**: Use Next.js App Router patterns and shadcn/ui components.
 
+**See**: `docs/agents/ui-implementer.md` for complete UI implementation guidelines.
+
 #### Component Structure
 ```
 src/features/<feature>/ui/

@@ -10,6 +10,7 @@ import {
   analyzeCompetitors,
 } from "@/lib/ai-tools/manus";
 import { refine } from "@/lib/ai-tools/chatgpt";
+import { saveWorkflowDocument, formatWorkflowOutput } from "./file-saver";
 import type {
   DiscoveryWorkflow,
   WorkflowStep,
@@ -223,6 +224,36 @@ export async function executeDiscoveryStep(
           step.status = "completed";
           step.completedAt = new Date().toISOString();
           step.output = JSON.stringify(result.data);
+
+          // Save Manus output to disk so hub can discover it
+          try {
+            // result.data contains { narrative, persona, competitors } from executeStep1
+            const data = result.data as Record<string, unknown>;
+            
+            // Format the complete discovery pack
+            const manusContent = formatWorkflowOutput(
+              `Manus Discovery Pack: ${workflow.ideaName}`,
+              data,
+              { agent: "Manus-Narrative-Agent", tool: "manus" }
+            );
+            
+            saveWorkflowDocument({
+              projectSlug: workflow.ideaSlug,
+              documentType: "MANUS",
+              content: manusContent,
+              phase: "discovery",
+              frontmatter: {
+                title: `Manus Discovery Pack - ${workflow.ideaName}`,
+                generatedAt: new Date().toISOString(),
+                workflowId: workflow.id,
+              },
+            });
+            
+            console.log(`✅ Saved MANUS document for ${workflow.ideaSlug}`);
+          } catch (fileError) {
+            console.error("Failed to save Manus output to disk:", fileError);
+            // Don't fail the step if file saving fails
+          }
         } else {
           error = result.error;
           step.status = "failed";
@@ -244,6 +275,29 @@ export async function executeDiscoveryStep(
           step.status = "completed";
           step.completedAt = new Date().toISOString();
           step.output = JSON.stringify(result.data);
+
+          // Save ChatGPT refinement output to disk
+          try {
+            const refinementContent = formatWorkflowOutput(
+              "ChatGPT Refinement Packet",
+              result.data,
+              { agent: "ChatGPT-Reasoning-Agent", tool: "chatgpt" }
+            );
+            saveWorkflowDocument({
+              projectSlug: workflow.ideaSlug,
+              documentType: "CHATGPT-REFINEMENT",
+              content: refinementContent,
+              phase: "discovery",
+              frontmatter: {
+                title: `ChatGPT Refinement - ${workflow.ideaName}`,
+                generatedAt: new Date().toISOString(),
+                workflowId: workflow.id,
+              },
+            });
+          } catch (fileError) {
+            console.error("Failed to save ChatGPT refinement to disk:", fileError);
+            // Don't fail the step if file saving fails
+          }
         } else {
           error = result.error;
           step.status = "failed";

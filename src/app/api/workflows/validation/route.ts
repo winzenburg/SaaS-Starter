@@ -12,7 +12,11 @@ import {
   checkValidationThresholds,
 } from "@/lib/workflows/validation";
 import { saveWorkflow, loadWorkflow } from "@/lib/workflows/db";
-import type { WorkflowExecutionRequest } from "@/lib/workflows/types";
+import type { WorkflowExecutionRequest, Workflow, ValidationWorkflow } from "@/lib/workflows/types";
+
+function isValidationWorkflow(workflow: Workflow): workflow is ValidationWorkflow {
+  return workflow.phase === "validation";
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -45,6 +49,13 @@ export async function POST(request: NextRequest) {
         );
       }
 
+      if (!isValidationWorkflow(workflow)) {
+        return NextResponse.json(
+          { error: "Workflow is not a validation workflow" },
+          { status: 400 }
+        );
+      }
+
       const result = await executeValidationStep(workflow, body.stepId);
       await saveWorkflow(result.workflow);
 
@@ -65,6 +76,13 @@ export async function POST(request: NextRequest) {
         );
       }
 
+      if (!isValidationWorkflow(workflow)) {
+        return NextResponse.json(
+          { error: "Workflow is not a validation workflow" },
+          { status: 400 }
+        );
+      }
+
       const updated = updateValidationResults(workflow, body.results);
       await saveWorkflow(updated);
 
@@ -81,6 +99,13 @@ export async function POST(request: NextRequest) {
         return NextResponse.json(
           { error: "Workflow not found" },
           { status: 404 }
+        );
+      }
+
+      if (!isValidationWorkflow(workflow)) {
+        return NextResponse.json(
+          { error: "Workflow is not a validation workflow" },
+          { status: 400 }
         );
       }
 

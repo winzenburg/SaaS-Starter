@@ -7,7 +7,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { listWorkflows } from "@/lib/workflows/db";
 
-export async function GET(request: NextRequest) {
+export async function GET(_request: NextRequest) {
   try {
     // Check if DATABASE_URL is set before attempting to use the database
     if (!process.env.DATABASE_URL) {
